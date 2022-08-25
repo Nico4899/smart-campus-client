@@ -1,0 +1,9 @@
+<div class="buildings-list-container">
+  <h2>Buildings</h2>
+  <mat-list>
+    <mat-list-item *ngFor="let building of buildings">
+      <div matLine>{{building.getBuildingName()}}</div>
+      <div matLine>{{building.getBuildingNumber()}}</div>
+    </mat-list-item>
+  </mat-list>
+</div>

@@ -1,0 +1,13 @@
+<h1 *ngIf="component">{{component.getComponentType()}}</h1>
+<h3 *ngIf="component">{{component.getComponentDescription()}}</h3>
+
+<div class="notifications-list-container">
+  <h2>Notifications</h2>
+  <mat-list>
+    <mat-list-item *ngFor="let notification of notifications">
+      <div matLine>{{notification.getNotificationTitle()}}</div>
+      <div matLine>{{notification.getNotificationDescription()}}</div>
+      <div matLine>{{"Created on: " + notification.getCreationTime()}}</div>
+    </mat-list-item>
+  </mat-list>
+</div>

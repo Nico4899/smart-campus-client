@@ -1,0 +1,32 @@
+<h1 *ngIf="building">{{building.getBuildingNumber()}}</h1>
+<h3 *ngIf="building">{{building.getBuildingName()}}</h3>
+
+<div class="rooms-list-container">
+  <h2>Rooms</h2>
+  <mat-list>
+    <mat-list-item *ngFor="let room of rooms">
+      <div matLine>{{room.getRoomName()}}</div>
+      <div matLine>{{room.getRoomNumber()}}</div>
+    </mat-list-item>
+  </mat-list>
+</div>
+
+<div class="components-list-container">
+  <h2>Components</h2>
+  <mat-list>
+    <mat-list-item *ngFor="let component of components">
+      <div matLine>{{"Type: " + component.getComponentType()}}</div>
+    </mat-list-item>
+  </mat-list>
+</div>
+
+<div class="notifications-list-container">
+  <h2>Notifications</h2>
+  <mat-list>
+    <mat-list-item *ngFor="let notification of notifications">
+      <div matLine>{{notification.getNotificationTitle()}}</div>
+      <div matLine>{{notification.getNotificationDescription()}}</div>
+      <div matLine>{{"Created on: " + notification.getCreationTime()}}</div>
+    </mat-list-item>
+  </mat-list>
+</div>
