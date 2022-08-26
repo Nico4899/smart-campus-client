@@ -4,7 +4,6 @@ import {RoomComponent} from "../../modules/room/room.component";
 import {ComponentComponent} from "../../modules/component/component.component";
 import {BuildingsComponent} from "../../modules/buildings/buildings.component";
 import {environment} from "../../../environments/environment";
-import {BuildingManagementClient} from "../../../proto/generated/Building_managementServiceClientPb";
 import {
   GetBuildingRequest,
   GetBuildingResponse,
@@ -23,6 +22,7 @@ import {
   ListRoomsRequest, ListRoomsResponse
 } from 'src/proto/generated/building_management_pb';
 import {RpcError} from "grpc-web";
+import {BuildingManagementClient} from "../../../proto/generated/Building_managementServiceClientPb";
 
 @Injectable({
   providedIn: 'root'
