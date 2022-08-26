@@ -1,9 +1,15 @@
 import {Injectable} from '@angular/core';
-import {ProblemManagementClient} from "../../../proto/generated/problem_management_pb_service";
 import {environment} from "../../../environments/environment";
-import {GetProblemRequest, GrpcProblem, ListProblemsRequest} from "../../../proto/generated/problem_management_pb";
+import {
+  GetProblemRequest,
+  GetProblemResponse,
+  GrpcProblem,
+  ListProblemsRequest, ListProblemsResponse
+} from "../../../proto/generated/problem_management_pb";
 import {ProblemsComponent} from "../../modules/problems/problems.component";
 import {ProblemComponent} from "../../modules/problem/problem.component";
+import {RpcError} from "grpc-web";
+import {ProblemManagementClient} from "../../../proto/generated/Problem_managementServiceClientPb";
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +27,7 @@ export class ProblemManagementConnectorService {
     let request = new GetProblemRequest();
     request.setIdentificationNumber(identificationNumber);
 
-    this.client.getProblem(request, (error, response) => {
+    this.client.getProblem(request, {}, (error: RpcError, response: GetProblemResponse) => {
       callback(response?.getProblem(), self);
     })
   }
@@ -30,7 +36,7 @@ export class ProblemManagementConnectorService {
 
     let request = new ListProblemsRequest();
 
-    this.client.listProblems(request, (error, response) => {
+    this.client.listProblems(request, {}, (error: RpcError, response: ListProblemsResponse) => {
       callback(response?.getProblemsList(), self);
     })
   }

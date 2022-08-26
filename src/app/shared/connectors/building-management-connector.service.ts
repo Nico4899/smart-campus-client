@@ -1,50 +1,60 @@
 import {Injectable} from '@angular/core';
+import {BuildingComponent} from "../../modules/building/building.component";
+import {RoomComponent} from "../../modules/room/room.component";
+import {ComponentComponent} from "../../modules/component/component.component";
 import {BuildingsComponent} from "../../modules/buildings/buildings.component";
-import {BuildingManagementClient} from "../../../proto/generated/building_management_pb_service";
 import {environment} from "../../../environments/environment";
+import {BuildingManagementClient} from "../../../proto/generated/Building_managementServiceClientPb";
 import {
   GetBuildingRequest,
+  GetBuildingResponse,
+  GetComponentResponse,
   GetRoomRequest,
+  GetRoomResponse,
   GrpcBuilding,
   GrpcComponent,
   GrpcNotification,
   GrpcRoom,
   ListBuildingsRequest,
-  ListComponentsRequest,
+  ListBuildingsResponse,
+  ListComponentsRequest, ListComponentsResponse,
   ListNotificationsRequest,
-  ListRoomsRequest
-} from "../../../proto/generated/building_management_pb";
-import {BuildingComponent} from "../../modules/building/building.component";
-import {RoomComponent} from "../../modules/room/room.component";
-import {ComponentComponent} from "../../modules/component/component.component";
+  ListNotificationsResponse,
+  ListRoomsRequest, ListRoomsResponse
+} from 'src/proto/generated/building_management_pb';
+import {RpcError} from "grpc-web";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BuildingManagementConnectorService {
+
   private readonly client: BuildingManagementClient;
 
   constructor() {
-    this.client = new BuildingManagementClient(environment.clientUrls.building_management);
+    this.client = new BuildingManagementClient(environment.clientUrls.building_management, null, null);
   }
 
-  //TODO add filter values logic
+
   async listBuildings(callback: (buildings: GrpcBuilding[] | undefined, self: BuildingsComponent) => void, self: BuildingsComponent) {
 
     let request = new ListBuildingsRequest();
 
-    this.client.listBuildings(request, (error, response) => {
-      callback(response?.getBuildingsList(), self);
+    this.client.listBuildings(request, {},(error: RpcError, response: ListBuildingsResponse) => {
+      if (error) {
+        console.log("something went wrong")
+      } else {
+        callback(response?.getBuildingsList(), self);
+      }
     })
   }
 
-  //TODO add filter values logic
   async listRooms(parentIdentificationNumber: string, callback: (rooms: GrpcRoom[] | undefined, self: BuildingComponent) => void, self: BuildingComponent) {
 
     let request = new ListRoomsRequest();
     request.setIdentificationNumber(parentIdentificationNumber);
 
-    this.client.listRooms(request, (error, response) => {
+    this.client.listRooms(request, {}, (error: RpcError, response:ListRoomsResponse) => {
       callback(response?.getRoomsList(), self);
     })
   }
@@ -54,7 +64,7 @@ export class BuildingManagementConnectorService {
     let request = new ListComponentsRequest();
     request.setIdentificationNumber(parentIdentificationNumber);
 
-    this.client.listComponents(request, (error, response) => {
+    this.client.listComponents(request, {}, (error: RpcError, response: ListComponentsResponse) => {
       callback(response?.getComponentsList(), self);
     })
   }
@@ -64,7 +74,7 @@ export class BuildingManagementConnectorService {
     let request = new ListNotificationsRequest();
     request.setIdentificationNumber(parentIdentificationNumber);
 
-    this.client.listNotifications(request, (error, response) => {
+    this.client.listNotifications(request, {}, (error: RpcError, response: ListNotificationsResponse) => {
       callback(response?.getNotificationsList(), self);
     })
   }
@@ -75,7 +85,7 @@ export class BuildingManagementConnectorService {
     let request = new GetBuildingRequest();
     request.setIdentificationNumber(identificationNumber);
 
-    this.client.getBuilding(request, (error, response) => {
+    this.client.getBuilding(request, {}, (error: RpcError, response: GetBuildingResponse) => {
       callback(response?.getGrpcBuilding(), self);
     })
   }
@@ -85,7 +95,7 @@ export class BuildingManagementConnectorService {
     let request = new GetRoomRequest();
     request.setIdentificationNumber(identificationNumber);
 
-    this.client.getRoom(request, (error, response) => {
+    this.client.getRoom(request, {}, (error: RpcError, response: GetRoomResponse) => {
       callback(response?.getRoom(), self);
     })
   }
@@ -95,7 +105,7 @@ export class BuildingManagementConnectorService {
     let request = new GetRoomRequest();
     request.setIdentificationNumber(identificationNumber);
 
-    this.client.getComponent(request, (error, response) => {
+    this.client.getComponent(request, {}, (error: RpcError, response: GetComponentResponse) => {
       callback(response?.getComponent(), self);
     })
   }
