@@ -4,6 +4,9 @@ import {BuildingManagementConnectorService} from "../../shared/connectors/buildi
 import {RoomComponent} from "../room/room.component";
 import {ActivatedRoute} from "@angular/router";
 import {ComponentComponent} from "../component/component.component";
+//gmaps necessary inputs
+import {Loader} from '@googlemaps/js-api-loader'
+
 
 @Component({
   selector: 'app-building',
@@ -11,6 +14,16 @@ import {ComponentComponent} from "../component/component.component";
   styleUrls: ['./building.component.css']
 })
 export class BuildingComponent implements OnInit {
+
+
+
+  lat: string = "49.46800006494457";
+  lon: string = "17.11514008755796";
+
+  googlemappage: string = "http://www.google.com/maps/place/" + this.lat + "," + this.lon;
+
+
+
 
   bin: string | undefined;
 
@@ -28,6 +41,7 @@ export class BuildingComponent implements OnInit {
     this.buildingManagementConnector.listComponents(this.bin, this.setComponents, this);
     this.buildingManagementConnector.listNotifications(this.bin, this.setNotifications, this);
     this.buildingManagementConnector.getBuilding(this.bin, this.setBuilding, this);
+
   }
 
   setRooms(rooms: GrpcRoom[] | undefined, self: BuildingComponent): void {
@@ -45,4 +59,7 @@ export class BuildingComponent implements OnInit {
   setBuilding(building: GrpcBuilding | undefined, self: BuildingComponent): void {
     self.building = building;
   }
+
+
+
 }
