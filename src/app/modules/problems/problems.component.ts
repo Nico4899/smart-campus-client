@@ -1,6 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ProblemManagementConnectorService} from "../../shared/connectors/problem-management-connector.service";
-import {GrpcProblem} from "../../../proto/generated/problem_management_pb";
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-problems',
@@ -9,17 +7,12 @@ import {GrpcProblem} from "../../../proto/generated/problem_management_pb";
 })
 export class ProblemsComponent implements OnInit {
 
-  @Input() problems: GrpcProblem[] | undefined;
 
-  constructor(private problemManagementConnector: ProblemManagementConnectorService) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.problemManagementConnector.listProblems(this.setProblems, this);
   }
 
-  setProblems(problems: GrpcProblem[] | undefined, self: ProblemsComponent): void {
-    self.problems = problems;
-  }
 
 }

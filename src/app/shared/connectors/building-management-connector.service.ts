@@ -11,7 +11,7 @@ import {
   GetRoomRequest,
   GetRoomResponse,
   GrpcBuilding,
-  GrpcComponent,
+  GrpcComponent, GrpcFilterValueSelection,
   GrpcNotification,
   GrpcRoom,
   ListBuildingsRequest,
@@ -35,17 +35,19 @@ export class BuildingManagementConnectorService {
     this.client = new BuildingManagementClient(environment.clientUrls.building_management, null, null);
   }
 
-
   async listBuildings(callback: (buildings: GrpcBuilding[] | undefined, self: BuildingsComponent) => void, self: BuildingsComponent) {
 
+    let selection = new GrpcFilterValueSelection()
+    selection.setFloorsList([])
+    selection.setGrpcCampusLocationsList([])
+    selection.setGrpcComponentTypesList([])
+    selection.setGrpcRoomTypesList([])
+
     let request = new ListBuildingsRequest();
+    request.setGrpcFilterValueSelection(selection)
 
     this.client.listBuildings(request, {},(error: RpcError, response: ListBuildingsResponse) => {
-      if (error) {
-        console.log("something went wrong")
-      } else {
         callback(response?.getBuildingsList(), self);
-      }
     })
   }
 
@@ -55,6 +57,7 @@ export class BuildingManagementConnectorService {
     request.setIdentificationNumber(parentIdentificationNumber);
 
     this.client.listRooms(request, {}, (error: RpcError, response:ListRoomsResponse) => {
+      if (error) console.log("error");
       callback(response?.getRoomsList(), self);
     })
   }

@@ -7,7 +7,7 @@ export const environment = {
 
   // set to correct values in production
   clientUrls: {
-    building_management: "http://localhost:9091",
+    building_management: "http://localhost:8080",
     problem_management: "",
   }
 };
