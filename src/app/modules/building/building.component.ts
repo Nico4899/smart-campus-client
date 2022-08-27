@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {GrpcBuilding, GrpcComponent, GrpcNotification, GrpcRoom} from "../../../proto/generated/building_management_pb";
+import {GrpcBuilding, GrpcComponent, GrpcNotification, GrpcRoom, GrpcGeographicalLocation} from "../../../proto/generated/building_management_pb";
 import {BuildingManagementConnectorService} from "../../shared/connectors/building-management-connector.service";
 import {RoomComponent} from "../room/room.component";
 import {ActivatedRoute} from "@angular/router";
@@ -15,12 +15,10 @@ import {Loader} from '@googlemaps/js-api-loader'
 })
 export class BuildingComponent implements OnInit {
 
-
-
-  lat: string = "49.46800006494457";
-  lon: string = "17.11514008755796";
-
-  googlemappage: string = "http://www.google.com/maps/place/" + this.lat + "," + this.lon;
+  // TODO: delete these three before production
+  testlat: string = "49.46800006494457";
+  testlon: string = "17.11514008755796";
+  testgooglemappage: string = "http://www.google.com/maps/place/" + this.testlat + "," + this.testlon;
 
 
 
@@ -32,15 +30,21 @@ export class BuildingComponent implements OnInit {
   @Input() notifications: GrpcNotification[] | undefined;
   @Input() building: GrpcBuilding | undefined;
 
+  geolocation: GrpcGeographicalLocation | undefined;
+
   constructor(private buildingManagementConnector: BuildingManagementConnectorService, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.bin = String(this.route.snapshot.paramMap.get("bin"));
+
     this.buildingManagementConnector.listRooms(this.bin, this.setRooms, this);
     this.buildingManagementConnector.listComponents(this.bin, this.setComponents, this);
     this.buildingManagementConnector.listNotifications(this.bin, this.setNotifications, this);
     this.buildingManagementConnector.getBuilding(this.bin, this.setBuilding, this);
+
+    //if building defined, also get its location
+    this.geolocation = ((this.building === undefined)? undefined: this.building.getGrpcGeographicalLocation());
 
   }
 
@@ -59,6 +63,25 @@ export class BuildingComponent implements OnInit {
   setBuilding(building: GrpcBuilding | undefined, self: BuildingComponent): void {
     self.building = building;
   }
+
+  /**
+   * returns the maps link to the building position
+   * 
+   *
+   * If somehow invalid, returns google maps homepage
+   */
+  getMapslink(): string {
+
+    if(this.geolocation === undefined){
+      return "https://maps.google.com/";
+    }
+
+    var latstring = String(this.geolocation.getLatitude());
+    var lonstring = String(this.geolocation.getLongitude());
+    return "http://www.google.com/maps/place/" + latstring + "," + lonstring;
+
+  }
+
 
 
 

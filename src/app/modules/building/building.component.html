@@ -1,8 +1,13 @@
 <h1 *ngIf="building">{{building.getBuildingNumber()}}</h1>
 <h3 *ngIf="building">{{building.getBuildingName()}}</h3>
 
-<a href="https://maps.google.com/">Click here</a>
-<a href="{{googlemappage}}">Or here</a>
+<a href="https://maps.google.com/">Google Maps Homepage</a>
+<br>
+<a href="{{getMapslink()}}">Location of random position</a>
+<br>
+<div *ngIf="geolocation">
+  <a href="{{getMapslink()}}"></a>
+</div>
 
 
 <div class="rooms-list-container">
