@@ -1,16 +1,17 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {
   GetBuildingResponse,
   GrpcBuilding,
   GrpcComponent,
   GrpcNotification,
   GrpcRoom,
-  ListBuildingsResponse,
   ListComponentsResponse,
   ListNotificationsResponse,
   ListRoomsResponse
 } from "../../../proto/generated/building_management_pb";
-import {BuildingManagementConnectorService} from "../../shared/connectors/building-management-connector.service";
+import {
+  BuildingManagementConnectorService
+} from "../../shared/connectors/building-management-connector.service";
 import {RoomComponent} from "../room/room.component";
 import {ActivatedRoute} from "@angular/router";
 import {ComponentComponent} from "../component/component.component";
@@ -44,8 +45,7 @@ export class BuildingComponent implements OnInit {
     this.buildingManagementConnector.listComponents(this.bin, BuildingComponent.interpretListComponentsResponse, this);
     this.buildingManagementConnector.listNotifications(this.bin, BuildingComponent.interpretListNotificationsResponse, this);
     this.buildingManagementConnector.getBuilding(this.bin, BuildingComponent.interpretGetBuildingResponse, this);
-
-  }
+      }
 
   private static interpretListRoomsResponse(response: ListRoomsResponse, self: BuildingComponent): void {
     self.rDataSource = new MatTableDataSource<GrpcRoom>(response.getRoomsList());

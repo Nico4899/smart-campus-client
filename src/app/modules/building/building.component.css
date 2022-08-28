@@ -1,15 +1,19 @@
 .rooms-table {
-  width: 75%;
-  margin: 15px;
+  width: 100%;
+  margin: 10px;
 }
 
 .components-table {
-  width: 75%;
-  margin: 15px;
+  width: 100%;
+  margin: 10px;
 }
 
 .notifications-table {
-  width: 75%;
-  margin: 15px;
+  width: 100%;
+  margin: 10px;
+}
+
+mat-grid-tile {
+  background: lightblue;
 }
 

@@ -24,6 +24,7 @@ import {ProblemStatePipe} from "../../shared/pipes/problem-state.pipe";
 import {
   ProblemsStateOperationPipe
 } from "../../shared/pipes/problems-state-operation.pipe";
+import {MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {
     MatInputModule,
     MatSortModule,
     MatPaginatorModule,
-    MatButtonModule
+    MatButtonModule,
+    MatGridListModule
   ]
 })
 export class DefaultModule { }
