@@ -1,12 +1,20 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {GrpcBuilding, GrpcComponent, GrpcNotification, GrpcRoom} from "../../../proto/generated/building_management_pb";
+import {
+  GetBuildingResponse,
+  GrpcBuilding,
+  GrpcComponent,
+  GrpcNotification,
+  GrpcRoom,
+  ListBuildingsResponse,
+  ListComponentsResponse,
+  ListNotificationsResponse,
+  ListRoomsResponse
+} from "../../../proto/generated/building_management_pb";
 import {BuildingManagementConnectorService} from "../../shared/connectors/building-management-connector.service";
 import {RoomComponent} from "../room/room.component";
 import {ActivatedRoute} from "@angular/router";
 import {ComponentComponent} from "../component/component.component";
-//gmaps necessary inputs
-import {Loader} from '@googlemaps/js-api-loader'
-
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-building',
@@ -15,51 +23,43 @@ import {Loader} from '@googlemaps/js-api-loader'
 })
 export class BuildingComponent implements OnInit {
 
+  bin: string = "";
+  rDataSource: MatTableDataSource<GrpcRoom> = new MatTableDataSource<GrpcRoom>();
+  cDataSource: MatTableDataSource<GrpcComponent> = new MatTableDataSource<GrpcComponent>();
+  nDataSource: MatTableDataSource<GrpcNotification> = new MatTableDataSource<GrpcNotification>();
+  building: GrpcBuilding = new GrpcBuilding();
 
+  displayedRoomColumns: string[] = ['name', 'number', 'type'];
+  displayedComponentColumns: string[] = ['description', 'type'];
+  displayedNotificationColumns: string[] = ['title', 'description', 'created_on', 'last_edited_on'];
 
-  lat: string = "49.46800006494457";
-  lon: string = "17.11514008755796";
-
-  googlemappage: string = "http://www.google.com/maps/place/" + this.lat + "," + this.lon;
-
-
-
-
-  bin: string | undefined;
-
-  @Input() rooms: GrpcRoom[] | undefined;
-  @Input() components: GrpcComponent[] | undefined;
-  @Input() notifications: GrpcNotification[] | undefined;
-  @Input() building: GrpcBuilding | undefined;
 
   constructor(private buildingManagementConnector: BuildingManagementConnectorService, private route: ActivatedRoute) {
+
   }
 
   ngOnInit(): void {
     this.bin = String(this.route.snapshot.paramMap.get("bin"));
-    this.buildingManagementConnector.listRooms(this.bin, this.setRooms, this);
-    this.buildingManagementConnector.listComponents(this.bin, this.setComponents, this);
-    this.buildingManagementConnector.listNotifications(this.bin, this.setNotifications, this);
-    this.buildingManagementConnector.getBuilding(this.bin, this.setBuilding, this);
+    this.buildingManagementConnector.listRooms(this.bin, BuildingComponent.interpretListRoomsResponse, this);
+    this.buildingManagementConnector.listComponents(this.bin, BuildingComponent.interpretListComponentsResponse, this);
+    this.buildingManagementConnector.listNotifications(this.bin, BuildingComponent.interpretListNotificationsResponse, this);
+    this.buildingManagementConnector.getBuilding(this.bin, BuildingComponent.interpretGetBuildingResponse, this);
 
   }
 
-  setRooms(rooms: GrpcRoom[] | undefined, self: BuildingComponent): void {
-    self.rooms = rooms;
+  private static interpretListRoomsResponse(response: ListRoomsResponse, self: BuildingComponent): void {
+    self.rDataSource = new MatTableDataSource<GrpcRoom>(response.getRoomsList());
   }
 
-  setComponents(components: GrpcComponent[] | undefined, self: BuildingComponent | RoomComponent): void {
-    self.components = components;
+  private static interpretListComponentsResponse(response: ListComponentsResponse, self: BuildingComponent | RoomComponent): void {
+    self.cDataSource = new MatTableDataSource<GrpcComponent>(response.getComponentsList());
   }
 
-  setNotifications(notifications: GrpcNotification[] | undefined, self: BuildingComponent | RoomComponent | ComponentComponent): void {
-    self.notifications = notifications;
+  private static interpretListNotificationsResponse(response: ListNotificationsResponse, self: BuildingComponent | RoomComponent | ComponentComponent): void {
+    self.nDataSource = new MatTableDataSource<GrpcNotification>(response.getNotificationsList());
   }
 
-  setBuilding(building: GrpcBuilding | undefined, self: BuildingComponent): void {
-    self.building = building;
+  private static interpretGetBuildingResponse(response: GetBuildingResponse, self: BuildingComponent): void {
+    self.building = response.getGrpcBuilding()!;
   }
-
-
-
 }

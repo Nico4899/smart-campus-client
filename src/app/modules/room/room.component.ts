@@ -1,9 +1,15 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {BuildingManagementConnectorService} from "../../shared/connectors/building-management-connector.service";
 import {ActivatedRoute} from "@angular/router";
-import {GrpcComponent, GrpcNotification, GrpcRoom} from "../../../proto/generated/building_management_pb";
+import {
+  GetRoomResponse,
+  GrpcComponent,
+  GrpcNotification,
+  GrpcRoom, ListComponentsResponse, ListNotificationsResponse
+} from "../../../proto/generated/building_management_pb";
 import {ComponentComponent} from "../component/component.component";
 import {BuildingComponent} from "../building/building.component";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-room',
@@ -12,32 +18,32 @@ import {BuildingComponent} from "../building/building.component";
 })
 export class RoomComponent implements OnInit {
 
-  rin: string | undefined;
+  rin: string = "";
 
-  @Input() room: GrpcRoom | undefined;
-  @Input() components: GrpcComponent[] | undefined;
-  @Input() notifications: GrpcNotification[] | undefined;
+  room: GrpcRoom = new GrpcRoom();
+  cDataSource: MatTableDataSource<GrpcComponent> = new MatTableDataSource<GrpcComponent>();
+  nDataSource: MatTableDataSource<GrpcNotification> = new MatTableDataSource<GrpcNotification>();
 
   constructor(private buildingManagementConnector: BuildingManagementConnectorService, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.rin = String(this.route.snapshot.paramMap.get("rin"));
-    this.buildingManagementConnector.listComponents(this.rin, this.setComponents, this);
-    this.buildingManagementConnector.listNotifications(this.rin, this.setNotifications, this);
-    this.buildingManagementConnector.getRoom(this.rin, this.setRoom, this);
+    this.buildingManagementConnector.listComponents(this.rin, RoomComponent.interpretListComponentsResponse, this);
+    this.buildingManagementConnector.listNotifications(this.rin, RoomComponent.interpretListNotificationsResponse, this);
+    this.buildingManagementConnector.getRoom(this.rin, RoomComponent.interpretGetRoomResponse, this);
   }
 
-  setComponents(components: GrpcComponent[] | undefined, self: BuildingComponent | RoomComponent): void {
-    self.components = components;
+  private static interpretListComponentsResponse(response: ListComponentsResponse, self: BuildingComponent | RoomComponent): void {
+    self.cDataSource = new MatTableDataSource<GrpcComponent>(response.getComponentsList());
   }
 
-  setNotifications(notifications: GrpcNotification[] | undefined, self: BuildingComponent | RoomComponent | ComponentComponent): void {
-    self.notifications = notifications;
+  private static interpretListNotificationsResponse(response: ListNotificationsResponse, self: BuildingComponent | RoomComponent | ComponentComponent): void {
+    self.nDataSource = new MatTableDataSource<GrpcNotification>(response.getNotificationsList());
   }
 
-  setRoom(room: GrpcRoom | undefined, self: RoomComponent): void {
-    self.room = room;
+  private static interpretGetRoomResponse(response: GetRoomResponse, self: RoomComponent): void {
+    self.room = response.getRoom()!;
   }
 
 }

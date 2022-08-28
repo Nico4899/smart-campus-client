@@ -1,4 +1,15 @@
-.full{
-  width: 100vw;
-  height: 100vh;
+.rooms-table {
+  width: 75%;
+  margin: 15px;
 }
+
+.components-table {
+  width: 75%;
+  margin: 15px;
+}
+
+.notifications-table {
+  width: 75%;
+  margin: 15px;
+}
+

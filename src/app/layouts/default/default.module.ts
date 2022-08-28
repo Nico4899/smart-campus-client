@@ -12,6 +12,18 @@ import {ProblemComponent} from "../../modules/problem/problem.component";
 import {RoomComponent} from "../../modules/room/room.component";
 import {MatListModule} from "@angular/material/list";
 import {ComponentComponent} from "../../modules/component/component.component";
+import {MatTableModule} from "@angular/material/table";
+import {MatInputModule} from "@angular/material/input";
+import {MatSortModule} from "@angular/material/sort";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatButtonModule} from "@angular/material/button";
+import {CampusLocationPipe} from "../../shared/pipes/campus-location.pipe";
+import {ComponentTypePipe} from "../../shared/pipes/component-type.pipe";
+import {RoomTypePipe} from "../../shared/pipes/room-type.pipe";
+import {ProblemStatePipe} from "../../shared/pipes/problem-state.pipe";
+import {
+  ProblemsStateOperationPipe
+} from "../../shared/pipes/problems-state-operation.pipe";
 
 @NgModule({
   declarations: [
@@ -22,14 +34,24 @@ import {ComponentComponent} from "../../modules/component/component.component";
     BuildingComponent,
     ProblemComponent,
     RoomComponent,
-    ComponentComponent
+    ComponentComponent,
+    CampusLocationPipe,
+    ComponentTypePipe,
+    RoomTypePipe,
+    ProblemStatePipe,
+    ProblemsStateOperationPipe
   ],
   imports: [
     CommonModule,
     RouterModule,
     SharedModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+    MatInputModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatButtonModule
   ]
 })
 export class DefaultModule { }
