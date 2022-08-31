@@ -11,6 +11,7 @@ import {FlexModule} from "@angular/flex-layout";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatListModule} from "@angular/material/list";
 import {RouterModule} from "@angular/router";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {RouterModule} from "@angular/router";
     FlexModule,
     MatMenuModule,
     MatListModule,
-    RouterModule
+    RouterModule,
+    MatSlideToggleModule
   ]
 })
 export class SharedModule { }
