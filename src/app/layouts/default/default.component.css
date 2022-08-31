@@ -12,6 +12,6 @@ mat-drawer-container {
   height: 100%;
 }
 
-mat-drawer-content {
+.content {
   padding: 20px;
 }
