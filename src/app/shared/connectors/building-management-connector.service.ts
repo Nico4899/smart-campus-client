@@ -10,20 +10,17 @@ import {
   GetComponentResponse,
   GetRoomRequest,
   GetRoomResponse,
-  GrpcBuilding,
-  GrpcComponent, GrpcFilterValueSelection,
-  GrpcNotification,
-  GrpcRoom,
   ListBuildingsRequest,
   ListBuildingsResponse,
-  ListComponentsRequest, ListComponentsResponse,
+  ListComponentsRequest,
+  ListComponentsResponse,
   ListNotificationsRequest,
   ListNotificationsResponse,
-  ListRoomsRequest, ListRoomsResponse
+  ListRoomsRequest,
+  ListRoomsResponse
 } from 'src/proto/generated/building_management_pb';
 import {RpcError} from "grpc-web";
 import {BuildingManagementClient} from "../../../proto/generated/Building_managementServiceClientPb";
-import {MatTableDataSource} from "@angular/material/table";
 
 @Injectable({
   providedIn: 'root'
@@ -40,8 +37,8 @@ export class BuildingManagementConnectorService {
 
     let request = new ListBuildingsRequest();
 
-    this.client.listBuildings(request, {},(error: RpcError, response: ListBuildingsResponse) => {
-        callback(response, self);
+    this.client.listBuildings(request, {}, (error: RpcError, response: ListBuildingsResponse) => {
+      callback(response, self);
     })
   }
 
@@ -50,7 +47,7 @@ export class BuildingManagementConnectorService {
     let request = new ListRoomsRequest();
     request.setIdentificationNumber(parentIdentificationNumber);
 
-    this.client.listRooms(request, {}, (error: RpcError, response:ListRoomsResponse) => {
+    this.client.listRooms(request, {}, (error: RpcError, response: ListRoomsResponse) => {
       callback(response, self);
     })
   }

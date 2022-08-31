@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {DefaultComponent} from "./default.component";
 import {DashboardComponent} from "../../modules/dashboard/dashboard.component";
 import {RouterModule} from "@angular/router";
@@ -21,10 +21,10 @@ import {CampusLocationPipe} from "../../shared/pipes/campus-location.pipe";
 import {ComponentTypePipe} from "../../shared/pipes/component-type.pipe";
 import {RoomTypePipe} from "../../shared/pipes/room-type.pipe";
 import {ProblemStatePipe} from "../../shared/pipes/problem-state.pipe";
-import {
-  ProblemsStateOperationPipe
-} from "../../shared/pipes/problems-state-operation.pipe";
+import {ProblemsStateOperationPipe} from "../../shared/pipes/problems-state-operation.pipe";
 import {MatGridListModule} from "@angular/material/grid-list";
+import {MatIconModule} from "@angular/material/icon";
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -53,7 +53,13 @@ import {MatGridListModule} from "@angular/material/grid-list";
     MatSortModule,
     MatPaginatorModule,
     MatButtonModule,
-    MatGridListModule
+    MatGridListModule,
+    MatIconModule,
+    MatMenuModule
+  ],
+  exports: [
+    MatSortModule
   ]
 })
-export class DefaultModule { }
+export class DefaultModule {
+}

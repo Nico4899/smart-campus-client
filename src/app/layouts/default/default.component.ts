@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-default',
@@ -9,7 +9,8 @@ export class DefaultComponent implements OnInit {
 
   sideBarOpen = false;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
