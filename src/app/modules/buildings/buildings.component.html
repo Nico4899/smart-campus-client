@@ -1,4 +1,12 @@
 <div class="buildings-table mat-elevation-z8">
+  <div class="search">
+    <mat-form-field class="search-form-field">
+      <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+    </mat-form-field>
+    <button mat-icon-button color="primary">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
   <table mat-table [dataSource]="bDataSource" matSort>
 
     <ng-container matColumnDef="id">
@@ -39,7 +47,8 @@
     </ng-container>
 
     <ng-container matColumnDef="campus_location">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header="campus_location" sortActionDescription="Sort by campus_location">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="campus_location"
+          sortActionDescription="Sort by campus_location">
         CAMPUS LOCATION
       </th>
       <td mat-cell

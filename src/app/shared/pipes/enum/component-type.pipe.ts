@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import {
     GrpcComponentType
-} from "../../../proto/generated/building_management_pb";
+} from "../../../../proto/generated/building_management_pb";
 
 @Pipe({
   name: 'componentType'

@@ -17,14 +17,15 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSortModule} from "@angular/material/sort";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatButtonModule} from "@angular/material/button";
-import {CampusLocationPipe} from "../../shared/pipes/campus-location.pipe";
-import {ComponentTypePipe} from "../../shared/pipes/component-type.pipe";
-import {RoomTypePipe} from "../../shared/pipes/room-type.pipe";
-import {ProblemStatePipe} from "../../shared/pipes/problem-state.pipe";
-import {ProblemsStateOperationPipe} from "../../shared/pipes/problems-state-operation.pipe";
+import {CampusLocationPipe} from "../../shared/pipes/enum/campus-location.pipe";
+import {ComponentTypePipe} from "../../shared/pipes/enum/component-type.pipe";
+import {RoomTypePipe} from "../../shared/pipes/enum/room-type.pipe";
+import {ProblemStatePipe} from "../../shared/pipes/enum/problem-state.pipe";
+import {ProblemsStateOperationPipe} from "../../shared/pipes/enum/problems-state-operation.pipe";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import {MatMenuModule} from "@angular/material/menu";
     MatButtonModule,
     MatGridListModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    FormsModule
   ],
   exports: [
     MatSortModule

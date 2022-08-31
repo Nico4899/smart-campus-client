@@ -15,6 +15,7 @@ export class BuildingsComponent implements OnInit, AfterViewInit{
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  searchKey: string = "";
 
   displayedBuildingColumns: string[] = ['id', 'number', 'name', 'address', 'campus_location', 'edit_building', 'delete_building'];
 
@@ -28,6 +29,10 @@ export class BuildingsComponent implements OnInit, AfterViewInit{
   ngAfterViewInit() {
     this.bDataSource.sort = this.sort;
     this.bDataSource.paginator = this.paginator;
+  }
+
+  applyFilter() {
+    this.bDataSource.filter = this.searchKey?.trim().toLowerCase();
   }
 
   private static interpretListBuildingsResponse(response: ListBuildingsResponse, self: BuildingsComponent): void {
