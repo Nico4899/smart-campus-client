@@ -26,6 +26,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {FormsModule} from "@angular/forms";
+import {FavoritesComponent} from "../../modules/favorites/favorites.component";
+import {MatTabsModule} from "@angular/material/tabs";
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import {FormsModule} from "@angular/forms";
     ComponentTypePipe,
     RoomTypePipe,
     ProblemStatePipe,
-    ProblemsStateOperationPipe
+    ProblemsStateOperationPipe,
+    FavoritesComponent
   ],
   imports: [
     CommonModule,
@@ -57,7 +60,8 @@ import {FormsModule} from "@angular/forms";
     MatGridListModule,
     MatIconModule,
     MatMenuModule,
-    FormsModule
+    FormsModule,
+    MatTabsModule
   ],
   exports: [
     MatSortModule

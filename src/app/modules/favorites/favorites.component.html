@@ -1,0 +1,180 @@
+<mat-tab-group>
+  <mat-tab label="favorite-buildings">
+    <div class="mat-elevation-z8">
+      <div>
+        <mat-form-field>
+          <input matInput [(ngModel)]="bSearchKey" placeholder="Search" autocomplete="off" (keyup)="applySearch()">
+          <button mat-button mat-icon-button matSuffix aria-label="Filter">
+            <mat-icon>filter_list</mat-icon>
+          </button> <!-- implement edit, remove and add, and add hide if roles do not fit-->
+        </mat-form-field>
+      </div>
+
+      <table class="fav-buildings-table" mat-table [dataSource]="bDataSource" matSort>
+
+        <ng-container matColumnDef="building-id">
+          <th mat-header-cell *matHeaderCellDef>
+            ID
+          </th>
+          <td mat-cell *matCellDef="let building">
+            {{building.getIdentificationNumber()}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="building-number">
+          <th mat-header-cell *matHeaderCellDef>
+            NUMBER
+          </th>
+          <td mat-cell *matCellDef="let building">
+            {{building.getBuildingNumber()}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="building-address">
+          <th mat-header-cell *matHeaderCellDef>
+            ADDRESS
+          </th>
+          <td mat-cell *matCellDef="let building">
+            {{building.campusLocation}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="building-name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="name" sortActionDescription="Sort by name">
+            NAME
+          </th>
+          <td mat-cell *matCellDef="let building"
+              routerLink="/buildings/{{building.getIdentificationNumber()}}">
+            {{building.getBuildingName()}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="building-campus_location">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="campus_location"
+              sortActionDescription="Sort by campus_location">
+            CAMPUS LOCATION
+          </th>
+          <td mat-cell
+              *matCellDef="let building"> {{building.getCampusLocation() | campusLocation}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedBuildingColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedBuildingColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[10, 15, 20]"
+                     showFirstLastButtons
+                     aria-label="Select page of buildings">
+      </mat-paginator>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="favorite-rooms">
+    <div class="mat-elevation-z8">
+      <div>
+        <mat-form-field>
+          <input matInput [(ngModel)]="rSearchKey" placeholder="Search" autocomplete="off" (keyup)="applySearch()">
+          <button mat-button mat-icon-button matSuffix aria-label="Filter">
+            <mat-icon>filter_list</mat-icon>
+          </button> <!-- implement edit, remove and add, and add hide if roles do not fit-->
+        </mat-form-field>
+      </div>
+
+      <table class="fav-rooms-table" mat-table [dataSource]="rDataSource" matSort>
+
+        <ng-container matColumnDef="room-id">
+          <th mat-header-cell *matHeaderCellDef>
+            ID
+          </th>
+          <td mat-cell *matCellDef="let room">
+            {{room.getIdentificationNumber()}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="room-number">
+          <th mat-header-cell *matHeaderCellDef>
+            NUMBER
+          </th>
+          <td mat-cell *matCellDef="let room">
+            {{room.getRoomNumber()}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="room-floor">
+          <th mat-header-cell *matHeaderCellDef>
+            FLOOR
+          </th>
+          <td mat-cell *matCellDef="let room">
+            {{room.getFloor()}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="room-name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="name" sortActionDescription="Sort by name">
+            NAME
+          </th>
+          <td mat-cell *matCellDef="let room"
+              routerLink="/rooms/{{room.getIdentificationNumber()}}">
+            {{room.getRoomName()}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="room-type">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="type"
+              sortActionDescription="Sort by type">
+            TYPE
+          </th>
+          <td mat-cell
+              *matCellDef="let room"> {{room.getRoomType() | roomType}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedRoomColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedRoomColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[10, 15, 20]"
+                     showFirstLastButtons
+                     aria-label="Select page of rooms">
+      </mat-paginator>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="favorite-components">
+    <div class="mat-elevation-z8">
+      <div>
+        <mat-form-field>
+          <input matInput [(ngModel)]="cSearchKey" placeholder="Search" autocomplete="off" (keyup)="applySearch()">
+          <button mat-button mat-icon-button matSuffix aria-label="Filter">
+            <mat-icon>filter_list</mat-icon>
+          </button> <!-- implement edit, remove and add, and add hide if roles do not fit-->
+        </mat-form-field>
+      </div>
+
+      <table class="fav-components-table" mat-table [dataSource]="cDataSource" matSort>
+
+        <ng-container matColumnDef="component-id">
+          <th mat-header-cell *matHeaderCellDef>
+            ID
+          </th>
+          <td mat-cell *matCellDef="let component">
+            {{component.getIdentificationNumber()}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="component-type">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="component-type"
+              sortActionDescription="Sort by component-type">
+            CAMPUS LOCATION
+          </th>
+          <td mat-cell
+              *matCellDef="let component"> {{component.getComponentType() | componentType}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedComponentColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedComponentColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[10, 15, 20]"
+                     showFirstLastButtons
+                     aria-label="Select page of components">
+      </mat-paginator>
+    </div>
+  </mat-tab>
+</mat-tab-group>

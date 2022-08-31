@@ -31,7 +31,7 @@ export class BuildingsComponent implements OnInit, AfterViewInit{
     this.bDataSource.paginator = this.paginator;
   }
 
-  applyFilter() {
+  applySearch() {
     this.bDataSource.filter = this.searchKey?.trim().toLowerCase();
   }
 
