@@ -33,9 +33,9 @@ export class FavoritesComponent implements OnInit, AfterViewInit {
   rSearchKey: string = "";
   cSearchKey: string = "";
 
-  displayedBuildingColumns: string[] = ['building-id', 'building-number', 'building-name', 'building-address', 'building-campus_location'];
-  displayedRoomColumns: string[] = ['room-id', 'room-number', 'room-name', 'room-floor', 'room-type'];
-  displayedComponentColumns: string[] = ['component-id', 'component-type'];
+  displayedBuildingColumns: string[] = ['building-id', 'building-number', 'building-name', 'building-address', 'building-campus_location', 'remove_favorite_building'];
+  displayedRoomColumns: string[] = ['room-id', 'room-number', 'room-name', 'room-floor', 'room-type', 'remove_favorite_room'];
+  displayedComponentColumns: string[] = ['component-id', 'component-type', 'remove_favorite_component'];
 
   constructor(private buildingManagementConnector: BuildingManagementConnectorService) {
   }

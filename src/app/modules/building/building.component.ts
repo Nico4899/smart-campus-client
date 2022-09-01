@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {
   GetBuildingResponse,
   GrpcBuilding,
@@ -9,13 +9,13 @@ import {
   ListNotificationsResponse,
   ListRoomsResponse
 } from "../../../proto/generated/building_management_pb";
-import {
-  BuildingManagementConnectorService
-} from "../../shared/connectors/building-management-connector.service";
+import {BuildingManagementConnectorService} from "../../shared/connectors/building-management-connector.service";
 import {RoomComponent} from "../room/room.component";
 import {ActivatedRoute} from "@angular/router";
 import {ComponentComponent} from "../component/component.component";
 import {MatTableDataSource} from "@angular/material/table";
+import {MatSort} from "@angular/material/sort";
+import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-building',
@@ -30,7 +30,17 @@ export class BuildingComponent implements OnInit {
   nDataSource: MatTableDataSource<GrpcNotification> = new MatTableDataSource<GrpcNotification>();
   building: GrpcBuilding = new GrpcBuilding();
 
-  displayedRoomColumns: string[] = ['name', 'number', 'type'];
+  @ViewChild(MatSort) nSort!: MatSort;
+  @ViewChild(MatSort) rSort!: MatSort;
+  @ViewChild(MatSort) cSort!: MatSort;
+  @ViewChild(MatPaginator) nPaginator!: MatPaginator;
+  @ViewChild(MatPaginator) rPaginator!: MatPaginator;
+  @ViewChild(MatPaginator) cPaginator!: MatPaginator;
+
+  rSearchKey: string = "";
+  cSearchKey: string = "";
+
+  displayedRoomColumns: string[] = ['room-id', 'room-number', 'room-name', 'room-floor', 'room-type', 'edit_room', 'delete_room'];
   displayedComponentColumns: string[] = ['description', 'type'];
   displayedNotificationColumns: string[] = ['title', 'description', 'created_on', 'last_edited_on'];
 
@@ -45,18 +55,35 @@ export class BuildingComponent implements OnInit {
     this.buildingManagementConnector.listComponents(this.bin, BuildingComponent.interpretListComponentsResponse, this);
     this.buildingManagementConnector.listNotifications(this.bin, BuildingComponent.interpretListNotificationsResponse, this);
     this.buildingManagementConnector.getBuilding(this.bin, BuildingComponent.interpretGetBuildingResponse, this);
-      }
+  }
+
+  ngAfterViewInit() {
+    this.rDataSource.sort = this.rSort;
+    this.rDataSource.paginator = this.rPaginator;
+
+    this.rDataSource.sort = this.rSort;
+    this.rDataSource.paginator = this.rPaginator;
+
+    this.cDataSource.sort = this.cSort;
+    this.cDataSource.paginator = this.cPaginator;
+  }
+
+  applySearch() {
+    this.rDataSource.filter = this.rSearchKey?.trim().toLowerCase();
+    this.rDataSource.filter = this.rSearchKey?.trim().toLowerCase();
+    this.cDataSource.filter = this.cSearchKey?.trim().toLowerCase();
+  }
 
   private static interpretListRoomsResponse(response: ListRoomsResponse, self: BuildingComponent): void {
-    self.rDataSource = new MatTableDataSource<GrpcRoom>(response.getRoomsList());
+    self.rDataSource.data = response.getRoomsList();
   }
 
   private static interpretListComponentsResponse(response: ListComponentsResponse, self: BuildingComponent | RoomComponent): void {
-    self.cDataSource = new MatTableDataSource<GrpcComponent>(response.getComponentsList());
+    self.cDataSource.data = response.getComponentsList();
   }
 
   private static interpretListNotificationsResponse(response: ListNotificationsResponse, self: BuildingComponent | RoomComponent | ComponentComponent): void {
-    self.nDataSource = new MatTableDataSource<GrpcNotification>(response.getNotificationsList());
+    self.nDataSource.data = response.getNotificationsList();
   }
 
   private static interpretGetBuildingResponse(response: GetBuildingResponse, self: BuildingComponent): void {

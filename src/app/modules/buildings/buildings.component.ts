@@ -36,6 +36,6 @@ export class BuildingsComponent implements OnInit, AfterViewInit{
   }
 
   private static interpretListBuildingsResponse(response: ListBuildingsResponse, self: BuildingsComponent): void {
-    self.bDataSource.data = response?.getBuildingsList();
+    self.bDataSource.data = response.getBuildingsList();
   }
 }

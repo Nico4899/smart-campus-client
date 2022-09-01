@@ -1,19 +1,54 @@
-.rooms-table {
-  width: 100%;
-  margin: 10px;
+.building-number {
+  text-align: center;
 }
 
-.components-table {
-  width: 100%;
-  margin: 10px;
+.building-name {
+  text-align: center;
 }
 
-.notifications-table {
+/*
+ * rooms table styling
+ */
+
+.fav-rooms-table {
   width: 100%;
-  margin: 10px;
+  margin: auto;
 }
 
-mat-grid-tile {
-  background: lightblue;
+.mat-column-room-number {
+  border-right: 1px solid;
+  width: 10%;
+  padding-left: 16px;
 }
+
+.mat-column-room-name {
+  padding-left: 16px;
+  border-right: 1px solid;
+  width: 50%;
+}
+
+.mat-column-room-floor {
+  border-right: 1px solid;
+  width: 10%;
+  padding-left: 16px;
+}
+
+.mat-column-room-type {
+  width: 20%;
+  padding-left: 16px;
+}
+
+.mat-column-room-id {
+  border-right: 1px solid;
+  width: 10%;
+}
+
+/*
+ * any table styling
+ */
+
+.mat-row:hover {
+  background-color: lightgrey;
+}
+
 
