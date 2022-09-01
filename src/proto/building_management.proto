@@ -51,7 +51,7 @@ message GetBuildingResponse{
 }
 
 message ListBuildingsRequest{
-  GrpcFilterValueSelection grpc_filter_value_selection = 1;
+  GrpcBuildingFilterValueSelection grpc_filter_value_selection = 1;
 }
 
 message ListBuildingsResponse{
@@ -75,7 +75,7 @@ message GetComponentResponse{
 }
 
 message ListRoomsRequest{
-  GrpcFilterValueSelection grpc_filter_value_selection = 1;
+  GrpcBuildingFilterValueSelection grpc_filter_value_selection = 1;
   string identification_number = 2;
 }
 
@@ -92,17 +92,16 @@ message ListComponentsResponse{
 }
 
 message ListFavoriteBuildingsRequest{
-  GrpcFilterValueSelection grpc_filter_value_selection = 1;
+  GrpcBuildingFilterValueSelection grpc_filter_value_selection = 1;
   string owner = 2;
 }
 
 message ListFavoriteRoomsRequest{
-  GrpcFilterValueSelection grpc_filter_value_selection = 1;
+  GrpcBuildingFilterValueSelection grpc_filter_value_selection = 1;
   string owner = 2;
 }
 
 message ListFavoriteComponentsRequest{
-  GrpcFilterValueSelection grpc_filter_value_selection = 1;
   string owner = 2;
 }
 
@@ -289,7 +288,7 @@ enum GrpcComponentType{
   STAIRS = 2;
 }
 
-message GrpcFilterValueSelection{
+message GrpcBuildingFilterValueSelection{
   repeated GrpcComponentType grpc_component_types = 1;
   repeated GrpcRoomType grpc_room_types = 2;
   repeated GrpcCampusLocation grpc_campus_locations = 3;

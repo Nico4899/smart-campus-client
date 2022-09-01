@@ -32,10 +32,10 @@ goog.exportSymbol('proto.edu.kit.tm.cm.proto.GetComponentResponse', null, global
 goog.exportSymbol('proto.edu.kit.tm.cm.proto.GetRoomRequest', null, global);
 goog.exportSymbol('proto.edu.kit.tm.cm.proto.GetRoomResponse', null, global);
 goog.exportSymbol('proto.edu.kit.tm.cm.proto.GrpcBuilding', null, global);
+goog.exportSymbol('proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection', null, global);
 goog.exportSymbol('proto.edu.kit.tm.cm.proto.GrpcCampusLocation', null, global);
 goog.exportSymbol('proto.edu.kit.tm.cm.proto.GrpcComponent', null, global);
 goog.exportSymbol('proto.edu.kit.tm.cm.proto.GrpcComponentType', null, global);
-goog.exportSymbol('proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection', null, global);
 goog.exportSymbol('proto.edu.kit.tm.cm.proto.GrpcFloors', null, global);
 goog.exportSymbol('proto.edu.kit.tm.cm.proto.GrpcGeographicalLocation', null, global);
 goog.exportSymbol('proto.edu.kit.tm.cm.proto.GrpcNotification', null, global);
@@ -955,16 +955,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.repeatedFields_, null);
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.repeatedFields_, null);
 };
-goog.inherits(proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection, jspb.Message);
+goog.inherits(proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.displayName = 'proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection';
+  proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.displayName = 'proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection';
 }
 
 
@@ -1279,7 +1279,7 @@ proto.edu.kit.tm.cm.proto.ListBuildingsRequest.prototype.toObject = function(opt
  */
 proto.edu.kit.tm.cm.proto.ListBuildingsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    grpcFilterValueSelection: (f = msg.getGrpcFilterValueSelection()) && proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.toObject(includeInstance, f)
+    grpcFilterValueSelection: (f = msg.getGrpcFilterValueSelection()) && proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1317,8 +1317,8 @@ proto.edu.kit.tm.cm.proto.ListBuildingsRequest.deserializeBinaryFromReader = fun
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection;
-      reader.readMessage(value,proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.deserializeBinaryFromReader);
+      var value = new proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection;
+      reader.readMessage(value,proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.deserializeBinaryFromReader);
       msg.setGrpcFilterValueSelection(value);
       break;
     default:
@@ -1355,24 +1355,24 @@ proto.edu.kit.tm.cm.proto.ListBuildingsRequest.serializeBinaryToWriter = functio
     writer.writeMessage(
       1,
       f,
-      proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.serializeBinaryToWriter
+      proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional GrpcFilterValueSelection grpc_filter_value_selection = 1;
- * @return {?proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection}
+ * optional GrpcBuildingFilterValueSelection grpc_filter_value_selection = 1;
+ * @return {?proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection}
  */
 proto.edu.kit.tm.cm.proto.ListBuildingsRequest.prototype.getGrpcFilterValueSelection = function() {
-  return /** @type{?proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection} */ (
-    jspb.Message.getWrapperField(this, proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection, 1));
+  return /** @type{?proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection} */ (
+    jspb.Message.getWrapperField(this, proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection, 1));
 };
 
 
 /**
- * @param {?proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection|undefined} value
+ * @param {?proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection|undefined} value
  * @return {!proto.edu.kit.tm.cm.proto.ListBuildingsRequest} returns this
 */
 proto.edu.kit.tm.cm.proto.ListBuildingsRequest.prototype.setGrpcFilterValueSelection = function(value) {
@@ -2152,7 +2152,7 @@ proto.edu.kit.tm.cm.proto.ListRoomsRequest.prototype.toObject = function(opt_inc
  */
 proto.edu.kit.tm.cm.proto.ListRoomsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    grpcFilterValueSelection: (f = msg.getGrpcFilterValueSelection()) && proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.toObject(includeInstance, f),
+    grpcFilterValueSelection: (f = msg.getGrpcFilterValueSelection()) && proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.toObject(includeInstance, f),
     identificationNumber: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
@@ -2191,8 +2191,8 @@ proto.edu.kit.tm.cm.proto.ListRoomsRequest.deserializeBinaryFromReader = functio
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection;
-      reader.readMessage(value,proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.deserializeBinaryFromReader);
+      var value = new proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection;
+      reader.readMessage(value,proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.deserializeBinaryFromReader);
       msg.setGrpcFilterValueSelection(value);
       break;
     case 2:
@@ -2233,7 +2233,7 @@ proto.edu.kit.tm.cm.proto.ListRoomsRequest.serializeBinaryToWriter = function(me
     writer.writeMessage(
       1,
       f,
-      proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.serializeBinaryToWriter
+      proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.serializeBinaryToWriter
     );
   }
   f = message.getIdentificationNumber();
@@ -2247,17 +2247,17 @@ proto.edu.kit.tm.cm.proto.ListRoomsRequest.serializeBinaryToWriter = function(me
 
 
 /**
- * optional GrpcFilterValueSelection grpc_filter_value_selection = 1;
- * @return {?proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection}
+ * optional GrpcBuildingFilterValueSelection grpc_filter_value_selection = 1;
+ * @return {?proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection}
  */
 proto.edu.kit.tm.cm.proto.ListRoomsRequest.prototype.getGrpcFilterValueSelection = function() {
-  return /** @type{?proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection} */ (
-    jspb.Message.getWrapperField(this, proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection, 1));
+  return /** @type{?proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection} */ (
+    jspb.Message.getWrapperField(this, proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection, 1));
 };
 
 
 /**
- * @param {?proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection|undefined} value
+ * @param {?proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection|undefined} value
  * @return {!proto.edu.kit.tm.cm.proto.ListRoomsRequest} returns this
 */
 proto.edu.kit.tm.cm.proto.ListRoomsRequest.prototype.setGrpcFilterValueSelection = function(value) {
@@ -2783,7 +2783,7 @@ proto.edu.kit.tm.cm.proto.ListFavoriteBuildingsRequest.prototype.toObject = func
  */
 proto.edu.kit.tm.cm.proto.ListFavoriteBuildingsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    grpcFilterValueSelection: (f = msg.getGrpcFilterValueSelection()) && proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.toObject(includeInstance, f),
+    grpcFilterValueSelection: (f = msg.getGrpcFilterValueSelection()) && proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.toObject(includeInstance, f),
     owner: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
@@ -2822,8 +2822,8 @@ proto.edu.kit.tm.cm.proto.ListFavoriteBuildingsRequest.deserializeBinaryFromRead
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection;
-      reader.readMessage(value,proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.deserializeBinaryFromReader);
+      var value = new proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection;
+      reader.readMessage(value,proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.deserializeBinaryFromReader);
       msg.setGrpcFilterValueSelection(value);
       break;
     case 2:
@@ -2864,7 +2864,7 @@ proto.edu.kit.tm.cm.proto.ListFavoriteBuildingsRequest.serializeBinaryToWriter =
     writer.writeMessage(
       1,
       f,
-      proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.serializeBinaryToWriter
+      proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.serializeBinaryToWriter
     );
   }
   f = message.getOwner();
@@ -2878,17 +2878,17 @@ proto.edu.kit.tm.cm.proto.ListFavoriteBuildingsRequest.serializeBinaryToWriter =
 
 
 /**
- * optional GrpcFilterValueSelection grpc_filter_value_selection = 1;
- * @return {?proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection}
+ * optional GrpcBuildingFilterValueSelection grpc_filter_value_selection = 1;
+ * @return {?proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection}
  */
 proto.edu.kit.tm.cm.proto.ListFavoriteBuildingsRequest.prototype.getGrpcFilterValueSelection = function() {
-  return /** @type{?proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection} */ (
-    jspb.Message.getWrapperField(this, proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection, 1));
+  return /** @type{?proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection} */ (
+    jspb.Message.getWrapperField(this, proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection, 1));
 };
 
 
 /**
- * @param {?proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection|undefined} value
+ * @param {?proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection|undefined} value
  * @return {!proto.edu.kit.tm.cm.proto.ListFavoriteBuildingsRequest} returns this
 */
 proto.edu.kit.tm.cm.proto.ListFavoriteBuildingsRequest.prototype.setGrpcFilterValueSelection = function(value) {
@@ -2964,7 +2964,7 @@ proto.edu.kit.tm.cm.proto.ListFavoriteRoomsRequest.prototype.toObject = function
  */
 proto.edu.kit.tm.cm.proto.ListFavoriteRoomsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    grpcFilterValueSelection: (f = msg.getGrpcFilterValueSelection()) && proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.toObject(includeInstance, f),
+    grpcFilterValueSelection: (f = msg.getGrpcFilterValueSelection()) && proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.toObject(includeInstance, f),
     owner: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
@@ -3003,8 +3003,8 @@ proto.edu.kit.tm.cm.proto.ListFavoriteRoomsRequest.deserializeBinaryFromReader =
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection;
-      reader.readMessage(value,proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.deserializeBinaryFromReader);
+      var value = new proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection;
+      reader.readMessage(value,proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.deserializeBinaryFromReader);
       msg.setGrpcFilterValueSelection(value);
       break;
     case 2:
@@ -3045,7 +3045,7 @@ proto.edu.kit.tm.cm.proto.ListFavoriteRoomsRequest.serializeBinaryToWriter = fun
     writer.writeMessage(
       1,
       f,
-      proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.serializeBinaryToWriter
+      proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.serializeBinaryToWriter
     );
   }
   f = message.getOwner();
@@ -3059,17 +3059,17 @@ proto.edu.kit.tm.cm.proto.ListFavoriteRoomsRequest.serializeBinaryToWriter = fun
 
 
 /**
- * optional GrpcFilterValueSelection grpc_filter_value_selection = 1;
- * @return {?proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection}
+ * optional GrpcBuildingFilterValueSelection grpc_filter_value_selection = 1;
+ * @return {?proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection}
  */
 proto.edu.kit.tm.cm.proto.ListFavoriteRoomsRequest.prototype.getGrpcFilterValueSelection = function() {
-  return /** @type{?proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection} */ (
-    jspb.Message.getWrapperField(this, proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection, 1));
+  return /** @type{?proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection} */ (
+    jspb.Message.getWrapperField(this, proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection, 1));
 };
 
 
 /**
- * @param {?proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection|undefined} value
+ * @param {?proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection|undefined} value
  * @return {!proto.edu.kit.tm.cm.proto.ListFavoriteRoomsRequest} returns this
 */
 proto.edu.kit.tm.cm.proto.ListFavoriteRoomsRequest.prototype.setGrpcFilterValueSelection = function(value) {
@@ -3145,7 +3145,6 @@ proto.edu.kit.tm.cm.proto.ListFavoriteComponentsRequest.prototype.toObject = fun
  */
 proto.edu.kit.tm.cm.proto.ListFavoriteComponentsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    grpcFilterValueSelection: (f = msg.getGrpcFilterValueSelection()) && proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.toObject(includeInstance, f),
     owner: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
@@ -3183,11 +3182,6 @@ proto.edu.kit.tm.cm.proto.ListFavoriteComponentsRequest.deserializeBinaryFromRea
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection;
-      reader.readMessage(value,proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.deserializeBinaryFromReader);
-      msg.setGrpcFilterValueSelection(value);
-      break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setOwner(value);
@@ -3221,14 +3215,6 @@ proto.edu.kit.tm.cm.proto.ListFavoriteComponentsRequest.prototype.serializeBinar
  */
 proto.edu.kit.tm.cm.proto.ListFavoriteComponentsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getGrpcFilterValueSelection();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.serializeBinaryToWriter
-    );
-  }
   f = message.getOwner();
   if (f.length > 0) {
     writer.writeString(
@@ -3236,43 +3222,6 @@ proto.edu.kit.tm.cm.proto.ListFavoriteComponentsRequest.serializeBinaryToWriter 
       f
     );
   }
-};
-
-
-/**
- * optional GrpcFilterValueSelection grpc_filter_value_selection = 1;
- * @return {?proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection}
- */
-proto.edu.kit.tm.cm.proto.ListFavoriteComponentsRequest.prototype.getGrpcFilterValueSelection = function() {
-  return /** @type{?proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection} */ (
-    jspb.Message.getWrapperField(this, proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection, 1));
-};
-
-
-/**
- * @param {?proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection|undefined} value
- * @return {!proto.edu.kit.tm.cm.proto.ListFavoriteComponentsRequest} returns this
-*/
-proto.edu.kit.tm.cm.proto.ListFavoriteComponentsRequest.prototype.setGrpcFilterValueSelection = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.edu.kit.tm.cm.proto.ListFavoriteComponentsRequest} returns this
- */
-proto.edu.kit.tm.cm.proto.ListFavoriteComponentsRequest.prototype.clearGrpcFilterValueSelection = function() {
-  return this.setGrpcFilterValueSelection(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.edu.kit.tm.cm.proto.ListFavoriteComponentsRequest.prototype.hasGrpcFilterValueSelection = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -8741,7 +8690,7 @@ proto.edu.kit.tm.cm.proto.GrpcComponent.prototype.hasGrpcGeographicalLocation = 
  * @private {!Array<number>}
  * @const
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.repeatedFields_ = [1,2,3,4];
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.repeatedFields_ = [1,2,3,4];
 
 
 
@@ -8758,8 +8707,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.toObject = function(opt_includeInstance) {
-  return proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.toObject(opt_includeInstance, this);
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.prototype.toObject = function(opt_includeInstance) {
+  return proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.toObject(opt_includeInstance, this);
 };
 
 
@@ -8768,11 +8717,11 @@ proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.toObject = function
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection} msg The msg instance to transform.
+ * @param {!proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.toObject = function(includeInstance, msg) {
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.toObject = function(includeInstance, msg) {
   var f, obj = {
     grpcComponentTypesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
     grpcRoomTypesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
@@ -8791,23 +8740,23 @@ proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.toObject = function(includeIn
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection}
+ * @return {!proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection}
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.deserializeBinary = function(bytes) {
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection;
-  return proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection;
+  return proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection} msg The message object to deserialize into.
+ * @param {!proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection}
+ * @return {!proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection}
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.deserializeBinaryFromReader = function(msg, reader) {
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -8851,9 +8800,9 @@ proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.deserializeBinaryFromReader =
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.serializeBinary = function() {
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.serializeBinaryToWriter(this, writer);
+  proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -8861,11 +8810,11 @@ proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.serializeBinary = f
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection} message
+ * @param {!proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.serializeBinaryToWriter = function(message, writer) {
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getGrpcComponentTypesList();
   if (f.length > 0) {
@@ -8902,16 +8851,16 @@ proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.serializeBinaryToWriter = fun
  * repeated GrpcComponentType grpc_component_types = 1;
  * @return {!Array<!proto.edu.kit.tm.cm.proto.GrpcComponentType>}
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.getGrpcComponentTypesList = function() {
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.prototype.getGrpcComponentTypesList = function() {
   return /** @type {!Array<!proto.edu.kit.tm.cm.proto.GrpcComponentType>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
 /**
  * @param {!Array<!proto.edu.kit.tm.cm.proto.GrpcComponentType>} value
- * @return {!proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection} returns this
+ * @return {!proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection} returns this
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.setGrpcComponentTypesList = function(value) {
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.prototype.setGrpcComponentTypesList = function(value) {
   return jspb.Message.setField(this, 1, value || []);
 };
 
@@ -8919,18 +8868,18 @@ proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.setGrpcComponentTyp
 /**
  * @param {!proto.edu.kit.tm.cm.proto.GrpcComponentType} value
  * @param {number=} opt_index
- * @return {!proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection} returns this
+ * @return {!proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection} returns this
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.addGrpcComponentTypes = function(value, opt_index) {
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.prototype.addGrpcComponentTypes = function(value, opt_index) {
   return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection} returns this
+ * @return {!proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection} returns this
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.clearGrpcComponentTypesList = function() {
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.prototype.clearGrpcComponentTypesList = function() {
   return this.setGrpcComponentTypesList([]);
 };
 
@@ -8939,16 +8888,16 @@ proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.clearGrpcComponentT
  * repeated GrpcRoomType grpc_room_types = 2;
  * @return {!Array<!proto.edu.kit.tm.cm.proto.GrpcRoomType>}
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.getGrpcRoomTypesList = function() {
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.prototype.getGrpcRoomTypesList = function() {
   return /** @type {!Array<!proto.edu.kit.tm.cm.proto.GrpcRoomType>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
 /**
  * @param {!Array<!proto.edu.kit.tm.cm.proto.GrpcRoomType>} value
- * @return {!proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection} returns this
+ * @return {!proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection} returns this
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.setGrpcRoomTypesList = function(value) {
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.prototype.setGrpcRoomTypesList = function(value) {
   return jspb.Message.setField(this, 2, value || []);
 };
 
@@ -8956,18 +8905,18 @@ proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.setGrpcRoomTypesLis
 /**
  * @param {!proto.edu.kit.tm.cm.proto.GrpcRoomType} value
  * @param {number=} opt_index
- * @return {!proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection} returns this
+ * @return {!proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection} returns this
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.addGrpcRoomTypes = function(value, opt_index) {
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.prototype.addGrpcRoomTypes = function(value, opt_index) {
   return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection} returns this
+ * @return {!proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection} returns this
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.clearGrpcRoomTypesList = function() {
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.prototype.clearGrpcRoomTypesList = function() {
   return this.setGrpcRoomTypesList([]);
 };
 
@@ -8976,16 +8925,16 @@ proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.clearGrpcRoomTypesL
  * repeated GrpcCampusLocation grpc_campus_locations = 3;
  * @return {!Array<!proto.edu.kit.tm.cm.proto.GrpcCampusLocation>}
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.getGrpcCampusLocationsList = function() {
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.prototype.getGrpcCampusLocationsList = function() {
   return /** @type {!Array<!proto.edu.kit.tm.cm.proto.GrpcCampusLocation>} */ (jspb.Message.getRepeatedField(this, 3));
 };
 
 
 /**
  * @param {!Array<!proto.edu.kit.tm.cm.proto.GrpcCampusLocation>} value
- * @return {!proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection} returns this
+ * @return {!proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection} returns this
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.setGrpcCampusLocationsList = function(value) {
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.prototype.setGrpcCampusLocationsList = function(value) {
   return jspb.Message.setField(this, 3, value || []);
 };
 
@@ -8993,18 +8942,18 @@ proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.setGrpcCampusLocati
 /**
  * @param {!proto.edu.kit.tm.cm.proto.GrpcCampusLocation} value
  * @param {number=} opt_index
- * @return {!proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection} returns this
+ * @return {!proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection} returns this
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.addGrpcCampusLocations = function(value, opt_index) {
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.prototype.addGrpcCampusLocations = function(value, opt_index) {
   return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection} returns this
+ * @return {!proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection} returns this
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.clearGrpcCampusLocationsList = function() {
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.prototype.clearGrpcCampusLocationsList = function() {
   return this.setGrpcCampusLocationsList([]);
 };
 
@@ -9013,16 +8962,16 @@ proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.clearGrpcCampusLoca
  * repeated int32 floors = 4;
  * @return {!Array<number>}
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.getFloorsList = function() {
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.prototype.getFloorsList = function() {
   return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 4));
 };
 
 
 /**
  * @param {!Array<number>} value
- * @return {!proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection} returns this
+ * @return {!proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection} returns this
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.setFloorsList = function(value) {
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.prototype.setFloorsList = function(value) {
   return jspb.Message.setField(this, 4, value || []);
 };
 
@@ -9030,18 +8979,18 @@ proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.setFloorsList = fun
 /**
  * @param {number} value
  * @param {number=} opt_index
- * @return {!proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection} returns this
+ * @return {!proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection} returns this
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.addFloors = function(value, opt_index) {
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.prototype.addFloors = function(value, opt_index) {
   return jspb.Message.addToRepeatedField(this, 4, value, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection} returns this
+ * @return {!proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection} returns this
  */
-proto.edu.kit.tm.cm.proto.GrpcFilterValueSelection.prototype.clearFloorsList = function() {
+proto.edu.kit.tm.cm.proto.GrpcBuildingFilterValueSelection.prototype.clearFloorsList = function() {
   return this.setFloorsList([]);
 };
 
