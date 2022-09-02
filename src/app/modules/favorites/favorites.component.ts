@@ -1,9 +1,9 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {
   GrpcBuilding,
   GrpcComponent,
-  GrpcRoom, ListBuildingsRequest, ListFavoriteBuildingsRequest,
+  GrpcRoom, ListFavoriteBuildingsRequest,
   ListFavoriteBuildingsResponse, ListFavoriteComponentsRequest,
   ListFavoriteComponentsResponse, ListFavoriteRoomsRequest,
   ListFavoriteRoomsResponse
@@ -23,12 +23,9 @@ export class FavoritesComponent implements OnInit, AfterViewInit {
   cDataSource: MatTableDataSource<GrpcComponent> = new MatTableDataSource<GrpcComponent>();
   rDataSource: MatTableDataSource<GrpcRoom> = new MatTableDataSource<GrpcRoom>();
 
-  @ViewChild(MatSort) bSort!: MatSort;
-  @ViewChild(MatSort) rSort!: MatSort;
-  @ViewChild(MatSort) cSort!: MatSort;
-  @ViewChild(MatPaginator) bPaginator!: MatPaginator;
-  @ViewChild(MatPaginator) rPaginator!: MatPaginator;
-  @ViewChild(MatPaginator) cPaginator!: MatPaginator;
+  @ViewChildren(MatSort) sort = new QueryList<MatSort>();
+  @ViewChildren(MatPaginator) paginator = new QueryList<MatPaginator>();
+
   bSearchKey: string = "";
   rSearchKey: string = "";
   cSearchKey: string = "";
@@ -52,14 +49,14 @@ export class FavoritesComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.bDataSource.sort = this.bSort;
-    this.bDataSource.paginator = this.bPaginator;
+    this.bDataSource.sort = this.sort.toArray()[0];
+    this.bDataSource.paginator = this.paginator.toArray()[0];
 
-    this.rDataSource.sort = this.rSort;
-    this.rDataSource.paginator = this.rPaginator;
+    this.rDataSource.sort = this.sort.toArray()[1];
+    this.rDataSource.paginator = this.paginator.toArray()[1];
 
-    this.cDataSource.sort = this.cSort;
-    this.cDataSource.paginator = this.cPaginator;
+    this.cDataSource.sort = this.sort.toArray()[2];
+    this.cDataSource.paginator = this.paginator.toArray()[2];
   }
 
   applySearch() {
@@ -79,5 +76,4 @@ export class FavoritesComponent implements OnInit, AfterViewInit {
   private static interpretListFavoriteComponentsResponse(response: ListFavoriteComponentsResponse, self: FavoritesComponent): void {
     self.cDataSource.data = response.getComponentsList();
   }
-
 }

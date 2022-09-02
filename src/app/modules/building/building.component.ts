@@ -16,6 +16,7 @@ import {ActivatedRoute} from "@angular/router";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
+import {ComponentComponent} from "../component/component.component";
 
 @Component({
   selector: 'app-building',
@@ -89,7 +90,7 @@ export class BuildingComponent implements OnInit {
     self.cDataSource.data = response.getComponentsList();
   }
 
-  private static interpretListNotificationsResponse(response: ListNotificationsResponse, self: BuildingComponent | RoomComponent): void {
+  private static interpretListNotificationsResponse(response: ListNotificationsResponse, self: BuildingComponent | RoomComponent| ComponentComponent): void {
     self.nDataSource.data = response.getNotificationsList();
   }
 

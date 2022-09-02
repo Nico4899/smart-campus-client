@@ -7,6 +7,7 @@ import {ProblemsComponent} from "./modules/problems/problems.component";
 import {BuildingComponent} from "./modules/building/building.component";
 import {RoomComponent} from "./modules/room/room.component";
 import {FavoritesComponent} from "./modules/favorites/favorites.component";
+import {ComponentComponent} from "./modules/component/component.component";
 
 const routes: Routes = [{
   path: '',
@@ -24,14 +25,17 @@ const routes: Routes = [{
     path: 'favorites',
     component: FavoritesComponent
   }, {
-    path:"buildings/:bin",
+    path: "buildings/:bin",
     component: BuildingComponent
   }, {
-    path:"rooms/:rin",
+    path: "rooms/:rin",
     component: RoomComponent
+  }, {
+    path: "components/:cin",
+    component: ComponentComponent
   }]
 }, {
-  path:'**', redirectTo: ""
+  path: '**', redirectTo: ""
 }];
 
 @NgModule({

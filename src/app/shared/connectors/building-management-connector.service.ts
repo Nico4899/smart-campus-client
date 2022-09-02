@@ -46,6 +46,7 @@ import {RpcError} from "grpc-web";
 import {BuildingManagementClient} from "../../../proto/generated/Building_managementServiceClientPb";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {FavoritesComponent} from "../../modules/favorites/favorites.component";
+import {ComponentComponent} from "../../modules/component/component.component";
 
 @Injectable({
   providedIn: 'root'
@@ -88,7 +89,7 @@ export class BuildingManagementConnectorService {
     })
   }
 
-  async listNotifications(request: ListNotificationsRequest, callback: (response: ListNotificationsResponse, self: BuildingComponent | RoomComponent) => void, self: BuildingComponent | RoomComponent) {
+  async listNotifications(request: ListNotificationsRequest, callback: (response: ListNotificationsResponse, self: BuildingComponent | RoomComponent | ComponentComponent) => void, self: BuildingComponent | RoomComponent| ComponentComponent) {
     this.client.listNotifications(request, {}, (error: RpcError, response: ListNotificationsResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
@@ -240,6 +241,16 @@ export class BuildingManagementConnectorService {
 
   async removeComponent(request: RemoveRequest, callback: (response: RemoveResponse, self: RoomComponent) => void, self: RoomComponent) {
     this.client.removeComponent(request, {}, (error: RpcError, response: RemoveResponse) => {
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
+      }
+    })
+  }
+
+  async getComponent(request: GetComponentRequest, callback: (response: GetComponentResponse, self: ComponentComponent) => void, self: ComponentComponent) {
+    this.client.getComponent(request, {}, (error: RpcError, response: GetComponentResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {

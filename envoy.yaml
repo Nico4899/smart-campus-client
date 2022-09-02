@@ -21,9 +21,15 @@ static_resources:
                     - name: local_service
                       domains: ["*"]
                       routes:
-                        - match: { prefix: "/" }
+                        - match: { prefix: "/edu.kit.tm.cm.proto.BuildingManagement" }
                           route:
                             cluster: building_management_service
+                            timeout: 0s
+                            max_stream_duration:
+                              grpc_timeout_header_max: 0s
+                        - match: { prefix: "/edu.kit.tm.cm.proto.ProblemManagement" }
+                          route:
+                            cluster: problem_management_service
                             timeout: 0s
                             max_stream_duration:
                               grpc_timeout_header_max: 0s
@@ -53,3 +59,17 @@ static_resources:
                     socket_address:
                       address: host.docker.internal
                       port_value: 9091
+    - name: problem_management_service
+      connect_timeout: 0.25s
+      type: logical_dns
+      http2_protocol_options: {}
+      lb_policy: round_robin
+      load_assignment:
+        cluster_name: problem_management_service
+        endpoints:
+          - lb_endpoints:
+              - endpoint:
+                  address:
+                    socket_address:
+                      address: host.docker.internal
+                      port_value: 9090
