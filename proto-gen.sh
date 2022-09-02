@@ -1,3 +1,5 @@
+# deprecated script use ./proto-gen-2.sh
+
 # script to generate ts and js files from proto files
 # change the necessary variables and run from project root
 

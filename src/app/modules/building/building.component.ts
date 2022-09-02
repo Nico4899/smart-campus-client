@@ -1,13 +1,16 @@
-import {Component, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {
   GetBuildingRequest,
   GetBuildingResponse,
   GrpcBuilding,
   GrpcComponent,
   GrpcNotification,
-  GrpcRoom, ListBuildingsRequest, ListComponentsRequest,
-  ListComponentsResponse, ListNotificationsRequest,
-  ListNotificationsResponse, ListRoomsRequest,
+  GrpcRoom,
+  ListComponentsRequest,
+  ListComponentsResponse,
+  ListNotificationsRequest,
+  ListNotificationsResponse,
+  ListRoomsRequest,
   ListRoomsResponse
 } from "../../../proto/generated/building_management_pb";
 import {BuildingManagementConnectorService} from "../../shared/connectors/building-management-connector.service";
@@ -90,7 +93,7 @@ export class BuildingComponent implements OnInit {
     self.cDataSource.data = response.getComponentsList();
   }
 
-  private static interpretListNotificationsResponse(response: ListNotificationsResponse, self: BuildingComponent | RoomComponent| ComponentComponent): void {
+  private static interpretListNotificationsResponse(response: ListNotificationsResponse, self: BuildingComponent | RoomComponent | ComponentComponent): void {
     self.nDataSource.data = response.getNotificationsList();
   }
 
