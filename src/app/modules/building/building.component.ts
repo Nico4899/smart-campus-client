@@ -1,18 +1,18 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {
+  GetBuildingRequest,
   GetBuildingResponse,
   GrpcBuilding,
   GrpcComponent,
   GrpcNotification,
-  GrpcRoom,
-  ListComponentsResponse,
-  ListNotificationsResponse,
+  GrpcRoom, ListBuildingsRequest, ListComponentsRequest,
+  ListComponentsResponse, ListNotificationsRequest,
+  ListNotificationsResponse, ListRoomsRequest,
   ListRoomsResponse
 } from "../../../proto/generated/building_management_pb";
 import {BuildingManagementConnectorService} from "../../shared/connectors/building-management-connector.service";
 import {RoomComponent} from "../room/room.component";
 import {ActivatedRoute} from "@angular/router";
-import {ComponentComponent} from "../component/component.component";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
@@ -30,19 +30,15 @@ export class BuildingComponent implements OnInit {
   nDataSource: MatTableDataSource<GrpcNotification> = new MatTableDataSource<GrpcNotification>();
   building: GrpcBuilding = new GrpcBuilding();
 
-  @ViewChild(MatSort) nSort!: MatSort;
-  @ViewChild(MatSort) rSort!: MatSort;
-  @ViewChild(MatSort) cSort!: MatSort;
-  @ViewChild(MatPaginator) nPaginator!: MatPaginator;
-  @ViewChild(MatPaginator) rPaginator!: MatPaginator;
-  @ViewChild(MatPaginator) cPaginator!: MatPaginator;
+  @ViewChildren(MatSort) sort = new QueryList<MatSort>();
+  @ViewChildren(MatPaginator) paginator = new QueryList<MatPaginator>();
 
   rSearchKey: string = "";
   cSearchKey: string = "";
 
   displayedRoomColumns: string[] = ['room-id', 'room-number', 'room-name', 'room-floor', 'room-type', 'edit_room', 'delete_room'];
-  displayedComponentColumns: string[] = ['description', 'type'];
-  displayedNotificationColumns: string[] = ['title', 'description', 'created_on', 'last_edited_on'];
+  displayedComponentColumns: string[] = ['component-id', 'component-type', 'edit_component', 'delete_component'];
+  displayedNotificationColumns: string[] = ['notification-id', 'notification-title', 'created_on', 'last_edited_on'];
 
 
   constructor(private buildingManagementConnector: BuildingManagementConnectorService, private route: ActivatedRoute) {
@@ -51,25 +47,36 @@ export class BuildingComponent implements OnInit {
 
   ngOnInit(): void {
     this.bin = String(this.route.snapshot.paramMap.get("bin"));
-    this.buildingManagementConnector.listRooms(this.bin, BuildingComponent.interpretListRoomsResponse, this);
-    this.buildingManagementConnector.listComponents(this.bin, BuildingComponent.interpretListComponentsResponse, this);
-    this.buildingManagementConnector.listNotifications(this.bin, BuildingComponent.interpretListNotificationsResponse, this);
-    this.buildingManagementConnector.getBuilding(this.bin, BuildingComponent.interpretGetBuildingResponse, this);
+
+    let listRoomsRequest = new ListRoomsRequest();
+    listRoomsRequest.setIdentificationNumber(this.bin);
+    this.buildingManagementConnector.listRooms(listRoomsRequest, BuildingComponent.interpretListRoomsResponse, this);
+
+    let listComponentsRequest = new ListComponentsRequest();
+    listComponentsRequest.setIdentificationNumber(this.bin);
+    this.buildingManagementConnector.listComponents(listComponentsRequest, BuildingComponent.interpretListComponentsResponse, this);
+
+    let listNotificationsRequest = new ListNotificationsRequest();
+    listNotificationsRequest.setIdentificationNumber(this.bin);
+    this.buildingManagementConnector.listNotifications(listNotificationsRequest, BuildingComponent.interpretListNotificationsResponse, this);
+
+    let getBuildingRequest = new GetBuildingRequest();
+    getBuildingRequest.setIdentificationNumber(this.bin);
+    this.buildingManagementConnector.getBuilding(getBuildingRequest, BuildingComponent.interpretGetBuildingResponse, this);
   }
 
   ngAfterViewInit() {
-    this.rDataSource.sort = this.rSort;
-    this.rDataSource.paginator = this.rPaginator;
+    this.rDataSource.sort = this.sort.toArray()[0];
+    this.rDataSource.paginator = this.paginator.toArray()[0];
 
-    this.rDataSource.sort = this.rSort;
-    this.rDataSource.paginator = this.rPaginator;
+    this.nDataSource.sort = this.sort.toArray()[1];
+    this.nDataSource.paginator = this.paginator.toArray()[1];
 
-    this.cDataSource.sort = this.cSort;
-    this.cDataSource.paginator = this.cPaginator;
+    this.cDataSource.sort = this.sort.toArray()[2];
+    this.cDataSource.paginator = this.paginator.toArray()[2];
   }
 
   applySearch() {
-    this.rDataSource.filter = this.rSearchKey?.trim().toLowerCase();
     this.rDataSource.filter = this.rSearchKey?.trim().toLowerCase();
     this.cDataSource.filter = this.cSearchKey?.trim().toLowerCase();
   }
@@ -82,7 +89,7 @@ export class BuildingComponent implements OnInit {
     self.cDataSource.data = response.getComponentsList();
   }
 
-  private static interpretListNotificationsResponse(response: ListNotificationsResponse, self: BuildingComponent | RoomComponent | ComponentComponent): void {
+  private static interpretListNotificationsResponse(response: ListNotificationsResponse, self: BuildingComponent | RoomComponent): void {
     self.nDataSource.data = response.getNotificationsList();
   }
 

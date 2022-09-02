@@ -10,7 +10,7 @@
  * rooms table styling
  */
 
-.fav-rooms-table {
+.rooms-table {
   width: 100%;
   margin: auto;
 }
@@ -39,6 +39,56 @@
 }
 
 .mat-column-room-id {
+  border-right: 1px solid;
+  width: 10%;
+}
+
+/*
+ * components table styling
+ */
+
+.components-table {
+  width: 100%;
+  margin: auto;
+}
+
+.mat-column-component-type {
+  width: 90%;
+  padding-left: 16px;
+}
+
+.mat-column-component-id {
+  border-right: 1px solid;
+  width: 10%;
+}
+
+/*
+ * notifications table styling
+ */
+
+.notifications-table {
+  width: 100%;
+  margin: auto;
+}
+
+.mat-column-notification-title {
+  width: 60%;
+  padding-left: 16px;
+  border-right: 1px solid;
+}
+
+.mat-column-created_on {
+  width: 15%;
+  padding-left: 16px;
+  border-right: 1px solid;
+}
+
+.mat-column-last_edited_on {
+  width: 15%;
+  padding-left: 16px;
+}
+
+.mat-column-notification-id {
   border-right: 1px solid;
   width: 10%;
 }

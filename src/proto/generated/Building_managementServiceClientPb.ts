@@ -898,26 +898,26 @@ export class BuildingManagementClient {
   methodDescriptorRemoveFavorite = new grpcWeb.MethodDescriptor(
     '/edu.kit.tm.cm.proto.BuildingManagement/RemoveFavorite',
     grpcWeb.MethodType.UNARY,
-    building_management_pb.RemoveRequest,
+    building_management_pb.RemoveFavoriteRequest,
     building_management_pb.RemoveResponse,
-    (request: building_management_pb.RemoveRequest) => {
+    (request: building_management_pb.RemoveFavoriteRequest) => {
       return request.serializeBinary();
     },
     building_management_pb.RemoveResponse.deserializeBinary
   );
 
   removeFavorite(
-    request: building_management_pb.RemoveRequest,
+    request: building_management_pb.RemoveFavoriteRequest,
     metadata: grpcWeb.Metadata | null): Promise<building_management_pb.RemoveResponse>;
 
   removeFavorite(
-    request: building_management_pb.RemoveRequest,
+    request: building_management_pb.RemoveFavoriteRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
                response: building_management_pb.RemoveResponse) => void): grpcWeb.ClientReadableStream<building_management_pb.RemoveResponse>;
 
   removeFavorite(
-    request: building_management_pb.RemoveRequest,
+    request: building_management_pb.RemoveFavoriteRequest,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
                response: building_management_pb.RemoveResponse) => void) {

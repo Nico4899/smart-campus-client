@@ -5,9 +5,7 @@ import {DashboardComponent} from "./modules/dashboard/dashboard.component";
 import {BuildingsComponent} from "./modules/buildings/buildings.component";
 import {ProblemsComponent} from "./modules/problems/problems.component";
 import {BuildingComponent} from "./modules/building/building.component";
-import {ProblemComponent} from "./modules/problem/problem.component";
 import {RoomComponent} from "./modules/room/room.component";
-import {ComponentComponent} from "./modules/component/component.component";
 import {FavoritesComponent} from "./modules/favorites/favorites.component";
 
 const routes: Routes = [{
@@ -29,14 +27,8 @@ const routes: Routes = [{
     path:"buildings/:bin",
     component: BuildingComponent
   }, {
-    path:"problems/:pin",
-    component: ProblemComponent
-  }, {
     path:"rooms/:rin",
     component: RoomComponent
-  }, {
-    path:"components/:cin",
-    component: ComponentComponent
   }]
 }, {
   path:'**', redirectTo: ""

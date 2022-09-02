@@ -3,9 +3,9 @@ import {MatTableDataSource} from "@angular/material/table";
 import {
   GrpcBuilding,
   GrpcComponent,
-  GrpcRoom,
-  ListFavoriteBuildingsResponse,
-  ListFavoriteComponentsResponse,
+  GrpcRoom, ListBuildingsRequest, ListFavoriteBuildingsRequest,
+  ListFavoriteBuildingsResponse, ListFavoriteComponentsRequest,
+  ListFavoriteComponentsResponse, ListFavoriteRoomsRequest,
   ListFavoriteRoomsResponse
 } from "../../../proto/generated/building_management_pb";
 import {MatSort} from "@angular/material/sort";
@@ -41,7 +41,14 @@ export class FavoritesComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    // find favorites all.
+    let listFavoriteBuildingsRequest = new ListFavoriteBuildingsRequest();
+    this.buildingManagementConnector.listFavoriteBuildings(listFavoriteBuildingsRequest, FavoritesComponent.interpretListFavoriteBuildingsResponse, this);
+
+    let listFavoriteComponentsRequest = new ListFavoriteComponentsRequest();
+    this.buildingManagementConnector.listFavoriteComponents(listFavoriteComponentsRequest, FavoritesComponent.interpretListFavoriteComponentsResponse, this);
+
+    let listFavoriteRoomsRequest = new ListFavoriteRoomsRequest();
+    this.buildingManagementConnector.listFavoriteRooms(listFavoriteRoomsRequest, FavoritesComponent.interpretListFavoriteRoomsResponse, this);
   }
 
   ngAfterViewInit() {
@@ -62,15 +69,15 @@ export class FavoritesComponent implements OnInit, AfterViewInit {
   }
 
   private static interpretListFavoriteBuildingsResponse(response: ListFavoriteBuildingsResponse, self: FavoritesComponent): void {
-    self.bDataSource.data = response?.getBuildingsList();
+    self.bDataSource.data = response.getBuildingsList();
   }
 
   private static interpretListFavoriteRoomsResponse(response: ListFavoriteRoomsResponse, self: FavoritesComponent): void {
-    self.rDataSource.data = response?.getRoomsList();
+    self.rDataSource.data = response.getRoomsList();
   }
 
   private static interpretListFavoriteComponentsResponse(response: ListFavoriteComponentsResponse, self: FavoritesComponent): void {
-    self.cDataSource.data = response?.getComponentsList();
+    self.cDataSource.data = response.getComponentsList();
   }
 
 }

@@ -8,10 +8,8 @@ import {SharedModule} from "../../shared/shared.module";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {ProblemsComponent} from "../../modules/problems/problems.component";
 import {BuildingComponent} from "../../modules/building/building.component";
-import {ProblemComponent} from "../../modules/problem/problem.component";
 import {RoomComponent} from "../../modules/room/room.component";
 import {MatListModule} from "@angular/material/list";
-import {ComponentComponent} from "../../modules/component/component.component";
 import {MatTableModule} from "@angular/material/table";
 import {MatInputModule} from "@angular/material/input";
 import {MatSortModule} from "@angular/material/sort";
@@ -28,6 +26,9 @@ import {MatMenuModule} from "@angular/material/menu";
 import {FormsModule} from "@angular/forms";
 import {FavoritesComponent} from "../../modules/favorites/favorites.component";
 import {MatTabsModule} from "@angular/material/tabs";
+import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import {BuildingManagementConnectorService} from "../../shared/connectors/building-management-connector.service";
+import {ProblemManagementConnectorService} from "../../shared/connectors/problem-management-connector.service";
 
 @NgModule({
   declarations: [
@@ -36,9 +37,7 @@ import {MatTabsModule} from "@angular/material/tabs";
     BuildingsComponent,
     ProblemsComponent,
     BuildingComponent,
-    ProblemComponent,
     RoomComponent,
-    ComponentComponent,
     CampusLocationPipe,
     ComponentTypePipe,
     RoomTypePipe,
@@ -64,7 +63,13 @@ import {MatTabsModule} from "@angular/material/tabs";
     MatTabsModule
   ],
   exports: [
-    MatSortModule
+    MatSortModule,
+    MatSnackBarModule
+  ],
+  providers: [
+    MatSnackBar,
+    BuildingManagementConnectorService,
+    ProblemManagementConnectorService
   ]
 })
 export class DefaultModule {

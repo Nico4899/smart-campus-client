@@ -809,6 +809,28 @@ export namespace RemoveRequest {
   }
 }
 
+export class RemoveFavoriteRequest extends jspb.Message {
+  getIdentificationNumber(): string;
+  setIdentificationNumber(value: string): RemoveFavoriteRequest;
+
+  getOwner(): string;
+  setOwner(value: string): RemoveFavoriteRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoveFavoriteRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveFavoriteRequest): RemoveFavoriteRequest.AsObject;
+  static serializeBinaryToWriter(message: RemoveFavoriteRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveFavoriteRequest;
+  static deserializeBinaryFromReader(message: RemoveFavoriteRequest, reader: jspb.BinaryReader): RemoveFavoriteRequest;
+}
+
+export namespace RemoveFavoriteRequest {
+  export type AsObject = {
+    identificationNumber: string,
+    owner: string,
+  }
+}
+
 export class RemoveResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RemoveResponse.AsObject;

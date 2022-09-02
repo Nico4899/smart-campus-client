@@ -1,94 +1,218 @@
 <h1 class="building-number">{{building.getBuildingNumber()}}</h1>
 <h3 class="building-name">{{building.getBuildingName()}}</h3>
 
-<div class="mat-elevation-z0">
-  <div class="search">
-    <mat-form-field>
-      <input matInput [(ngModel)]="rSearchKey" placeholder="Search" autocomplete="off" (keyup)="applySearch()">
-      <button mat-button mat-icon-button matSuffix aria-label="Filter">
-        <mat-icon>filter_list</mat-icon>
-      </button> <!-- implement edit, remove and add, and add hide if roles do not fit-->
-    </mat-form-field>
-    <button mat-icon-button color="primary">
-      <mat-icon>add</mat-icon>
-    </button>
-  </div>
-  <table mat-table  class="rooms-table" [dataSource]="rDataSource">
-
-    <ng-container matColumnDef="room-id">
-      <th mat-header-cell *matHeaderCellDef>
-        ID
-      </th>
-      <td mat-cell *matCellDef="let room">
-        {{room.getIdentificationNumber()}}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="room-number">
-      <th mat-header-cell *matHeaderCellDef>
-        NUMBER
-      </th>
-      <td mat-cell *matCellDef="let room">
-        {{room.getRoomNumber()}}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="room-name">
-      <th mat-header-cell *matHeaderCellDef>
-        NAME
-      </th>
-      <td mat-cell *matCellDef="let room" routerLink="/rooms/{{room.getIdentificationNumber()}}">
-        {{room.getRoomName()}}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="room-floor">
-      <th mat-header-cell *matHeaderCellDef>
-        FLOOR
-      </th>
-      <td mat-cell *matCellDef="let room">
-        {{room.getFloor()}}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="room-type">
-      <th mat-header-cell *matHeaderCellDef>
-        TYPE
-      </th>
-      <td mat-cell
-          *matCellDef="let room"> {{room.getRoomType() | roomType}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="delete_room">
-      <th mat-header-cell *matHeaderCellDef>
-
-      </th>
-      <td mat-cell *matCellDef="let room">
-        <button mat-icon-button color="warn">
-          <!-- insert dialog here and remove call + set it to hidden when we have authentication running -->
-          <mat-icon>delete</mat-icon>
+<mat-tab-group>
+  <mat-tab label="rooms">
+    <div class="mat-elevation-z0">
+      <div class="search">
+        <mat-form-field>
+          <input matInput [(ngModel)]="rSearchKey" placeholder="Search" autocomplete="off" (keyup)="applySearch()">
+          <button mat-button mat-icon-button matSuffix aria-label="Filter">
+            <mat-icon>filter_list</mat-icon>
+          </button> <!-- implement edit, remove and add, and add hide if roles do not fit-->
+        </mat-form-field>
+        <button mat-icon-button color="primary">
+          <mat-icon>add</mat-icon>
         </button>
-      </td>
-    </ng-container>
+      </div>
+      <table mat-table  class="rooms-table" [dataSource]="rDataSource">
 
-    <ng-container matColumnDef="edit_room">
-      <th mat-header-cell *matHeaderCellDef>
+        <ng-container matColumnDef="room-id">
+          <th mat-header-cell *matHeaderCellDef>
+            ID
+          </th>
+          <td mat-cell *matCellDef="let room">
+            {{room.getIdentificationNumber()}}
+          </td>
+        </ng-container>
 
-      </th>
-      <td mat-cell *matCellDef="let room">
-        <button mat-icon-button>
-          <!-- insert dialog here and update call + set it to hidden when we have authentication running -->
-          <mat-icon>edit</mat-icon>
+        <ng-container matColumnDef="room-number">
+          <th mat-header-cell *matHeaderCellDef>
+            NUMBER
+          </th>
+          <td mat-cell *matCellDef="let room">
+            {{room.getRoomNumber()}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="room-name">
+          <th mat-header-cell *matHeaderCellDef>
+            NAME
+          </th>
+          <td mat-cell *matCellDef="let room" routerLink="/rooms/{{room.getIdentificationNumber()}}">
+            {{room.getRoomName()}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="room-floor">
+          <th mat-header-cell *matHeaderCellDef>
+            FLOOR
+          </th>
+          <td mat-cell *matCellDef="let room">
+            {{room.getFloor()}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="room-type">
+          <th mat-header-cell *matHeaderCellDef>
+            TYPE
+          </th>
+          <td mat-cell
+              *matCellDef="let room"> {{room.getRoomType() | roomType}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete_room">
+          <th mat-header-cell *matHeaderCellDef>
+
+          </th>
+          <td mat-cell *matCellDef="let room">
+            <button mat-icon-button color="warn">
+              <!-- insert dialog here and remove call + set it to hidden when we have authentication running -->
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="edit_room">
+          <th mat-header-cell *matHeaderCellDef>
+
+          </th>
+          <td mat-cell *matCellDef="let room">
+            <button mat-icon-button>
+              <!-- insert dialog here and update call + set it to hidden when we have authentication running -->
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedRoomColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedRoomColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                     showFirstLastButtons
+                     aria-label="Select page of rooms">
+      </mat-paginator>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="components">
+    <div class="mat-elevation-z0">
+      <div class="search">
+        <mat-form-field>
+          <input matInput [(ngModel)]="cSearchKey" placeholder="Search" autocomplete="off" (keyup)="applySearch()">
+          <button mat-button mat-icon-button matSuffix aria-label="Filter">
+            <mat-icon>filter_list</mat-icon>
+          </button> <!-- implement edit, remove and add, and add hide if roles do not fit-->
+        </mat-form-field>
+        <button mat-icon-button color="primary">
+          <mat-icon>add</mat-icon>
         </button>
-      </td>
-    </ng-container>
+      </div>
+      <table mat-table  class="components-table" [dataSource]="cDataSource">
+        <ng-container matColumnDef="component-id">
+          <th mat-header-cell *matHeaderCellDef>
+            ID
+          </th>
+          <td mat-cell
+              *matCellDef="let component"> {{component.getIdentificationNumber() | roomType}} </td>
+        </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedRoomColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedRoomColumns;"></tr>
-  </table>
+        <ng-container matColumnDef="component-type">
+          <th mat-header-cell *matHeaderCellDef>
+            TYPE
+          </th>
+          <td mat-cell
+              *matCellDef="let component"> {{component.getComponentType() | componentType}} </td>
+        </ng-container>
 
-  <mat-paginator [pageSizeOptions]="[5]"
-                 showFirstLastButtons
-                 aria-label="Select page of rooms">
-  </mat-paginator>
-</div>
+        <ng-container matColumnDef="delete_component">
+          <th mat-header-cell *matHeaderCellDef>
+
+          </th>
+          <td mat-cell *matCellDef="let component">
+            <button mat-icon-button color="warn">
+              <!-- insert dialog here and remove call + set it to hidden when we have authentication running -->
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="edit_component">
+          <th mat-header-cell *matHeaderCellDef>
+
+          </th>
+          <td mat-cell *matCellDef="let component">
+            <button mat-icon-button>
+              <!-- insert dialog here and update call + set it to hidden when we have authentication running -->
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedComponentColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedComponentColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                     showFirstLastButtons
+                     aria-label="Select page of rooms">
+      </mat-paginator>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="notifications">
+    <div class="mat-elevation-z0">
+      <table mat-table  class="notifications-table" [dataSource]="nDataSource">
+
+        <ng-container matColumnDef="notification-id">
+          <th mat-header-cell *matHeaderCellDef>
+            ID
+          </th>
+          <td mat-cell *matCellDef="let notification">
+            {{notification.getIdentificationNumber()}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="notification-title">
+          <th mat-header-cell *matHeaderCellDef>
+            TITLE
+          </th>
+          <td mat-cell *matCellDef="let notification">
+            {{notification.getTitle()}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="last_edited_on">
+          <th mat-header-cell *matHeaderCellDef>
+            LAST EDITED ON
+          </th>
+          <td mat-cell *matCellDef="let notification">
+            {{notification.getCreationTime() | date}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="created_on">
+          <th mat-header-cell *matHeaderCellDef>
+            CREATED ON
+          </th>
+          <td mat-cell
+              *matCellDef="let notification"> {{notification.getCreationTime() | date}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedNotificationColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedNotificationColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                     showFirstLastButtons
+                     aria-label="Select page of rooms">
+      </mat-paginator>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="map">
+  <!-- TODO add AGM map -->
+  </mat-tab>
+</mat-tab-group>
+

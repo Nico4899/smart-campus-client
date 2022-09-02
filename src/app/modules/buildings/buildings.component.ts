@@ -1,6 +1,10 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {BuildingManagementConnectorService} from "../../shared/connectors/building-management-connector.service";
-import {GrpcBuilding, ListBuildingsResponse} from "../../../proto/generated/building_management_pb";
+import {
+  GrpcBuilding,
+  ListBuildingsRequest,
+  ListBuildingsResponse
+} from "../../../proto/generated/building_management_pb";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
 import { MatPaginator } from '@angular/material/paginator';
@@ -23,7 +27,8 @@ export class BuildingsComponent implements OnInit, AfterViewInit{
   }
 
   ngOnInit(): void {
-    this.buildingManagementConnector.listBuildings(BuildingsComponent.interpretListBuildingsResponse, this);
+    let listBuildingsRequest = new ListBuildingsRequest();
+    this.buildingManagementConnector.listBuildings(listBuildingsRequest, BuildingsComponent.interpretListBuildingsResponse, this);
   }
 
   ngAfterViewInit() {

@@ -36,7 +36,7 @@ service BuildingManagement {
   rpc RemoveBuilding(RemoveRequest) returns (RemoveResponse);
   rpc RemoveRoom(RemoveRequest) returns (RemoveResponse);
   rpc RemoveComponent(RemoveRequest) returns (RemoveResponse);
-  rpc RemoveFavorite(RemoveRequest) returns (RemoveResponse);
+  rpc RemoveFavorite(RemoveFavoriteRequest) returns (RemoveResponse);
 
 }
 
@@ -210,6 +210,11 @@ message UpdateComponentResponse{
 
 message RemoveRequest{
   string identification_number = 1;
+}
+
+message RemoveFavoriteRequest{
+  string identification_number = 1;
+  string owner = 2;
 }
 
 message RemoveResponse{
