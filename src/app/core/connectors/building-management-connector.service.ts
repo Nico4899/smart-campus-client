@@ -47,10 +47,10 @@ import {BuildingManagementClient} from "../../../proto/generated/Building_manage
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {FavoritesComponent} from "../../modules/favorites/favorites.component";
 import {ComponentComponent} from "../../modules/component/component.component";
-import {NotificationsTableComponent} from "../tables/notifications-table/notifications-table.component";
-import {ComponentsTableComponent} from "../tables/components-table/components-table.component";
-import {RoomsTableComponent} from "../tables/rooms-table/rooms-table.component";
-import {BuildingsTableComponent} from "../tables/buildings-table/buildings-table.component";
+import {NotificationsTableComponent} from "../../shared/tables/notifications-table/notifications-table.component";
+import {ComponentsTableComponent} from "../../shared/tables/components-table/components-table.component";
+import {RoomsTableComponent} from "../../shared/tables/rooms-table/rooms-table.component";
+import {BuildingsTableComponent} from "../../shared/tables/buildings-table/buildings-table.component";
 
 @Injectable({
   providedIn: 'root'

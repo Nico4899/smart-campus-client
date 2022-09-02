@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {AuthServiceService} from "../../../core/authentication/auth-service.service";
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ export class HeaderComponent implements OnInit {
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
   @Output() toggleDarkModeForMe: EventEmitter<any> = new EventEmitter();
 
-  constructor() {
+  constructor(private readonly authService: AuthServiceService) {
   }
 
   ngOnInit(): void {
@@ -25,5 +26,17 @@ export class HeaderComponent implements OnInit {
   toggleDarkMode() {
     this.toggleDarkModeForMe.emit();
     this.isDark = !this.isDark;
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
+
+  login() {
+    this.authService.login();
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

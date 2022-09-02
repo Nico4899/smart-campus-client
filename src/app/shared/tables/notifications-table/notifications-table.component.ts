@@ -7,7 +7,7 @@ import {
 } from "../../../../proto/generated/building_management_pb";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
-import {BuildingManagementConnectorService} from "../../connectors/building-management-connector.service";
+import {BuildingManagementConnectorService} from "../../../core/connectors/building-management-connector.service";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ListProblemsRequest, ListProblemsResponse} from "../../../proto/generated/problem_management_pb";
-import {ProblemManagementConnectorService} from "../../shared/connectors/problem-management-connector.service";
+import {ProblemManagementConnectorService} from "../../core/connectors/problem-management-connector.service";
 
 @Component({
   selector: 'app-problems',

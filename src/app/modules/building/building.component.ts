@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {GetBuildingRequest, GetBuildingResponse, GrpcBuilding} from "../../../proto/generated/building_management_pb";
-import {BuildingManagementConnectorService} from "../../shared/connectors/building-management-connector.service";
+import {BuildingManagementConnectorService} from "../../core/connectors/building-management-connector.service";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({

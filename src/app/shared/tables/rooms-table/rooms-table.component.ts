@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {GrpcRoom, ListRoomsRequest, ListRoomsResponse} from "../../../../proto/generated/building_management_pb";
-import {BuildingManagementConnectorService} from "../../connectors/building-management-connector.service";
+import {BuildingManagementConnectorService} from "../../../core/connectors/building-management-connector.service";
 import {ActivatedRoute} from "@angular/router";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";

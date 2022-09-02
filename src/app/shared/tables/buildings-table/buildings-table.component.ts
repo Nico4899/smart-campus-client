@@ -7,7 +7,7 @@ import {
   ListBuildingsRequest,
   ListBuildingsResponse
 } from "../../../../proto/generated/building_management_pb";
-import {BuildingManagementConnectorService} from "../../connectors/building-management-connector.service";
+import {BuildingManagementConnectorService} from "../../../core/connectors/building-management-connector.service";
 
 @Component({
   selector: 'app-buildings-table',

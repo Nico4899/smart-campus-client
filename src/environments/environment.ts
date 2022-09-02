@@ -9,6 +9,20 @@ export const environment = {
   clientUrls: {
     building_management: "http://localhost:8080",
     problem_management: "http://localhost:8080",
+  },
+
+  // authentication values
+  keycloak: {
+    issuer: "",
+    clientId: "",
+    scope: ""
+  },
+
+  // roles
+  roles: {
+    user: "",
+    admin: "",
+    guest: ""
   }
 };
 

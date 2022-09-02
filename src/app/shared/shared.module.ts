@@ -41,6 +41,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {FormsModule} from "@angular/forms";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatInputModule} from "@angular/material/input";
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ import {MatInputModule} from "@angular/material/input";
     MatFormFieldModule,
     FormsModule,
     MatPaginatorModule,
-    MatInputModule
+    MatInputModule,
+    MatSortModule
   ]
 })
 export class SharedModule { }

@@ -45,11 +45,11 @@
             <mat-icon>person</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item>
+            <button *ngIf="!isLoggedIn()" mat-menu-item (click)="login()">
               <mat-icon>login</mat-icon>
               Sign in
             </button>
-            <button mat-menu-item>
+            <button *ngIf="isLoggedIn()" mat-menu-item (click)="logout()">
               <mat-icon>logout</mat-icon>
               Sign out
             </button>
