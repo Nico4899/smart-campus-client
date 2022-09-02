@@ -29,6 +29,7 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import {BuildingManagementConnectorService} from "../../shared/connectors/building-management-connector.service";
 import {ProblemManagementConnectorService} from "../../shared/connectors/problem-management-connector.service";
+import {ComponentComponent} from "../../modules/component/component.component";
 
 @NgModule({
   declarations: [
@@ -38,12 +39,8 @@ import {ProblemManagementConnectorService} from "../../shared/connectors/problem
     ProblemsComponent,
     BuildingComponent,
     RoomComponent,
-    CampusLocationPipe,
-    ComponentTypePipe,
-    RoomTypePipe,
-    ProblemStatePipe,
-    ProblemsStateOperationPipe,
-    FavoritesComponent
+    FavoritesComponent,
+    ComponentComponent
   ],
   imports: [
     CommonModule,
@@ -62,10 +59,10 @@ import {ProblemManagementConnectorService} from "../../shared/connectors/problem
     FormsModule,
     MatTabsModule
   ],
-  exports: [
-    MatSortModule,
-    MatSnackBarModule
-  ],
+    exports: [
+        MatSortModule,
+        MatSnackBarModule
+    ],
   providers: [
     MatSnackBar,
     BuildingManagementConnectorService,

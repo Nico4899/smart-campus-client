@@ -47,6 +47,10 @@ import {BuildingManagementClient} from "../../../proto/generated/Building_manage
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {FavoritesComponent} from "../../modules/favorites/favorites.component";
 import {ComponentComponent} from "../../modules/component/component.component";
+import {NotificationsTableComponent} from "../tables/notifications-table/notifications-table.component";
+import {ComponentsTableComponent} from "../tables/components-table/components-table.component";
+import {RoomsTableComponent} from "../tables/rooms-table/rooms-table.component";
+import {BuildingsTableComponent} from "../tables/buildings-table/buildings-table.component";
 
 @Injectable({
   providedIn: 'root'
@@ -59,7 +63,7 @@ export class BuildingManagementConnectorService {
     this.client = new BuildingManagementClient(environment.clientUrls.building_management, null, null);
   }
 
-  async listBuildings(request: ListBuildingsRequest, callback: (response: ListBuildingsResponse, self: BuildingsComponent) => void, self: BuildingsComponent) {
+  async listBuildings(request: ListBuildingsRequest, callback: (response: ListBuildingsResponse, self: BuildingsTableComponent) => void, self: BuildingsTableComponent) {
     this.client.listBuildings(request, {}, (error: RpcError, response: ListBuildingsResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
@@ -69,7 +73,7 @@ export class BuildingManagementConnectorService {
     })
   }
 
-  async listRooms(request: ListRoomsRequest, callback: (response: ListRoomsResponse, self: BuildingComponent) => void, self: BuildingComponent) {
+  async listRooms(request: ListRoomsRequest, callback: (response: ListRoomsResponse, self: RoomsTableComponent) => void, self: RoomsTableComponent) {
     this.client.listRooms(request, {}, (error: RpcError, response: ListRoomsResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
@@ -79,7 +83,7 @@ export class BuildingManagementConnectorService {
     })
   }
 
-  async listComponents(request: ListComponentsRequest, callback: (response: ListComponentsResponse, self: BuildingComponent | RoomComponent) => void, self: BuildingComponent | RoomComponent) {
+  async listComponents(request: ListComponentsRequest, callback: (response: ListComponentsResponse, self: ComponentsTableComponent) => void, self: ComponentsTableComponent) {
     this.client.listComponents(request, {}, (error: RpcError, response: ListComponentsResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
@@ -89,7 +93,7 @@ export class BuildingManagementConnectorService {
     })
   }
 
-  async listNotifications(request: ListNotificationsRequest, callback: (response: ListNotificationsResponse, self: BuildingComponent | RoomComponent | ComponentComponent) => void, self: BuildingComponent | RoomComponent| ComponentComponent) {
+  async listNotifications(request: ListNotificationsRequest, callback: (response: ListNotificationsResponse, self: NotificationsTableComponent) => void, self: NotificationsTableComponent) {
     this.client.listNotifications(request, {}, (error: RpcError, response: ListNotificationsResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});

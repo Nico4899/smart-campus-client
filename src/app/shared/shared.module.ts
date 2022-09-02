@@ -25,6 +25,22 @@ import { EditComponentComponent } from './dialogs/edit-component/edit-component.
 import { EditProblemComponent } from './dialogs/edit-problem/edit-problem.component';
 import { EditRoomComponent } from './dialogs/edit-room/edit-room.component';
 import { RemoveFavoriteComponent } from './dialogs/remove-favorite/remove-favorite.component';
+import { BuildingsTableComponent } from './tables/buildings-table/buildings-table.component';
+import { ComponentsTableComponent } from './tables/components-table/components-table.component';
+import { RoomsTableComponent } from './tables/rooms-table/rooms-table.component';
+import { ProblemsTableComponent } from './tables/problems-table/problems-table.component';
+import { NotificationsTableComponent } from './tables/notifications-table/notifications-table.component';
+import {MatTableModule} from "@angular/material/table";
+import {DefaultModule} from "../layouts/default/default.module";
+import {CampusLocationPipe} from "./pipes/enum/campus-location.pipe";
+import {ComponentTypePipe} from "./pipes/enum/component-type.pipe";
+import {RoomTypePipe} from "./pipes/enum/room-type.pipe";
+import {ProblemStatePipe} from "./pipes/enum/problem-state.pipe";
+import {ProblemsStateOperationPipe} from "./pipes/enum/problems-state-operation.pipe";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {FormsModule} from "@angular/forms";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -43,12 +59,30 @@ import { RemoveFavoriteComponent } from './dialogs/remove-favorite/remove-favori
     EditComponentComponent,
     EditProblemComponent,
     EditRoomComponent,
-    RemoveFavoriteComponent
+    RemoveFavoriteComponent,
+    BuildingsTableComponent,
+    ComponentsTableComponent,
+    RoomsTableComponent,
+    ProblemsTableComponent,
+    NotificationsTableComponent,
+    CampusLocationPipe,
+    ComponentTypePipe,
+    RoomTypePipe,
+    ProblemStatePipe,
+    ProblemsStateOperationPipe,
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    BuildingsTableComponent,
+    ComponentsTableComponent,
+    NotificationsTableComponent,
+    RoomsTableComponent,
+    ComponentTypePipe,
+    RoomTypePipe,
+    CampusLocationPipe,
+    ProblemsTableComponent
   ],
   imports: [
     CommonModule,
@@ -60,7 +94,12 @@ import { RemoveFavoriteComponent } from './dialogs/remove-favorite/remove-favori
     MatMenuModule,
     MatListModule,
     RouterModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatTableModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatPaginatorModule,
+    MatInputModule
   ]
 })
 export class SharedModule { }

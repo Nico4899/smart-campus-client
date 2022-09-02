@@ -19,25 +19,32 @@ import {BuildingManagementConnectorService} from "../../shared/connectors/buildi
 })
 export class FavoritesComponent implements OnInit, AfterViewInit {
 
-  bDataSource: MatTableDataSource<GrpcBuilding> = new MatTableDataSource<GrpcBuilding>();
-  cDataSource: MatTableDataSource<GrpcComponent> = new MatTableDataSource<GrpcComponent>();
-  rDataSource: MatTableDataSource<GrpcRoom> = new MatTableDataSource<GrpcRoom>();
+  // datasource containing provided data from the api, to be displayed in the html datatables, as well as the current selected object
+  bDataSource: MatTableDataSource<GrpcBuilding.AsObject> = new MatTableDataSource<GrpcBuilding.AsObject>();
+  cDataSource: MatTableDataSource<GrpcComponent.AsObject> = new MatTableDataSource<GrpcComponent.AsObject>();
+  rDataSource: MatTableDataSource<GrpcRoom.AsObject> = new MatTableDataSource<GrpcRoom.AsObject>();
 
+  // sorter and paginator for tables
   @ViewChildren(MatSort) sort = new QueryList<MatSort>();
   @ViewChildren(MatPaginator) paginator = new QueryList<MatPaginator>();
 
+  // search values from search bars
   bSearchKey: string = "";
   rSearchKey: string = "";
   cSearchKey: string = "";
 
-  displayedBuildingColumns: string[] = ['building-id', 'building-number', 'building-name', 'building-address', 'building-campus_location', 'remove_favorite_building'];
-  displayedRoomColumns: string[] = ['room-id', 'room-number', 'room-name', 'room-floor', 'room-type', 'remove_favorite_room'];
-  displayedComponentColumns: string[] = ['component-id', 'component-type', 'remove_favorite_component'];
+  // columns to be displayed
+  displayedBuildingColumns: string[] = ['identificationNumber', 'buildingNumber', 'buildingName', 'address', 'campusLocation', 'edit_building', 'delete_building'];
+  displayedRoomColumns: string[] = ['identificationNumber', 'roomNumber', 'roomName', 'floor', 'roomType', 'edit_room', 'delete_room'];
+  displayedComponentColumns: string[] = ['identificationNumber', 'componentType', 'edit_component', 'delete_component'];
 
   constructor(private buildingManagementConnector: BuildingManagementConnectorService) {
+    // inject building management client and current rout to obtain path variables
   }
 
   ngOnInit(): void {
+
+    // run initial calls
     let listFavoriteBuildingsRequest = new ListFavoriteBuildingsRequest();
     this.buildingManagementConnector.listFavoriteBuildings(listFavoriteBuildingsRequest, FavoritesComponent.interpretListFavoriteBuildingsResponse, this);
 
@@ -49,6 +56,8 @@ export class FavoritesComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+
+    // add sorters and paginators to datasources
     this.bDataSource.sort = this.sort.toArray()[0];
     this.bDataSource.paginator = this.paginator.toArray()[0];
 
@@ -59,21 +68,23 @@ export class FavoritesComponent implements OnInit, AfterViewInit {
     this.cDataSource.paginator = this.paginator.toArray()[2];
   }
 
+  // search function
   applySearch() {
     this.bDataSource.filter = this.bSearchKey?.trim().toLowerCase();
     this.rDataSource.filter = this.rSearchKey?.trim().toLowerCase();
     this.cDataSource.filter = this.cSearchKey?.trim().toLowerCase();
   }
 
+  // private callback methods for api calls
   private static interpretListFavoriteBuildingsResponse(response: ListFavoriteBuildingsResponse, self: FavoritesComponent): void {
-    self.bDataSource.data = response.getBuildingsList();
+    self.bDataSource.data = response.toObject().buildingsList;
   }
 
   private static interpretListFavoriteRoomsResponse(response: ListFavoriteRoomsResponse, self: FavoritesComponent): void {
-    self.rDataSource.data = response.getRoomsList();
+    self.rDataSource.data = response.toObject().roomsList;
   }
 
   private static interpretListFavoriteComponentsResponse(response: ListFavoriteComponentsResponse, self: FavoritesComponent): void {
-    self.cDataSource.data = response.getComponentsList();
+    self.cDataSource.data = response.toObject().componentsList;
   }
 }

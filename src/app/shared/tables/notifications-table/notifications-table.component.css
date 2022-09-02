@@ -1,0 +1,29 @@
+.notifications-table {
+  width: 100%;
+  margin: auto;
+}
+
+.mat-column-notificationTitle {
+  width: 60%;
+  padding-left: 16px;
+  border-right: 1px solid;
+}
+
+.mat-column-creationTime {
+  width: 15%;
+  padding-left: 16px;
+}
+
+.mat-column-last_edited_on {
+  width: 15%;
+  padding-left: 16px;
+}
+
+.mat-column-identificationNumber {
+  border-right: 1px solid;
+  width: 10%;
+}
+
+.mat-row:hover {
+  background-color: lightgrey;
+}

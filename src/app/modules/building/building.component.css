@@ -7,43 +7,6 @@
 }
 
 /*
- * rooms table styling
- */
-
-.rooms-table {
-  width: 100%;
-  margin: auto;
-}
-
-.mat-column-room-number {
-  border-right: 1px solid;
-  width: 10%;
-  padding-left: 16px;
-}
-
-.mat-column-room-name {
-  padding-left: 16px;
-  border-right: 1px solid;
-  width: 50%;
-}
-
-.mat-column-room-floor {
-  border-right: 1px solid;
-  width: 10%;
-  padding-left: 16px;
-}
-
-.mat-column-room-type {
-  width: 20%;
-  padding-left: 16px;
-}
-
-.mat-column-room-id {
-  border-right: 1px solid;
-  width: 10%;
-}
-
-/*
  * components table styling
  */
 
@@ -52,12 +15,12 @@
   margin: auto;
 }
 
-.mat-column-component-type {
+.mat-column-componentType {
   width: 90%;
   padding-left: 16px;
 }
 
-.mat-column-component-id {
+.mat-column-identificationNumber {
   border-right: 1px solid;
   width: 10%;
 }
@@ -71,13 +34,13 @@
   margin: auto;
 }
 
-.mat-column-notification-title {
+.mat-column-notificationTitle {
   width: 60%;
   padding-left: 16px;
   border-right: 1px solid;
 }
 
-.mat-column-created_on {
+.mat-column-creationTime {
   width: 15%;
   padding-left: 16px;
   border-right: 1px solid;
@@ -86,11 +49,6 @@
 .mat-column-last_edited_on {
   width: 15%;
   padding-left: 16px;
-}
-
-.mat-column-notification-id {
-  border-right: 1px solid;
-  width: 10%;
 }
 
 /*

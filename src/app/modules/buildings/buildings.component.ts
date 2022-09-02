@@ -1,46 +1,17 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {BuildingManagementConnectorService} from "../../shared/connectors/building-management-connector.service";
-import {
-  GrpcBuilding,
-  ListBuildingsRequest,
-  ListBuildingsResponse
-} from "../../../proto/generated/building_management_pb";
-import {MatTableDataSource} from "@angular/material/table";
-import {MatSort} from "@angular/material/sort";
-import { MatPaginator } from '@angular/material/paginator';
+import {Component, OnInit} from '@angular/core';
+
 
 @Component({
   selector: 'app-buildings',
   templateUrl: './buildings.component.html',
   styleUrls: ['./buildings.component.css']
 })
-export class BuildingsComponent implements OnInit, AfterViewInit{
-  bDataSource: MatTableDataSource<GrpcBuilding> = new MatTableDataSource<GrpcBuilding>();
+export class BuildingsComponent implements OnInit {
 
-  @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  searchKey: string = "";
-
-  displayedBuildingColumns: string[] = ['id', 'number', 'name', 'address', 'campus_location', 'edit_building', 'delete_building'];
-
-  constructor(private buildingManagementConnector: BuildingManagementConnectorService) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    let listBuildingsRequest = new ListBuildingsRequest();
-    this.buildingManagementConnector.listBuildings(listBuildingsRequest, BuildingsComponent.interpretListBuildingsResponse, this);
   }
 
-  ngAfterViewInit() {
-    this.bDataSource.sort = this.sort;
-    this.bDataSource.paginator = this.paginator;
-  }
-
-  applySearch() {
-    this.bDataSource.filter = this.searchKey?.trim().toLowerCase();
-  }
-
-  private static interpretListBuildingsResponse(response: ListBuildingsResponse, self: BuildingsComponent): void {
-    self.bDataSource.data = response.getBuildingsList();
-  }
 }
