@@ -7,7 +7,7 @@ import {
   ListBuildingsRequest,
   ListBuildingsResponse
 } from "../../../../proto/generated/building_management_pb";
-import {BuildingManagementConnectorService} from "../../connectors/building-management-connector.service";
+import {BuildingManagementConnectorService} from "../../../core/connectors/building-management-connector.service";
 
 @Component({
   selector: 'app-buildings-table',
@@ -43,7 +43,7 @@ export class BuildingsTableComponent implements OnInit {
 
   ngAfterViewInit() {
 
-    // add sorters and paginators to datasources
+    // add sorter and paginator to datasource
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }

@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
-import {BuildingManagementConnectorService} from "../../connectors/building-management-connector.service";
+import {BuildingManagementConnectorService} from "../../../core/connectors/building-management-connector.service";
 import {ActivatedRoute} from "@angular/router";
 import {
   GrpcComponent,
@@ -13,7 +13,7 @@ import {MatTableDataSource} from "@angular/material/table";
 @Component({
   selector: 'app-components-table',
   templateUrl: './components-table.component.html',
-  styleUrls: ['./components-table.component.css']
+  styleUrls: ['./components-table.component.css'],
 })
 export class ComponentsTableComponent implements OnInit, AfterViewInit {
 

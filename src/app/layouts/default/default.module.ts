@@ -15,11 +15,6 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSortModule} from "@angular/material/sort";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatButtonModule} from "@angular/material/button";
-import {CampusLocationPipe} from "../../shared/pipes/enum/campus-location.pipe";
-import {ComponentTypePipe} from "../../shared/pipes/enum/component-type.pipe";
-import {RoomTypePipe} from "../../shared/pipes/enum/room-type.pipe";
-import {ProblemStatePipe} from "../../shared/pipes/enum/problem-state.pipe";
-import {ProblemsStateOperationPipe} from "../../shared/pipes/enum/problems-state-operation.pipe";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
@@ -27,9 +22,11 @@ import {FormsModule} from "@angular/forms";
 import {FavoritesComponent} from "../../modules/favorites/favorites.component";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
-import {BuildingManagementConnectorService} from "../../shared/connectors/building-management-connector.service";
-import {ProblemManagementConnectorService} from "../../shared/connectors/problem-management-connector.service";
+import {BuildingManagementConnectorService} from "../../core/connectors/building-management-connector.service";
+import {ProblemManagementConnectorService} from "../../core/connectors/problem-management-connector.service";
 import {ComponentComponent} from "../../modules/component/component.component";
+import {HttpClientModule} from "@angular/common/http";
+import {OAuthModule} from "angular-oauth2-oidc";
 
 @NgModule({
   declarations: [
@@ -57,12 +54,14 @@ import {ComponentComponent} from "../../modules/component/component.component";
     MatIconModule,
     MatMenuModule,
     FormsModule,
-    MatTabsModule
+    MatTabsModule,
+    HttpClientModule,
+    OAuthModule.forRoot()
   ],
-    exports: [
-        MatSortModule,
-        MatSnackBarModule
-    ],
+  exports: [
+    MatSortModule,
+    MatSnackBarModule
+  ],
   providers: [
     MatSnackBar,
     BuildingManagementConnectorService,

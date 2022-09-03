@@ -8,31 +8,61 @@ import {BuildingComponent} from "./modules/building/building.component";
 import {RoomComponent} from "./modules/room/room.component";
 import {FavoritesComponent} from "./modules/favorites/favorites.component";
 import {ComponentComponent} from "./modules/component/component.component";
+import {AuthGuardGuard} from "./core/authentication/guards/auth-guard.guard";
+import {environment} from "../environments/environment";
 
 const routes: Routes = [{
   path: '',
   component: DefaultComponent,
   children: [{
     path: '',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [AuthGuardGuard],
+     data: {
+      role: environment.roles.guest
+     }
   }, {
     path: 'buildings',
-    component: BuildingsComponent
+    component: BuildingsComponent,
+    canActivate: [AuthGuardGuard],
+    data: {
+      role: environment.roles.guest
+    }
   }, {
     path: 'problems',
-    component: ProblemsComponent
+    component: ProblemsComponent,
+    canActivate: [AuthGuardGuard],
+    data: {
+      role: environment.roles.user
+    }
   }, {
     path: 'favorites',
-    component: FavoritesComponent
+    component: FavoritesComponent,
+    canActivate: [AuthGuardGuard],
+    data: {
+      role: environment.roles.user
+    }
   }, {
     path: "buildings/:bin",
-    component: BuildingComponent
+    component: BuildingComponent,
+    canActivate: [AuthGuardGuard],
+    data: {
+      role: environment.roles.guest
+    }
   }, {
     path: "rooms/:rin",
-    component: RoomComponent
+    component: RoomComponent,
+    canActivate: [AuthGuardGuard],
+    data: {
+      role: environment.roles.guest
+    }
   }, {
     path: "components/:cin",
-    component: ComponentComponent
+    component: ComponentComponent,
+    canActivate: [AuthGuardGuard],
+    data: {
+      role: environment.roles.guest
+    }
   }]
 }, {
   path: '**', redirectTo: ""
