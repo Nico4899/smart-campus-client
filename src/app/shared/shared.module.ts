@@ -42,6 +42,9 @@ import {FormsModule} from "@angular/forms";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatInputModule} from "@angular/material/input";
 import {MatSortModule} from "@angular/material/sort";
+import { FavoriteBuildingsTableComponent } from './tables/favorites-tables/favorite-buildings-table/favorite-buildings-table.component';
+import { FavoriteRoomsTableComponent } from './tables/favorites-tables/favorite-rooms-table/favorite-rooms-table.component';
+import { FavoriteComponentsTableComponent } from './tables/favorites-tables/favorite-components-table/favorite-components-table.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +74,9 @@ import {MatSortModule} from "@angular/material/sort";
     RoomTypePipe,
     ProblemStatePipe,
     ProblemsStateOperationPipe,
+    FavoriteBuildingsTableComponent,
+    FavoriteRoomsTableComponent,
+    FavoriteComponentsTableComponent,
   ],
   exports: [
     HeaderComponent,
@@ -83,7 +89,10 @@ import {MatSortModule} from "@angular/material/sort";
     ComponentTypePipe,
     RoomTypePipe,
     CampusLocationPipe,
-    ProblemsTableComponent
+    ProblemsTableComponent,
+    FavoriteBuildingsTableComponent,
+    FavoriteRoomsTableComponent,
+    FavoriteComponentsTableComponent
   ],
   imports: [
     CommonModule,

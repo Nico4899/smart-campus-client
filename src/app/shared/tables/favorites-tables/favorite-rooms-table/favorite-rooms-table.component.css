@@ -1,0 +1,36 @@
+.fav-rooms-table {
+  width: 100%;
+  margin: auto;
+}
+
+.mat-column-roomNumber {
+  border-right: 1px solid;
+  width: 10%;
+  padding-left: 16px;
+}
+
+.mat-column-roomName {
+  padding-left: 16px;
+  border-right: 1px solid;
+  width: 50%;
+}
+
+.mat-column-floor {
+  border-right: 1px solid;
+  width: 10%;
+  padding-left: 16px;
+}
+
+.mat-column-roomType {
+  width: 20%;
+  padding-left: 16px;
+}
+
+.mat-column-identificationNumber {
+  border-right: 1px solid;
+  width: 10%;
+}
+
+.mat-row:hover {
+  background-color: lightgrey;
+}

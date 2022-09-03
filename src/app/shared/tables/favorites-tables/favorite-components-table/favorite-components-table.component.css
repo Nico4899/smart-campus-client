@@ -1,0 +1,18 @@
+.fav-components-table {
+  width: 100%;
+  margin: auto;
+}
+
+.mat-column-identificationNumber {
+  border-right: 1px solid;
+  width: 20%;
+}
+
+.mat-column-componentType {
+  width: 80%;
+  padding-left: 16px;
+}
+
+.mat-row:hover {
+  background-color: lightgrey;
+}

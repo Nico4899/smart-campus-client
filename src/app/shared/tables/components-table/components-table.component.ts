@@ -13,7 +13,7 @@ import {MatTableDataSource} from "@angular/material/table";
 @Component({
   selector: 'app-components-table',
   templateUrl: './components-table.component.html',
-  styleUrls: ['./components-table.component.css']
+  styleUrls: ['./components-table.component.css'],
 })
 export class ComponentsTableComponent implements OnInit, AfterViewInit {
 

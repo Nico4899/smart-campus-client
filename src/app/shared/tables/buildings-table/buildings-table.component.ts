@@ -43,7 +43,7 @@ export class BuildingsTableComponent implements OnInit {
 
   ngAfterViewInit() {
 
-    // add sorters and paginators to datasources
+    // add sorter and paginator to datasource
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }

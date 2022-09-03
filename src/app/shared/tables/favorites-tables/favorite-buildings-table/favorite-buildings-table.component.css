@@ -1,0 +1,36 @@
+.fav-buildings-table {
+  width: 100%;
+  margin: auto;
+}
+
+.mat-column-identificationNumber {
+  border-right: 1px solid;
+  width: 10%;
+}
+
+.mat-column-buildingName {
+  padding-left: 16px;
+  border-right: 1px solid;
+  width: 30%;
+}
+
+.mat-column-buildingNumber {
+  border-right: 1px solid;
+  width: 10%;
+  padding-left: 16px;
+}
+
+.mat-column-address {
+  border-right: 1px solid;
+  width: 30%;
+  padding-left: 16px;
+}
+
+.mat-column-campusLocation {
+  width: 20%;
+  padding-left: 16px;
+}
+
+.mat-row:hover {
+  background-color: lightgrey;
+}
