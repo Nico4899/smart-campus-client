@@ -5,8 +5,8 @@ import {DashboardComponent} from "./modules/dashboard/dashboard.component";
 import {BuildingsComponent} from "./modules/buildings/buildings.component";
 import {ProblemsComponent} from "./modules/problems/problems.component";
 import {BuildingComponent} from "./modules/building/building.component";
-import {ProblemComponent} from "./modules/problem/problem.component";
 import {RoomComponent} from "./modules/room/room.component";
+import {FavoritesComponent} from "./modules/favorites/favorites.component";
 import {ComponentComponent} from "./modules/component/component.component";
 
 const routes: Routes = [{
@@ -22,23 +22,20 @@ const routes: Routes = [{
     path: 'problems',
     component: ProblemsComponent
   }, {
-    path:"buildings/:bin",
+    path: 'favorites',
+    component: FavoritesComponent
+  }, {
+    path: "buildings/:bin",
     component: BuildingComponent
   }, {
-    path:"problems/:pin",
-    component: ProblemComponent
-  }, {
-    path:"buildings/:bin/rooms/:rin",
+    path: "rooms/:rin",
     component: RoomComponent
   }, {
-    path:"buildings/:bin/rooms/:rin/components/:cin",
-    component: ComponentComponent
-  }, {
-    path:"buildings/:bin/components/:cin",
+    path: "components/:cin",
     component: ComponentComponent
   }]
 }, {
-  path:'**', redirectTo: ""
+  path: '**', redirectTo: ""
 }];
 
 @NgModule({

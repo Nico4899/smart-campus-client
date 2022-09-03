@@ -7,15 +7,23 @@
 
     <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
       <button mat-button routerLink="">
-        <h1>SmartCampus</h1>
+        <h1 class="title">SmartCampus</h1>
       </button>
     </div>
 
     <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
       <ul fxLayout="row" fxLayoutGap="20px">
         <li>
+          <button *ngIf="isDark" mat-icon-button (click)="toggleDarkMode()">
+            <mat-icon>flashlight_on</mat-icon>
+          </button>
+          <button *ngIf="!isDark" mat-icon-button (click)="toggleDarkMode()">
+            <mat-icon>flashlight_off</mat-icon>
+          </button>
+        </li>
+        <li>
           <button mat-icon-button [matMenuTriggerFor]="language">
-            <mat-icon>language</mat-icon>
+            <mat-icon>menu_book</mat-icon>
           </button>
           <mat-menu #language="matMenu">
             <button mat-menu-item>
@@ -34,11 +42,15 @@
         </li>
         <li>
           <button mat-button [matMenuTriggerFor]="menu">
-            <mat-icon>person_outline</mat-icon>
+            <mat-icon>person</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item>
-              <mat-icon>exit_to_app</mat-icon>
+              <mat-icon>login</mat-icon>
+              Sign in
+            </button>
+            <button mat-menu-item>
+              <mat-icon>logout</mat-icon>
               Sign out
             </button>
           </mat-menu>

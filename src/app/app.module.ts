@@ -4,7 +4,6 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from "./app-routing.module";
 import {DefaultModule} from "./layouts/default/default.module";
-import {RoomTypePipe} from './shared/pipes/room-type.pipe';
 
 @NgModule({
   declarations: [
@@ -17,8 +16,7 @@ import {RoomTypePipe} from './shared/pipes/room-type.pipe';
     DefaultModule
   ],
   providers: [],
-  exports: [
-  ],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

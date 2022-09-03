@@ -1,2 +1,13 @@
-<h1>{{room.getRoomNumber()}}</h1>
-<h3>{{room.getRoomName()}}</h3>
+<h1 class="room-number">{{room.roomNumber}}</h1>
+<h3 class="room-name">{{room.roomName}}</h3>
+
+<mat-tab-group>
+  <mat-tab label="components">
+    <app-components-table></app-components-table>
+  </mat-tab>
+
+  <mat-tab label="notifications">
+    <app-notifications-table></app-notifications-table>
+  </mat-tab>
+</mat-tab-group>
+

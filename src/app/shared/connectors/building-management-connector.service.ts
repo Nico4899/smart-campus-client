@@ -1,29 +1,56 @@
 import {Injectable} from '@angular/core';
 import {BuildingComponent} from "../../modules/building/building.component";
 import {RoomComponent} from "../../modules/room/room.component";
-import {ComponentComponent} from "../../modules/component/component.component";
 import {BuildingsComponent} from "../../modules/buildings/buildings.component";
 import {environment} from "../../../environments/environment";
 import {
+  CreateBuildingRequest,
+  CreateBuildingResponse,
+  CreateComponentRequest,
+  CreateComponentResponse,
+  CreateFavoriteRequest,
+  CreateFavoriteResponse,
+  CreateRoomRequest,
+  CreateRoomResponse,
   GetBuildingRequest,
   GetBuildingResponse,
+  GetComponentRequest,
   GetComponentResponse,
   GetRoomRequest,
   GetRoomResponse,
-  GrpcBuilding,
-  GrpcComponent, GrpcFilterValueSelection,
-  GrpcNotification,
-  GrpcRoom,
   ListBuildingsRequest,
   ListBuildingsResponse,
-  ListComponentsRequest, ListComponentsResponse,
+  ListComponentsRequest,
+  ListComponentsResponse,
+  ListFavoriteBuildingsRequest,
+  ListFavoriteBuildingsResponse,
+  ListFavoriteComponentsRequest,
+  ListFavoriteComponentsResponse,
+  ListFavoriteRoomsRequest,
+  ListFavoriteRoomsResponse,
   ListNotificationsRequest,
   ListNotificationsResponse,
-  ListRoomsRequest, ListRoomsResponse
+  ListRoomsRequest,
+  ListRoomsResponse,
+  RemoveFavoriteRequest,
+  RemoveRequest,
+  RemoveResponse,
+  UpdateBuildingRequest,
+  UpdateBuildingResponse,
+  UpdateComponentRequest,
+  UpdateComponentResponse,
+  UpdateRoomRequest,
+  UpdateRoomResponse
 } from 'src/proto/generated/building_management_pb';
 import {RpcError} from "grpc-web";
 import {BuildingManagementClient} from "../../../proto/generated/Building_managementServiceClientPb";
-import {MatTableDataSource} from "@angular/material/table";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {FavoritesComponent} from "../../modules/favorites/favorites.component";
+import {ComponentComponent} from "../../modules/component/component.component";
+import {NotificationsTableComponent} from "../tables/notifications-table/notifications-table.component";
+import {ComponentsTableComponent} from "../tables/components-table/components-table.component";
+import {RoomsTableComponent} from "../tables/rooms-table/rooms-table.component";
+import {BuildingsTableComponent} from "../tables/buildings-table/buildings-table.component";
 
 @Injectable({
   providedIn: 'root'
@@ -32,76 +59,217 @@ export class BuildingManagementConnectorService {
 
   private readonly client: BuildingManagementClient;
 
-  constructor() {
+  constructor(private snackbar: MatSnackBar) {
     this.client = new BuildingManagementClient(environment.clientUrls.building_management, null, null);
   }
 
-  async listBuildings(callback: (response: ListBuildingsResponse, self: BuildingsComponent) => void, self: BuildingsComponent) {
-
-    let request = new ListBuildingsRequest();
-
-    this.client.listBuildings(request, {},(error: RpcError, response: ListBuildingsResponse) => {
+  async listBuildings(request: ListBuildingsRequest, callback: (response: ListBuildingsResponse, self: BuildingsTableComponent) => void, self: BuildingsTableComponent) {
+    this.client.listBuildings(request, {}, (error: RpcError, response: ListBuildingsResponse) => {
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
         callback(response, self);
+      }
     })
   }
 
-  async listRooms(parentIdentificationNumber: string, callback: (response: ListRoomsResponse, self: BuildingComponent) => void, self: BuildingComponent) {
-
-    let request = new ListRoomsRequest();
-    request.setIdentificationNumber(parentIdentificationNumber);
-
-    this.client.listRooms(request, {}, (error: RpcError, response:ListRoomsResponse) => {
-      callback(response, self);
+  async listRooms(request: ListRoomsRequest, callback: (response: ListRoomsResponse, self: RoomsTableComponent) => void, self: RoomsTableComponent) {
+    this.client.listRooms(request, {}, (error: RpcError, response: ListRoomsResponse) => {
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
+      }
     })
   }
 
-  async listComponents(parentIdentificationNumber: string, callback: (response: ListComponentsResponse, self: BuildingComponent | RoomComponent) => void, self: BuildingComponent | RoomComponent) {
-
-    let request = new ListComponentsRequest();
-    request.setIdentificationNumber(parentIdentificationNumber);
-
+  async listComponents(request: ListComponentsRequest, callback: (response: ListComponentsResponse, self: ComponentsTableComponent) => void, self: ComponentsTableComponent) {
     this.client.listComponents(request, {}, (error: RpcError, response: ListComponentsResponse) => {
-      callback(response, self);
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
+      }
     })
   }
 
-  async listNotifications(parentIdentificationNumber: string, callback: (response: ListNotificationsResponse, self: BuildingComponent | RoomComponent | ComponentComponent) => void, self: BuildingComponent | RoomComponent | ComponentComponent) {
-
-    let request = new ListNotificationsRequest();
-    request.setIdentificationNumber(parentIdentificationNumber);
-
+  async listNotifications(request: ListNotificationsRequest, callback: (response: ListNotificationsResponse, self: NotificationsTableComponent) => void, self: NotificationsTableComponent) {
     this.client.listNotifications(request, {}, (error: RpcError, response: ListNotificationsResponse) => {
-      callback(response, self);
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
+      }
     })
   }
 
-  async getBuilding(identificationNumber: string, callback: (response: GetBuildingResponse, self: BuildingComponent) => void, self: BuildingComponent) {
-
-    let request = new GetBuildingRequest();
-    request.setIdentificationNumber(identificationNumber);
-
+  async getBuilding(request: GetBuildingRequest, callback: (response: GetBuildingResponse, self: BuildingComponent) => void, self: BuildingComponent) {
     this.client.getBuilding(request, {}, (error: RpcError, response: GetBuildingResponse) => {
-      callback(response, self);
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
+      }
     })
   }
 
-  async getRoom(identificationNumber: string, callback: (response: GetRoomResponse, self: RoomComponent) => void, self: RoomComponent) {
-
-    let request = new GetRoomRequest();
-    request.setIdentificationNumber(identificationNumber);
-
+  async getRoom(request: GetRoomRequest, callback: (response: GetRoomResponse, self: RoomComponent) => void, self: RoomComponent) {
     this.client.getRoom(request, {}, (error: RpcError, response: GetRoomResponse) => {
-      callback(response, self);
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
+      }
     })
   }
 
-  async getComponent(identificationNumber: string, callback: (response: GetComponentResponse, self: ComponentComponent) => void, self: ComponentComponent) {
+  async listFavoriteBuildings(request: ListFavoriteBuildingsRequest, callback: (response: ListFavoriteBuildingsResponse, self: FavoritesComponent) => void, self: FavoritesComponent) {
+    this.client.listFavoriteBuildings(request, {}, (error: RpcError, response: ListFavoriteBuildingsResponse) => {
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
+      }
+    })
+  }
 
-    let request = new GetRoomRequest();
-    request.setIdentificationNumber(identificationNumber);
+  async listFavoriteRooms(request: ListFavoriteRoomsRequest, callback: (response: ListFavoriteRoomsResponse, self: FavoritesComponent) => void, self: FavoritesComponent) {
+    this.client.listFavoriteRooms(request, {}, (error: RpcError, response: ListFavoriteRoomsResponse) => {
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
+      }
+    })
+  }
 
+  async listFavoriteComponents(request: ListFavoriteComponentsRequest, callback: (response: ListFavoriteComponentsResponse, self: FavoritesComponent) => void, self: FavoritesComponent) {
+    this.client.listFavoriteComponents(request, {}, (error: RpcError, response: ListFavoriteComponentsResponse) => {
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
+      }
+    })
+  }
+
+  async createBuilding(request: CreateBuildingRequest, callback: (response: CreateBuildingResponse, self: BuildingsComponent) => void, self: BuildingsComponent) {
+    this.client.createBuilding(request, {}, (error: RpcError, response: CreateBuildingResponse) => {
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
+      }
+    })
+  }
+
+  async createRoom(request: CreateRoomRequest, callback: (response: CreateRoomResponse, self: BuildingComponent) => void, self: BuildingComponent) {
+    this.client.createRoom(request, {}, (error: RpcError, response: CreateRoomResponse) => {
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
+      }
+    })
+  }
+
+  async createComponent(request: CreateComponentRequest, callback: (response: CreateComponentResponse, self: BuildingComponent | RoomComponent) => void, self: BuildingComponent | RoomComponent) {
+    this.client.createComponent(request, {}, (error: RpcError, response: CreateComponentResponse) => {
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
+      }
+    })
+  }
+
+  async createFavorite(request: CreateFavoriteRequest, callback: (response: CreateFavoriteResponse, self: BuildingComponent | RoomComponent) => void, self: BuildingComponent | RoomComponent) {
+    this.client.createFavorite(request, {}, (error: RpcError, response: CreateFavoriteResponse) => {
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
+      }
+    })
+  }
+
+  async updateBuilding(request: UpdateBuildingRequest, callback: (response: UpdateBuildingResponse, self: BuildingsComponent) => void, self: BuildingsComponent) {
+    this.client.updateBuilding(request, {}, (error: RpcError, response: UpdateBuildingResponse) => {
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
+      }
+    })
+  }
+
+  async updateRoom(request: UpdateRoomRequest, callback: (response: UpdateRoomResponse, self: BuildingComponent) => void, self: BuildingComponent) {
+    this.client.updateRoom(request, {}, (error: RpcError, response: UpdateRoomResponse) => {
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
+      }
+    })
+  }
+
+  async updateComponent(request: UpdateComponentRequest, callback: (response: UpdateComponentResponse, self: BuildingComponent | RoomComponent) => void, self: BuildingComponent | RoomComponent) {
+    this.client.updateComponent(request, {}, (error: RpcError, response: UpdateComponentResponse) => {
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
+      }
+    })
+  }
+
+  async removeBuilding(request: RemoveRequest, callback: (response: RemoveResponse, self: BuildingsComponent) => void, self: BuildingsComponent) {
+    this.client.removeBuilding(request, {}, (error: RpcError, response: RemoveResponse) => {
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
+      }
+    })
+  }
+
+  async removeRoom(request: RemoveRequest, callback: (response: RemoveResponse, self: BuildingComponent) => void, self: BuildingComponent) {
+    this.client.removeRoom(request, {}, (error: RpcError, response: RemoveResponse) => {
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
+      }
+    })
+  }
+
+  async removeComponent(request: RemoveRequest, callback: (response: RemoveResponse, self: RoomComponent) => void, self: RoomComponent) {
+    this.client.removeComponent(request, {}, (error: RpcError, response: RemoveResponse) => {
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
+      }
+    })
+  }
+
+  async getComponent(request: GetComponentRequest, callback: (response: GetComponentResponse, self: ComponentComponent) => void, self: ComponentComponent) {
     this.client.getComponent(request, {}, (error: RpcError, response: GetComponentResponse) => {
-      callback(response, self);
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
+      }
+    })
+  }
+
+  async removeFavorite(request: RemoveFavoriteRequest, callback: (response: RemoveResponse, self: FavoritesComponent) => void, self: FavoritesComponent) {
+    this.client.removeFavorite(request, {}, (error: RpcError, response: RemoveResponse) => {
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
+      }
     })
   }
 }

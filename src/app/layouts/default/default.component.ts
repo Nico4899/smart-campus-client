@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostBinding, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-default',
@@ -8,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class DefaultComponent implements OnInit {
 
   sideBarOpen = false;
+  isDark = true;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
@@ -17,4 +19,14 @@ export class DefaultComponent implements OnInit {
   sideBarToggler($event: any) {
     this.sideBarOpen = !this.sideBarOpen;
   }
+
+  darkModeToggler($event: any) {
+    this.isDark = !this.isDark;
+  }
+
+  @HostBinding('class')
+  get themeMode() {
+    return this.isDark ? 'darkMode' : 'lightMode';
+  }
+
 }

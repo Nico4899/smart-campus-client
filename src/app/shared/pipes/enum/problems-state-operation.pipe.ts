@@ -1,7 +1,7 @@
 import {Pipe, PipeTransform} from '@angular/core';
 import {
   GrpcStateOperation
-} from "../../../proto/generated/problem_management_pb";
+} from "../../../../proto/generated/problem_management_pb";
 
 @Pipe({
   name: 'problemsStateOperation'

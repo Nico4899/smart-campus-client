@@ -1,21 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {
-  GetBuildingResponse,
-  GrpcBuilding,
-  GrpcComponent,
-  GrpcNotification,
-  GrpcRoom,
-  ListComponentsResponse,
-  ListNotificationsResponse,
-  ListRoomsResponse
-} from "../../../proto/generated/building_management_pb";
-import {
-  BuildingManagementConnectorService
-} from "../../shared/connectors/building-management-connector.service";
-import {RoomComponent} from "../room/room.component";
+import {GetBuildingRequest, GetBuildingResponse, GrpcBuilding} from "../../../proto/generated/building_management_pb";
+import {BuildingManagementConnectorService} from "../../shared/connectors/building-management-connector.service";
 import {ActivatedRoute} from "@angular/router";
-import {ComponentComponent} from "../component/component.component";
-import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-building',
@@ -24,42 +10,29 @@ import {MatTableDataSource} from "@angular/material/table";
 })
 export class BuildingComponent implements OnInit {
 
+  // path variable
   bin: string = "";
-  rDataSource: MatTableDataSource<GrpcRoom> = new MatTableDataSource<GrpcRoom>();
-  cDataSource: MatTableDataSource<GrpcComponent> = new MatTableDataSource<GrpcComponent>();
-  nDataSource: MatTableDataSource<GrpcNotification> = new MatTableDataSource<GrpcNotification>();
-  building: GrpcBuilding = new GrpcBuilding();
 
-  displayedRoomColumns: string[] = ['name', 'number', 'type'];
-  displayedComponentColumns: string[] = ['description', 'type'];
-  displayedNotificationColumns: string[] = ['title', 'description', 'created_on', 'last_edited_on'];
-
+  // main object
+  building: GrpcBuilding.AsObject = new GrpcBuilding().toObject();
 
   constructor(private buildingManagementConnector: BuildingManagementConnectorService, private route: ActivatedRoute) {
-
+    // inject building management client and current rout to obtain path variables
   }
 
   ngOnInit(): void {
+
+    // obtain path variables
     this.bin = String(this.route.snapshot.paramMap.get("bin"));
-    this.buildingManagementConnector.listRooms(this.bin, BuildingComponent.interpretListRoomsResponse, this);
-    this.buildingManagementConnector.listComponents(this.bin, BuildingComponent.interpretListComponentsResponse, this);
-    this.buildingManagementConnector.listNotifications(this.bin, BuildingComponent.interpretListNotificationsResponse, this);
-    this.buildingManagementConnector.getBuilding(this.bin, BuildingComponent.interpretGetBuildingResponse, this);
-      }
 
-  private static interpretListRoomsResponse(response: ListRoomsResponse, self: BuildingComponent): void {
-    self.rDataSource = new MatTableDataSource<GrpcRoom>(response.getRoomsList());
+    // run initial calls
+    let getBuildingRequest = new GetBuildingRequest();
+    getBuildingRequest.setIdentificationNumber(this.bin);
+    this.buildingManagementConnector.getBuilding(getBuildingRequest, BuildingComponent.interpretGetBuildingResponse, this);
   }
 
-  private static interpretListComponentsResponse(response: ListComponentsResponse, self: BuildingComponent | RoomComponent): void {
-    self.cDataSource = new MatTableDataSource<GrpcComponent>(response.getComponentsList());
-  }
-
-  private static interpretListNotificationsResponse(response: ListNotificationsResponse, self: BuildingComponent | RoomComponent | ComponentComponent): void {
-    self.nDataSource = new MatTableDataSource<GrpcNotification>(response.getNotificationsList());
-  }
-
+  // private callback methods for api calls
   private static interpretGetBuildingResponse(response: GetBuildingResponse, self: BuildingComponent): void {
-    self.building = response.getGrpcBuilding()!;
+    self.building = response.getGrpcBuilding()?.toObject()!;
   }
 }

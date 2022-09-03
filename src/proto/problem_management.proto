@@ -19,7 +19,7 @@ service ProblemManagement {
 // requests and responses
 
 message ListProblemsRequest{
-  GrpcFilterValueSelection grpc_filter_value_selection = 1;
+  GrpcProblemFilterValueSelection grpc_filter_value_selection = 1;
 }
 
 message ListProblemsResponse{
@@ -85,7 +85,7 @@ message GrpcProblem{
   string reference_identification_number = 7;
 }
 
-message GrpcFilterValueSelection{
+message GrpcProblemFilterValueSelection{
   repeated string reporters = 1;
   repeated GrpcProblemState states = 2;
 }

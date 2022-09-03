@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {GrpcProblemState} from "../../../proto/generated/problem_management_pb";
+import {GrpcProblemState} from "../../../../proto/generated/problem_management_pb";
 
 @Pipe({
   name: 'problemState'

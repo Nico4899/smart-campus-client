@@ -42,8 +42,8 @@ export namespace GetBuildingResponse {
 }
 
 export class ListBuildingsRequest extends jspb.Message {
-  getGrpcFilterValueSelection(): GrpcFilterValueSelection | undefined;
-  setGrpcFilterValueSelection(value?: GrpcFilterValueSelection): ListBuildingsRequest;
+  getGrpcFilterValueSelection(): GrpcBuildingFilterValueSelection | undefined;
+  setGrpcFilterValueSelection(value?: GrpcBuildingFilterValueSelection): ListBuildingsRequest;
   hasGrpcFilterValueSelection(): boolean;
   clearGrpcFilterValueSelection(): ListBuildingsRequest;
 
@@ -57,7 +57,7 @@ export class ListBuildingsRequest extends jspb.Message {
 
 export namespace ListBuildingsRequest {
   export type AsObject = {
-    grpcFilterValueSelection?: GrpcFilterValueSelection.AsObject,
+    grpcFilterValueSelection?: GrpcBuildingFilterValueSelection.AsObject,
   }
 }
 
@@ -158,8 +158,8 @@ export namespace GetComponentResponse {
 }
 
 export class ListRoomsRequest extends jspb.Message {
-  getGrpcFilterValueSelection(): GrpcFilterValueSelection | undefined;
-  setGrpcFilterValueSelection(value?: GrpcFilterValueSelection): ListRoomsRequest;
+  getGrpcFilterValueSelection(): GrpcBuildingFilterValueSelection | undefined;
+  setGrpcFilterValueSelection(value?: GrpcBuildingFilterValueSelection): ListRoomsRequest;
   hasGrpcFilterValueSelection(): boolean;
   clearGrpcFilterValueSelection(): ListRoomsRequest;
 
@@ -176,7 +176,7 @@ export class ListRoomsRequest extends jspb.Message {
 
 export namespace ListRoomsRequest {
   export type AsObject = {
-    grpcFilterValueSelection?: GrpcFilterValueSelection.AsObject,
+    grpcFilterValueSelection?: GrpcBuildingFilterValueSelection.AsObject,
     identificationNumber: string,
   }
 }
@@ -240,8 +240,8 @@ export namespace ListComponentsResponse {
 }
 
 export class ListFavoriteBuildingsRequest extends jspb.Message {
-  getGrpcFilterValueSelection(): GrpcFilterValueSelection | undefined;
-  setGrpcFilterValueSelection(value?: GrpcFilterValueSelection): ListFavoriteBuildingsRequest;
+  getGrpcFilterValueSelection(): GrpcBuildingFilterValueSelection | undefined;
+  setGrpcFilterValueSelection(value?: GrpcBuildingFilterValueSelection): ListFavoriteBuildingsRequest;
   hasGrpcFilterValueSelection(): boolean;
   clearGrpcFilterValueSelection(): ListFavoriteBuildingsRequest;
 
@@ -258,14 +258,14 @@ export class ListFavoriteBuildingsRequest extends jspb.Message {
 
 export namespace ListFavoriteBuildingsRequest {
   export type AsObject = {
-    grpcFilterValueSelection?: GrpcFilterValueSelection.AsObject,
+    grpcFilterValueSelection?: GrpcBuildingFilterValueSelection.AsObject,
     owner: string,
   }
 }
 
 export class ListFavoriteRoomsRequest extends jspb.Message {
-  getGrpcFilterValueSelection(): GrpcFilterValueSelection | undefined;
-  setGrpcFilterValueSelection(value?: GrpcFilterValueSelection): ListFavoriteRoomsRequest;
+  getGrpcFilterValueSelection(): GrpcBuildingFilterValueSelection | undefined;
+  setGrpcFilterValueSelection(value?: GrpcBuildingFilterValueSelection): ListFavoriteRoomsRequest;
   hasGrpcFilterValueSelection(): boolean;
   clearGrpcFilterValueSelection(): ListFavoriteRoomsRequest;
 
@@ -282,17 +282,12 @@ export class ListFavoriteRoomsRequest extends jspb.Message {
 
 export namespace ListFavoriteRoomsRequest {
   export type AsObject = {
-    grpcFilterValueSelection?: GrpcFilterValueSelection.AsObject,
+    grpcFilterValueSelection?: GrpcBuildingFilterValueSelection.AsObject,
     owner: string,
   }
 }
 
 export class ListFavoriteComponentsRequest extends jspb.Message {
-  getGrpcFilterValueSelection(): GrpcFilterValueSelection | undefined;
-  setGrpcFilterValueSelection(value?: GrpcFilterValueSelection): ListFavoriteComponentsRequest;
-  hasGrpcFilterValueSelection(): boolean;
-  clearGrpcFilterValueSelection(): ListFavoriteComponentsRequest;
-
   getOwner(): string;
   setOwner(value: string): ListFavoriteComponentsRequest;
 
@@ -306,7 +301,6 @@ export class ListFavoriteComponentsRequest extends jspb.Message {
 
 export namespace ListFavoriteComponentsRequest {
   export type AsObject = {
-    grpcFilterValueSelection?: GrpcFilterValueSelection.AsObject,
     owner: string,
   }
 }
@@ -815,6 +809,28 @@ export namespace RemoveRequest {
   }
 }
 
+export class RemoveFavoriteRequest extends jspb.Message {
+  getIdentificationNumber(): string;
+  setIdentificationNumber(value: string): RemoveFavoriteRequest;
+
+  getOwner(): string;
+  setOwner(value: string): RemoveFavoriteRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoveFavoriteRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveFavoriteRequest): RemoveFavoriteRequest.AsObject;
+  static serializeBinaryToWriter(message: RemoveFavoriteRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveFavoriteRequest;
+  static deserializeBinaryFromReader(message: RemoveFavoriteRequest, reader: jspb.BinaryReader): RemoveFavoriteRequest;
+}
+
+export namespace RemoveFavoriteRequest {
+  export type AsObject = {
+    identificationNumber: string,
+    owner: string,
+  }
+}
+
 export class RemoveResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RemoveResponse.AsObject;
@@ -1031,36 +1047,36 @@ export namespace GrpcComponent {
   }
 }
 
-export class GrpcFilterValueSelection extends jspb.Message {
+export class GrpcBuildingFilterValueSelection extends jspb.Message {
   getGrpcComponentTypesList(): Array<GrpcComponentType>;
-  setGrpcComponentTypesList(value: Array<GrpcComponentType>): GrpcFilterValueSelection;
-  clearGrpcComponentTypesList(): GrpcFilterValueSelection;
-  addGrpcComponentTypes(value: GrpcComponentType, index?: number): GrpcFilterValueSelection;
+  setGrpcComponentTypesList(value: Array<GrpcComponentType>): GrpcBuildingFilterValueSelection;
+  clearGrpcComponentTypesList(): GrpcBuildingFilterValueSelection;
+  addGrpcComponentTypes(value: GrpcComponentType, index?: number): GrpcBuildingFilterValueSelection;
 
   getGrpcRoomTypesList(): Array<GrpcRoomType>;
-  setGrpcRoomTypesList(value: Array<GrpcRoomType>): GrpcFilterValueSelection;
-  clearGrpcRoomTypesList(): GrpcFilterValueSelection;
-  addGrpcRoomTypes(value: GrpcRoomType, index?: number): GrpcFilterValueSelection;
+  setGrpcRoomTypesList(value: Array<GrpcRoomType>): GrpcBuildingFilterValueSelection;
+  clearGrpcRoomTypesList(): GrpcBuildingFilterValueSelection;
+  addGrpcRoomTypes(value: GrpcRoomType, index?: number): GrpcBuildingFilterValueSelection;
 
   getGrpcCampusLocationsList(): Array<GrpcCampusLocation>;
-  setGrpcCampusLocationsList(value: Array<GrpcCampusLocation>): GrpcFilterValueSelection;
-  clearGrpcCampusLocationsList(): GrpcFilterValueSelection;
-  addGrpcCampusLocations(value: GrpcCampusLocation, index?: number): GrpcFilterValueSelection;
+  setGrpcCampusLocationsList(value: Array<GrpcCampusLocation>): GrpcBuildingFilterValueSelection;
+  clearGrpcCampusLocationsList(): GrpcBuildingFilterValueSelection;
+  addGrpcCampusLocations(value: GrpcCampusLocation, index?: number): GrpcBuildingFilterValueSelection;
 
   getFloorsList(): Array<number>;
-  setFloorsList(value: Array<number>): GrpcFilterValueSelection;
-  clearFloorsList(): GrpcFilterValueSelection;
-  addFloors(value: number, index?: number): GrpcFilterValueSelection;
+  setFloorsList(value: Array<number>): GrpcBuildingFilterValueSelection;
+  clearFloorsList(): GrpcBuildingFilterValueSelection;
+  addFloors(value: number, index?: number): GrpcBuildingFilterValueSelection;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GrpcFilterValueSelection.AsObject;
-  static toObject(includeInstance: boolean, msg: GrpcFilterValueSelection): GrpcFilterValueSelection.AsObject;
-  static serializeBinaryToWriter(message: GrpcFilterValueSelection, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GrpcFilterValueSelection;
-  static deserializeBinaryFromReader(message: GrpcFilterValueSelection, reader: jspb.BinaryReader): GrpcFilterValueSelection;
+  toObject(includeInstance?: boolean): GrpcBuildingFilterValueSelection.AsObject;
+  static toObject(includeInstance: boolean, msg: GrpcBuildingFilterValueSelection): GrpcBuildingFilterValueSelection.AsObject;
+  static serializeBinaryToWriter(message: GrpcBuildingFilterValueSelection, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GrpcBuildingFilterValueSelection;
+  static deserializeBinaryFromReader(message: GrpcBuildingFilterValueSelection, reader: jspb.BinaryReader): GrpcBuildingFilterValueSelection;
 }
 
-export namespace GrpcFilterValueSelection {
+export namespace GrpcBuildingFilterValueSelection {
   export type AsObject = {
     grpcComponentTypesList: Array<GrpcComponentType>,
     grpcRoomTypesList: Array<GrpcRoomType>,

@@ -7,14 +7,23 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
+  isDark: boolean = false;
 
-  constructor() { }
+  @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
+  @Output() toggleDarkModeForMe: EventEmitter<any> = new EventEmitter();
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
   toggleSideBar() {
     this.toggleSideBarForMe.emit();
+  }
+
+  toggleDarkMode() {
+    this.toggleDarkModeForMe.emit();
+    this.isDark = !this.isDark;
   }
 }

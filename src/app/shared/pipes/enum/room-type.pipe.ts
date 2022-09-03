@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {GrpcRoomType} from "../../../proto/generated/building_management_pb";
+import {GrpcRoomType} from "../../../../proto/generated/building_management_pb";
 
 @Pipe({
   name: 'roomType'
