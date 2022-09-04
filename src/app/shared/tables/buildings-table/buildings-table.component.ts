@@ -3,11 +3,22 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
 import {
+  CreateBuildingRequest,
+  CreateBuildingResponse,
   GrpcBuilding,
+  GrpcFloors,
+  GrpcGeographicalLocation,
   ListBuildingsRequest,
-  ListBuildingsResponse
+  ListBuildingsResponse,
+  RemoveRequest,
+  UpdateBuildingRequest,
+  UpdateBuildingResponse
 } from "../../../../proto/generated/building_management_pb";
 import {BuildingManagementConnectorService} from "../../../core/connectors/building-management-connector.service";
+import {MatDialog} from "@angular/material/dialog";
+import {AddBuildingComponent} from "../../dialogs/add-building/add-building.component";
+import {EditBuildingComponent} from "../../dialogs/edit-building/edit-building.component";
+import {RemoveBuildingComponent} from "../../dialogs/remove-building/remove-building.component";
 
 @Component({
   selector: 'app-buildings-table',
@@ -29,7 +40,7 @@ export class BuildingsTableComponent implements OnInit {
   // columns to be displayed
   displayedColumns: string[] = ['identificationNumber', 'buildingNumber', 'buildingName', 'address', 'campusLocation', 'edit_building', 'delete_building'];
 
-  constructor(private buildingManagementConnector: BuildingManagementConnectorService) {
+  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private dialog: MatDialog) {
     // inject building management client and current rout to obtain path variables
   }
 
@@ -58,5 +69,91 @@ export class BuildingsTableComponent implements OnInit {
     self.dataSource.data = response.toObject().buildingsList;
   }
 
+  private static interpretCreateBuildingResponse(response: CreateBuildingResponse, self: BuildingsTableComponent): void {
+    self.dataSource.data.push(response.getBuilding()?.toObject()!);
+  }
+
+  private static interpretUpdateBuildingResponse(response: UpdateBuildingResponse, self: BuildingsTableComponent): void {
+    self.dataSource.data = self.dataSource.data.filter(e => e.identificationNumber != response.getBuilding()?.getIdentificationNumber());
+    self.dataSource.data.push(response.getBuilding()?.toObject()!);
+  }
+
+  private static interpretRemoveBuildingResponse(id: string, self: BuildingsTableComponent): void {
+    self.dataSource.data = self.dataSource.data.filter(e => e.identificationNumber != id);
+  }
+
+  // button methods
+  openCreateBuildingDialog() {
+    const dialogRef = this.dialog.open(AddBuildingComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.event == 'ok') {
+        this.buildingManagementConnector.createBuilding(BuildingsTableComponent.buildCreateBuildingRequest(result), BuildingsTableComponent.interpretCreateBuildingResponse, this);
+      } else {
+        return;
+      }
+    })
+  }
+
+  openUpdateBuildingDialog(building: GrpcBuilding.AsObject) {
+    const dialogRef = this.dialog.open(EditBuildingComponent, {data: building});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.event == 'ok') {
+        this.buildingManagementConnector.updateBuilding(BuildingsTableComponent.buildUpdateBuildingRequest(result), BuildingsTableComponent.interpretUpdateBuildingResponse, this);
+      } else {
+        return;
+      }
+    })
+  }
+
+  openRemoveBuildingDialog(identificationNumber: string) {
+    const dialogRef = this.dialog.open(RemoveBuildingComponent, {data: identificationNumber});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.event == 'ok') {
+        this.buildingManagementConnector.removeBuilding(BuildingsTableComponent.buildRemoveRequest(result), BuildingsTableComponent.interpretRemoveBuildingResponse, this);
+      } else {
+        return;
+      }
+    })
+  }
+
+  // private utils
+  private static buildCreateBuildingRequest(result: any): CreateBuildingRequest {
+    let request = new CreateBuildingRequest();
+    request.setBuildingNumber(result.data.buildingNumber);
+    request.setBuildingName(result.data.buildingName);
+    request.setCampusLocation(result.data.campusLocation);
+    let floors = new GrpcFloors();
+    floors.setHighestFloor(result.data.highestFloor);
+    floors.setLowestFloor(result.data.lowestFloor);
+    request.setGrpcFloors(floors);
+    let geographicalLocation = new GrpcGeographicalLocation();
+    geographicalLocation.setLongitude(result.data.longitude);
+    geographicalLocation.setLatitude(result.data.latitude);
+    request.setGrpcGeographicalLocation(geographicalLocation);
+    return request;
+  }
+
+  private static buildUpdateBuildingRequest(result: any): UpdateBuildingRequest {
+    let request = new UpdateBuildingRequest();
+    request.setBuildingNumber(result.data.buildingNumber);
+    request.setBuildingName(result.data.buildingName);
+    request.setCampusLocation(result.data.campusLocation);
+    let floors = new GrpcFloors();
+    floors.setHighestFloor(result.data.highestFloor);
+    floors.setLowestFloor(result.data.lowestFloor);
+    request.setGrpcFloors(floors);
+    let geographicalLocation = new GrpcGeographicalLocation();
+    geographicalLocation.setLongitude(result.data.longitude);
+    geographicalLocation.setLatitude(result.data.latitude);
+    request.setGrpcGeographicalLocation(geographicalLocation);
+    request.setIdentificationNumber(result.data.identificationNumber);
+    return request;
+  }
+
+  private static buildRemoveRequest(result: any): RemoveRequest {
+    let request = new RemoveRequest();
+    request.setIdentificationNumber(result.data.identificationNumber);
+    return request;
+  }
 
 }
