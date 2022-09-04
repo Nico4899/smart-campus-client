@@ -3,9 +3,33 @@ import * as jspb from 'google-protobuf'
 import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb';
 
 
+export class ListProblemsForUserRequest extends jspb.Message {
+  getGrpcFilterValueSelection(): GrpcFilterValueSelection | undefined;
+  setGrpcFilterValueSelection(value?: GrpcFilterValueSelection): ListProblemsForUserRequest;
+  hasGrpcFilterValueSelection(): boolean;
+  clearGrpcFilterValueSelection(): ListProblemsForUserRequest;
+
+  getReporter(): string;
+  setReporter(value: string): ListProblemsForUserRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListProblemsForUserRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListProblemsForUserRequest): ListProblemsForUserRequest.AsObject;
+  static serializeBinaryToWriter(message: ListProblemsForUserRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListProblemsForUserRequest;
+  static deserializeBinaryFromReader(message: ListProblemsForUserRequest, reader: jspb.BinaryReader): ListProblemsForUserRequest;
+}
+
+export namespace ListProblemsForUserRequest {
+  export type AsObject = {
+    grpcFilterValueSelection?: GrpcFilterValueSelection.AsObject,
+    reporter: string,
+  }
+}
+
 export class ListProblemsRequest extends jspb.Message {
-  getGrpcFilterValueSelection(): GrpcProblemFilterValueSelection | undefined;
-  setGrpcFilterValueSelection(value?: GrpcProblemFilterValueSelection): ListProblemsRequest;
+  getGrpcFilterValueSelection(): GrpcFilterValueSelection | undefined;
+  setGrpcFilterValueSelection(value?: GrpcFilterValueSelection): ListProblemsRequest;
   hasGrpcFilterValueSelection(): boolean;
   clearGrpcFilterValueSelection(): ListProblemsRequest;
 
@@ -19,7 +43,7 @@ export class ListProblemsRequest extends jspb.Message {
 
 export namespace ListProblemsRequest {
   export type AsObject = {
-    grpcFilterValueSelection?: GrpcProblemFilterValueSelection.AsObject,
+    grpcFilterValueSelection?: GrpcFilterValueSelection.AsObject,
   }
 }
 
@@ -303,28 +327,22 @@ export namespace GrpcProblem {
   }
 }
 
-export class GrpcProblemFilterValueSelection extends jspb.Message {
-  getReportersList(): Array<string>;
-  setReportersList(value: Array<string>): GrpcProblemFilterValueSelection;
-  clearReportersList(): GrpcProblemFilterValueSelection;
-  addReporters(value: string, index?: number): GrpcProblemFilterValueSelection;
-
+export class GrpcFilterValueSelection extends jspb.Message {
   getStatesList(): Array<GrpcProblemState>;
-  setStatesList(value: Array<GrpcProblemState>): GrpcProblemFilterValueSelection;
-  clearStatesList(): GrpcProblemFilterValueSelection;
-  addStates(value: GrpcProblemState, index?: number): GrpcProblemFilterValueSelection;
+  setStatesList(value: Array<GrpcProblemState>): GrpcFilterValueSelection;
+  clearStatesList(): GrpcFilterValueSelection;
+  addStates(value: GrpcProblemState, index?: number): GrpcFilterValueSelection;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GrpcProblemFilterValueSelection.AsObject;
-  static toObject(includeInstance: boolean, msg: GrpcProblemFilterValueSelection): GrpcProblemFilterValueSelection.AsObject;
-  static serializeBinaryToWriter(message: GrpcProblemFilterValueSelection, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GrpcProblemFilterValueSelection;
-  static deserializeBinaryFromReader(message: GrpcProblemFilterValueSelection, reader: jspb.BinaryReader): GrpcProblemFilterValueSelection;
+  toObject(includeInstance?: boolean): GrpcFilterValueSelection.AsObject;
+  static toObject(includeInstance: boolean, msg: GrpcFilterValueSelection): GrpcFilterValueSelection.AsObject;
+  static serializeBinaryToWriter(message: GrpcFilterValueSelection, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GrpcFilterValueSelection;
+  static deserializeBinaryFromReader(message: GrpcFilterValueSelection, reader: jspb.BinaryReader): GrpcFilterValueSelection;
 }
 
-export namespace GrpcProblemFilterValueSelection {
+export namespace GrpcFilterValueSelection {
   export type AsObject = {
-    reportersList: Array<string>,
     statesList: Array<GrpcProblemState>,
   }
 }

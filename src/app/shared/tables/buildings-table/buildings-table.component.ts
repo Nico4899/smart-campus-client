@@ -5,7 +5,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {
   CreateBuildingRequest,
   CreateBuildingResponse,
-  GrpcBuilding,
+  GrpcBuilding, GrpcBuildingFilterValueSelection,
   GrpcFloors,
   GrpcGeographicalLocation,
   ListBuildingsRequest,
@@ -19,6 +19,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {AddBuildingComponent} from "../../dialogs/add-building/add-building.component";
 import {EditBuildingComponent} from "../../dialogs/edit-building/edit-building.component";
 import {RemoveBuildingComponent} from "../../dialogs/remove-building/remove-building.component";
+import {FilterBuildingsComponent} from "../../dialogs/filter-buildings/filter-buildings.component";
 
 @Component({
   selector: 'app-buildings-table',
@@ -116,6 +117,17 @@ export class BuildingsTableComponent implements OnInit {
     })
   }
 
+  openFilterBuildingsDialog() {
+    const dialogRef = this.dialog.open(FilterBuildingsComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.event == 'ok') {
+        this.buildingManagementConnector.listBuildings(BuildingsTableComponent.buildListBuildingsRequest(result), BuildingsTableComponent.interpretListBuildingsResponse, this);
+      } else {
+        return;
+      }
+    })
+  }
+
   // private utils
   private static buildCreateBuildingRequest(result: any): CreateBuildingRequest {
     let request = new CreateBuildingRequest();
@@ -156,4 +168,13 @@ export class BuildingsTableComponent implements OnInit {
     return request;
   }
 
+  public static buildListBuildingsRequest(result: any): ListBuildingsRequest {
+    let request = new ListBuildingsRequest();
+    let selection = new GrpcBuildingFilterValueSelection();
+    selection.setGrpcComponentTypesList(result.data.componentTypes);
+    selection.setGrpcRoomTypesList(result.data.roomTypes);
+    selection.setGrpcCampusLocationsList(result.data.campusLocations);
+    request.setGrpcFilterValueSelection(selection);
+    return request;
+  }
 }

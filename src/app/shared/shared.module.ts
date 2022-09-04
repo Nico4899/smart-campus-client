@@ -52,6 +52,10 @@ import {
 } from './tables/favorites-tables/favorite-components-table/favorite-components-table.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatSelectModule} from "@angular/material/select";
+import { FilterBuildingsComponent } from './dialogs/filter-buildings/filter-buildings.component';
+import { FilterRoomsComponent } from './dialogs/filter-rooms/filter-rooms.component';
+import { FilterProblemsComponent } from './dialogs/filter-problems/filter-problems.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -84,6 +88,9 @@ import {MatSelectModule} from "@angular/material/select";
     FavoriteBuildingsTableComponent,
     FavoriteRoomsTableComponent,
     FavoriteComponentsTableComponent,
+    FilterBuildingsComponent,
+    FilterRoomsComponent,
+    FilterProblemsComponent,
   ],
   exports: [
     HeaderComponent,
@@ -101,27 +108,28 @@ import {MatSelectModule} from "@angular/material/select";
     FavoriteRoomsTableComponent,
     FavoriteComponentsTableComponent
   ],
-  imports: [
-    CommonModule,
-    MatToolbarModule,
-    MatDividerModule,
-    MatIconModule,
-    MatButtonModule,
-    FlexModule,
-    MatMenuModule,
-    MatListModule,
-    RouterModule,
-    MatSlideToggleModule,
-    MatTableModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatPaginatorModule,
-    MatInputModule,
-    MatSortModule,
-    MatDialogModule,
-    MatSelectModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        MatToolbarModule,
+        MatDividerModule,
+        MatIconModule,
+        MatButtonModule,
+        FlexModule,
+        MatMenuModule,
+        MatListModule,
+        RouterModule,
+        MatSlideToggleModule,
+        MatTableModule,
+        MatFormFieldModule,
+        FormsModule,
+        MatPaginatorModule,
+        MatInputModule,
+        MatSortModule,
+        MatDialogModule,
+        MatSelectModule,
+        ReactiveFormsModule,
+        MatCheckboxModule
+    ]
 })
 export class SharedModule {
 }
