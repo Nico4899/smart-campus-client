@@ -20,7 +20,8 @@ export class FilterBuildingsComponent {
   selectedCampusLocations: { campusLocation: GrpcCampusLocation, selected: boolean }[] = [];
 
   constructor(public dialogRef: MatDialogRef<FilterBuildingsComponent>) {
-    // add all
+    // add all constants mapped to false
+    // in case it should be remembered, pass as @Inject Data
     this.campusLocations.forEach(e => this.selectedCampusLocations.push({campusLocation: e, selected: false}));
     this.roomTypes.forEach(e => this.selectedRoomTypes.push({roomType: e, selected: false}));
     this.componentTypes.forEach(e => this.selectedComponentTypes.push({componentType: e, selected: false}));

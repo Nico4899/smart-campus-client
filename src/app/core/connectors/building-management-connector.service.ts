@@ -172,7 +172,7 @@ export class BuildingManagementConnectorService {
     })
   }
 
-  async createRoom(request: CreateRoomRequest, callback: (response: CreateRoomResponse, self: BuildingComponent) => void, self: BuildingComponent) {
+  async createRoom(request: CreateRoomRequest, callback: (response: CreateRoomResponse, self: RoomsTableComponent) => void, self: RoomsTableComponent) {
     this.client.createRoom(request, {}, (error: RpcError, response: CreateRoomResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
@@ -182,7 +182,7 @@ export class BuildingManagementConnectorService {
     })
   }
 
-  async createComponent(request: CreateComponentRequest, callback: (response: CreateComponentResponse, self: BuildingComponent | RoomComponent) => void, self: BuildingComponent | RoomComponent) {
+  async createComponent(request: CreateComponentRequest, callback: (response: CreateComponentResponse, self: ComponentsTableComponent) => void, self: ComponentsTableComponent) {
     this.client.createComponent(request, {}, (error: RpcError, response: CreateComponentResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
