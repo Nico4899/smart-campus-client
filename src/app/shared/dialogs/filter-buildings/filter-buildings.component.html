@@ -1,0 +1,35 @@
+<h1 mat-dialog-title> Select building filter values.</h1>
+
+<mat-dialog-content>
+  <div class="campus-location-selection">
+    <h2> Campus Locations </h2>
+    <ul>
+      <li *ngFor="let campusLocation of selectedCampusLocations">
+        <mat-checkbox [(ngModel)]="campusLocation.selected"> {{campusLocation.campusLocation | campusLocation}} </mat-checkbox>
+      </li>
+    </ul>
+  </div>
+
+  <div class="room-type-selection">
+    <h2> Room Types </h2>
+    <ul>
+      <li *ngFor="let roomType of selectedRoomTypes">
+        <mat-checkbox [(ngModel)]="roomType.selected"> {{roomType.roomType | roomType}} </mat-checkbox>
+      </li>
+    </ul>
+  </div>
+
+  <div class="component-type-selection">
+    <h2> Component Types </h2>
+    <ul>
+      <li *ngFor="let componentType of selectedComponentTypes">
+        <mat-checkbox [(ngModel)]="componentType.selected"> {{componentType.componentType | componentType}} </mat-checkbox>
+      </li>
+    </ul>
+  </div>
+</mat-dialog-content>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="ok()">Ok</button>
+  <button mat-button (click)="cancel()" color="warn">Cancel</button>
+</div>

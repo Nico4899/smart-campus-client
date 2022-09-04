@@ -52,6 +52,9 @@ import {
 } from './tables/favorites-tables/favorite-components-table/favorite-components-table.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatSelectModule} from "@angular/material/select";
+import { FilterBuildingsComponent } from './dialogs/filter-buildings/filter-buildings.component';
+import { FilterRoomsComponent } from './dialogs/filter-rooms/filter-rooms.component';
+import { FilterProblemsComponent } from './dialogs/filter-problems/filter-problems.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
@@ -85,6 +88,9 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     FavoriteBuildingsTableComponent,
     FavoriteRoomsTableComponent,
     FavoriteComponentsTableComponent,
+    FilterBuildingsComponent,
+    FilterRoomsComponent,
+    FilterProblemsComponent,
   ],
   exports: [
     HeaderComponent,

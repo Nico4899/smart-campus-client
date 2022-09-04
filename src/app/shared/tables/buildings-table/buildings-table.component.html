@@ -2,9 +2,9 @@
   <div class="search">
     <mat-form-field>
       <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applySearch()">
-      <button mat-button mat-icon-button matSuffix aria-label="Filter">
+      <button mat-button mat-icon-button matSuffix aria-label="Filter" (click)="openFilterBuildingsDialog()">
         <mat-icon>filter_list</mat-icon>
-      </button> <!-- implement edit, remove and add, and add hide if roles do not fit-->
+      </button>
     </mat-form-field>
     <button mat-icon-button color="primary" (click)="openCreateBuildingDialog()">
       <mat-icon>add</mat-icon>
