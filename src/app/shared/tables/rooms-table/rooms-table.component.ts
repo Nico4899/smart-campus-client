@@ -3,6 +3,7 @@ import {
   CreateRoomRequest,
   CreateRoomResponse,
   GrpcRoom,
+  GrpcGeographicalLocation,
   ListRoomsRequest,
   ListRoomsResponse,
   RemoveRequest,
@@ -136,6 +137,14 @@ export class RoomsTableComponent implements OnInit {
     request.setFloor(result.data.floor);
     request.setParentIdentificationNumber(result.data.parentIdentificationNumber);
     request.setRoomType(result.data.roomType);
+
+    let geoLocation = new GrpcGeographicalLocation();
+    geoLocation.setLatitude(result.data.latitude);
+    geoLocation.setLongitude(result.data.longitude);
+    request.setGrpcGeographicalLocation(geoLocation);
+
+
+
     return request;
   }
 
@@ -148,6 +157,11 @@ export class RoomsTableComponent implements OnInit {
     request.setRoomType(result.data.roomType);
 
     request.setIdentificationNumber(result.data.identificationNumber);
+
+    let geoLocation = new GrpcGeographicalLocation();
+    geoLocation.setLatitude(result.data.latitude);
+    geoLocation.setLongitude(result.data.longitude);
+    request.setGrpcGeographicalLocation(geoLocation);
 
     return request;
   }

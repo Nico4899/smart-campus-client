@@ -23,6 +23,10 @@ export class AddRoomComponent {
 
   formControl = new FormControl('', [Validators.required]);
 
+  longitude!: number;
+  latitude!: number;
+
+
   constructor(public dialogRef: MatDialogRef<AddRoomComponent>) {
     this.dialogRef.disableClose = true;
     this.roomTypes = this.roomTypes.filter(e => e != 0);
@@ -34,7 +38,9 @@ export class AddRoomComponent {
         roomName: this.roomName,
         roomNumber: this.roomNumber,
         roomType: this.roomType,
-        floor: this.floor
+        floor: this.floor,
+        longitude: this.longitude,
+        latitude: this.latitude
       }
 
     });
