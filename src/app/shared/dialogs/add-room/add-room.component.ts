@@ -13,18 +13,17 @@ import {FormControl, Validators} from "@angular/forms";
 export class AddRoomComponent {
 
   floor !: number;
-
   roomName!: string;
   roomNumber!: string;
-
   roomType!: GrpcRoomType;
-
   roomTypes = Object.values(GrpcRoomType);
-
-  formControl = new FormControl('', [Validators.required]);
 
   longitude!: number;
   latitude!: number;
+
+
+  formControl = new FormControl('', [Validators.required]);
+
 
 
   constructor(public dialogRef: MatDialogRef<AddRoomComponent>) {
