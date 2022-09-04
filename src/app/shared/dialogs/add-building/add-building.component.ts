@@ -1,46 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
+import {GrpcCampusLocation} from "../../../../proto/generated/building_management_pb";
+import {MatDialogRef} from "@angular/material/dialog";
+import {FormControl, Validators} from "@angular/forms";
 
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog'
-
-import {MatFormField} from '@angular/material/form-field'
 
 @Component({
   selector: 'app-add-building',
   templateUrl: './add-building.component.html',
   styleUrls: ['./add-building.component.css']
 })
-export class AddBuildingComponent implements OnInit {
+export class AddBuildingComponent {
 
-  buildingname: string = "";
+  highestFloor!: number;
+  lowestFloor!: number;
+  buildingName!: string;
+  buildingNumber!: string;
+  campusLocation!: GrpcCampusLocation;
+  longitude!: number;
+  latitude!: number;
 
-  buildingnumber: string = "";
+  campusLocations = Object.values(GrpcCampusLocation);
 
-  minfloor: string = "";
+  formControl = new FormControl('', [Validators.required]);
 
-  maxfloor: string = "";
-
-  latvalue: string = "";
-
-  lngvalue: string = "";
-
-
-
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(public dialogRef: MatDialogRef<AddBuildingComponent>) {
+    this.dialogRef.disableClose = true;
+    this.campusLocations = this.campusLocations.filter(e => e != 0);
   }
 
-  onClickAccept(): void {
-    //TODO:  make API call via connector
+  ok() {
+    this.dialogRef.close({event: 'ok',
+      data: {
+        highestFloor: this.highestFloor,
+        lowestFloor: this.lowestFloor,
+        buildingName: this.buildingName,
+        buildingNumber: this.buildingNumber,
+        campusLocation: this.campusLocation,
+        longitude: this.longitude,
+        latitude: this.latitude
+      }
+    });
   }
 
-  onCloseClock(): void {
-    // Delete everythong
-  }
-
-  checkValues(): boolean {
-    // TODO
-    return true;
+  cancel() {
+    this.dialogRef.close({event: 'cancel'});
   }
 
 }
