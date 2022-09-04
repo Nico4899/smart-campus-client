@@ -52,6 +52,7 @@ import {
 } from './tables/favorites-tables/favorite-components-table/favorite-components-table.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatSelectModule} from "@angular/material/select";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -101,27 +102,28 @@ import {MatSelectModule} from "@angular/material/select";
     FavoriteRoomsTableComponent,
     FavoriteComponentsTableComponent
   ],
-  imports: [
-    CommonModule,
-    MatToolbarModule,
-    MatDividerModule,
-    MatIconModule,
-    MatButtonModule,
-    FlexModule,
-    MatMenuModule,
-    MatListModule,
-    RouterModule,
-    MatSlideToggleModule,
-    MatTableModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatPaginatorModule,
-    MatInputModule,
-    MatSortModule,
-    MatDialogModule,
-    MatSelectModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        MatToolbarModule,
+        MatDividerModule,
+        MatIconModule,
+        MatButtonModule,
+        FlexModule,
+        MatMenuModule,
+        MatListModule,
+        RouterModule,
+        MatSlideToggleModule,
+        MatTableModule,
+        MatFormFieldModule,
+        FormsModule,
+        MatPaginatorModule,
+        MatInputModule,
+        MatSortModule,
+        MatDialogModule,
+        MatSelectModule,
+        ReactiveFormsModule,
+        MatCheckboxModule
+    ]
 })
 export class SharedModule {
 }
