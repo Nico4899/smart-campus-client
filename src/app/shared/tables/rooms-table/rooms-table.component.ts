@@ -21,6 +21,8 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatDialog} from '@angular/material/dialog'
 
 import {AddRoomComponent} from '../../dialogs/add-room/add-room.component'
+import {EditRoomComponent} from '../../dialogs/edit-room/edit-room.component'
+import {RemoveRoomComponent} from '../../dialogs/remove-room/remove-room.component'
 
 @Component({
   selector: 'app-rooms-table',
@@ -30,7 +32,8 @@ import {AddRoomComponent} from '../../dialogs/add-room/add-room.component'
 export class RoomsTableComponent implements OnInit {
 
   // path variable
-  bin: string = "";
+  rin: string = "";
+
 
 
 
@@ -55,11 +58,11 @@ export class RoomsTableComponent implements OnInit {
   ngOnInit(): void {
 
     // obtain path variables
-    this.bin = String(this.route.snapshot.paramMap.get("bin"));
+    this.rin = String(this.route.snapshot.paramMap.get("rin"));
 
     // run initial calls
     let listRoomsRequest = new ListRoomsRequest();
-    listRoomsRequest.setIdentificationNumber(this.bin);
+    listRoomsRequest.setIdentificationNumber(this.rin);
     this.buildingManagementConnector.listRooms(listRoomsRequest, RoomsTableComponent.interpretListRoomsResponse, this);
   }
 
@@ -82,8 +85,19 @@ export class RoomsTableComponent implements OnInit {
 
   private static interpretCreateRoomResponse(response: CreateRoomResponse, self: RoomsTableComponent): void {
     self.dataSource.data.push(response.getRoom()?.toObject()!);
+  }
+
+  private static interpretUpdateRoomResponse(response: UpdateRoomResponse, self: RoomsTableComponent): void {
+    self.dataSource.data = self.dataSource.data.filter(e => e.identificationNumber != response.getRoom()?.getIdentificationNumber());
+    self.dataSource.data.push(response.getRoom()?.toObject()!);
 
   }
+
+  private static interpretRemoveBuildingResponse(id: string, self: RoomsTableComponent): void {
+    self.dataSource.data = self.dataSource.data.filter(e => e.identificationNumber != id);
+  }
+
+
 
   //button methods start
 
@@ -94,9 +108,26 @@ export class RoomsTableComponent implements OnInit {
       if(result.event == 'ok'){
         this.buildingManagementConnector.createRoom(RoomsTableComponent.buildCreateRoomRequest(result),
           RoomsTableComponent.interpretCreateRoomResponse, this);
-      }
+      } else {return;}
     })
+  }
 
+  openUpdateRoomDialog(room: GrpcRoom.AsObject) {
+    const dialogRef = this.dialog.open(EditRoomComponent, {data: room})
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.event == 'ok'){
+        this.buildingManagementConnector.updateRoom(RoomsTableComponent.buildUpdateRoomRequest(result), RoomsTableComponent.interpretUpdateRoomResponse, this);
+      } else {return;}
+    })
+  }
+
+  openRemoveRoomDialog(identificationNumber: string) {
+    const dialogRef = this.dialog.open(RemoveRoomComponent, {data: identificationNumber});
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.event == 'ok'){
+        this.buildingManagementConnector.removeRoom(RoomsTableComponent.buildRemoveRequest(result), RoomsTableComponent.interpretRemoveBuildingResponse, this);
+      } else {return;}
+    })
   }
 
   // button methods end
@@ -112,6 +143,26 @@ export class RoomsTableComponent implements OnInit {
     request.setFloor(result.data.floor);
     request.setParentIdentificationNumber(result.data.parentIdentificationNumber);
     request.setRoomType(result.data.roomType);
+    return request;
+  }
+
+  private static buildUpdateRoomRequest(result: any): UpdateRoomRequest {
+    let request = new UpdateRoomRequest();
+    request.setRoomName(result.data.roomName);
+    request.setRoomNumber(result.data.roomNumber);
+    request.setFloor(result.data.floor);
+
+    request.setRoomType(result.data.roomType);
+
+    request.setIdentificationNumber(result.data.identificationNumber);
+
+    return request;
+  }
+
+  private static buildRemoveRequest(result: any): RemoveRequest{
+    let request = new RemoveRequest();
+    request.setIdentificationNumber(result.data.identificationNumber);
+
     return request;
   }
 
