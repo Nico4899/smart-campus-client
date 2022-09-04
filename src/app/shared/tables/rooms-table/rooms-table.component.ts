@@ -1,9 +1,8 @@
-import {Component, OnInit, ViewChild, Input} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {
   CreateRoomRequest,
   CreateRoomResponse,
   GrpcRoom,
-  GrpcRoomType,
   ListRoomsRequest,
   ListRoomsResponse,
   RemoveRequest,
@@ -15,7 +14,6 @@ import {ActivatedRoute} from "@angular/router";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
-
 
 
 import {MatDialog} from '@angular/material/dialog'
@@ -32,11 +30,7 @@ import {RemoveRoomComponent} from '../../dialogs/remove-room/remove-room.compone
 export class RoomsTableComponent implements OnInit {
 
   // path variable
-  rin: string = "";
-
-
-
-
+  bin: string = "";
 
   // sorter and paginator for tables
   @ViewChild(MatSort) sort!: MatSort;
@@ -56,13 +50,12 @@ export class RoomsTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     // obtain path variables
-    this.rin = String(this.route.snapshot.paramMap.get("rin"));
+    this.bin = String(this.route.snapshot.paramMap.get("bin"));
 
     // run initial calls
     let listRoomsRequest = new ListRoomsRequest();
-    listRoomsRequest.setIdentificationNumber(this.rin);
+    listRoomsRequest.setIdentificationNumber(this.bin);
     this.buildingManagementConnector.listRooms(listRoomsRequest, RoomsTableComponent.interpretListRoomsResponse, this);
   }
 
@@ -98,40 +91,40 @@ export class RoomsTableComponent implements OnInit {
   }
 
 
-
   //button methods start
-
-
   openCreateRoomDialog() {
     const dialogRef = this.dialog.open(AddRoomComponent);
-    dialogRef.afterClosed().subscribe( result => {
-      if(result.event == 'ok'){
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.event == 'ok') {
         this.buildingManagementConnector.createRoom(RoomsTableComponent.buildCreateRoomRequest(result),
           RoomsTableComponent.interpretCreateRoomResponse, this);
-      } else {return;}
+      } else {
+        return;
+      }
     })
   }
 
   openUpdateRoomDialog(room: GrpcRoom.AsObject) {
     const dialogRef = this.dialog.open(EditRoomComponent, {data: room})
     dialogRef.afterClosed().subscribe(result => {
-      if(result.event == 'ok'){
+      if (result.event == 'ok') {
         this.buildingManagementConnector.updateRoom(RoomsTableComponent.buildUpdateRoomRequest(result), RoomsTableComponent.interpretUpdateRoomResponse, this);
-      } else {return;}
+      } else {
+        return;
+      }
     })
   }
 
   openRemoveRoomDialog(identificationNumber: string) {
     const dialogRef = this.dialog.open(RemoveRoomComponent, {data: identificationNumber});
     dialogRef.afterClosed().subscribe(result => {
-      if(result.event == 'ok'){
+      if (result.event == 'ok') {
         this.buildingManagementConnector.removeRoom(RoomsTableComponent.buildRemoveRequest(result), RoomsTableComponent.interpretRemoveBuildingResponse, this);
-      } else {return;}
+      } else {
+        return;
+      }
     })
   }
-
-  // button methods end
-
 
   //private utils here
 
@@ -159,13 +152,12 @@ export class RoomsTableComponent implements OnInit {
     return request;
   }
 
-  private static buildRemoveRequest(result: any): RemoveRequest{
+  private static buildRemoveRequest(result: any): RemoveRequest {
     let request = new RemoveRequest();
     request.setIdentificationNumber(result.data.identificationNumber);
 
     return request;
   }
-
 
 
 }

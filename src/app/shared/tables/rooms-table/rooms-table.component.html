@@ -4,9 +4,9 @@
       <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applySearch()">
       <button mat-button mat-icon-button matSuffix aria-label="Filter">
         <mat-icon>filter_list</mat-icon>
-      </button> <!-- implement edit, remove and add, and add hide if roles do not fit-->
+      </button>
     </mat-form-field>
-    <button mat-icon-button color="primary">
+    <button mat-icon-button color="primary" (click)="openCreateRoomDialog()">
       <mat-icon>add</mat-icon>
     </button>
   </div>
@@ -62,7 +62,6 @@
       </th>
       <td mat-cell *matCellDef="let room">
         <button mat-icon-button color="warn" (click)="openRemoveRoomDialog(room.identificationNumber)">
-          <!-- insert dialog here and remove call + set it to hidden when we have authentication running -->
           <mat-icon>delete</mat-icon>
         </button>
       </td>
@@ -74,7 +73,6 @@
       </th>
       <td mat-cell *matCellDef="let room">
         <button mat-icon-button (click)="openUpdateRoomDialog(room)">
-          <!-- insert dialog here and update call + set it to hidden when we have authentication running -->
           <mat-icon>edit</mat-icon>
         </button>
       </td>
