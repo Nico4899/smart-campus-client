@@ -10,3 +10,11 @@ table {
 td, th {
   width: 25%;
 }
+
+th {
+  font-size: 20px;
+}
+
+.mat-row:hover {
+  background-color: lightgrey;
+}
