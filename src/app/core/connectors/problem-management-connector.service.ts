@@ -10,6 +10,7 @@ import {BuildingManagementClient} from "../../../proto/generated/Building_manage
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {environment} from "../../../environments/environment";
 import {ProblemManagementClient} from "../../../proto/generated/Problem_managementServiceClientPb";
+import {ProblemsTableComponent} from "../../shared/tables/problems-table/problems-table.component";
 
 @Injectable({
   providedIn: 'root'

@@ -27,7 +27,6 @@ import {ProblemManagementConnectorService} from "../../core/connectors/problem-m
 import {ComponentComponent} from "../../modules/component/component.component";
 import {HttpClientModule} from "@angular/common/http";
 import {OAuthModule} from "angular-oauth2-oidc";
-
 @NgModule({
   declarations: [
     DefaultComponent,
