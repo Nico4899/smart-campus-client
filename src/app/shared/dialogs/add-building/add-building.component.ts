@@ -34,13 +34,17 @@ export class AddBuildingComponent implements OnInit {
     //TODO:  make API call via connector
   }
 
-  onCloseClock(): void {
+  onCloseClick(): void {
     // Delete everythong
+
   }
 
   checkValues(): boolean {
     // TODO
     return true;
   }
+
+
+
 
 }

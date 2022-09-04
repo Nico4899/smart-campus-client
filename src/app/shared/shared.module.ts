@@ -45,6 +45,7 @@ import {MatSortModule} from "@angular/material/sort";
 import { FavoriteBuildingsTableComponent } from './tables/favorites-tables/favorite-buildings-table/favorite-buildings-table.component';
 import { FavoriteRoomsTableComponent } from './tables/favorites-tables/favorite-rooms-table/favorite-rooms-table.component';
 import { FavoriteComponentsTableComponent } from './tables/favorites-tables/favorite-components-table/favorite-components-table.component';
+import { AddBuildingButtonComponent } from './dialogs/add-building-button/add-building-button.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { FavoriteComponentsTableComponent } from './tables/favorites-tables/favo
     FavoriteBuildingsTableComponent,
     FavoriteRoomsTableComponent,
     FavoriteComponentsTableComponent,
+    AddBuildingButtonComponent,
   ],
   exports: [
     HeaderComponent,
