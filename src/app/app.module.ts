@@ -5,6 +5,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from "./app-routing.module";
 import {DefaultModule} from "./layouts/default/default.module";
 
+
+import {MatDialogModule} from '@angular/material/dialog'
+import {MatFormFieldModule} from '@angular/material/form-field'
+import {FormsModule} from '@angular/forms'
+
 @NgModule({
   declarations: [
     AppComponent
@@ -13,7 +18,10 @@ import {DefaultModule} from "./layouts/default/default.module";
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    DefaultModule
+    DefaultModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    FormsModule
   ],
   providers: [],
   exports: [],
