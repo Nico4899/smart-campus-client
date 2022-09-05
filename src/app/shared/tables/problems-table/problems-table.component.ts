@@ -1,66 +1,130 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatTableDataSource} from "@angular/material/table";
+import {Component, AfterViewInit, ViewChild, OnInit} from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTable, MatTableDataSource} from '@angular/material/table';
+import {BuildingManagementConnectorService} from "../../../core/connectors/building-management-connector.service";
+import {MatDialog} from "@angular/material/dialog";
+import {ProblemManagementConnectorService} from "../../../core/connectors/problem-management-connector.service";
+import {Timestamp} from "rxjs";
+import {
+  GrpcBuilding,
+  ListBuildingsRequest,
+  ListBuildingsResponse
+} from "../../../../proto/generated/building_management_pb";
 import {
   GrpcProblem,
   ListProblemsRequest,
   ListProblemsResponse
 } from "../../../../proto/generated/problem_management_pb";
-import {MatSort} from "@angular/material/sort";
-import {MatPaginator} from "@angular/material/paginator";
-import {BuildingManagementConnectorService} from "../../../core/connectors/building-management-connector.service";
-import {ProblemManagementConnectorService} from "../../../core/connectors/problem-management-connector.service";
-import {
-  ListBuildingsResponse,
-  ListFavoriteBuildingsRequest,
-  ListFavoriteBuildingsResponse
-} from "../../../../proto/generated/building_management_pb";
-import {ProblemsComponent} from "../../../modules/problems/problems.component";
+import {SelectionModel} from "@angular/cdk/collections";
+import {AddBuildingComponent} from "../../dialogs/add-building/add-building.component";
+import {AddProblemComponent} from "../../dialogs/add-problem/add-problem.component";
+
+export interface ProblemElement {
+  identificationNumber: string;
+  reporter: string;
+  title: string;
+  description: string;
+  state: string;
+  //creationTime: Timestamp<string>;
+  creationTime: string;
+}
+
+/** Constants used to fill up our database. */
+const PROBLEM_DATA: ProblemElement[] = [
+  {identificationNumber: '1', reporter: 'uhpwv', title: 'No Ramp available',
+    description: 'Hello, in the building 30.95, there is no ramp available...', state: 'OPEN', creationTime: '31.08.2022'},
+  {identificationNumber: '1', reporter: 'uhpwv', title: 'No Ramp available',
+    description: 'Hello, in the building 30.95, there is no ramp available...', state: 'OPEN', creationTime: '31.08.2022'},
+  {identificationNumber: '1', reporter: 'uhpwv', title: 'No Ramp available',
+    description: 'Hello, in the building 30.95, there is no ramp available...', state: 'OPEN', creationTime: '31.08.2022'},
+  {identificationNumber: '1', reporter: 'uhpwv', title: 'No Ramp available',
+    description: 'Hello, in the building 30.95, there is no ramp available...', state: 'OPEN', creationTime: '31.08.2022'},
+  {identificationNumber: '1', reporter: 'uhpwv', title: 'No Ramp available',
+    description: 'Hello, in the building 30.95, there is no ramp available...', state: 'OPEN', creationTime: '31.08.2022'},
+]
 
 @Component({
   selector: 'app-problems-table',
   templateUrl: './problems-table.component.html',
   styleUrls: ['./problems-table.component.css']
 })
-export class ProblemsTableComponent implements OnInit {
+export class ProblemsTableComponent implements AfterViewInit, OnInit {
+  /*
+  private State state;
+  private String title;
+  private String description;
+  private Timestamp creationTime;
+  private Timestamp lastModified;
+  private String reporter;
+  private String identificationNumber;
+  private String referenceIdentificationNumber;
+  private String notificationIdentificationNumber;
+   */
 
-  // datasource containing provided data from the api, to be displayed in the html datatables, as well as the current selected object
-  dataSource: MatTableDataSource<GrpcProblem.AsObject> = new MatTableDataSource<GrpcProblem.AsObject>();
+  displayedColumns: string[] = ['identificationNumber', 'reporter', 'title', 'state', 'created'];
+  dataSource = new MatTableDataSource<ProblemElement>(PROBLEM_DATA);
+  selection = new SelectionModel<ProblemElement>(true, []);
 
-  // sorter and paginator for tables
-  @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   // search values from search bars
   searchKey: string = "";
 
-  // columns to be displayed
-  displayedColumns: string[] = ['identificationNumber', 'title', 'description', 'state', 'reporter',
-    'referenceIdentificationNumber', 'notificationIdentificationNumber', 'creationTime', 'lastModifiedTime'];
-
-  constructor(private problemManagementConnector: ProblemManagementConnectorService) {
-    // inject building management client and current rout to obtain path variables
+  constructor(private problemManagementConnectorService: ProblemManagementConnectorService, private dialog: MatDialog) {
   }
 
-  ngOnInit(): void {
-    // run initial calls
-    let listProblemsRequest = new ListProblemsRequest();
-    this.problemManagementConnector.listProblems(listProblemsRequest, ProblemsTableComponent.interpretListProblemsResponse, this);
+  ngOnInit() {
   }
 
   ngAfterViewInit() {
-    //add sorter and paginator to datasource
-    this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
-  // search function
   applySearch() {
     this.dataSource.filter = this.searchKey?.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
-  // private callback methods for api calls
-  private static interpretListProblemsResponse(response: ListProblemsResponse, self: ProblemsTableComponent): void {
-    self.dataSource.data = response.toObject().problemsList;
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
   }
 
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  toggleAllRows() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+      return;
+    }
+
+    this.selection.select(...this.dataSource.data);
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: ProblemElement): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.identificationNumber + 1}`;
+  }
+
+  // button methods
+  openCreateProblemDialog() {
+    const dialogRef = this.dialog.open(AddProblemComponent);
+    /*dialogRef.afterClosed().subscribe(result => {
+      if (result.event == 'ok') {
+        this.problemManagementConnectorService.createProblem(ProblemsTableComponent.buildCreateProblemRequest(result), ProblemsTableComponent.interpretCreateProblemResponse, this);
+      } else {
+        return;
+      }
+    })*/
+  }
 }

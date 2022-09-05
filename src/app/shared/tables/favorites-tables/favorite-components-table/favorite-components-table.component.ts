@@ -10,7 +10,7 @@ import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
-  selector: 'app-favorite-componentes-table',
+  selector: 'app-favorite-components-table',
   templateUrl: './favorite-components-table.component.html',
   styleUrls: ['./favorite-components-table.component.css']
 })

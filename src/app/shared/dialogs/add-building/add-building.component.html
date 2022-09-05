@@ -1,35 +1,68 @@
-<h2>ADD BUILDING</h2>
+<h1 mat-dialog-title>Add Building</h1>
 
-
-  <mat-form-field>
-    <mat-label>Building name</mat-label>
-    <input [(ngModel)]="buildingname" placeholder="Building name">
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input placeholder="e.g., Audimax" matInput [(ngModel)]="buildingName" [formControl]="formControl">
+    <mat-error *ngIf="formControl.hasError('required')">
+      Name is <strong>required</strong>
+    </mat-error>
   </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Building number</mat-label>
-    <input [(ngModel)]="buildingnumber" placeholder="Building number">
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Minimal floor</mat-label>
-    <input [(ngModel)]="minfloor" placeholder="Minimal floor">
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Maximal floor</mat-label>
-    <input [(ngModel)]="maxfloor" placeholder="Maximal floor">
+  <mat-form-field appearance="fill">
+    <mat-label>Number</mat-label>
+    <input matInput placeholder="e.g., 30.30" [(ngModel)]="buildingNumber" [formControl]="formControl">
+    <mat-error *ngIf="formControl.hasError('required')">
+      Number is <strong>required</strong>
+    </mat-error>
   </mat-form-field>
 
-
-  <mat-form-field>
-    <mat-label>Lonvalue</mat-label>
-    <input [(ngModel)]="lngvalue" placeholder="Longitude">
+  <mat-form-field appearance="fill">
+    <mat-label>Campus Location</mat-label>
+    <mat-select [(ngModel)]="campusLocation" [formControl]="formControl" required>
+      <mat-option *ngFor="let campusLocation of campusLocations" [value]="campusLocation">
+        {{campusLocation | campusLocation}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="formControl.hasError('required')">
+      Please choose a Campus Location
+    </mat-error>
   </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Latvalue</mat-label>
-    <input [(ngModel)]="latvalue" placeholder="Latitude">
+  <mat-form-field appearance="fill">
+    <mat-label>Latitude</mat-label>
+    <input placeholder="3.2" matInput [(ngModel)]="latitude" [formControl]="formControl">
+    <mat-error *ngIf="formControl.hasError('required')">
+      Latitude is <strong>required</strong>
+    </mat-error>
   </mat-form-field>
 
-<br>
+  <mat-form-field appearance="fill">
+    <mat-label>Longitude</mat-label>
+    <input placeholder="32.2" matInput [(ngModel)]="longitude" [formControl]="formControl">
+    <mat-error *ngIf="formControl.hasError('required')">
+      Longitude is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
 
-<button (click)="onClickAccept()">Submit</button> <button (click)="onCloseClick()"></button>
+  <mat-form-field appearance="fill">
+    <mat-label>Highest Floor</mat-label>
+    <input placeholder="3" matInput [(ngModel)]="highestFloor" [formControl]="formControl">
+    <mat-error *ngIf="formControl.hasError('required')">
+      Highest Floor is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Lowest Floor</mat-label>
+    <input placeholder="-1" matInput [(ngModel)]="lowestFloor" [formControl]="formControl">
+    <mat-error *ngIf="formControl.hasError('required')">
+      Lowest Floor is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="ok()" [disabled]="formControl.hasError('required')">Ok</button>
+  <button mat-button (click)="cancel()" color="warn">Cancel</button>
+</div>

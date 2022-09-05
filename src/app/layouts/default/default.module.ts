@@ -18,7 +18,6 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
-import {FormsModule} from "@angular/forms";
 import {FavoritesComponent} from "../../modules/favorites/favorites.component";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
@@ -52,7 +51,6 @@ import {OAuthModule} from "angular-oauth2-oidc";
     MatGridListModule,
     MatIconModule,
     MatMenuModule,
-    FormsModule,
     MatTabsModule,
     HttpClientModule,
     OAuthModule.forRoot()

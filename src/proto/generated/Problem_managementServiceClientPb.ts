@@ -78,6 +78,49 @@ export class ProblemManagementClient {
     this.methodDescriptorListProblems);
   }
 
+  methodDescriptorListProblemsForUser = new grpcWeb.MethodDescriptor(
+    '/edu.kit.tm.cm.proto.ProblemManagement/ListProblemsForUser',
+    grpcWeb.MethodType.UNARY,
+    problem_management_pb.ListProblemsForUserRequest,
+    problem_management_pb.ListProblemsResponse,
+    (request: problem_management_pb.ListProblemsForUserRequest) => {
+      return request.serializeBinary();
+    },
+    problem_management_pb.ListProblemsResponse.deserializeBinary
+  );
+
+  listProblemsForUser(
+    request: problem_management_pb.ListProblemsForUserRequest,
+    metadata: grpcWeb.Metadata | null): Promise<problem_management_pb.ListProblemsResponse>;
+
+  listProblemsForUser(
+    request: problem_management_pb.ListProblemsForUserRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: problem_management_pb.ListProblemsResponse) => void): grpcWeb.ClientReadableStream<problem_management_pb.ListProblemsResponse>;
+
+  listProblemsForUser(
+    request: problem_management_pb.ListProblemsForUserRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: problem_management_pb.ListProblemsResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/edu.kit.tm.cm.proto.ProblemManagement/ListProblemsForUser',
+        request,
+        metadata || {},
+        this.methodDescriptorListProblemsForUser,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/edu.kit.tm.cm.proto.ProblemManagement/ListProblemsForUser',
+    request,
+    metadata || {},
+    this.methodDescriptorListProblemsForUser);
+  }
+
   methodDescriptorGetProblem = new grpcWeb.MethodDescriptor(
     '/edu.kit.tm.cm.proto.ProblemManagement/GetProblem',
     grpcWeb.MethodType.UNARY,

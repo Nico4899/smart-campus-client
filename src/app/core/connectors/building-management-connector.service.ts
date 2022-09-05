@@ -162,7 +162,7 @@ export class BuildingManagementConnectorService {
     })
   }
 
-  async createBuilding(request: CreateBuildingRequest, callback: (response: CreateBuildingResponse, self: BuildingsComponent) => void, self: BuildingsComponent) {
+  async createBuilding(request: CreateBuildingRequest, callback: (response: CreateBuildingResponse, self: BuildingsTableComponent) => void, self: BuildingsTableComponent) {
     this.client.createBuilding(request, {}, (error: RpcError, response: CreateBuildingResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
@@ -172,7 +172,7 @@ export class BuildingManagementConnectorService {
     })
   }
 
-  async createRoom(request: CreateRoomRequest, callback: (response: CreateRoomResponse, self: BuildingComponent) => void, self: BuildingComponent) {
+  async createRoom(request: CreateRoomRequest, callback: (response: CreateRoomResponse, self: RoomsTableComponent) => void, self: RoomsTableComponent) {
     this.client.createRoom(request, {}, (error: RpcError, response: CreateRoomResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
@@ -182,7 +182,7 @@ export class BuildingManagementConnectorService {
     })
   }
 
-  async createComponent(request: CreateComponentRequest, callback: (response: CreateComponentResponse, self: BuildingComponent | RoomComponent) => void, self: BuildingComponent | RoomComponent) {
+  async createComponent(request: CreateComponentRequest, callback: (response: CreateComponentResponse, self: ComponentsTableComponent) => void, self: ComponentsTableComponent) {
     this.client.createComponent(request, {}, (error: RpcError, response: CreateComponentResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
@@ -202,7 +202,7 @@ export class BuildingManagementConnectorService {
     })
   }
 
-  async updateBuilding(request: UpdateBuildingRequest, callback: (response: UpdateBuildingResponse, self: BuildingsComponent) => void, self: BuildingsComponent) {
+  async updateBuilding(request: UpdateBuildingRequest, callback: (response: UpdateBuildingResponse, self: BuildingsTableComponent) => void, self: BuildingsTableComponent) {
     this.client.updateBuilding(request, {}, (error: RpcError, response: UpdateBuildingResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
@@ -212,7 +212,7 @@ export class BuildingManagementConnectorService {
     })
   }
 
-  async updateRoom(request: UpdateRoomRequest, callback: (response: UpdateRoomResponse, self: BuildingComponent) => void, self: BuildingComponent) {
+  async updateRoom(request: UpdateRoomRequest, callback: (response: UpdateRoomResponse, self: RoomsTableComponent) => void, self: RoomsTableComponent) {
     this.client.updateRoom(request, {}, (error: RpcError, response: UpdateRoomResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
@@ -232,22 +232,22 @@ export class BuildingManagementConnectorService {
     })
   }
 
-  async removeBuilding(request: RemoveRequest, callback: (response: RemoveResponse, self: BuildingsComponent) => void, self: BuildingsComponent) {
+  async removeBuilding(request: RemoveRequest, callback: (id: string, self: BuildingsTableComponent) => void, self: BuildingsTableComponent) {
     this.client.removeBuilding(request, {}, (error: RpcError, response: RemoveResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
-        callback(response, self);
+        callback(request.getIdentificationNumber(), self);
       }
     })
   }
 
-  async removeRoom(request: RemoveRequest, callback: (response: RemoveResponse, self: BuildingComponent) => void, self: BuildingComponent) {
+  async removeRoom(request: RemoveRequest, callback: (id: string, self: RoomsTableComponent) => void, self: RoomsTableComponent) {
     this.client.removeRoom(request, {}, (error: RpcError, response: RemoveResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
-        callback(response, self);
+        callback(request.getIdentificationNumber(), self);
       }
     })
   }

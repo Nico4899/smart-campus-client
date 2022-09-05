@@ -1,1 +1,66 @@
 <p>edit-room works!</p>
+<h1 mat-dialog-title>Add room</h1>
+
+<div mat-dialog-content>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input placeholder="Seminarraum 25" mat-input [(ngModel)]="roomName" [formControl]="formControl">
+    <mat-error *nfIf="formControl.hasError()">Name is <strong>required</strong></mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Number</mat-label>
+    <input placeholder="-1.025" mat-input [(ngModel)]="roomNumber" [formControl]="formControl">
+    <mat-error *nfIf="formControl.hasError()">Number is <strong>required</strong></mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Floor</mat-label>
+    <input mat-input placeholder="-1" [(ngModel)]="floor">
+    <mat-error *nfIf="formControl.hasError()">Number is <strong>required</strong></mat-error>
+  </mat-form-field>
+
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Room Type</mat-label>
+    <mat-select [(ngModel)]="roomType" [formControl]="formControl" required>
+      <mat-option *ngFor="let roomtype of roomTypes" [value]="roomtype">
+        {{roomtype}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="formControl.hasError('required')">
+      Pick a room type
+    </mat-error>
+  </mat-form-field>
+
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Latitude</mat-label>
+    <input placeholder="3.2" matInput [(ngModel)]="latitude" [formControl]="formControl">
+    <mat-error *ngIf="formControl.hasError('required')">
+      Latitude is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Longitude</mat-label>
+    <input placeholder="32.2" matInput [(ngModel)]="longitude" [formControl]="formControl">
+    <mat-error *ngIf="formControl.hasError('required')">
+      Longitude is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+
+
+
+</div>
+
+<div mat-dialog-actions>
+  <button (click)="ok()">Ok</button>
+  <button (click)="cancel()">Cancel</button>
+</div>
+

@@ -15,5 +15,4 @@ export class ComponentTypePipe implements PipeTransform {
       default: return "N/A"
     }
   }
-
 }
