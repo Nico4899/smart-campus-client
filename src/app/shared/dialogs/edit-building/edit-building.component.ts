@@ -32,8 +32,10 @@ export class EditBuildingComponent {
     this.lowestFloor = data.grpcFloors?.lowestFloor!;
     this.campusLocation = data.campusLocation;
     this.identificationNumber = data.identificationNumber;
+
     this.longitude = this.data.grpcGeographicalLocation?.longitude!;
     this.latitude = this.data.grpcGeographicalLocation?.latitude!;
+
   }
 
   ok() {

@@ -222,7 +222,7 @@ export class BuildingManagementConnectorService {
     })
   }
 
-  async updateComponent(request: UpdateComponentRequest, callback: (response: UpdateComponentResponse, self: BuildingComponent | RoomComponent) => void, self: BuildingComponent | RoomComponent) {
+  async updateComponent(request: UpdateComponentRequest, callback: (response: UpdateComponentResponse, self: ComponentsTableComponent) => void, self: ComponentsTableComponent) {
     this.client.updateComponent(request, {}, (error: RpcError, response: UpdateComponentResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
@@ -252,12 +252,12 @@ export class BuildingManagementConnectorService {
     })
   }
 
-  async removeComponent(request: RemoveRequest, callback: (response: RemoveResponse, self: RoomComponent) => void, self: RoomComponent) {
+  async removeComponent(request: RemoveRequest, callback: (id: string, self: ComponentsTableComponent) => void, self: ComponentsTableComponent) {
     this.client.removeComponent(request, {}, (error: RpcError, response: RemoveResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
-        callback(response, self);
+        callback(request.getIdentificationNumber(), self);
       }
     })
   }
