@@ -14,8 +14,8 @@
   <mat-form-field appearance="fill">
     <mat-label>Component Type</mat-label>
     <mat-select [(ngModel)]="componentType" [formControl]="formControl" required>
-      <mat-option *ngFor="let componenttype of componentTypes" [value]="componenttype">
-        {{componenttype}}
+      <mat-option *ngFor="let componentType of componentTypes" [value]="componentType">
+        {{componentType}}
       </mat-option>
     </mat-select>
     <mat-error *ngIf="formControl.hasError('required')">
