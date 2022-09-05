@@ -8,6 +8,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 })
 export class RemoveBuildingComponent {
 
+
+
   identificationNumber!: string;
 
   constructor(public dialogRef: MatDialogRef<RemoveBuildingComponent>, @Inject(MAT_DIALOG_DATA) public data: string) {
