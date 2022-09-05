@@ -4,38 +4,33 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Name</mat-label>
-    <input placeholder="Seminarraum 25" mat-input [(ngModel)]="roomName" [formControl]="formControl">
-    <mat-error *nfIf="formControl.hasError()">Name is <strong>required</strong></mat-error>
+    <input placeholder="Seminarraum 25" matInput [(ngModel)]="roomName" [formControl]="formControl">
+    <mat-error *nfIf="formControl.hasError('required')">Name is <strong>required</strong></mat-error>
   </mat-form-field>
-
 
   <mat-form-field appearance="fill">
     <mat-label>Number</mat-label>
-    <input placeholder="-1.025" mat-input [(ngModel)]="roomNumber" [formControl]="formControl">
-    <mat-error *nfIf="formControl.hasError()">Number is <strong>required</strong></mat-error>
+    <input placeholder="-1.025" matInput [(ngModel)]="roomNumber" [formControl]="formControl">
+    <mat-error *nfIf="formControl.hasError('required')">Number is <strong>required</strong></mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Floor</mat-label>
-    <input mat-input placeholder="-1" [(ngModel)]="floor">
-    <mat-error *nfIf="formControl.hasError()">Number is <strong>required</strong></mat-error>
+    <input matInput placeholder="-1" [(ngModel)]="floor">
+    <mat-error *nfIf="formControl.hasError('required')">Number is <strong>required</strong></mat-error>
   </mat-form-field>
-
-
 
   <mat-form-field appearance="fill">
     <mat-label>Room Type</mat-label>
     <mat-select [(ngModel)]="roomType" [formControl]="formControl" required>
-      <mat-option *ngFor="let roomtype of roomTypes" [value]="roomtype">
-        {{roomtype}}
+      <mat-option *ngFor="let roomType of roomTypes" [value]="roomType">
+        {{roomType | roomType}}
       </mat-option>
     </mat-select>
     <mat-error *ngIf="formControl.hasError('required')">
       Pick a room type
     </mat-error>
   </mat-form-field>
-
-
 
   <mat-form-field appearance="fill">
     <mat-label>Latitude</mat-label>
@@ -53,12 +48,9 @@
     </mat-error>
   </mat-form-field>
 
-
-
-
 </div>
 
 <div mat-dialog-actions>
-  <button (click)="ok()">Ok</button>
-  <button (click)="cancel()">Cancel</button>
+  <button mat-button (click)="ok()">Ok</button>
+  <button mat-button (click)="cancel()" color="warn">Cancel</button>
 </div>

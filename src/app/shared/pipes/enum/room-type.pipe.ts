@@ -6,7 +6,7 @@ import {GrpcRoomType} from "../../../../proto/generated/building_management_pb";
 })
 export class RoomTypePipe implements PipeTransform {
 
-  transform(value: GrpcRoomType, ...args: unknown[]): unknown {
+  transform(value: GrpcRoomType | string, ...args: unknown[]): unknown {
     switch (value) {
       case GrpcRoomType.CAFETERIA: return "Cafeteria"
       case GrpcRoomType.LECTURE_ROOM: return "Lecture Room"
