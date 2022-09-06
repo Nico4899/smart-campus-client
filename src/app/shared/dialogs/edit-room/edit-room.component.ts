@@ -16,25 +16,25 @@ export class EditRoomComponent {
   roomName!: string;
   roomNumber!: string;
   roomType!: GrpcRoomType;
-  roomTypes = Object.values(GrpcRoomType);
-
   longitude!: number;
   latitude!: number;
+  identificationNumber!: string;
+  parentIdentificationNumber!: string;
 
-
-  formControl = new FormControl('', [Validators.required]);
-
+  roomTypes = Object.values(GrpcRoomType);
 
   constructor(public dialogRef: MatDialogRef<EditRoomComponent>,
               @Inject(MAT_DIALOG_DATA) public data: GrpcRoom.AsObject) {
     this.dialogRef.disableClose = true;
-
     this.roomName = data.roomName;
     this.roomNumber = data.roomNumber;
     this.roomType = data.roomType;
     this.floor = data.floor;
     this.latitude = data.grpcGeographicalLocation?.latitude!;
     this.longitude = data.grpcGeographicalLocation?.longitude!;
+    this.identificationNumber = data.identificationNumber;
+    this.parentIdentificationNumber = data.parentIdentificationNumber;
+    this.roomTypes = this.roomTypes.filter(e => e != 0);
   }
 
   ok() {
@@ -46,7 +46,9 @@ export class EditRoomComponent {
         roomType: this.roomType,
         floor: this.floor,
         longitude: this.longitude,
-        latitude: this.latitude
+        latitude: this.latitude,
+        identificationNumber: this.identificationNumber,
+        parentIdentificationNumber: this.parentIdentificationNumber
       }
     })
   }
@@ -54,8 +56,4 @@ export class EditRoomComponent {
   cancel() {
     this.dialogRef.close({event: 'cancel'});
   }
-
-
-
-
 }

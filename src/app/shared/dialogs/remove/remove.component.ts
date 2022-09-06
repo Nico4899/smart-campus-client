@@ -1,17 +1,16 @@
-import { Component, Inject } from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
-
 @Component({
-  selector: 'app-remove-component',
-  templateUrl: './remove-component.component.html',
-  styleUrls: ['./remove-component.component.css']
+  selector: 'app-remove',
+  templateUrl: './remove.component.html',
+  styleUrls: ['./remove.component.css']
 })
-export class RemoveComponentComponent {
+export class RemoveComponent {
 
   identificationNumber!: string;
 
-  constructor(public dialogRef: MatDialogRef<RemoveComponentComponent>, @Inject(MAT_DIALOG_DATA) public data: string) {
+  constructor(public dialogRef: MatDialogRef<RemoveComponent>, @Inject(MAT_DIALOG_DATA) public data: string) {
     this.dialogRef.disableClose = true;
     this.identificationNumber = data;
   }
@@ -25,6 +24,4 @@ export class RemoveComponentComponent {
   cancel() {
     this.dialogRef.close({event: 'cancel'});
   }
-
-
 }

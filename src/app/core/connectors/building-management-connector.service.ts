@@ -252,10 +252,11 @@ export class BuildingManagementConnectorService {
     })
   }
 
+  //TODO never invokes call for some unexpected reason
   async removeComponent(request: RemoveRequest, callback: (id: string, self: ComponentsTableComponent) => void, self: ComponentsTableComponent) {
     this.client.removeComponent(request, {}, (error: RpcError, response: RemoveResponse) => {
       if (error) {
-        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+        this.snackbar.open("Error occurred, please try again." + error.code.toString(), "", {duration: 1500});
       } else {
         callback(request.getIdentificationNumber(), self);
       }

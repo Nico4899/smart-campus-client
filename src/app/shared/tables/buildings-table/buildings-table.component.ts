@@ -18,8 +18,8 @@ import {BuildingManagementConnectorService} from "../../../core/connectors/build
 import {MatDialog} from "@angular/material/dialog";
 import {AddBuildingComponent} from "../../dialogs/add-building/add-building.component";
 import {EditBuildingComponent} from "../../dialogs/edit-building/edit-building.component";
-import {RemoveBuildingComponent} from "../../dialogs/remove-building/remove-building.component";
 import {FilterBuildingsComponent} from "../../dialogs/filter-buildings/filter-buildings.component";
+import {RemoveComponent} from "../../dialogs/remove/remove.component";
 
 @Component({
   selector: 'app-buildings-table',
@@ -107,7 +107,7 @@ export class BuildingsTableComponent implements OnInit {
   }
 
   openRemoveBuildingDialog(identificationNumber: string) {
-    const dialogRef = this.dialog.open(RemoveBuildingComponent, {data: identificationNumber});
+    const dialogRef = this.dialog.open(RemoveComponent, {data: identificationNumber});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.buildingManagementConnector.removeBuilding(BuildingsTableComponent.buildRemoveRequest(result), BuildingsTableComponent.interpretRemoveBuildingResponse, this);

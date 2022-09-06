@@ -21,8 +21,6 @@ export class AddBuildingComponent {
 
   campusLocations = Object.values(GrpcCampusLocation);
 
-  formControl = new FormControl('', [Validators.required]);
-
   constructor(public dialogRef: MatDialogRef<AddBuildingComponent>) {
     this.dialogRef.disableClose = true;
     this.campusLocations = this.campusLocations.filter(e => e != 0);

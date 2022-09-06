@@ -1,43 +1,33 @@
-
 <h1>Edit Component</h1>
 
 <div mat-dialog-content>
   <mat-form-field appearance="fill">
     <mat-label>Description</mat-label>
-    <input placeholder="e.g., The left elevator in the building" matInput [(ngModel)]="componentDescription" [formControl]="formControl">
-    <mat-error *ngIf="formControl.hasError('required')">
-      Name is <strong>required</strong>
-    </mat-error>
+    <input placeholder="e.g., The left elevator in the building" matInput [(ngModel)]="componentDescription" required>
   </mat-form-field>
 
 
   <mat-form-field appearance="fill">
     <mat-label>Component Type</mat-label>
-    <mat-select [(ngModel)]="componentType" [formControl]="formControl" required>
+    <mat-select [(ngModel)]="componentType" required>
       <mat-option *ngFor="let componentType of componentTypes" [value]="componentType">
-        {{componentType}}
+        {{componentType |componentType}}
       </mat-option>
     </mat-select>
-    <mat-error *ngIf="formControl.hasError('required')">
-      Pick a component type
-    </mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Latitude</mat-label>
-    <input placeholder="3.2" matInput [(ngModel)]="latitude" [formControl]="formControl">
-    <mat-error *ngIf="formControl.hasError('required')">
-      Latitude is <strong>required</strong>
-    </mat-error>
+    <input placeholder="3.2" matInput [(ngModel)]="latitude" required>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Longitude</mat-label>
-    <input placeholder="32.2" matInput [(ngModel)]="longitude" [formControl]="formControl">
-    <mat-error *ngIf="formControl.hasError('required')">
-      Longitude is <strong>required</strong>
-    </mat-error>
+    <input placeholder="32.2" matInput [(ngModel)]="longitude" required>
   </mat-form-field>
+</div>
 
-
+<div mat-dialog-actions>
+  <button mat-button (click)="ok()">Ok</button>
+  <button mat-button (click)="cancel()" color="warn">Cancel</button>
 </div>
