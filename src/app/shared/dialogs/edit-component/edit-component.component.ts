@@ -20,6 +20,8 @@ export class EditComponentComponent {
 
   identificationNumber!: string;
 
+  componentTypes = Object.values(GrpcComponentType);
+
   formControl = new FormControl('', [Validators.required]);
 
   constructor(public dialogRef: MatDialogRef<EditComponentComponent>,@Inject(MAT_DIALOG_DATA) public data: GrpcComponent.AsObject ) {
@@ -31,7 +33,7 @@ export class EditComponentComponent {
 
     this.longitude = this.data.grpcGeographicalLocation?.longitude!;
     this.latitude = this.data.grpcGeographicalLocation?.latitude!;
-
+    this.componentTypes = this.componentTypes.filter(e => e != 0);
   }
 
 

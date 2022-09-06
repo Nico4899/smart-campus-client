@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 
 import {GrpcRoomType} from '../../../../proto/generated/building_management_pb'
 
@@ -32,7 +32,8 @@ export class AddRoomComponent {
   }
 
   ok() {
-    this.dialogRef.close({ event: 'ok',
+    this.dialogRef.close({
+      event: 'ok',
       data: {
         roomName: this.roomName,
         roomNumber: this.roomNumber,
@@ -41,7 +42,6 @@ export class AddRoomComponent {
         longitude: this.longitude,
         latitude: this.latitude
       }
-
     });
 
   }

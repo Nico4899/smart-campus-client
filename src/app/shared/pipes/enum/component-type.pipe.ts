@@ -8,7 +8,7 @@ import {
 })
 export class ComponentTypePipe implements PipeTransform {
 
-  transform(value: GrpcComponentType, ...args: unknown[]): unknown {
+  transform(value: GrpcComponentType | string, ...args: unknown[]): unknown {
     switch (value) {
       case GrpcComponentType.ELEVATOR: return "Elevator"
       case GrpcComponentType.STAIRS: return "Stairs"
