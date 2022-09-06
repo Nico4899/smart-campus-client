@@ -4,29 +4,21 @@ import {MatPaginator} from "@angular/material/paginator";
 import {BuildingManagementConnectorService} from "../../../core/connectors/building-management-connector.service";
 import {ActivatedRoute} from "@angular/router";
 import {
-  UpdateComponentRequest,
-  UpdateComponentResponse,
-  GrpcComponent,
-  GrpcComponentType,
-  GrpcGeographicalLocation,
   CreateComponentRequest,
   CreateComponentResponse,
+  GrpcComponent,
+  GrpcGeographicalLocation,
   ListComponentsRequest,
   ListComponentsResponse,
-
-  RemoveRequest
-
+  RemoveRequest,
+  UpdateComponentRequest,
+  UpdateComponentResponse
 } from "../../../../proto/generated/building_management_pb";
-
 import {AddComponentComponent} from '../../dialogs/add-component/add-component.component'
-
 import {EditComponentComponent} from '../../dialogs/edit-component/edit-component.component'
-
-import {RemoveComponentComponent} from '../../dialogs/remove-component/remove-component.component'
-
 import {MatDialog} from '@angular/material/dialog'
 import {MatTableDataSource} from "@angular/material/table";
-// import * as cluster from "cluster";
+import {RemoveComponent} from "../../dialogs/remove/remove.component";
 
 @Component({
   selector: 'app-components-table',
@@ -99,7 +91,7 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
   openCreateComponentDialog() {
     const dialogRef = this.dialog.open(AddComponentComponent);
     dialogRef.afterClosed().subscribe(result => {
-      if(result.event == 'ok'){
+      if (result.event == 'ok') {
         this.buildingManagementConnector.createComponent(ComponentsTableComponent.buildCreateComponentRequest(result), ComponentsTableComponent.interpretCreateComponentResponse, this);
       } else {
         return;
@@ -109,9 +101,9 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
   }
 
   openUpdateComponentDialog(component: GrpcComponent.AsObject) {
-    const dialogRef = this.dialog.open(EditComponentComponent);
+    const dialogRef = this.dialog.open(EditComponentComponent, {data: component});
     dialogRef.afterClosed().subscribe(result => {
-      if (result.event == 'ok'){
+      if (result.event == 'ok') {
         this.buildingManagementConnector.updateComponent(ComponentsTableComponent.buildUpdateComponentRequest(result), ComponentsTableComponent.interpretUpdateComponentResponse, this);
       } else {
         return;
@@ -121,61 +113,46 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
   }
 
   openRemoveComponentDialog(identificationNumber: string) {
-    const dialogRef = this.dialog.open(RemoveComponentComponent);
+    const dialogRef = this.dialog.open(RemoveComponent, {data: identificationNumber});
     dialogRef.afterClosed().subscribe(result => {
-
-      if(result.event == 'ok ') {
-        this.buildingManagementConnector.removeComponent(ComponentsTableComponent.buildRemoveRequest(result), ComponentsTableComponent.interpretRemoveComponentResponse, this);
-      } else {
-      return;
-      }}
+        if (result.event == 'ok ') {
+          this.buildingManagementConnector.removeComponent(ComponentsTableComponent.buildRemoveRequest(result), ComponentsTableComponent.interpretRemoveComponentResponse, this);
+        } else {
+          return;
+        }
+      }
     )
-
   }
 
 
-
-
-
-
-
-  private static buildCreateComponentRequest(result: any): CreateComponentRequest {
+  private static buildCreateComponentRequest(identificationNumber: string, result: any): CreateComponentRequest {
     let request = new CreateComponentRequest();
-
     request.setComponentDescription(result.data.componentDescription);
-    request.setParentIdentificationNumber(result.data.parentID);
-
+    request.setParentIdentificationNumber(identificationNumber);
     request.setComponentType(result.data.componentType);
-
     let geographicalLocation = new GrpcGeographicalLocation();
     geographicalLocation.setLongitude(result.data.longitude);
     geographicalLocation.setLatitude(result.data.latitude);
     request.setGrpcGeographicalLocation(geographicalLocation);
-
     return request;
   }
 
   private static buildUpdateComponentRequest(result: any): UpdateComponentRequest {
     let request = new UpdateComponentRequest();
-
     request.setComponentDescription(result.data.componentDescription);
-    request.setParentIdentificationNumber(result.data.parentID);
-
+    request.setParentIdentificationNumber(result.data.parentIdentificationNumber);
     request.setComponentType(result.data.componentType);
-
     let geographicalLocation = new GrpcGeographicalLocation();
     geographicalLocation.setLongitude(result.data.longitude);
     geographicalLocation.setLatitude(result.data.latitude);
     request.setGrpcGeographicalLocation(geographicalLocation);
-
+    request.setIdentificationNumber(result.data.identificationNumber);
     return request;
-
   }
 
   private static buildRemoveRequest(result: any): RemoveRequest {
     let request = new RemoveRequest();
     request.setIdentificationNumber(result.data.identificationNumber);
-
     return request;
   }
 

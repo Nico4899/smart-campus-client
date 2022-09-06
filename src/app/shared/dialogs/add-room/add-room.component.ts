@@ -16,15 +16,10 @@ export class AddRoomComponent {
   roomName!: string;
   roomNumber!: string;
   roomType!: GrpcRoomType;
-  roomTypes = Object.values(GrpcRoomType);
-
   longitude!: number;
   latitude!: number;
 
-
-  formControl = new FormControl('', [Validators.required]);
-
-
+  roomTypes = Object.values(GrpcRoomType);
 
   constructor(public dialogRef: MatDialogRef<AddRoomComponent>) {
     this.dialogRef.disableClose = true;
@@ -43,12 +38,9 @@ export class AddRoomComponent {
         latitude: this.latitude
       }
     });
-
   }
 
   cancel() {
     this.dialogRef.close({event: 'cancel'});
   }
-
-
 }
