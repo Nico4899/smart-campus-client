@@ -10,7 +10,7 @@
     <mat-label>Component Type</mat-label>
     <mat-select [(ngModel)]="componentType" required>
       <mat-option *ngFor="let componentType of componentTypes" [value]="componentType">
-        {{componentType}}
+        {{componentType |componentType}}
       </mat-option>
     </mat-select>
   </mat-form-field>

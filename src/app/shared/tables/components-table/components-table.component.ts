@@ -79,6 +79,7 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
   }
 
   private static interpretCreateComponentResponse(response: CreateComponentResponse, self: ComponentsTableComponent): void {
+    console.log(response.getComponent()?.toObject()!)
     self.dataSource.data.push(response.getComponent()?.toObject()!);
   }
 

@@ -26,6 +26,7 @@ export class EditComponentComponent {
     this.longitude = this.data.grpcGeographicalLocation?.longitude!;
     this.latitude = this.data.grpcGeographicalLocation?.latitude!;
     this.parentIdentificationNumber = data.parentIdentificationNumber;
+    this.componentType = data.componentType;
     this.componentTypes = this.componentTypes.filter(e => e != 0);
   }
 
