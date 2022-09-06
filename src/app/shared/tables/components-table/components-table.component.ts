@@ -28,7 +28,7 @@ import {RemoveComponent} from "../../dialogs/remove/remove.component";
 export class ComponentsTableComponent implements OnInit, AfterViewInit {
 
   // path variable
-  bin: string = "";
+  parentIdentificationNumber: string = "";
 
   // datasource containing provided data from the api, to be displayed in the html datatables, as well as the current selected object
   dataSource: MatTableDataSource<GrpcComponent.AsObject> = new MatTableDataSource<GrpcComponent.AsObject>();
@@ -50,11 +50,15 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
 
     // obtain path variables
-    this.bin = String(this.route.snapshot.paramMap.get("bin"));
+    if (this.route.snapshot.paramMap.get("bin")) {
+      this.parentIdentificationNumber = String(this.route.snapshot.paramMap.get("bin"));
+    } else {
+      this.parentIdentificationNumber = String(this.route.snapshot.paramMap.get("rin"));
+    }
 
     // run initial calls
     let listComponentsRequest = new ListComponentsRequest();
-    listComponentsRequest.setIdentificationNumber(this.bin);
+    listComponentsRequest.setIdentificationNumber(this.parentIdentificationNumber);
     this.buildingManagementConnector.listComponents(listComponentsRequest, ComponentsTableComponent.interpretListComponentsResponse, this);
   }
 
@@ -92,7 +96,7 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(AddComponentComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
-        this.buildingManagementConnector.createComponent(ComponentsTableComponent.buildCreateComponentRequest(result), ComponentsTableComponent.interpretCreateComponentResponse, this);
+        this.buildingManagementConnector.createComponent(ComponentsTableComponent.buildCreateComponentRequest(this.parentIdentificationNumber, result), ComponentsTableComponent.interpretCreateComponentResponse, this);
       } else {
         return;
       }
