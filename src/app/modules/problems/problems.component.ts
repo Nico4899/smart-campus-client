@@ -14,7 +14,8 @@ export class ProblemsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.problemManagementConnector.listProblems(new ListProblemsRequest(), ProblemsComponent.interpretListProblemsResponse, this);
+    //listProblems is needed for ProblemsTableComponent
+    //this.problemManagementConnector.listProblems(new ListProblemsRequest(), ProblemsComponent.interpretListProblemsResponse, this);
 
   }
 
