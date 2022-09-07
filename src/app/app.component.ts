@@ -11,7 +11,7 @@ export class AppComponent {
 
   supportLanguages = ['en', 'de'];
 
-  constructor(private translateService: TranslateService) {
+  constructor(public translateService: TranslateService) {
     this.translateService.addLangs(this.supportLanguages);
     this.translateService.setDefaultLang('en');
   }
