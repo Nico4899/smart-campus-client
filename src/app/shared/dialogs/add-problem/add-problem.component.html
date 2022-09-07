@@ -1,1 +1,21 @@
-<p>add-problem works!</p>
+<h1>Report Problem</h1>
+
+
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Problem Title</mat-label>
+    <input placeholder="e.g., Door to library is smashed" matInput [(ngModel)]="problemTitle" required>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Problem Description</mat-label>
+    <input placeholder="e.g., Door to library is smashed" matInput [(ngModel)]="problemDescription" required>
+  </mat-form-field>
+</div>
+
+
+<div mat-dialog-actions>
+  <button mat-button (click)="ok()">Ok</button>
+  <button mat-button (click)="cancel()" color="warn">Cancel</button>
+</div>
