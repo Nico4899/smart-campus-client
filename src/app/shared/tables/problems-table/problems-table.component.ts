@@ -62,7 +62,7 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
   private String notificationIdentificationNumber;
    */
 
-  displayedColumns: string[] = ['identificationNumber', 'reporter', 'title', 'state', 'created'];
+  displayedColumns: string[] = ['identificationNumber', 'reporter', 'title', 'state', 'creationTime'];
   dataSource = new MatTableDataSource<ProblemElement>(PROBLEM_DATA);
   selection = new SelectionModel<ProblemElement>(true, []);
 
