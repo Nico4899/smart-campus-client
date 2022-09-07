@@ -12,10 +12,6 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatListModule} from "@angular/material/list";
 import {RouterModule} from "@angular/router";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
-import {RemoveBuildingComponent} from './dialogs/remove-building/remove-building.component';
-import {RemoveComponentComponent} from './dialogs/remove-component/remove-component.component';
-import {RemoveRoomComponent} from './dialogs/remove-room/remove-room.component';
-import {RemoveProblemComponent} from './dialogs/remove-problem/remove-problem.component';
 import {AddBuildingComponent} from './dialogs/add-building/add-building.component';
 import {AddRoomComponent} from './dialogs/add-room/add-room.component';
 import {AddComponentComponent} from './dialogs/add-component/add-component.component';
@@ -56,16 +52,13 @@ import { FilterBuildingsComponent } from './dialogs/filter-buildings/filter-buil
 import { FilterRoomsComponent } from './dialogs/filter-rooms/filter-rooms.component';
 import { FilterProblemsComponent } from './dialogs/filter-problems/filter-problems.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { RemoveComponent } from './dialogs/remove/remove.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-    RemoveBuildingComponent,
-    RemoveComponentComponent,
-    RemoveRoomComponent,
-    RemoveProblemComponent,
     AddBuildingComponent,
     AddRoomComponent,
     AddComponentComponent,
@@ -91,6 +84,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     FilterBuildingsComponent,
     FilterRoomsComponent,
     FilterProblemsComponent,
+    RemoveComponent,
   ],
   exports: [
     HeaderComponent,

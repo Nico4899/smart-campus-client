@@ -1,24 +1,15 @@
-import {Component, AfterViewInit, ViewChild, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import {MatTable, MatTableDataSource} from '@angular/material/table';
-import {BuildingManagementConnectorService} from "../../../core/connectors/building-management-connector.service";
+import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog} from "@angular/material/dialog";
-import {ProblemManagementConnectorService} from "../../../core/connectors/problem-management-connector.service";
-import {Timestamp} from "rxjs";
 import {
-  GrpcBuilding,
-  ListBuildingsRequest,
-  ListBuildingsResponse
-} from "../../../../proto/generated/building_management_pb";
-import {
-  GrpcProblem,
-  ListProblemsRequest,
-  ListProblemsResponse
-} from "../../../../proto/generated/problem_management_pb";
+  ProblemManagementConnectorService
+} from "../../../core/connectors/problem-management-connector.service";
 import {SelectionModel} from "@angular/cdk/collections";
-import {AddBuildingComponent} from "../../dialogs/add-building/add-building.component";
-import {AddProblemComponent} from "../../dialogs/add-problem/add-problem.component";
+import {
+  AddProblemComponent
+} from "../../dialogs/add-problem/add-problem.component";
 
 export interface ProblemElement {
   identificationNumber: string;
@@ -32,16 +23,46 @@ export interface ProblemElement {
 
 /** Constants used to fill up our database. */
 const PROBLEM_DATA: ProblemElement[] = [
-  {identificationNumber: '1', reporter: 'uhpwv', title: 'No Ramp available',
-    description: 'Hello, in the building 30.95, there is no ramp available...', state: 'OPEN', creationTime: '31.08.2022'},
-  {identificationNumber: '1', reporter: 'uhpwv', title: 'No Ramp available',
-    description: 'Hello, in the building 30.95, there is no ramp available...', state: 'OPEN', creationTime: '31.08.2022'},
-  {identificationNumber: '1', reporter: 'uhpwv', title: 'No Ramp available',
-    description: 'Hello, in the building 30.95, there is no ramp available...', state: 'OPEN', creationTime: '31.08.2022'},
-  {identificationNumber: '1', reporter: 'uhpwv', title: 'No Ramp available',
-    description: 'Hello, in the building 30.95, there is no ramp available...', state: 'OPEN', creationTime: '31.08.2022'},
-  {identificationNumber: '1', reporter: 'uhpwv', title: 'No Ramp available',
-    description: 'Hello, in the building 30.95, there is no ramp available...', state: 'OPEN', creationTime: '31.08.2022'},
+  {
+    identificationNumber: '1',
+    reporter: 'uhpwv',
+    title: 'No Ramp available',
+    description: 'Hello, in the building 30.95, there is no ramp available...',
+    state: 'OPEN',
+    creationTime: '31.08.2022'
+  },
+  {
+    identificationNumber: '1',
+    reporter: 'uhpwv',
+    title: 'No Ramp available',
+    description: 'Hello, in the building 30.95, there is no ramp available...',
+    state: 'OPEN',
+    creationTime: '31.08.2022'
+  },
+  {
+    identificationNumber: '1',
+    reporter: 'uhpwv',
+    title: 'No Ramp available',
+    description: 'Hello, in the building 30.95, there is no ramp available...',
+    state: 'OPEN',
+    creationTime: '31.08.2022'
+  },
+  {
+    identificationNumber: '1',
+    reporter: 'uhpwv',
+    title: 'No Ramp available',
+    description: 'Hello, in the building 30.95, there is no ramp available...',
+    state: 'OPEN',
+    creationTime: '31.08.2022'
+  },
+  {
+    identificationNumber: '1',
+    reporter: 'uhpwv',
+    title: 'No Ramp available',
+    description: 'Hello, in the building 30.95, there is no ramp available...',
+    state: 'OPEN',
+    creationTime: '31.08.2022'
+  },
 ]
 
 @Component({

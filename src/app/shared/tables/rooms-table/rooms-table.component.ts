@@ -15,13 +15,10 @@ import {ActivatedRoute} from "@angular/router";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
-
-
 import {MatDialog} from '@angular/material/dialog'
-
 import {AddRoomComponent} from '../../dialogs/add-room/add-room.component'
 import {EditRoomComponent} from '../../dialogs/edit-room/edit-room.component'
-import {RemoveRoomComponent} from '../../dialogs/remove-room/remove-room.component'
+import {RemoveComponent} from "../../dialogs/remove/remove.component";
 
 @Component({
   selector: 'app-rooms-table',
@@ -97,7 +94,7 @@ export class RoomsTableComponent implements OnInit {
     const dialogRef = this.dialog.open(AddRoomComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
-        this.buildingManagementConnector.createRoom(RoomsTableComponent.buildCreateRoomRequest(result),
+        this.buildingManagementConnector.createRoom(RoomsTableComponent.buildCreateRoomRequest(this.bin, result),
           RoomsTableComponent.interpretCreateRoomResponse, this);
       } else {
         return;
@@ -117,7 +114,7 @@ export class RoomsTableComponent implements OnInit {
   }
 
   openRemoveRoomDialog(identificationNumber: string) {
-    const dialogRef = this.dialog.open(RemoveRoomComponent, {data: identificationNumber});
+    const dialogRef = this.dialog.open(RemoveComponent, {data: identificationNumber});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.buildingManagementConnector.removeRoom(RoomsTableComponent.buildRemoveRequest(result), RoomsTableComponent.interpretRemoveBuildingResponse, this);
@@ -129,22 +126,17 @@ export class RoomsTableComponent implements OnInit {
 
   //private utils here
 
-  private static buildCreateRoomRequest(result: any): CreateRoomRequest {
+  private static buildCreateRoomRequest(bin: string, result: any): CreateRoomRequest {
     let request = new CreateRoomRequest();
-
     request.setRoomNumber(result.data.roomNumber);
     request.setRoomName(result.data.roomName);
     request.setFloor(result.data.floor);
-    request.setParentIdentificationNumber(result.data.parentIdentificationNumber);
+    request.setParentIdentificationNumber(bin);
     request.setRoomType(result.data.roomType);
-
     let geoLocation = new GrpcGeographicalLocation();
     geoLocation.setLatitude(result.data.latitude);
     geoLocation.setLongitude(result.data.longitude);
     request.setGrpcGeographicalLocation(geoLocation);
-
-
-
     return request;
   }
 
@@ -153,23 +145,19 @@ export class RoomsTableComponent implements OnInit {
     request.setRoomName(result.data.roomName);
     request.setRoomNumber(result.data.roomNumber);
     request.setFloor(result.data.floor);
-
     request.setRoomType(result.data.roomType);
-
     request.setIdentificationNumber(result.data.identificationNumber);
-
     let geoLocation = new GrpcGeographicalLocation();
     geoLocation.setLatitude(result.data.latitude);
     geoLocation.setLongitude(result.data.longitude);
     request.setGrpcGeographicalLocation(geoLocation);
-
+    request.setParentIdentificationNumber(result.data.parentIdentificationNumber)
     return request;
   }
 
   private static buildRemoveRequest(result: any): RemoveRequest {
     let request = new RemoveRequest();
     request.setIdentificationNumber(result.data.identificationNumber);
-
     return request;
   }
 

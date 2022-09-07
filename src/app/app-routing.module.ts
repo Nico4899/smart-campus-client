@@ -50,13 +50,6 @@ const routes: Routes = [{
     data: {
       role: environment.roles.guest
     }
-  }, {
-    path: 'problems/:pin',
-    component: ProblemComponent,
-    canActivate: [AuthGuardGuard],
-    data: {
-      role: environment.roles.user
-    }
   },{
     path: "rooms/:rin",
     component: RoomComponent,
