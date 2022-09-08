@@ -4,7 +4,6 @@ import {DefaultComponent} from "./layouts/default/default.component";
 import {DashboardComponent} from "./modules/dashboard/dashboard.component";
 import {BuildingsComponent} from "./modules/buildings/buildings.component";
 import {ProblemsComponent} from "./modules/problems/problems.component";
-import {ProblemComponent} from "./modules/problem/problem.component";
 import {BuildingComponent} from "./modules/building/building.component";
 import {RoomComponent} from "./modules/room/room.component";
 import {FavoritesComponent} from "./modules/favorites/favorites.component";

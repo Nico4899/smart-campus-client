@@ -10,60 +10,15 @@ import {SelectionModel} from "@angular/cdk/collections";
 import {
   AddProblemComponent
 } from "../../dialogs/add-problem/add-problem.component";
-
-export interface ProblemElement {
-  identificationNumber: string;
-  reporter: string;
-  title: string;
-  description: string;
-  state: string;
-  //creationTime: Timestamp<string>;
-  creationTime: string;
-}
-
-/** Constants used to fill up our database. */
-const PROBLEM_DATA: ProblemElement[] = [
-  {
-    identificationNumber: '1',
-    reporter: 'uhpwv',
-    title: 'No Ramp available',
-    description: 'Hello, in the building 30.95, there is no ramp available...',
-    state: 'OPEN',
-    creationTime: '31.08.2022'
-  },
-  {
-    identificationNumber: '1',
-    reporter: 'uhpwv',
-    title: 'No Ramp available',
-    description: 'Hello, in the building 30.95, there is no ramp available...',
-    state: 'OPEN',
-    creationTime: '31.08.2022'
-  },
-  {
-    identificationNumber: '1',
-    reporter: 'uhpwv',
-    title: 'No Ramp available',
-    description: 'Hello, in the building 30.95, there is no ramp available...',
-    state: 'OPEN',
-    creationTime: '31.08.2022'
-  },
-  {
-    identificationNumber: '1',
-    reporter: 'uhpwv',
-    title: 'No Ramp available',
-    description: 'Hello, in the building 30.95, there is no ramp available...',
-    state: 'OPEN',
-    creationTime: '31.08.2022'
-  },
-  {
-    identificationNumber: '1',
-    reporter: 'uhpwv',
-    title: 'No Ramp available',
-    description: 'Hello, in the building 30.95, there is no ramp available...',
-    state: 'OPEN',
-    creationTime: '31.08.2022'
-  },
-]
+import {EditBuildingComponent} from "../../dialogs/edit-building/edit-building.component";
+import {RemoveComponent} from "../../dialogs/remove/remove.component";
+import {FilterBuildingsComponent} from "../../dialogs/filter-buildings/filter-buildings.component";
+import {
+  ListProblemsRequest,
+  ListProblemsResponse,
+  GrpcProblem,
+  CreateProblemResponse, UpdateProblemResponse
+} from "../../../../proto/generated/problem_management_pb";
 
 @Component({
   selector: 'app-problems-table',
@@ -83,9 +38,9 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
   private String notificationIdentificationNumber;
    */
 
-  displayedColumns: string[] = ['identificationNumber', 'reporter', 'title', 'state', 'creationTime'];
-  dataSource = new MatTableDataSource<ProblemElement>(PROBLEM_DATA);
-  selection = new SelectionModel<ProblemElement>(true, []);
+
+  // datasource containing provided data from the api, to be displayed in the html datatables, as well as the current selected object
+  dataSource: MatTableDataSource<GrpcProblem.AsObject> = new MatTableDataSource<GrpcProblem.AsObject>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -93,10 +48,16 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
   // search values from search bars
   searchKey: string = "";
 
+  displayedColumns: string[] = ['identificationNumber', 'reporter', 'title', 'state', 'creationTime'];
+
   constructor(private problemManagementConnectorService: ProblemManagementConnectorService, private dialog: MatDialog) {
   }
 
   ngOnInit() {
+
+    // run initial calls
+    let listProblemsRequest = new ListProblemsRequest();
+    this.problemManagementConnectorService.listProblems(listProblemsRequest, ProblemsTableComponent.interpretListProblemsResponse, this);
   }
 
   ngAfterViewInit() {
@@ -112,40 +73,68 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
     }
   }
 
-  /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
+  // private callback methods for api calls
+  private static interpretListProblemsResponse(response: ListProblemsResponse, self: ProblemsTableComponent): void {
+    self.dataSource.data = response.toObject().problemsList;
   }
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  toggleAllRows() {
-    if (this.isAllSelected()) {
-      this.selection.clear();
-      return;
-    }
-
-    this.selection.select(...this.dataSource.data);
+  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: ProblemsTableComponent): void {
+    self.dataSource.data.push(response.getProblem()?.toObject()!);
   }
 
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: ProblemElement): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.identificationNumber + 1}`;
+  private static interpretUpdateProblemResponse(response: UpdateProblemResponse, self: ProblemsTableComponent): void {
+    self.dataSource.data = self.dataSource.data.filter(e => e.identificationNumber != response.getProblem()?.getIdentificationNumber());
+    self.dataSource.data.push(response.getProblem()?.toObject()!);
+  }
+
+  private static interpretRemoveProblemResponse(id: string, self: ProblemsTableComponent): void {
+    self.dataSource.data = self.dataSource.data.filter(e => e.identificationNumber != id);
   }
 
   // button methods
   openCreateProblemDialog() {
     const dialogRef = this.dialog.open(AddProblemComponent);
-    /*dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.problemManagementConnectorService.createProblem(ProblemsTableComponent.buildCreateProblemRequest(result), ProblemsTableComponent.interpretCreateProblemResponse, this);
       } else {
         return;
       }
-    })*/
+    })
+  }
+
+  //TODO
+
+  openUpdateBuildingDialog(building: GrpcBuilding.AsObject) {
+    const dialogRef = this.dialog.open(EditBuildingComponent, {data: building});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.event == 'ok') {
+        this.buildingManagementConnector.updateBuilding(BuildingsTableComponent.buildUpdateBuildingRequest(result), BuildingsTableComponent.interpretUpdateBuildingResponse, this);
+      } else {
+        return;
+      }
+    })
+  }
+
+  openRemoveBuildingDialog(identificationNumber: string) {
+    const dialogRef = this.dialog.open(RemoveComponent, {data: identificationNumber});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.event == 'ok') {
+        this.buildingManagementConnector.removeBuilding(BuildingsTableComponent.buildRemoveRequest(result), BuildingsTableComponent.interpretRemoveBuildingResponse, this);
+      } else {
+        return;
+      }
+    })
+  }
+
+  openFilterBuildingsDialog() {
+    const dialogRef = this.dialog.open(FilterBuildingsComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.event == 'ok') {
+        this.buildingManagementConnector.listBuildings(BuildingsTableComponent.buildListBuildingsRequest(result), BuildingsTableComponent.interpretListBuildingsResponse, this);
+      } else {
+        return;
+      }
+    })
   }
 }
