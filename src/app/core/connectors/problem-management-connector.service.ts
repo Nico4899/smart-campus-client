@@ -1,13 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  CreateBuildingRequest, CreateBuildingResponse,
-  GetBuildingRequest, GetBuildingResponse,
-  ListNotificationsRequest,
-  ListNotificationsResponse, RemoveRequest, RemoveResponse, UpdateBuildingRequest, UpdateBuildingResponse
-} from "../../../proto/generated/building_management_pb";
-import {BuildingComponent} from "../../modules/building/building.component";
-import {RoomComponent} from "../../modules/room/room.component";
-import {ComponentComponent} from "../../modules/component/component.component";
+import {RemoveRequest, RemoveResponse} from "../../../proto/generated/building_management_pb";
 import {RpcError} from "grpc-web";
 import {
   CreateProblemRequest, CreateProblemResponse,
@@ -15,14 +7,10 @@ import {
   ListProblemsRequest,
   ListProblemsResponse, UpdateProblemRequest, UpdateProblemResponse
 } from "../../../proto/generated/problem_management_pb";
-import {ProblemsComponent} from "../../modules/problems/problems.component";
-import {BuildingManagementClient} from "../../../proto/generated/Building_managementServiceClientPb";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {environment} from "../../../environments/environment";
 import {ProblemManagementClient} from "../../../proto/generated/Problem_managementServiceClientPb";
-import {ProblemComponent} from "../../modules/problem/problem.component";
 import {ProblemsTableComponent} from "../../shared/tables/problems-table/problems-table.component";
-import {BuildingsTableComponent} from "../../shared/tables/buildings-table/buildings-table.component";
 
 @Injectable({
   providedIn: 'root'

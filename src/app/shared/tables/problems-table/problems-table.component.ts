@@ -26,6 +26,7 @@ import {
 } from "../../../../proto/generated/building_management_pb";
 import {FilterProblemsComponent} from "../../dialogs/filter-problems/filter-problems.component";
 import {EditProblemComponent} from "../../dialogs/edit-problem/edit-problem.component";
+import {MatAccordion} from "@angular/material/expansion";
 
 @Component({
   selector: 'app-problems-table',
@@ -51,11 +52,12 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatAccordion) accordion!: MatAccordion;
 
   // search values from search bars
   searchKey: string = "";
 
-  displayedColumns: string[] = ['identificationNumber', 'reporter', 'title', 'state', 'creationTime'];
+  displayedColumns: string[] = ['identificationNumber', 'reporter', 'title', 'state', 'creationTime', 'edit_problem', 'delete_problem'];
 
   constructor(private problemManagementConnector: ProblemManagementConnectorService, private dialog: MatDialog) {
   }
@@ -85,10 +87,6 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
     self.dataSource.data = response.toObject().problemsList;
   }
 
-  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: ProblemsTableComponent): void {
-    self.dataSource.data.push(response.getProblem()?.toObject()!);
-  }
-
   private static interpretUpdateProblemResponse(response: UpdateProblemResponse, self: ProblemsTableComponent): void {
     self.dataSource.data = self.dataSource.data.filter(e => e.identificationNumber != response.getProblem()?.getIdentificationNumber());
     self.dataSource.data.push(response.getProblem()?.toObject()!);
@@ -98,19 +96,7 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
     self.dataSource.data = self.dataSource.data.filter(e => e.identificationNumber != id);
   }
 
-  // button methods
-  openCreateProblemDialog() {
-    const dialogRef = this.dialog.open(AddProblemComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      if (result.event == 'ok') {
-        this.problemManagementConnector.createProblem(ProblemsTableComponent.buildCreateProblemRequest(result), ProblemsTableComponent.interpretCreateProblemResponse, this);
-      } else {
-        return;
-      }
-    })
-  }
-
-  openUpdateBuildingDialog(problem: GrpcProblem.AsObject) {
+  openUpdateProblemDialog(problem: GrpcProblem.AsObject) {
     const dialogRef = this.dialog.open(EditProblemComponent, {data: problem});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
@@ -121,7 +107,7 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
     })
   }
 
-  openRemoveBuildingDialog(identificationNumber: string) {
+  openRemoveProblemDialog(identificationNumber: string) {
     const dialogRef = this.dialog.open(RemoveComponent, {data: identificationNumber});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
@@ -141,16 +127,6 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
         return;
       }
     })
-  }
-
-  // private utils
-  private static buildCreateProblemRequest(result: any): CreateProblemRequest {
-    let request = new CreateProblemRequest();
-    request.setProblemTitle(result.data.problemTitle);
-    request.setProblemDescription(result.data.problemDescription);
-    request.setProblemReporter(result.data.problemReporter);
-    request.setReferenceIdentificationNumber(result.data.referenceIdentificationNumber);
-    return request;
   }
 
   private static buildUpdateProblemRequest(result: any): UpdateProblemRequest {
