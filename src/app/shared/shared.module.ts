@@ -53,6 +53,7 @@ import { FilterRoomsComponent } from './dialogs/filter-rooms/filter-rooms.compon
 import { FilterProblemsComponent } from './dialogs/filter-problems/filter-problems.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { RemoveComponent } from './dialogs/remove/remove.component';
+import {MatExpansionModule} from "@angular/material/expansion";
 
 @NgModule({
   declarations: [
@@ -102,28 +103,29 @@ import { RemoveComponent } from './dialogs/remove/remove.component';
     FavoriteRoomsTableComponent,
     FavoriteComponentsTableComponent
   ],
-    imports: [
-        CommonModule,
-        MatToolbarModule,
-        MatDividerModule,
-        MatIconModule,
-        MatButtonModule,
-        FlexModule,
-        MatMenuModule,
-        MatListModule,
-        RouterModule,
-        MatSlideToggleModule,
-        MatTableModule,
-        MatFormFieldModule,
-        FormsModule,
-        MatPaginatorModule,
-        MatInputModule,
-        MatSortModule,
-        MatDialogModule,
-        MatSelectModule,
-        ReactiveFormsModule,
-        MatCheckboxModule
-    ]
+  imports: [
+    CommonModule,
+    MatToolbarModule,
+    MatDividerModule,
+    MatIconModule,
+    MatButtonModule,
+    FlexModule,
+    MatMenuModule,
+    MatListModule,
+    RouterModule,
+    MatSlideToggleModule,
+    MatTableModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatPaginatorModule,
+    MatInputModule,
+    MatSortModule,
+    MatDialogModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    MatExpansionModule
+  ]
 })
 export class SharedModule {
 }

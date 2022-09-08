@@ -5,85 +5,52 @@
       <mat-icon>filter_list</mat-icon>
     </button> <!-- implement edit, remove and add, and add hide if roles do not fit-->
   </mat-form-field>
-  <button mat-icon-button color="primary" (click)="openCreateProblemDialog()">
-    <mat-icon>add</mat-icon>
-  </button>
 </div>
 
 <div class="mat-elevation-z8">
-
-  <table mat-table [dataSource]="dataSource" matSort>
-
-    <!-- ID Column -->
-    <ng-container matColumnDef="identificationNumber">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
-      <td mat-cell *matCellDef="let problem"> {{problem.identificationNumber}} </td>
+  <table mat-table
+         [dataSource]="dataSource" multiTemplateDataRows
+         matSort>
+    <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+      <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+      <td mat-cell *matCellDef="let problem"> {{problem[column]}} </td>
     </ng-container>
 
-    <!-- User Column -->
-    <ng-container matColumnDef="reporter">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> User </th>
-      <td mat-cell *matCellDef="let problem"> {{problem.reporter}} </td>
-    </ng-container>
-
-    <!-- Title + Description Column -->
-    <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
-      <td mat-cell *matCellDef="let problem"> {{problem.title}} </td>
-    </ng-container>
-
-    <!-- State Column -->
-    <ng-container matColumnDef="state">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> State </th>
+    <ng-container matColumnDef="Expand">
+      <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
       <td mat-cell *matCellDef="let problem">
-        <button [matMenuTriggerFor]="belowMenu">
-          {{problem.state}}
-        </button>
-        <mat-menu #belowMenu="matMenu" yPosition="below">
-          <button mat-button>OPEN</button>
-          <button mat-button>ACCEPT</button>
-          <button mat-button>IN PROGRESS</button>
-          <button mat-button>ON HOLD</button>
-          <button mat-button>DECLINED</button>
-        </mat-menu>
-      </td>
-    </ng-container>
-
-    <!-- Created Column -->
-    <ng-container matColumnDef="creationTime">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Created </th>
-      <td mat-cell *matCellDef="let problem"> {{problem.creationTime}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="delete_problem">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let problem">
-        <button mat-icon-button color="warn" (click)="openRemoveProblemDialog(problem.identificationNumber)">
-          <mat-icon>delete</mat-icon>
+        <button mat-icon-button aria-label="expand row" (click)="(expandedProblem = expandedProblem === problem ? null : problem); $event.stopPropagation()">
+          <mat-icon *ngIf="expandedProblem !== problem">keyboard_arrow_down</mat-icon>
+          <mat-icon *ngIf="expandedProblem === problem">keyboard_arrow_up</mat-icon>
         </button>
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="edit_problem">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let problem">
-        <button mat-icon-button (click)="openUpdateProblemDialog(problem)">
-          <!-- insert dialog here and update call + set it to hidden when we have authentication running -->
-          <mat-icon>edit</mat-icon>
-        </button>
+    <!-- Expanded Description Column - The detail row is made up of this one column that spans across all columns -->
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let problem" [attr.colspan]="columnsToDisplayWithExpand.length">
+        <div class="problem-detail"
+             [@detailExpand]="problem == expandedProblem ? 'expanded' : 'collapsed'">
+          <div class="problem-description">{{problem.description}}</div>
+        </div>
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let problem; columns: displayedColumns;"
-        >
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+    <tr mat-row *matRowDef="let problem; columns: columnsToDisplayWithExpand;"
+        class="example-element-row"
+        [class.example-expanded-row]="expandedProblem === problem"
+        (click)="expandedProblem = expandedProblem === problem ? null : problem">
     </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
 
     <!-- Row shown when there is no matching data. -->
     <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      <td class="mat-cell" colspan="9">No data matching the filter "{{input.value}}"</td>
     </tr>
   </table>
-
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[10, 15, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of problems">
+  </mat-paginator>
 </div>

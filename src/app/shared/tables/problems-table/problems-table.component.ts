@@ -6,58 +6,44 @@ import {MatDialog} from "@angular/material/dialog";
 import {
   ProblemManagementConnectorService
 } from "../../../core/connectors/problem-management-connector.service";
-import {SelectionModel} from "@angular/cdk/collections";
-import {
-  AddProblemComponent
-} from "../../dialogs/add-problem/add-problem.component";
-import {EditBuildingComponent} from "../../dialogs/edit-building/edit-building.component";
 import {RemoveComponent} from "../../dialogs/remove/remove.component";
-import {FilterBuildingsComponent} from "../../dialogs/filter-buildings/filter-buildings.component";
 import {
   ListProblemsRequest,
   ListProblemsResponse,
   GrpcProblem,
-  CreateProblemResponse, UpdateProblemResponse, UpdateProblemRequest, CreateProblemRequest, GrpcFilterValueSelection
+  UpdateProblemResponse, UpdateProblemRequest, GrpcFilterValueSelection
 } from "../../../../proto/generated/problem_management_pb";
-import {
-  CreateBuildingRequest, GrpcBuildingFilterValueSelection,
-  GrpcFloors,
-  GrpcGeographicalLocation, ListBuildingsRequest, RemoveRequest, UpdateBuildingRequest
-} from "../../../../proto/generated/building_management_pb";
+import {RemoveRequest} from "../../../../proto/generated/building_management_pb";
 import {FilterProblemsComponent} from "../../dialogs/filter-problems/filter-problems.component";
 import {EditProblemComponent} from "../../dialogs/edit-problem/edit-problem.component";
-import {MatAccordion} from "@angular/material/expansion";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-problems-table',
   templateUrl: './problems-table.component.html',
-  styleUrls: ['./problems-table.component.css']
+  styleUrls: ['./problems-table.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class ProblemsTableComponent implements AfterViewInit, OnInit {
-  /*
-  private State state;
-  private String title;
-  private String description;
-  private Timestamp creationTime;
-  private Timestamp lastModified;
-  private String reporter;
-  private String identificationNumber;
-  private String referenceIdentificationNumber;
-  private String notificationIdentificationNumber;
-   */
-
 
   // datasource containing provided data from the api, to be displayed in the html datatables, as well as the current selected object
   dataSource: MatTableDataSource<GrpcProblem.AsObject> = new MatTableDataSource<GrpcProblem.AsObject>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatAccordion) accordion!: MatAccordion;
 
   // search values from search bars
   searchKey: string = "";
 
-  displayedColumns: string[] = ['identificationNumber', 'reporter', 'title', 'state', 'creationTime', 'edit_problem', 'delete_problem'];
+  columnsToDisplay: string[] = ['#', 'Title', 'Reporter', 'Actions', 'Created', 'Modified', 'Edit', 'Delete'];
+  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'Expand'];
+  expandedProblem!: string;
 
   constructor(private problemManagementConnector: ProblemManagementConnectorService, private dialog: MatDialog) {
   }
