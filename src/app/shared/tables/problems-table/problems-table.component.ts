@@ -17,8 +17,15 @@ import {
   ListProblemsRequest,
   ListProblemsResponse,
   GrpcProblem,
-  CreateProblemResponse, UpdateProblemResponse
+  CreateProblemResponse, UpdateProblemResponse, UpdateProblemRequest, CreateProblemRequest, GrpcFilterValueSelection
 } from "../../../../proto/generated/problem_management_pb";
+import {
+  CreateBuildingRequest, GrpcBuildingFilterValueSelection,
+  GrpcFloors,
+  GrpcGeographicalLocation, ListBuildingsRequest, RemoveRequest, UpdateBuildingRequest
+} from "../../../../proto/generated/building_management_pb";
+import {FilterProblemsComponent} from "../../dialogs/filter-problems/filter-problems.component";
+import {EditProblemComponent} from "../../dialogs/edit-problem/edit-problem.component";
 
 @Component({
   selector: 'app-problems-table',
@@ -50,14 +57,14 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
 
   displayedColumns: string[] = ['identificationNumber', 'reporter', 'title', 'state', 'creationTime'];
 
-  constructor(private problemManagementConnectorService: ProblemManagementConnectorService, private dialog: MatDialog) {
+  constructor(private problemManagementConnector: ProblemManagementConnectorService, private dialog: MatDialog) {
   }
 
   ngOnInit() {
 
     // run initial calls
     let listProblemsRequest = new ListProblemsRequest();
-    this.problemManagementConnectorService.listProblems(listProblemsRequest, ProblemsTableComponent.interpretListProblemsResponse, this);
+    this.problemManagementConnector.listProblems(listProblemsRequest, ProblemsTableComponent.interpretListProblemsResponse, this);
   }
 
   ngAfterViewInit() {
@@ -96,20 +103,18 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
     const dialogRef = this.dialog.open(AddProblemComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
-        this.problemManagementConnectorService.createProblem(ProblemsTableComponent.buildCreateProblemRequest(result), ProblemsTableComponent.interpretCreateProblemResponse, this);
+        this.problemManagementConnector.createProblem(ProblemsTableComponent.buildCreateProblemRequest(result), ProblemsTableComponent.interpretCreateProblemResponse, this);
       } else {
         return;
       }
     })
   }
 
-  //TODO
-
-  openUpdateBuildingDialog(building: GrpcBuilding.AsObject) {
-    const dialogRef = this.dialog.open(EditBuildingComponent, {data: building});
+  openUpdateBuildingDialog(problem: GrpcProblem.AsObject) {
+    const dialogRef = this.dialog.open(EditProblemComponent, {data: problem});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
-        this.buildingManagementConnector.updateBuilding(BuildingsTableComponent.buildUpdateBuildingRequest(result), BuildingsTableComponent.interpretUpdateBuildingResponse, this);
+        this.problemManagementConnector.updateProblem(ProblemsTableComponent.buildUpdateProblemRequest(result), ProblemsTableComponent.interpretUpdateProblemResponse, this);
       } else {
         return;
       }
@@ -120,21 +125,52 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
     const dialogRef = this.dialog.open(RemoveComponent, {data: identificationNumber});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
-        this.buildingManagementConnector.removeBuilding(BuildingsTableComponent.buildRemoveRequest(result), BuildingsTableComponent.interpretRemoveBuildingResponse, this);
+        this.problemManagementConnector.removeProblem(ProblemsTableComponent.buildRemoveRequest(result), ProblemsTableComponent.interpretRemoveProblemResponse, this);
       } else {
         return;
       }
     })
   }
 
-  openFilterBuildingsDialog() {
-    const dialogRef = this.dialog.open(FilterBuildingsComponent);
+  openFilterProblemsDialog() {
+    const dialogRef = this.dialog.open(FilterProblemsComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
-        this.buildingManagementConnector.listBuildings(BuildingsTableComponent.buildListBuildingsRequest(result), BuildingsTableComponent.interpretListBuildingsResponse, this);
+        this.problemManagementConnector.listProblems(ProblemsTableComponent.buildListProblemsRequest(result), ProblemsTableComponent.interpretListProblemsResponse, this);
       } else {
         return;
       }
     })
+  }
+
+  // private utils
+  private static buildCreateProblemRequest(result: any): CreateProblemRequest {
+    let request = new CreateProblemRequest();
+    request.setProblemTitle(result.data.problemTitle);
+    request.setProblemDescription(result.data.problemDescription);
+    request.setProblemReporter(result.data.problemReporter);
+    request.setReferenceIdentificationNumber(result.data.referenceIdentificationNumber);
+    return request;
+  }
+
+  private static buildUpdateProblemRequest(result: any): UpdateProblemRequest {
+    let request = new UpdateProblemRequest();
+    request.setProblemTitle(result.data.problemTitle);
+    request.setProblemDescription(result.data.problemDescription);
+    return request;
+  }
+
+  private static buildRemoveRequest(result: any): RemoveRequest {
+    let request = new RemoveRequest();
+    request.setIdentificationNumber(result.data.identificationNumber);
+    return request;
+  }
+
+  public static buildListProblemsRequest(result: any): ListProblemsRequest {
+    let request = new ListProblemsRequest();
+    let selection = new GrpcFilterValueSelection();
+    selection.setStatesList(result.data.states);
+    request.setGrpcFilterValueSelection(selection);
+    return request;
   }
 }
