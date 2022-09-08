@@ -1,5 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AuthServiceService} from "../../../core/authentication/auth-service.service";
+import {AppComponent} from "../../../app.component";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -9,11 +11,13 @@ import {AuthServiceService} from "../../../core/authentication/auth-service.serv
 export class HeaderComponent implements OnInit {
 
   isDark: boolean = false;
+  translateService: TranslateService;
 
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
   @Output() toggleDarkModeForMe: EventEmitter<any> = new EventEmitter();
 
-  constructor(private readonly authService: AuthServiceService) {
+  constructor(private readonly authService: AuthServiceService, translateService: TranslateService) {
+    this.translateService = translateService;
   }
 
   ngOnInit(): void {
@@ -38,5 +42,9 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  useLanguage(language: string): void {
+    this.translateService.use(language);
   }
 }
