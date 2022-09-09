@@ -3,7 +3,7 @@
 
 # variables, set out directory as wished, keep ts gen path as given
 # change to your absolute dir
-ABSOLUTE_DIR="C:\Users\basti\Desktop\ui-smartcampus"
+ABSOLUTE_DIR="C:\Users\basti\Desktop\SmartCampus\uismartcampus"
 PROTOC_OUT_DIR="${ABSOLUTE_DIR}/src/proto/generated"
 
 # create out dir

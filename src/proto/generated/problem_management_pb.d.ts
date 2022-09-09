@@ -307,6 +307,11 @@ export class GrpcProblem extends jspb.Message {
   getReferenceIdentificationNumber(): string;
   setReferenceIdentificationNumber(value: string): GrpcProblem;
 
+  getLastModified(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastModified(value?: google_protobuf_timestamp_pb.Timestamp): GrpcProblem;
+  hasLastModified(): boolean;
+  clearLastModified(): GrpcProblem;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GrpcProblem.AsObject;
   static toObject(includeInstance: boolean, msg: GrpcProblem): GrpcProblem.AsObject;
@@ -324,6 +329,7 @@ export namespace GrpcProblem {
     problemReporter: string,
     creationTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     referenceIdentificationNumber: string,
+    lastModified?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -347,7 +353,7 @@ export namespace GrpcFilterValueSelection {
   }
 }
 
-export enum GrpcProblemState { 
+export enum GrpcProblemState {
   UNKNOWN_PROBLEM_STATE = 0,
   ACCEPTED = 1,
   DECLINED = 2,
@@ -355,7 +361,7 @@ export enum GrpcProblemState {
   OPEN = 4,
   CLOSED = 5,
 }
-export enum GrpcStateOperation { 
+export enum GrpcStateOperation {
   UNKNOWN_STATE_OPERATION = 0,
   ACCEPT = 1,
   CLOSE = 2,

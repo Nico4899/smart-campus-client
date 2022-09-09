@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import {RemoveRequest, RemoveResponse} from "../../../proto/generated/building_management_pb";
 import {RpcError} from "grpc-web";
 import {
+  ChangeStateRequest, ChangeStateResponse,
   CreateProblemRequest, CreateProblemResponse,
-  GetProblemRequest, GetProblemResponse,
+  GetProblemRequest, GetProblemResponse, ListProblemsForUserRequest,
   ListProblemsRequest,
   ListProblemsResponse, UpdateProblemRequest, UpdateProblemResponse
 } from "../../../proto/generated/problem_management_pb";
@@ -33,16 +34,17 @@ export class ProblemManagementConnectorService {
     });
   }
 
-  async getProblem(request: GetProblemRequest, callback: (response: GetProblemResponse, self: ProblemsTableComponent) => void, self: ProblemsTableComponent) {
-    this.client.getProblem(request, {}, (error: RpcError, response: GetProblemResponse) => {
+  async listProblemsForUser(request: ListProblemsForUserRequest, callback: (response: ListProblemsResponse, self: ProblemsTableComponent) => void, self: ProblemsTableComponent) {
+    this.client.listProblemsForUser(request, {}, (error: RpcError, response: ListProblemsResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
         callback(response, self);
       }
-    })
+    });
   }
 
+  // TODO falsche stelle
   async createProblem(request: CreateProblemRequest, callback: (response: CreateProblemResponse, self: ProblemsTableComponent) => void, self: ProblemsTableComponent) {
     this.client.createProblem(request, {}, (error: RpcError, response: CreateProblemResponse) => {
       if (error) {
@@ -72,4 +74,17 @@ export class ProblemManagementConnectorService {
       }
     })
   }
+
+  async changeState(request: ChangeStateRequest, callback: (response: ChangeStateResponse, self: ProblemsTableComponent) => void, self: ProblemsTableComponent) {
+    this.client.changeState(request, {}, (error: RpcError, response: ChangeStateResponse) => {
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
+      }
+    })
+  }
+
+
+
 }

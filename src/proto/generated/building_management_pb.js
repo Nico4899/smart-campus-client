@@ -4071,7 +4071,8 @@ proto.edu.kit.tm.cm.proto.CreateBuildingRequest.toObject = function(includeInsta
     buildingNumber: jspb.Message.getFieldWithDefault(msg, 2, ""),
     campusLocation: jspb.Message.getFieldWithDefault(msg, 3, 0),
     grpcGeographicalLocation: (f = msg.getGrpcGeographicalLocation()) && proto.edu.kit.tm.cm.proto.GrpcGeographicalLocation.toObject(includeInstance, f),
-    grpcFloors: (f = msg.getGrpcFloors()) && proto.edu.kit.tm.cm.proto.GrpcFloors.toObject(includeInstance, f)
+    grpcFloors: (f = msg.getGrpcFloors()) && proto.edu.kit.tm.cm.proto.GrpcFloors.toObject(includeInstance, f),
+    buildingAddress: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -4129,6 +4130,10 @@ proto.edu.kit.tm.cm.proto.CreateBuildingRequest.deserializeBinaryFromReader = fu
       var value = new proto.edu.kit.tm.cm.proto.GrpcFloors;
       reader.readMessage(value,proto.edu.kit.tm.cm.proto.GrpcFloors.deserializeBinaryFromReader);
       msg.setGrpcFloors(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBuildingAddress(value);
       break;
     default:
       reader.skipField();
@@ -4194,6 +4199,13 @@ proto.edu.kit.tm.cm.proto.CreateBuildingRequest.serializeBinaryToWriter = functi
       6,
       f,
       proto.edu.kit.tm.cm.proto.GrpcFloors.serializeBinaryToWriter
+    );
+  }
+  f = message.getBuildingAddress();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
     );
   }
 };
@@ -4324,6 +4336,24 @@ proto.edu.kit.tm.cm.proto.CreateBuildingRequest.prototype.clearGrpcFloors = func
  */
 proto.edu.kit.tm.cm.proto.CreateBuildingRequest.prototype.hasGrpcFloors = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional string building_address = 7;
+ * @return {string}
+ */
+proto.edu.kit.tm.cm.proto.CreateBuildingRequest.prototype.getBuildingAddress = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.edu.kit.tm.cm.proto.CreateBuildingRequest} returns this
+ */
+proto.edu.kit.tm.cm.proto.CreateBuildingRequest.prototype.setBuildingAddress = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
@@ -5620,7 +5650,8 @@ proto.edu.kit.tm.cm.proto.UpdateBuildingRequest.toObject = function(includeInsta
     campusLocation: jspb.Message.getFieldWithDefault(msg, 3, 0),
     identificationNumber: jspb.Message.getFieldWithDefault(msg, 4, ""),
     grpcGeographicalLocation: (f = msg.getGrpcGeographicalLocation()) && proto.edu.kit.tm.cm.proto.GrpcGeographicalLocation.toObject(includeInstance, f),
-    grpcFloors: (f = msg.getGrpcFloors()) && proto.edu.kit.tm.cm.proto.GrpcFloors.toObject(includeInstance, f)
+    grpcFloors: (f = msg.getGrpcFloors()) && proto.edu.kit.tm.cm.proto.GrpcFloors.toObject(includeInstance, f),
+    buildingAddress: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -5682,6 +5713,10 @@ proto.edu.kit.tm.cm.proto.UpdateBuildingRequest.deserializeBinaryFromReader = fu
       var value = new proto.edu.kit.tm.cm.proto.GrpcFloors;
       reader.readMessage(value,proto.edu.kit.tm.cm.proto.GrpcFloors.deserializeBinaryFromReader);
       msg.setGrpcFloors(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBuildingAddress(value);
       break;
     default:
       reader.skipField();
@@ -5754,6 +5789,13 @@ proto.edu.kit.tm.cm.proto.UpdateBuildingRequest.serializeBinaryToWriter = functi
       6,
       f,
       proto.edu.kit.tm.cm.proto.GrpcFloors.serializeBinaryToWriter
+    );
+  }
+  f = message.getBuildingAddress();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
     );
   }
 };
@@ -5902,6 +5944,24 @@ proto.edu.kit.tm.cm.proto.UpdateBuildingRequest.prototype.clearGrpcFloors = func
  */
 proto.edu.kit.tm.cm.proto.UpdateBuildingRequest.prototype.hasGrpcFloors = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional string building_address = 7;
+ * @return {string}
+ */
+proto.edu.kit.tm.cm.proto.UpdateBuildingRequest.prototype.getBuildingAddress = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.edu.kit.tm.cm.proto.UpdateBuildingRequest} returns this
+ */
+proto.edu.kit.tm.cm.proto.UpdateBuildingRequest.prototype.setBuildingAddress = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
@@ -7387,7 +7447,8 @@ proto.edu.kit.tm.cm.proto.GrpcNotification.toObject = function(includeInstance, 
     identificationNumber: jspb.Message.getFieldWithDefault(msg, 2, ""),
     parentIdentificationNumber: jspb.Message.getFieldWithDefault(msg, 3, ""),
     notificationTitle: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    notificationDescription: jspb.Message.getFieldWithDefault(msg, 5, "")
+    notificationDescription: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    lastModified: (f = msg.getLastModified()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -7444,6 +7505,11 @@ proto.edu.kit.tm.cm.proto.GrpcNotification.deserializeBinaryFromReader = functio
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setNotificationDescription(value);
+      break;
+    case 6:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setLastModified(value);
       break;
     default:
       reader.skipField();
@@ -7508,6 +7574,14 @@ proto.edu.kit.tm.cm.proto.GrpcNotification.serializeBinaryToWriter = function(me
     writer.writeString(
       5,
       f
+    );
+  }
+  f = message.getLastModified();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -7619,6 +7693,43 @@ proto.edu.kit.tm.cm.proto.GrpcNotification.prototype.getNotificationDescription 
  */
 proto.edu.kit.tm.cm.proto.GrpcNotification.prototype.setNotificationDescription = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp last_modified = 6;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.edu.kit.tm.cm.proto.GrpcNotification.prototype.getLastModified = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 6));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.edu.kit.tm.cm.proto.GrpcNotification} returns this
+*/
+proto.edu.kit.tm.cm.proto.GrpcNotification.prototype.setLastModified = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.edu.kit.tm.cm.proto.GrpcNotification} returns this
+ */
+proto.edu.kit.tm.cm.proto.GrpcNotification.prototype.clearLastModified = function() {
+  return this.setLastModified(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.edu.kit.tm.cm.proto.GrpcNotification.prototype.hasLastModified = function() {
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
@@ -7990,7 +8101,8 @@ proto.edu.kit.tm.cm.proto.GrpcBuilding.toObject = function(includeInstance, msg)
     campusLocation: jspb.Message.getFieldWithDefault(msg, 3, 0),
     identificationNumber: jspb.Message.getFieldWithDefault(msg, 4, ""),
     grpcGeographicalLocation: (f = msg.getGrpcGeographicalLocation()) && proto.edu.kit.tm.cm.proto.GrpcGeographicalLocation.toObject(includeInstance, f),
-    grpcFloors: (f = msg.getGrpcFloors()) && proto.edu.kit.tm.cm.proto.GrpcFloors.toObject(includeInstance, f)
+    grpcFloors: (f = msg.getGrpcFloors()) && proto.edu.kit.tm.cm.proto.GrpcFloors.toObject(includeInstance, f),
+    buildingAddress: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -8052,6 +8164,10 @@ proto.edu.kit.tm.cm.proto.GrpcBuilding.deserializeBinaryFromReader = function(ms
       var value = new proto.edu.kit.tm.cm.proto.GrpcFloors;
       reader.readMessage(value,proto.edu.kit.tm.cm.proto.GrpcFloors.deserializeBinaryFromReader);
       msg.setGrpcFloors(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBuildingAddress(value);
       break;
     default:
       reader.skipField();
@@ -8124,6 +8240,13 @@ proto.edu.kit.tm.cm.proto.GrpcBuilding.serializeBinaryToWriter = function(messag
       6,
       f,
       proto.edu.kit.tm.cm.proto.GrpcFloors.serializeBinaryToWriter
+    );
+  }
+  f = message.getBuildingAddress();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
     );
   }
 };
@@ -8272,6 +8395,24 @@ proto.edu.kit.tm.cm.proto.GrpcBuilding.prototype.clearGrpcFloors = function() {
  */
 proto.edu.kit.tm.cm.proto.GrpcBuilding.prototype.hasGrpcFloors = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional string building_address = 7;
+ * @return {string}
+ */
+proto.edu.kit.tm.cm.proto.GrpcBuilding.prototype.getBuildingAddress = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.edu.kit.tm.cm.proto.GrpcBuilding} returns this
+ */
+proto.edu.kit.tm.cm.proto.GrpcBuilding.prototype.setBuildingAddress = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 

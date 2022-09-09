@@ -423,6 +423,9 @@ export class CreateBuildingRequest extends jspb.Message {
   hasGrpcFloors(): boolean;
   clearGrpcFloors(): CreateBuildingRequest;
 
+  getBuildingAddress(): string;
+  setBuildingAddress(value: string): CreateBuildingRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateBuildingRequest.AsObject;
   static toObject(includeInstance: boolean, msg: CreateBuildingRequest): CreateBuildingRequest.AsObject;
@@ -438,6 +441,7 @@ export namespace CreateBuildingRequest {
     campusLocation: GrpcCampusLocation,
     grpcGeographicalLocation?: GrpcGeographicalLocation.AsObject,
     grpcFloors?: GrpcFloors.AsObject,
+    buildingAddress: string,
   }
 }
 
@@ -632,6 +636,9 @@ export class UpdateBuildingRequest extends jspb.Message {
   hasGrpcFloors(): boolean;
   clearGrpcFloors(): UpdateBuildingRequest;
 
+  getBuildingAddress(): string;
+  setBuildingAddress(value: string): UpdateBuildingRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateBuildingRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateBuildingRequest): UpdateBuildingRequest.AsObject;
@@ -648,6 +655,7 @@ export namespace UpdateBuildingRequest {
     identificationNumber: string,
     grpcGeographicalLocation?: GrpcGeographicalLocation.AsObject,
     grpcFloors?: GrpcFloors.AsObject,
+    buildingAddress: string,
   }
 }
 
@@ -863,6 +871,11 @@ export class GrpcNotification extends jspb.Message {
   getNotificationDescription(): string;
   setNotificationDescription(value: string): GrpcNotification;
 
+  getLastModified(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastModified(value?: google_protobuf_timestamp_pb.Timestamp): GrpcNotification;
+  hasLastModified(): boolean;
+  clearLastModified(): GrpcNotification;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GrpcNotification.AsObject;
   static toObject(includeInstance: boolean, msg: GrpcNotification): GrpcNotification.AsObject;
@@ -878,6 +891,7 @@ export namespace GrpcNotification {
     parentIdentificationNumber: string,
     notificationTitle: string,
     notificationDescription: string,
+    lastModified?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
@@ -948,6 +962,9 @@ export class GrpcBuilding extends jspb.Message {
   hasGrpcFloors(): boolean;
   clearGrpcFloors(): GrpcBuilding;
 
+  getBuildingAddress(): string;
+  setBuildingAddress(value: string): GrpcBuilding;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GrpcBuilding.AsObject;
   static toObject(includeInstance: boolean, msg: GrpcBuilding): GrpcBuilding.AsObject;
@@ -964,6 +981,7 @@ export namespace GrpcBuilding {
     identificationNumber: string,
     grpcGeographicalLocation?: GrpcGeographicalLocation.AsObject,
     grpcFloors?: GrpcFloors.AsObject,
+    buildingAddress: string,
   }
 }
 
@@ -1085,14 +1103,14 @@ export namespace GrpcBuildingFilterValueSelection {
   }
 }
 
-export enum GrpcCampusLocation { 
+export enum GrpcCampusLocation {
   UNKNOWN_CAMPUS_LOCATION = 0,
   NORTH_CAMPUS = 1,
   EAST_CAMPUS = 2,
   WEST_CAMPUS = 3,
   SOUTH_CAMPUS = 4,
 }
-export enum GrpcRoomType { 
+export enum GrpcRoomType {
   UNKNOWN_ROOM_TYPE = 0,
   RESTROOM = 1,
   RESTROOM_HANDICAPPED = 2,
@@ -1103,7 +1121,7 @@ export enum GrpcRoomType {
   SPORTS = 7,
   CAFETERIA = 8,
 }
-export enum GrpcComponentType { 
+export enum GrpcComponentType {
   UNKNOWN_COMPONENT_TYPE = 0,
   ELEVATOR = 1,
   STAIRS = 2,

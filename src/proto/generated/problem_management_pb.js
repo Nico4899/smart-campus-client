@@ -2482,7 +2482,8 @@ proto.edu.kit.tm.cm.proto.GrpcProblem.toObject = function(includeInstance, msg) 
     problemDescription: jspb.Message.getFieldWithDefault(msg, 4, ""),
     problemReporter: jspb.Message.getFieldWithDefault(msg, 5, ""),
     creationTime: (f = msg.getCreationTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    referenceIdentificationNumber: jspb.Message.getFieldWithDefault(msg, 7, "")
+    referenceIdentificationNumber: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    lastModified: (f = msg.getLastModified()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2547,6 +2548,11 @@ proto.edu.kit.tm.cm.proto.GrpcProblem.deserializeBinaryFromReader = function(msg
     case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setReferenceIdentificationNumber(value);
+      break;
+    case 8:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setLastModified(value);
       break;
     default:
       reader.skipField();
@@ -2625,6 +2631,14 @@ proto.edu.kit.tm.cm.proto.GrpcProblem.serializeBinaryToWriter = function(message
     writer.writeString(
       7,
       f
+    );
+  }
+  f = message.getLastModified();
+  if (f != null) {
+    writer.writeMessage(
+      8,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -2772,6 +2786,43 @@ proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.getReferenceIdentificationNumber
  */
 proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.setReferenceIdentificationNumber = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp last_modified = 8;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.getLastModified = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 8));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.edu.kit.tm.cm.proto.GrpcProblem} returns this
+*/
+proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.setLastModified = function(value) {
+  return jspb.Message.setWrapperField(this, 8, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.edu.kit.tm.cm.proto.GrpcProblem} returns this
+ */
+proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.clearLastModified = function() {
+  return this.setLastModified(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.hasLastModified = function() {
+  return jspb.Message.getField(this, 8) != null;
 };
 
 
