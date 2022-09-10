@@ -2,6 +2,41 @@ table {
   width: 100%;
 }
 
+.mat-column-identificationNumber {
+  width: 10%;
+  padding-left: 16px;
+}
+
+.mat-column-problemTitle {
+  width: 30%;
+  padding-left: 16px;
+  border-left: 1px solid;
+}
+
+.mat-column-problemReporter {
+  width: 10%;
+  padding-left: 16px;
+  border-left: 1px solid;
+}
+
+.mat-column-actions {
+  width: 10%;
+  padding-left: 16px;
+  border-left: 1px solid;
+}
+
+.mat-column-created_on {
+  width: 20%;
+  padding-left: 16px;
+  border-left: 1px solid;
+}
+
+.mat-column-modified_on {
+  width: 20%;
+  padding-left: 16px;
+  border-left: 1px solid;
+}
+
 .mat-form-field {
   font-size: 14px;
   width: 100%;
@@ -9,10 +44,6 @@ table {
 
 td, th {
   width: 25%;
-}
-
-th {
-  font-size: 10px;
 }
 
 .mat-row:hover {

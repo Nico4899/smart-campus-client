@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {RemoveRequest, RemoveResponse} from "../../../proto/generated/building_management_pb";
 import {RpcError} from "grpc-web";
 import {
+  ChangeStateRequest, ChangeStateResponse,
   CreateProblemRequest, CreateProblemResponse,
   GetProblemRequest, GetProblemResponse,
   ListProblemsRequest,
@@ -69,6 +70,16 @@ export class ProblemManagementConnectorService {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
         callback(request.getIdentificationNumber(), self);
+      }
+    })
+  }
+
+  async changeProblemState(request:ChangeStateRequest, callback: (response: ChangeStateResponse, self: ProblemsTableComponent) => void, self: ProblemsTableComponent) {
+    this.client.changeState(request, {}, (error: RpcError, response: ChangeStateResponse) => {
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
       }
     })
   }
