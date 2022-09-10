@@ -11,7 +11,7 @@ import {
   ListProblemsRequest,
   ListProblemsResponse,
   GrpcProblem,
-  UpdateProblemResponse, UpdateProblemRequest, GrpcFilterValueSelection
+  UpdateProblemResponse, UpdateProblemRequest, GrpcFilterValueSelection, ChangeStateRequest, ChangeStateResponse
 } from "../../../../proto/generated/problem_management_pb";
 import {RemoveRequest} from "../../../../proto/generated/building_management_pb";
 import {FilterProblemsComponent} from "../../dialogs/filter-problems/filter-problems.component";
@@ -41,8 +41,8 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
   // search values from search bars
   searchKey: string = "";
 
-  columnsToDisplay: string[] = ['#', 'Title', 'Reporter', 'Actions', 'Created', 'Modified', 'Edit', 'Delete'];
-  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'Expand'];
+  columnsToDisplay: string[] = ['identificationNumber', 'problemTitle', 'problemReporter', 'actions', 'created_on', 'modified_on', 'edit_problem', 'delete_problem'];
+  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedProblem!: string;
 
   constructor(private problemManagementConnector: ProblemManagementConnectorService, private dialog: MatDialog) {
@@ -68,6 +68,11 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
     }
   }
 
+  changeState(operation: any) {
+    this.problemManagementConnector.changeProblemState(
+      ProblemsTableComponent.buildChangeProblemStateRequest(operation), ProblemsTableComponent.interpretChangeProblemStateResponse, this);
+  }
+
   // private callback methods for api calls
   private static interpretListProblemsResponse(response: ListProblemsResponse, self: ProblemsTableComponent): void {
     self.dataSource.data = response.toObject().problemsList;
@@ -80,6 +85,10 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
 
   private static interpretRemoveProblemResponse(id: string, self: ProblemsTableComponent): void {
     self.dataSource.data = self.dataSource.data.filter(e => e.identificationNumber != id);
+  }
+
+  private static interpretChangeProblemStateResponse(response: ChangeStateResponse, self: ProblemsTableComponent) {
+    //TODO
   }
 
   openUpdateProblemDialog(problem: GrpcProblem.AsObject) {
@@ -128,11 +137,17 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
     return request;
   }
 
-  public static buildListProblemsRequest(result: any): ListProblemsRequest {
+  private static buildListProblemsRequest(result: any): ListProblemsRequest {
     let request = new ListProblemsRequest();
     let selection = new GrpcFilterValueSelection();
     selection.setStatesList(result.data.states);
     request.setGrpcFilterValueSelection(selection);
+    return request;
+  }
+
+  private static buildChangeProblemStateRequest(result: any): ChangeStateRequest {
+    let request = new ChangeStateRequest();
+    request.setGrpcStateOperation(result.data.stateOperation);
     return request;
   }
 }
