@@ -4,7 +4,7 @@ import {RpcError} from "grpc-web";
 import {
   ChangeStateRequest, ChangeStateResponse,
   CreateProblemRequest, CreateProblemResponse,
-  GetProblemRequest, GetProblemResponse,
+  GetProblemRequest, GetProblemResponse, ListProblemsForUserRequest,
   ListProblemsRequest,
   ListProblemsResponse, UpdateProblemRequest, UpdateProblemResponse
 } from "../../../proto/generated/problem_management_pb";
@@ -26,6 +26,16 @@ export class ProblemManagementConnectorService {
 
   async listProblems(request: ListProblemsRequest, callback: (response: ListProblemsResponse, self: ProblemsTableComponent) => void, self: ProblemsTableComponent) {
     this.client.listProblems(request, {}, (error: RpcError, response: ListProblemsResponse) => {
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(response, self);
+      }
+    });
+  }
+
+  async listProblemsForUser(request: ListProblemsForUserRequest, callback: (response: ListProblemsResponse, self: ProblemsTableComponent) => void, self: ProblemsTableComponent) {
+    this.client.listProblemsForUser(request, {}, (error: RpcError, response: ListProblemsResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
