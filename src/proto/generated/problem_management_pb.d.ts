@@ -91,11 +91,6 @@ export class GetProblemResponse extends jspb.Message {
   hasProblem(): boolean;
   clearProblem(): GetProblemResponse;
 
-  getPossibleStateOperationsList(): Array<GrpcStateOperation>;
-  setPossibleStateOperationsList(value: Array<GrpcStateOperation>): GetProblemResponse;
-  clearPossibleStateOperationsList(): GetProblemResponse;
-  addPossibleStateOperations(value: GrpcStateOperation, index?: number): GetProblemResponse;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetProblemResponse.AsObject;
   static toObject(includeInstance: boolean, msg: GetProblemResponse): GetProblemResponse.AsObject;
@@ -107,7 +102,6 @@ export class GetProblemResponse extends jspb.Message {
 export namespace GetProblemResponse {
   export type AsObject = {
     problem?: GrpcProblem.AsObject,
-    possibleStateOperationsList: Array<GrpcStateOperation>,
   }
 }
 
@@ -312,6 +306,11 @@ export class GrpcProblem extends jspb.Message {
   hasLastModified(): boolean;
   clearLastModified(): GrpcProblem;
 
+  getPossibleStateOperationsList(): Array<GrpcStateOperation>;
+  setPossibleStateOperationsList(value: Array<GrpcStateOperation>): GrpcProblem;
+  clearPossibleStateOperationsList(): GrpcProblem;
+  addPossibleStateOperations(value: GrpcStateOperation, index?: number): GrpcProblem;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GrpcProblem.AsObject;
   static toObject(includeInstance: boolean, msg: GrpcProblem): GrpcProblem.AsObject;
@@ -330,6 +329,7 @@ export namespace GrpcProblem {
     creationTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     referenceIdentificationNumber: string,
     lastModified?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    possibleStateOperationsList: Array<GrpcStateOperation>,
   }
 }
 
@@ -353,7 +353,7 @@ export namespace GrpcFilterValueSelection {
   }
 }
 
-export enum GrpcProblemState {
+export enum GrpcProblemState { 
   UNKNOWN_PROBLEM_STATE = 0,
   ACCEPTED = 1,
   DECLINED = 2,
@@ -361,7 +361,7 @@ export enum GrpcProblemState {
   OPEN = 4,
   CLOSED = 5,
 }
-export enum GrpcStateOperation {
+export enum GrpcStateOperation { 
   UNKNOWN_STATE_OPERATION = 0,
   ACCEPT = 1,
   CLOSE = 2,

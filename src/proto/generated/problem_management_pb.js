@@ -129,7 +129,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.edu.kit.tm.cm.proto.GetProblemResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.edu.kit.tm.cm.proto.GetProblemResponse.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.edu.kit.tm.cm.proto.GetProblemResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -318,7 +318,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.edu.kit.tm.cm.proto.GrpcProblem = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.edu.kit.tm.cm.proto.GrpcProblem.repeatedFields_, null);
 };
 goog.inherits(proto.edu.kit.tm.cm.proto.GrpcProblem, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -972,13 +972,6 @@ proto.edu.kit.tm.cm.proto.GetProblemRequest.prototype.setIdentificationNumber = 
 
 
 
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.edu.kit.tm.cm.proto.GetProblemResponse.repeatedFields_ = [2];
-
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -1010,8 +1003,7 @@ proto.edu.kit.tm.cm.proto.GetProblemResponse.prototype.toObject = function(opt_i
  */
 proto.edu.kit.tm.cm.proto.GetProblemResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    problem: (f = msg.getProblem()) && proto.edu.kit.tm.cm.proto.GrpcProblem.toObject(includeInstance, f),
-    possibleStateOperationsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+    problem: (f = msg.getProblem()) && proto.edu.kit.tm.cm.proto.GrpcProblem.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1053,12 +1045,6 @@ proto.edu.kit.tm.cm.proto.GetProblemResponse.deserializeBinaryFromReader = funct
       reader.readMessage(value,proto.edu.kit.tm.cm.proto.GrpcProblem.deserializeBinaryFromReader);
       msg.setProblem(value);
       break;
-    case 2:
-      var values = /** @type {!Array<!proto.edu.kit.tm.cm.proto.GrpcStateOperation>} */ (reader.isDelimited() ? reader.readPackedEnum() : [reader.readEnum()]);
-      for (var i = 0; i < values.length; i++) {
-        msg.addPossibleStateOperations(values[i]);
-      }
-      break;
     default:
       reader.skipField();
       break;
@@ -1094,13 +1080,6 @@ proto.edu.kit.tm.cm.proto.GetProblemResponse.serializeBinaryToWriter = function(
       1,
       f,
       proto.edu.kit.tm.cm.proto.GrpcProblem.serializeBinaryToWriter
-    );
-  }
-  f = message.getPossibleStateOperationsList();
-  if (f.length > 0) {
-    writer.writePackedEnum(
-      2,
-      f
     );
   }
 };
@@ -1140,43 +1119,6 @@ proto.edu.kit.tm.cm.proto.GetProblemResponse.prototype.clearProblem = function()
  */
 proto.edu.kit.tm.cm.proto.GetProblemResponse.prototype.hasProblem = function() {
   return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * repeated GrpcStateOperation possible_state_operations = 2;
- * @return {!Array<!proto.edu.kit.tm.cm.proto.GrpcStateOperation>}
- */
-proto.edu.kit.tm.cm.proto.GetProblemResponse.prototype.getPossibleStateOperationsList = function() {
-  return /** @type {!Array<!proto.edu.kit.tm.cm.proto.GrpcStateOperation>} */ (jspb.Message.getRepeatedField(this, 2));
-};
-
-
-/**
- * @param {!Array<!proto.edu.kit.tm.cm.proto.GrpcStateOperation>} value
- * @return {!proto.edu.kit.tm.cm.proto.GetProblemResponse} returns this
- */
-proto.edu.kit.tm.cm.proto.GetProblemResponse.prototype.setPossibleStateOperationsList = function(value) {
-  return jspb.Message.setField(this, 2, value || []);
-};
-
-
-/**
- * @param {!proto.edu.kit.tm.cm.proto.GrpcStateOperation} value
- * @param {number=} opt_index
- * @return {!proto.edu.kit.tm.cm.proto.GetProblemResponse} returns this
- */
-proto.edu.kit.tm.cm.proto.GetProblemResponse.prototype.addPossibleStateOperations = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.edu.kit.tm.cm.proto.GetProblemResponse} returns this
- */
-proto.edu.kit.tm.cm.proto.GetProblemResponse.prototype.clearPossibleStateOperationsList = function() {
-  return this.setPossibleStateOperationsList([]);
 };
 
 
@@ -2445,6 +2387,13 @@ proto.edu.kit.tm.cm.proto.ChangeStateResponse.serializeBinaryToWriter = function
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.edu.kit.tm.cm.proto.GrpcProblem.repeatedFields_ = [9];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -2483,7 +2432,8 @@ proto.edu.kit.tm.cm.proto.GrpcProblem.toObject = function(includeInstance, msg) 
     problemReporter: jspb.Message.getFieldWithDefault(msg, 5, ""),
     creationTime: (f = msg.getCreationTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     referenceIdentificationNumber: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    lastModified: (f = msg.getLastModified()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    lastModified: (f = msg.getLastModified()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    possibleStateOperationsList: (f = jspb.Message.getRepeatedField(msg, 9)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2553,6 +2503,12 @@ proto.edu.kit.tm.cm.proto.GrpcProblem.deserializeBinaryFromReader = function(msg
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setLastModified(value);
+      break;
+    case 9:
+      var values = /** @type {!Array<!proto.edu.kit.tm.cm.proto.GrpcStateOperation>} */ (reader.isDelimited() ? reader.readPackedEnum() : [reader.readEnum()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addPossibleStateOperations(values[i]);
+      }
       break;
     default:
       reader.skipField();
@@ -2639,6 +2595,13 @@ proto.edu.kit.tm.cm.proto.GrpcProblem.serializeBinaryToWriter = function(message
       8,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getPossibleStateOperationsList();
+  if (f.length > 0) {
+    writer.writePackedEnum(
+      9,
+      f
     );
   }
 };
@@ -2823,6 +2786,43 @@ proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.clearLastModified = function() {
  */
 proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.hasLastModified = function() {
   return jspb.Message.getField(this, 8) != null;
+};
+
+
+/**
+ * repeated GrpcStateOperation possible_state_operations = 9;
+ * @return {!Array<!proto.edu.kit.tm.cm.proto.GrpcStateOperation>}
+ */
+proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.getPossibleStateOperationsList = function() {
+  return /** @type {!Array<!proto.edu.kit.tm.cm.proto.GrpcStateOperation>} */ (jspb.Message.getRepeatedField(this, 9));
+};
+
+
+/**
+ * @param {!Array<!proto.edu.kit.tm.cm.proto.GrpcStateOperation>} value
+ * @return {!proto.edu.kit.tm.cm.proto.GrpcProblem} returns this
+ */
+proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.setPossibleStateOperationsList = function(value) {
+  return jspb.Message.setField(this, 9, value || []);
+};
+
+
+/**
+ * @param {!proto.edu.kit.tm.cm.proto.GrpcStateOperation} value
+ * @param {number=} opt_index
+ * @return {!proto.edu.kit.tm.cm.proto.GrpcProblem} returns this
+ */
+proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.addPossibleStateOperations = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 9, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.edu.kit.tm.cm.proto.GrpcProblem} returns this
+ */
+proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.clearPossibleStateOperationsList = function() {
+  return this.setPossibleStateOperationsList([]);
 };
 
 

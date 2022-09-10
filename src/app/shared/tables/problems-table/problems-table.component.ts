@@ -3,15 +3,18 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog} from "@angular/material/dialog";
-import {
-  ProblemManagementConnectorService
-} from "../../../core/connectors/problem-management-connector.service";
+import {ProblemManagementConnectorService} from "../../../core/connectors/problem-management-connector.service";
 import {RemoveComponent} from "../../dialogs/remove/remove.component";
 import {
+  ChangeStateRequest,
+  ChangeStateResponse,
+  GrpcFilterValueSelection,
+  GrpcProblem,
+  GrpcProblemState,
   ListProblemsRequest,
   ListProblemsResponse,
-  GrpcProblem,
-  UpdateProblemResponse, UpdateProblemRequest, GrpcFilterValueSelection, ChangeStateRequest, ChangeStateResponse
+  UpdateProblemRequest,
+  UpdateProblemResponse
 } from "../../../../proto/generated/problem_management_pb";
 import {RemoveRequest} from "../../../../proto/generated/building_management_pb";
 import {FilterProblemsComponent} from "../../dialogs/filter-problems/filter-problems.component";
@@ -33,7 +36,24 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 export class ProblemsTableComponent implements AfterViewInit, OnInit {
 
   // datasource containing provided data from the api, to be displayed in the html datatables, as well as the current selected object
-  dataSource: MatTableDataSource<GrpcProblem.AsObject> = new MatTableDataSource<GrpcProblem.AsObject>();
+  dataSource: MatTableDataSource<GrpcProblem.AsObject> = new MatTableDataSource<GrpcProblem.AsObject>([{
+    problemState: GrpcProblemState.OPEN,
+    identificationNumber: "p-1",
+    problemTitle: "problem1",
+    problemDescription: "problem description 1",
+    problemReporter: "ich",
+    creationTime: {
+      seconds: 30,
+      nanos: 20
+    },
+    referenceIdentificationNumber: "b-1",
+    lastModified: {
+      seconds: 30,
+      nanos: 20
+    }
+  }
+
+  ]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -52,7 +72,7 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
 
     // run initial calls
     let listProblemsRequest = new ListProblemsRequest();
-    this.problemManagementConnector.listProblems(listProblemsRequest, ProblemsTableComponent.interpretListProblemsResponse, this);
+    //this.problemManagementConnector.listProblems(listProblemsRequest, ProblemsTableComponent.interpretListProblemsResponse, this);
   }
 
   ngAfterViewInit() {

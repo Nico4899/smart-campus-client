@@ -1103,14 +1103,14 @@ export namespace GrpcBuildingFilterValueSelection {
   }
 }
 
-export enum GrpcCampusLocation {
+export enum GrpcCampusLocation { 
   UNKNOWN_CAMPUS_LOCATION = 0,
   NORTH_CAMPUS = 1,
   EAST_CAMPUS = 2,
   WEST_CAMPUS = 3,
   SOUTH_CAMPUS = 4,
 }
-export enum GrpcRoomType {
+export enum GrpcRoomType { 
   UNKNOWN_ROOM_TYPE = 0,
   RESTROOM = 1,
   RESTROOM_HANDICAPPED = 2,
@@ -1121,7 +1121,7 @@ export enum GrpcRoomType {
   SPORTS = 7,
   CAFETERIA = 8,
 }
-export enum GrpcComponentType {
+export enum GrpcComponentType { 
   UNKNOWN_COMPONENT_TYPE = 0,
   ELEVATOR = 1,
   STAIRS = 2,
