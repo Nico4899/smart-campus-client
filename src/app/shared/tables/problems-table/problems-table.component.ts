@@ -41,7 +41,7 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
   // search values from search bars
   searchKey: string = "";
 
-  columnsToDisplay: string[] = ['identificationNumber', 'problemTitle', 'problemReporter', 'actions', 'created_on', 'modified_on', 'edit_problem', 'delete_problem'];
+  columnsToDisplay: string[] = ['identificationNumber', 'problemTitle', 'problemReporter', 'creationTime', 'lastModified', 'actions', 'edit_problem', 'delete_problem'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedProblem!: string;
 
