@@ -11,6 +11,7 @@ import {
   GrpcFilterValueSelection,
   GrpcProblem,
   GrpcProblemState,
+  GrpcStateOperation,
   ListProblemsRequest,
   ListProblemsResponse,
   UpdateProblemRequest,
@@ -50,7 +51,8 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
     lastModified: {
       seconds: 30,
       nanos: 20
-    }
+    },
+    possibleStateOperationsList: [GrpcStateOperation.ACCEPT, GrpcStateOperation.DECLINE]
   }
 
   ]);
