@@ -8,6 +8,7 @@ import {
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
 import {BuildingManagementConnectorService} from "../../../../core/connectors/building-management-connector.service";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-favorite-rooms-table',

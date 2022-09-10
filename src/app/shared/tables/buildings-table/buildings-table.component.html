@@ -22,7 +22,7 @@
     </ng-container>
     <ng-container matColumnDef="buildingNumber">
       <th mat-header-cell *matHeaderCellDef>
-        NUMBER
+        {{ 'buildings_table.number' | translate }}
       </th>
       <td mat-cell *matCellDef="let building">
         {{building.buildingNumber}}
@@ -30,7 +30,7 @@
     </ng-container>
     <ng-container matColumnDef="address">
       <th mat-header-cell *matHeaderCellDef>
-        ADDRESS
+        {{ 'buildings_table.address' | translate }}
       </th>
       <td mat-cell *matCellDef="let building">
         //placeholder
@@ -38,7 +38,7 @@
     </ng-container>
     <ng-container matColumnDef="buildingName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header="buildingName" sortActionDescription="Sort by buildingName">
-        NAME
+        Name
       </th>
       <td mat-cell *matCellDef="let building"
           routerLink="/buildings/{{building.identificationNumber}}">
@@ -48,7 +48,7 @@
     <ng-container matColumnDef="campusLocation">
       <th mat-header-cell *matHeaderCellDef mat-sort-header="campusLocation"
           sortActionDescription="Sort by campusLocation">
-        CAMPUS LOCATION
+        {{ 'buildings_table.campus_location' | translate }}
       </th>
       <td mat-cell
           *matCellDef="let building"> {{building.campusLocation | campusLocation}} </td>

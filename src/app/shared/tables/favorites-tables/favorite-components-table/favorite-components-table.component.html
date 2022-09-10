@@ -22,7 +22,7 @@
     <ng-container matColumnDef="componentType">
       <th mat-header-cell *matHeaderCellDef mat-sort-header="componentType"
           sortActionDescription="Sort by componentType">
-        CAMPUS LOCATION
+        {{ 'components_table.campus_location' | translate }}
       </th>
       <td mat-cell
           *matCellDef="let component"> {{component.componentType | componentType}} </td>

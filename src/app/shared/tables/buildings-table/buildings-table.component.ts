@@ -20,6 +20,7 @@ import {AddBuildingComponent} from "../../dialogs/add-building/add-building.comp
 import {EditBuildingComponent} from "../../dialogs/edit-building/edit-building.component";
 import {FilterBuildingsComponent} from "../../dialogs/filter-buildings/filter-buildings.component";
 import {RemoveComponent} from "../../dialogs/remove/remove.component";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-buildings-table',
@@ -30,6 +31,7 @@ export class BuildingsTableComponent implements OnInit {
 
   // datasource containing provided data from the api, to be displayed in the html datatables, as well as the current selected object
   dataSource: MatTableDataSource<GrpcBuilding.AsObject> = new MatTableDataSource<GrpcBuilding.AsObject>();
+  translateService: TranslateService;
 
   // sorter and paginator for tables
   @ViewChild(MatSort) sort!: MatSort;
@@ -41,8 +43,10 @@ export class BuildingsTableComponent implements OnInit {
   // columns to be displayed
   displayedColumns: string[] = ['identificationNumber', 'buildingNumber', 'buildingName', 'address', 'campusLocation', 'edit_building', 'delete_building'];
 
-  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private dialog: MatDialog) {
+  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private dialog: MatDialog,
+              translateService: TranslateService) {
     // inject building management client and current rout to obtain path variables
+    this.translateService = translateService;
   }
 
   ngOnInit(): void {
@@ -176,5 +180,9 @@ export class BuildingsTableComponent implements OnInit {
     selection.setGrpcCampusLocationsList(result.data.campusLocations);
     request.setGrpcFilterValueSelection(selection);
     return request;
+  }
+
+  useLanguage(language: string): void {
+    this.translateService.use(language);
   }
 }

@@ -1,5 +1,30 @@
 {
   "dashboard" : {
     "title" : "English dashboard works!"
+  },
+  "sidebar" : {
+    "dashboard" : "Dashboard",
+    "buildings" : "Buildings",
+    "problems" : "Reports",
+    "favorites" : "Favorites"
+  },
+  "buildings_table" : {
+    "number" : "Number",
+    "address" : "Address",
+    "campus_location" : "Campus Location"
+  },
+  "rooms_table" : {
+    "number" : "Number",
+    "level": "Level",
+    "type": "Type",
+    "campus_location" : "Campus Location"
+  },
+  "components_table": {
+    "campus_location" : "Campus Location"
+  },
+  "favorites": {
+    "favorite_buildings": "Buildings",
+    "favorite_rooms": "Rooms",
+    "favorite_components": "Components"
   }
 }

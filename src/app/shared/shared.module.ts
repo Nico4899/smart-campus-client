@@ -54,6 +54,7 @@ import { FilterProblemsComponent } from './dialogs/filter-problems/filter-proble
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { RemoveComponent } from './dialogs/remove/remove.component';
 import {MatExpansionModule} from "@angular/material/expansion";
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
   declarations: [
@@ -124,7 +125,8 @@ import {MatExpansionModule} from "@angular/material/expansion";
     MatSelectModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-    MatExpansionModule
+    MatExpansionModule,
+    TranslateModule
   ]
 })
 export class SharedModule {

@@ -1,5 +1,30 @@
 {
   "dashboard" : {
     "title" : "Deutsches Dashboard funtioniert!"
+  },
+  "sidebar" : {
+    "dashboard" : "Übersicht",
+    "buildings" : "Gebäude",
+    "problems" : "Meldungen",
+    "favorites" : "Favoriten"
+  },
+  "buildings_table" : {
+    "number" : "Nummer",
+    "address" : "Adresse",
+    "campus_location" : "Campus"
+  },
+  "rooms_table" : {
+    "level": "Stockwerk",
+    "type": "Raum-Typ",
+    "campus_location" : "Campus",
+    "number" : "Nummer"
+  },
+  "components_table": {
+    "campus_location" : "Campus"
+  },
+  "favorites": {
+    "favorite_buildings": "Gebäude",
+    "favorite_rooms": "Räume",
+    "favorite_components": "Komponenten"
   }
 }
