@@ -46,6 +46,31 @@ td, th {
   width: 25%;
 }
 
+tr.detail-row {
+  height: 0;
+}
+
+tr.problem-row:not(.expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.problem-row:not(.expanded-row):active {
+  background: #efefef;
+}
+
+.problem-row td {
+  border-bottom-width: 0;
+}
+
 .mat-row:hover {
   background-color: lightgrey;
+}
+
+.problem-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.problem-description {
+  padding: 16px;
 }
