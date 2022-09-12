@@ -1,1 +1,18 @@
-<p>filter-problems works!</p>
+<h1 mat-dialog-title> Select problem filter values.</h1>
+
+<mat-dialog-content>
+
+  <div >
+    <h2> Component Types </h2>
+    <ul>
+      <li *ngFor="let problemstate of selectedStates">
+        <mat-checkbox [(ngModel)]="problemstate.selected"> {{problemstate.state}} </mat-checkbox>
+      </li>
+    </ul>
+  </div>
+</mat-dialog-content>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="ok()">Ok</button>
+  <button mat-button (click)="cancel()" color="warn">Cancel</button>
+</div>

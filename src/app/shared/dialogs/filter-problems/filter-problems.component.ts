@@ -1,15 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+import {GrpcProblem, GrpcProblemState, GrpcFilterValueSelection} from '../../../../proto/generated/problem_management_pb'
+import {MatDialogRef} from '@angular/material/dialog'
+
 
 @Component({
   selector: 'app-filter-problems',
   templateUrl: './filter-problems.component.html',
   styleUrls: ['./filter-problems.component.css']
 })
-export class FilterProblemsComponent implements OnInit {
+export class FilterProblemsComponent{
 
-  constructor() { }
+  problemState = Object.values(GrpcProblemState).filter(e => e !=0) as GrpcProblemState[];
 
-  ngOnInit(): void {
+  selectedStates: { state: GrpcProblemState, selected: boolean} [] = [];
+
+
+
+  constructor(public dialogRef: MatDialogRef<FilterProblemsComponent>) {
+    this.problemState.forEach(e => this.selectedStates.push({state: e, selected: false}));
+
+    this.dialogRef.disableClose = true;
   }
+
+  ok() {
+    this.dialogRef.close( {
+      event: 'ok',
+      data: {
+        problemStates: this.selectedStates.filter(e => e.selected).map(e => e.state)
+
+      }
+
+
+
+
+    })
+
+
+
+  }
+
+  cancel() {
+    this.dialogRef.close({event: 'cancel'});
+  }
+
+
+
 
 }
