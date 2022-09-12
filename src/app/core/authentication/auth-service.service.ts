@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AuthConfig, OAuthService} from "angular-oauth2-oidc";
 import {environment} from "../../../environments/environment";
 
@@ -7,8 +7,10 @@ const config: AuthConfig = {
   strictDiscoveryDocumentValidation: false,
   redirectUri: window.location.origin,
   clientId: environment.keycloak.clientId,
-  scope: environment.keycloak.scope
+  scope: environment.keycloak.scope,
+  oidc: true
 }
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +18,7 @@ export class AuthServiceService {
 
   constructor(private readonly oAuthService: OAuthService) {
     oAuthService.configure(config);
+    this.oAuthService.loadDiscoveryDocumentAndTryLogin();
   }
 
   logout() {
@@ -31,6 +34,7 @@ export class AuthServiceService {
   }
 
   getRoles(): string[] {
-    return []; // TODO implement real szenario
+    let scopes = this.oAuthService.getGrantedScopes();
+    return [];
   }
 }
