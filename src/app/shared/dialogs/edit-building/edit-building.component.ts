@@ -1,6 +1,8 @@
-import {ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
-import {GrpcBuilding, GrpcCampusLocation} from "../../../../proto/generated/building_management_pb";
-import {FormControl, Validators} from "@angular/forms";
+import {Component, Inject} from '@angular/core';
+import {
+  GrpcBuilding,
+  GrpcCampusLocation
+} from "../../../../proto/generated/building_management_pb";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
@@ -8,7 +10,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
   templateUrl: './edit-building.component.html',
   styleUrls: ['./edit-building.component.css']
 })
-export class EditBuildingComponent{
+export class EditBuildingComponent {
 
   highestFloor!: number;
   lowestFloor!: number;
