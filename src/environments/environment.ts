@@ -21,7 +21,8 @@ export const environment = {
   // roles
   roles: {
     admin: "TM-CM-MULESOFT",
-    user: "TM-CM-JUNIORSTUDENTS"
+    user: "TM-CM-JUNIORSTUDENTS",
+    guest: ""
   }
 };
 
