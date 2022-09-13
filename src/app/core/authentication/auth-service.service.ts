@@ -37,11 +37,11 @@ export class AuthServiceService {
   }
 
   isUser(): boolean {
-    return this.isAdmin() || this.userRoles.indexOf(environment.roles.user) != 0;
+    return this.isAdmin() || this.userRoles.indexOf(environment.roles.user) != -1;
   }
 
   isAdmin(): boolean {
-    return this.userRoles.indexOf(environment.roles.admin) != 0;
+    return this.userRoles.indexOf(environment.roles.admin) != -1;
   }
 
   get userRoles() {
