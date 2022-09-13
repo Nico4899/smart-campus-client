@@ -33,7 +33,6 @@ export class AuthServiceService {
   }
 
   isLoggedIn(): boolean {
-    console.log(this.userRoles);
     return this.oAuthService.hasValidAccessToken();
   }
 
