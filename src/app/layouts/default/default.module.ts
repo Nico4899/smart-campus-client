@@ -27,6 +27,7 @@ import {ComponentComponent} from "../../modules/component/component.component";
 import {HttpClientModule} from "@angular/common/http";
 import {OAuthModule} from "angular-oauth2-oidc";
 import {TranslateModule} from "@ngx-translate/core";
+
 @NgModule({
   declarations: [
     DefaultComponent,
@@ -38,25 +39,25 @@ import {TranslateModule} from "@ngx-translate/core";
     FavoritesComponent,
     ComponentComponent
   ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        SharedModule,
-        MatSidenavModule,
-        MatListModule,
-        MatTableModule,
-        MatInputModule,
-        MatSortModule,
-        MatPaginatorModule,
-        MatButtonModule,
-        MatGridListModule,
-        MatIconModule,
-        MatMenuModule,
-        MatTabsModule,
-        HttpClientModule,
-        OAuthModule.forRoot(),
-        TranslateModule
-    ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    SharedModule,
+    MatSidenavModule,
+    MatListModule,
+    MatTableModule,
+    MatInputModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatGridListModule,
+    MatIconModule,
+    MatMenuModule,
+    MatTabsModule,
+    HttpClientModule,
+    OAuthModule.forRoot(),
+    TranslateModule
+  ],
   exports: [
     MatSortModule,
     MatSnackBarModule

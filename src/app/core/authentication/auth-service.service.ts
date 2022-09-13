@@ -8,7 +8,8 @@ const config: AuthConfig = {
   redirectUri: window.location.origin,
   clientId: environment.keycloak.clientId,
   scope: environment.keycloak.scope,
-  oidc: true
+  oidc: true,
+  responseType: 'code'
 }
 
 @Injectable({
@@ -17,8 +18,8 @@ const config: AuthConfig = {
 export class AuthServiceService {
 
   constructor(private readonly oAuthService: OAuthService) {
-    oAuthService.configure(config);
-    this.oAuthService.loadDiscoveryDocumentAndTryLogin();
+    this.oAuthService.configure(config);
+    this.oAuthService.loadDiscoveryDocument();
   }
 
   logout() {
@@ -33,8 +34,11 @@ export class AuthServiceService {
     return this.oAuthService.hasValidAccessToken();
   }
 
-  getRoles(): string[] {
-    let scopes = this.oAuthService.getGrantedScopes();
-    return [];
+  isUser(): boolean {
+    return this.isAdmin();
+  }
+
+  isAdmin(): boolean {
+    return true;
   }
 }

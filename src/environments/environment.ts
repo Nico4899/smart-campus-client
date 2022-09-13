@@ -13,9 +13,9 @@ export const environment = {
 
   // authentication values
   keycloak: {
-    issuer: "https://cm-keycloak.cloud.iai.kit.edu/realms/CM",
-    clientId: "cm-pse-22",
-    scope: "openid groups profile email"
+    issuer: 'https://cm-keycloak.cloud.iai.kit.edu/realms/CM',
+    clientId: 'cm-pse-22',
+    scope: 'openid groups profile email'
   },
 
   // roles
