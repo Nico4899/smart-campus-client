@@ -6,11 +6,6 @@ ul {
   display: flex;
 }
 
-.campus-location-selection {
-  flex: 1;
-  padding: 1em;
-}
-
 .room-type-selection {
   flex: 1;
   padding: 1em;

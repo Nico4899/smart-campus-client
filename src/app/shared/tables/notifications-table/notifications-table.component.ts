@@ -15,7 +15,7 @@ import {ExpandAnimation} from "../../animations";
   selector: 'app-notifications-table',
   templateUrl: './notifications-table.component.html',
   styleUrls: ['./notifications-table.component.css'],
-  animations: [ExpandAnimation],
+  animations: [ExpandAnimation]
 })
 export class NotificationsTableComponent implements OnInit, AfterViewInit {
 
