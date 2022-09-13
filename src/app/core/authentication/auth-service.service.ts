@@ -47,6 +47,16 @@ export class AuthServiceService {
     return claims["groups"];
   }
 
+  get eMail() {
+    let claims = this.oAuthService.getIdentityClaims() as {email: string};
+    if(claims == null) return [];
+    return claims["email"];
+  }
+
+  get token() {
+    return this.oAuthService.getIdToken();
+  }
+
   isAdmin(): boolean {
     return true;
   }
