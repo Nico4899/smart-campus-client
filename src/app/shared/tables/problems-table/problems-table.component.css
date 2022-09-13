@@ -2,15 +2,9 @@ table {
   width: 100%;
 }
 
-.mat-column-identificationNumber {
-  width: 10%;
-  padding-left: 16px;
-}
-
 .mat-column-problemTitle {
   width: 30%;
   padding-left: 16px;
-  border-left: 1px solid;
 }
 
 .mat-column-problemState {
@@ -20,13 +14,13 @@ table {
 }
 
 .mat-column-problemReporter {
-  width: 10%;
+  width: 15%;
   padding-left: 16px;
   border-left: 1px solid;
 }
 
 .mat-column-actions {
-  width: 10%;
+  width: 15%;
   padding-left: 16px;
   border-left: 1px solid;
 }

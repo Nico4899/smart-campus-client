@@ -43,7 +43,7 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   // columns to be displayed
-  columnsToDisplay: string[] = ['identificationNumber', 'componentType', 'edit_component', 'delete_component'];
+  columnsToDisplay: string[] = ['componentType', 'edit_component', 'delete_component'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedComponent!: string;
 
@@ -130,7 +130,6 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
       }
     )
   }
-
 
   private static buildCreateComponentRequest(identificationNumber: string, result: any): CreateComponentRequest {
     let request = new CreateComponentRequest();

@@ -41,7 +41,7 @@ export class RoomsTableComponent implements OnInit {
   searchKey: string = "";
 
   // columns to be displayed
-  displayedColumns: string[] = ['identificationNumber', 'roomNumber', 'roomName', 'floor', 'roomType', 'edit_room', 'delete_room'];
+  displayedColumns: string[] = ['roomNumber', 'roomName', 'floor', 'roomType', 'edit_room', 'delete_room'];
 
   constructor(private buildingManagementConnector: BuildingManagementConnectorService, private route: ActivatedRoute, private dialog: MatDialog) {
     // inject building management client and current rout to obtain path variables

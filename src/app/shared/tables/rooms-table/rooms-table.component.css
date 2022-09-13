@@ -5,7 +5,7 @@
 
 .mat-column-roomNumber {
   border-right: 1px solid;
-  width: 10%;
+  width: 15%;
   padding-left: 16px;
 }
 
@@ -22,13 +22,8 @@
 }
 
 .mat-column-roomType {
-  width: 20%;
+  width: 25%;
   padding-left: 16px;
-}
-
-.mat-column-identificationNumber {
-  border-right: 1px solid;
-  width: 10%;
 }
 
 .mat-row:hover {

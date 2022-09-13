@@ -41,7 +41,7 @@ export class BuildingsTableComponent implements OnInit {
   searchKey: string = "";
 
   // columns to be displayed
-  displayedColumns: string[] = ['identificationNumber', 'buildingNumber', 'buildingName', 'address', 'campusLocation', 'edit_building', 'delete_building'];
+  displayedColumns: string[] = ['buildingNumber', 'buildingName', 'address', 'campusLocation', 'edit_building', 'delete_building'];
 
   constructor(private buildingManagementConnector: BuildingManagementConnectorService, private dialog: MatDialog,
               translateService: TranslateService) {

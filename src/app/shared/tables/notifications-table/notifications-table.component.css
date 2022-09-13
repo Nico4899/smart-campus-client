@@ -2,15 +2,9 @@ table {
   width: 100%;
 }
 
-.mat-column-identificationNumber {
-  width: 10%;
-  padding-left: 16px;
-}
-
 .mat-column-notificationTitle {
-  width: 30%;
+  width: 40%;
   padding-left: 16px;
-  border-left: 1px solid;
 }
 
 .mat-column-creationTime {

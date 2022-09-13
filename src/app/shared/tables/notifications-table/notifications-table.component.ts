@@ -30,7 +30,7 @@ export class NotificationsTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   // columns to be displayed
-  columnsToDisplay: string[] = ['identificationNumber', 'notificationTitle', 'creationTime', 'lastModified'];
+  columnsToDisplay: string[] = ['notificationTitle', 'creationTime', 'lastModified'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedNotification!: string;
 
