@@ -18,7 +18,7 @@ import {ActivatedRoute} from "@angular/router";
 export class NotificationsTableComponent implements OnInit, AfterViewInit {
 
   // path variable
-  bin: string = "";
+  nin: string = "";
 
   // datasource containing provided data from the api, to be displayed in the html datatables, as well as the current selected object
   dataSource: MatTableDataSource<GrpcNotification.AsObject> = new MatTableDataSource<GrpcNotification.AsObject>();
@@ -36,7 +36,7 @@ export class NotificationsTableComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     let listNotificationsRequest = new ListNotificationsRequest();
-    listNotificationsRequest.setIdentificationNumber(this.bin);
+    listNotificationsRequest.setIdentificationNumber(this.nin);
     this.buildingManagementConnector.listNotifications(listNotificationsRequest, NotificationsTableComponent.interpretListNotificationsResponse, this);
   }
 

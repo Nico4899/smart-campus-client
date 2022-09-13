@@ -47,6 +47,4 @@ export class FilterBuildingsComponent {
   cancel() {
     this.dialogRef.close({event: 'cancel'});
   }
-
-
 }
