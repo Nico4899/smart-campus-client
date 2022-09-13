@@ -29,7 +29,7 @@ export class AuthServiceService {
   }
 
   login() {
-    this.oAuthService.initImplicitFlow();
+    this.oAuthService.initImplicitFlow( );
   }
 
   isLoggedIn(): boolean {
@@ -38,7 +38,11 @@ export class AuthServiceService {
   }
 
   isUser(): boolean {
-    return this.isAdmin();
+    return this.isAdmin() || this.userRoles.indexOf(environment.roles.user) != 0;
+  }
+
+  isAdmin(): boolean {
+    return this.userRoles.indexOf(environment.roles.admin) != 0;
   }
 
   get userRoles() {
@@ -55,9 +59,5 @@ export class AuthServiceService {
 
   get token() {
     return this.oAuthService.getIdToken();
-  }
-
-  isAdmin(): boolean {
-    return true;
   }
 }

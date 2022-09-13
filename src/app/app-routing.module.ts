@@ -18,43 +18,43 @@ const routes: Routes = [{
     path: '',
     component: DashboardComponent,
     canActivate: [AuthGuardGuard],
-     data: {
-      role: environment.roles.guest
-     }
+    data: {
+      roles: [environment.roles.guest, environment.roles.user, environment.roles.admin]
+    }
   }, {
     path: 'buildings',
     component: BuildingsComponent,
     canActivate: [AuthGuardGuard],
     data: {
-      role: environment.roles.guest
+      roles: [environment.roles.guest, environment.roles.user, environment.roles.admin]
     }
   }, {
     path: 'problems',
     component: ProblemsComponent,
     canActivate: [AuthGuardGuard],
     data: {
-      role: environment.roles.user
+      roles: [environment.roles.user, environment.roles.admin]
     }
   }, {
     path: 'favorites',
     component: FavoritesComponent,
     canActivate: [AuthGuardGuard],
     data: {
-      role: environment.roles.user
+      roles: [environment.roles.user, environment.roles.admin]
     }
   }, {
     path: "buildings/:bin",
     component: BuildingComponent,
     canActivate: [AuthGuardGuard],
     data: {
-      role: environment.roles.guest
+      roles: [environment.roles.guest, environment.roles.user, environment.roles.admin]
     }
-  },{
+  }, {
     path: "rooms/:rin",
     component: RoomComponent,
     canActivate: [AuthGuardGuard],
     data: {
-      role: environment.roles.guest
+      roles: [environment.roles.guest, environment.roles.user, environment.roles.admin]
     }
   }, {
     path: "components/:cin",
