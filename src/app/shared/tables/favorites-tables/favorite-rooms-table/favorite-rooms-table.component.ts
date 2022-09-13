@@ -28,7 +28,7 @@ export class FavoriteRoomsTableComponent implements OnInit, AfterViewInit {
   searchKey: string = "";
 
   // columns to be displayed
-  displayedColumns: string[] = ['roomNumber', 'roomName', 'floor', 'roomType', 'remove_favorite_room'];
+  columnsToDisplay: string[] = ['roomNumber', 'roomName', 'floor', 'roomType', 'remove_favorite_room'];
 
   constructor(private buildingManagementConnector: BuildingManagementConnectorService) {
     // inject building management client and current rout to obtain path variables
