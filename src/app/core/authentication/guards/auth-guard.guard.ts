@@ -21,5 +21,4 @@ export class AuthGuardGuard implements CanActivate {
     this.grantedRoles = this.authService.getRoles();
     return true; // TODO test if granted roles or basic roles contains the given role
   }
-
 }

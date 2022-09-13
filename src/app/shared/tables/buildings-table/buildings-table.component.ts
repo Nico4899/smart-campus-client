@@ -41,7 +41,7 @@ export class BuildingsTableComponent implements OnInit {
   searchKey: string = "";
 
   // columns to be displayed
-  displayedColumns: string[] = ['buildingNumber', 'buildingName', 'address', 'campusLocation', 'edit_building', 'delete_building'];
+  columnsToDisplay: string[] = ['buildingNumber', 'buildingName', 'address', 'campusLocation', 'edit_building', 'delete_building'];
 
   constructor(private buildingManagementConnector: BuildingManagementConnectorService, private dialog: MatDialog,
               translateService: TranslateService) {
@@ -55,7 +55,6 @@ export class BuildingsTableComponent implements OnInit {
     let listBuildingsRequest = new ListBuildingsRequest();
     this.buildingManagementConnector.listBuildings(listBuildingsRequest, BuildingsTableComponent.interpretListBuildingsResponse, this);
   }
-
 
   ngAfterViewInit() {
 

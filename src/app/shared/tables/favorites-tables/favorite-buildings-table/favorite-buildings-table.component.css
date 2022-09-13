@@ -3,21 +3,16 @@
   margin: auto;
 }
 
-.mat-column-identificationNumber {
+.mat-column-buildingNumber {
   border-right: 1px solid;
-  width: 10%;
+  width: 20%;
+  padding-left: 16px;
 }
 
 .mat-column-buildingName {
   padding-left: 16px;
   border-right: 1px solid;
   width: 30%;
-}
-
-.mat-column-buildingNumber {
-  border-right: 1px solid;
-  width: 10%;
-  padding-left: 16px;
 }
 
 .mat-column-address {

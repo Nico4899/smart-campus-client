@@ -15,8 +15,6 @@ export class FilterProblemsComponent{
 
   selectedStates: { state: GrpcProblemState, selected: boolean} [] = [];
 
-
-
   constructor(public dialogRef: MatDialogRef<FilterProblemsComponent>) {
     this.problemState.forEach(e => this.selectedStates.push({state: e, selected: false}));
 
@@ -28,23 +26,11 @@ export class FilterProblemsComponent{
       event: 'ok',
       data: {
         problemStates: this.selectedStates.filter(e => e.selected).map(e => e.state)
-
       }
-
-
-
-
-    })
-
-
-
+    });
   }
 
   cancel() {
     this.dialogRef.close({event: 'cancel'});
   }
-
-
-
-
 }

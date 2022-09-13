@@ -3,13 +3,8 @@
   margin: auto;
 }
 
-.mat-column-identificationNumber {
-  border-right: 1px solid;
-  width: 20%;
-}
-
 .mat-column-componentType {
-  width: 80%;
+  width: 100%;
   padding-left: 16px;
 }
 

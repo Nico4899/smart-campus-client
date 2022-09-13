@@ -28,7 +28,7 @@ export class FavoriteRoomsTableComponent implements OnInit, AfterViewInit {
   searchKey: string = "";
 
   // columns to be displayed
-  displayedColumns: string[] = ['identificationNumber', 'roomNumber', 'roomName', 'floor', 'roomType', 'remove_favorite_room'];
+  displayedColumns: string[] = ['roomNumber', 'roomName', 'floor', 'roomType', 'remove_favorite_room'];
 
   constructor(private buildingManagementConnector: BuildingManagementConnectorService) {
     // inject building management client and current rout to obtain path variables
@@ -56,5 +56,4 @@ export class FavoriteRoomsTableComponent implements OnInit, AfterViewInit {
   private static interpretListFavoriteRoomsResponse(response: ListFavoriteRoomsResponse, self: FavoriteRoomsTableComponent): void {
     self.dataSource.data = response.toObject().roomsList;
   }
-
 }

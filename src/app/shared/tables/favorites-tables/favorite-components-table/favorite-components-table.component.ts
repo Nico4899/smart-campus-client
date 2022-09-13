@@ -8,11 +8,13 @@ import {BuildingManagementConnectorService} from "../../../../core/connectors/bu
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
+import {ExpandAnimation} from "../../../animations";
 
 @Component({
   selector: 'app-favorite-components-table',
   templateUrl: './favorite-components-table.component.html',
-  styleUrls: ['./favorite-components-table.component.css']
+  styleUrls: ['./favorite-components-table.component.css'],
+  animations: [ExpandAnimation]
 })
 export class FavoriteComponentsTableComponent implements OnInit, AfterViewInit {
 
@@ -27,7 +29,9 @@ export class FavoriteComponentsTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   // columns to be displayed
-  displayedColumns: string[] = ['identificationNumber', 'componentType', 'remove_favorite_component'];
+  columnsToDisplay: string[] = ['componentType', 'remove_favorite_component'];
+  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
+  expandedComponent!: string;
 
   constructor(private buildingManagementConnector: BuildingManagementConnectorService) {
     // inject building management client and current rout to obtain path variables
