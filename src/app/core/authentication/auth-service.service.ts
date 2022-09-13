@@ -33,11 +33,18 @@ export class AuthServiceService {
   }
 
   isLoggedIn(): boolean {
+    console.log(this.userRoles);
     return this.oAuthService.hasValidAccessToken();
   }
 
   isUser(): boolean {
     return this.isAdmin();
+  }
+
+  get userRoles() {
+    let claims = this.oAuthService.getIdentityClaims() as {groups: string[]};
+    if(claims == null) return [];
+    return claims["groups"];
   }
 
   isAdmin(): boolean {
