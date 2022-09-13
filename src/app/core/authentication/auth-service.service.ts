@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AuthConfig, OAuthService} from "angular-oauth2-oidc";
 import {environment} from "../../../environments/environment";
+import {JwksValidationHandler} from "angular-oauth2-oidc-jwks";
 
 const config: AuthConfig = {
   issuer: environment.keycloak.issuer,
@@ -19,7 +20,8 @@ export class AuthServiceService {
 
   constructor(private readonly oAuthService: OAuthService) {
     this.oAuthService.configure(config);
-    this.oAuthService.loadDiscoveryDocument();
+    this.oAuthService.tokenValidationHandler = new JwksValidationHandler();
+    this.oAuthService.loadDiscoveryDocumentAndTryLogin()
   }
 
   logout() {
@@ -27,7 +29,7 @@ export class AuthServiceService {
   }
 
   login() {
-    this.oAuthService.initLoginFlow();
+    this.oAuthService.initImplicitFlow();
   }
 
   isLoggedIn(): boolean {
