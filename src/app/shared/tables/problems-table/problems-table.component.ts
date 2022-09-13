@@ -20,19 +20,13 @@ import {
 import {RemoveRequest} from "../../../../proto/generated/building_management_pb";
 import {FilterProblemsComponent} from "../../dialogs/filter-problems/filter-problems.component";
 import {EditProblemComponent} from "../../dialogs/edit-problem/edit-problem.component";
-import {animate, state, style, transition, trigger} from "@angular/animations";
+import {ExpandAnimation} from "../../animations";
 
 @Component({
   selector: 'app-problems-table',
   templateUrl: './problems-table.component.html',
   styleUrls: ['./problems-table.component.css'],
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
+  animations: [ExpandAnimation],
 })
 export class ProblemsTableComponent implements AfterViewInit, OnInit {
 

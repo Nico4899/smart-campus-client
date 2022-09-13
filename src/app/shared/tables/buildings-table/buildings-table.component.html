@@ -11,7 +11,9 @@
 </div>
 
 <div class="buildings-table mat-elevation-z0">
-  <table mat-table [dataSource]="dataSource" matSort>
+  <table mat-table
+         [dataSource]="dataSource"
+         matSort>
     <ng-container matColumnDef="identificationNumber">
       <th mat-header-cell *matHeaderCellDef>
         ID

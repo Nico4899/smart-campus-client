@@ -31,13 +31,13 @@ table {
   border-left: 1px solid;
 }
 
-.mat-column-created_on {
+.mat-column-creationTime {
   width: 15%;
   padding-left: 16px;
   border-left: 1px solid;
 }
 
-.mat-column-modified_on {
+.mat-column-lastModified {
   width: 15%;
   padding-left: 16px;
   border-left: 1px solid;
