@@ -1,0 +1,12 @@
+ul {
+  list-style-type: none;
+}
+
+.filter-selections {
+  display: flex;
+}
+
+.problem-state-selection {
+  flex: 1;
+  padding: 1em;
+}

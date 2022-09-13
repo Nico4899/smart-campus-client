@@ -2,14 +2,17 @@
 
 <mat-dialog-content>
 
-  <div >
-    <h2> Component Types </h2>
-    <ul>
-      <li *ngFor="let problemstate of selectedStates">
-        <mat-checkbox [(ngModel)]="problemstate.selected"> {{problemstate.state}} </mat-checkbox>
-      </li>
-    </ul>
+  <div class="filter-selections">
+    <div class="problem-state-selection">
+      <h2> Component Types </h2>
+      <ul>
+        <li *ngFor="let problemstate of selectedStates">
+          <mat-checkbox [(ngModel)]="problemstate.selected"> {{problemstate.state | problemState}} </mat-checkbox>
+        </li>
+      </ul>
+    </div>
   </div>
+
 </mat-dialog-content>
 
 <div mat-dialog-actions>

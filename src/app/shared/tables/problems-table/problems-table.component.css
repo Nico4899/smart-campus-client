@@ -13,6 +13,12 @@ table {
   border-left: 1px solid;
 }
 
+.mat-column-problemState {
+  width: 10%;
+  padding-left: 16px;
+  border-left: 1px solid;
+}
+
 .mat-column-problemReporter {
   width: 10%;
   padding-left: 16px;
@@ -25,14 +31,14 @@ table {
   border-left: 1px solid;
 }
 
-.mat-column-created_on {
-  width: 20%;
+.mat-column-creationTime {
+  width: 15%;
   padding-left: 16px;
   border-left: 1px solid;
 }
 
-.mat-column-modified_on {
-  width: 20%;
+.mat-column-lastModified {
+  width: 15%;
   padding-left: 16px;
   border-left: 1px solid;
 }

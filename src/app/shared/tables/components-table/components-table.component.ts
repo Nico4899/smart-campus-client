@@ -19,11 +19,13 @@ import {EditComponentComponent} from '../../dialogs/edit-component/edit-componen
 import {MatDialog} from '@angular/material/dialog'
 import {MatTableDataSource} from "@angular/material/table";
 import {RemoveComponent} from "../../dialogs/remove/remove.component";
+import {ExpandAnimation} from "../../animations";
 
 @Component({
   selector: 'app-components-table',
   templateUrl: './components-table.component.html',
   styleUrls: ['./components-table.component.css'],
+  animations: [ExpandAnimation]
 })
 export class ComponentsTableComponent implements OnInit, AfterViewInit {
 
@@ -41,7 +43,9 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   // columns to be displayed
-  displayedColumns: string[] = ['identificationNumber', 'componentType', 'edit_component', 'delete_component'];
+  columnsToDisplay: string[] = ['identificationNumber', 'componentType', 'edit_component', 'delete_component'];
+  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
+  expandedComponent!: string;
 
   constructor(private buildingManagementConnector: BuildingManagementConnectorService, private route: ActivatedRoute, private dialog: MatDialog) {
     // inject building management client and current rout to obtain path variables
@@ -102,7 +106,6 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
         return;
       }
     })
-
   }
 
   openUpdateComponentDialog(component: GrpcComponent.AsObject) {
@@ -114,7 +117,6 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
         return;
       }
     })
-
   }
 
   openRemoveComponentDialog(identificationNumber: string) {

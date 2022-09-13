@@ -1,18 +1,52 @@
-.components-table {
+table {
   width: 100%;
-  margin: auto;
-}
-
-.mat-column-componentType {
-  width: 90%;
-  padding-left: 16px;
 }
 
 .mat-column-identificationNumber {
-  border-right: 1px solid;
-  width: 10%;
+  width: 30%;
+  padding-left: 16px;
+}
+
+.mat-column-componentType {
+  width: 70%;
+  padding-left: 16px;
+  border-left: 1px solid;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+tr.detail-row {
+  height: 0;
+}
+
+tr.component-row:not(.expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.component-row:not(.expanded-row):active {
+  background: #efefef;
+}
+
+.component-row td {
+  border-bottom-width: 0;
 }
 
 .mat-row:hover {
   background-color: lightgrey;
+}
+
+.component-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.component-description {
+  padding: 16px;
 }
