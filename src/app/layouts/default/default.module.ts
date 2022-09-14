@@ -28,6 +28,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {OAuthModule} from "angular-oauth2-oidc";
 import {TranslateModule} from "@ngx-translate/core";
 
+import {GoogleMapsModule} from '@angular/google-maps'
+
 @NgModule({
   declarations: [
     DefaultComponent,
@@ -56,7 +58,8 @@ import {TranslateModule} from "@ngx-translate/core";
     MatTabsModule,
     HttpClientModule,
     OAuthModule.forRoot(),
-    TranslateModule
+    TranslateModule,
+    GoogleMapsModule
   ],
   exports: [
     MatSortModule,

@@ -17,12 +17,17 @@
   <mat-tab label="notifications">
     <app-notifications-table></app-notifications-table>
   </mat-tab>
-  <mat-tab label="map" id="map">
+  <mat-tab label="map">
+    <div id="map" class="map"></div>
+    Map
+    <google-map
+      height="500px"
+      width="100%"
+      [zoom]="zoom"
+      [center]="center"
+      [options]="options"
+    ></google-map>
   </mat-tab>
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQm9qvZhW_kryxDk6UbP9vO3fsfl9dIFM&callback=initMap">
-  </script>
-
   <mat-tab label="details">
     Details.
   </mat-tab>

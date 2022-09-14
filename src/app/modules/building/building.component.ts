@@ -3,7 +3,9 @@ import {GetBuildingRequest, GetBuildingResponse, GrpcBuilding} from "../../../pr
 import {BuildingManagementConnectorService} from "../../core/connectors/building-management-connector.service";
 import {ActivatedRoute} from "@angular/router";
 
-import {Loader} from '@googlemaps/js-api-loader'
+import {GoogleMap, MapInfoWindow, MapMarker} from '@angular/google-maps'
+
+
 
 @Component({
   selector: 'app-building',
@@ -12,11 +14,31 @@ import {Loader} from '@googlemaps/js-api-loader'
 })
 export class BuildingComponent implements OnInit {
 
+  // map variables
+  zoom = 15;
+  center: google.maps.LatLngLiteral = {
+    lat: 49.0119,
+    lng: 8.4170
+  };
+  options: google.maps.MapOptions = {
+    mapTypeId: 'hybrid',
+    zoomControl: true,
+    scrollwheel: true,
+    disableDoubleClickZoom: true,
+    maxZoom: 20,
+    minZoom: 8,
+  };
+
+
+
+
+
   // path variable
   bin: string = "";
 
 
-  map!: google.maps.Map ;
+
+
 
   // main object
   building: GrpcBuilding.AsObject = new GrpcBuilding().toObject();
@@ -35,17 +57,14 @@ export class BuildingComponent implements OnInit {
     getBuildingRequest.setIdentificationNumber(this.bin);
     this.buildingManagementConnector.getBuilding(getBuildingRequest, BuildingComponent.interpretGetBuildingResponse, this);
 
+    // set center of map correctly
 
-    const loader = new Loader({
-      apiKey: 'AIzaSyDQm9qvZhW_kryxDk6UbP9vO3fsfl9dIFM',
-      version: 'weekly'
-    });
+    this.center = {
+      lat: this.building.grpcGeographicalLocation!.latitude,
+      lng: this.building.grpcGeographicalLocation!.longitude
+    }
 
-    loader.load().then(() => {
 
-      this.map = new google.maps.Map(document.getElementById("map") as HTMLElement)
-
-    }  )
 
 
 
