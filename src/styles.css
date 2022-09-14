@@ -17,3 +17,7 @@ mat-footer-row mat-footer-cell {
   margin-left: 10px;
 }
 
+.mat-row:hover {
+  background-color: rgba(221, 221, 221, 0.6);
+}
+

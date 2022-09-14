@@ -32,20 +32,8 @@ tr.detail-row {
   height: 0;
 }
 
-tr.notification-row:not(.expanded-row):hover {
-  background: whitesmoke;
-}
-
-tr.notification-row:not(.expanded-row):active {
-  background: #efefef;
-}
-
 .notification-row td {
   border-bottom-width: 0;
-}
-
-.mat-row:hover {
-  background-color: lightgrey;
 }
 
 .notification-detail {

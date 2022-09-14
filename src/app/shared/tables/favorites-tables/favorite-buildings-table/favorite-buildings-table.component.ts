@@ -1,21 +1,34 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {
-  GrpcBuilding, GrpcBuildingFilterValueSelection, ListBuildingsRequest,
+  GrpcBuilding,
+  GrpcBuildingFilterValueSelection,
   ListFavoriteBuildingsRequest,
-  ListFavoriteBuildingsResponse, RemoveFavoriteRequest, RemoveRequest, RemoveResponse
+  ListFavoriteBuildingsResponse,
+  RemoveFavoriteRequest
 } from "../../../../../proto/generated/building_management_pb";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
-import {BuildingManagementConnectorService} from "../../../../core/connectors/building-management-connector.service";
-import { TranslateService } from '@ngx-translate/core';
-import {RemoveComponent} from "../../../dialogs/remove/remove.component";
+import {
+  BuildingManagementConnectorService
+} from "../../../../core/connectors/building-management-connector.service";
+import {TranslateService} from '@ngx-translate/core';
 import {MatDialog} from "@angular/material/dialog";
-import {AuthServiceService} from "../../../../core/authentication/auth-service.service";
-import {RemoveFavoriteComponent} from "../../../dialogs/remove-favorite/remove-favorite.component";
-import {FilterBuildingsComponent} from "../../../dialogs/filter-buildings/filter-buildings.component";
-import {FavoriteComponentsTableComponent} from "../favorite-components-table/favorite-components-table.component";
-import {FavoriteRoomsTableComponent} from "../favorite-rooms-table/favorite-rooms-table.component";
+import {
+  AuthServiceService
+} from "../../../../core/authentication/auth-service.service";
+import {
+  RemoveFavoriteComponent
+} from "../../../dialogs/remove-favorite/remove-favorite.component";
+import {
+  FilterBuildingsComponent
+} from "../../../dialogs/filter-buildings/filter-buildings.component";
+import {
+  FavoriteComponentsTableComponent
+} from "../favorite-components-table/favorite-components-table.component";
+import {
+  FavoriteRoomsTableComponent
+} from "../favorite-rooms-table/favorite-rooms-table.component";
 
 @Component({
   selector: 'app-favorite-buildings-table',

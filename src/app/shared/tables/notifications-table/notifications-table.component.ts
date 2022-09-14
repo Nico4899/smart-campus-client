@@ -20,7 +20,7 @@ import {ExpandAnimation} from "../../animations";
 export class NotificationsTableComponent implements OnInit, AfterViewInit {
 
   // path variable
-  nin: string = "";
+  parentIdentificationNumber: string = "";
 
   // datasource containing provided data from the api, to be displayed in the html datatables, as well as the current selected object
   dataSource: MatTableDataSource<GrpcNotification.AsObject> = new MatTableDataSource<GrpcNotification.AsObject>();
@@ -39,8 +39,16 @@ export class NotificationsTableComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    // obtain path variables
+    if (this.route.snapshot.paramMap.get("bin")) {
+      this.parentIdentificationNumber = String(this.route.snapshot.paramMap.get("bin"));
+    } else if (this.route.snapshot.paramMap.get("rin")){
+      this.parentIdentificationNumber = String(this.route.snapshot.paramMap.get("rin"));
+    } else {
+      this.parentIdentificationNumber = String(this.route.snapshot.paramMap.get("cin"));
+    }
     let listNotificationsRequest = new ListNotificationsRequest();
-    listNotificationsRequest.setIdentificationNumber(this.nin);
+    listNotificationsRequest.setIdentificationNumber(this.parentIdentificationNumber);
     this.buildingManagementConnector.listNotifications(listNotificationsRequest, NotificationsTableComponent.interpretListNotificationsResponse, this);
   }
 

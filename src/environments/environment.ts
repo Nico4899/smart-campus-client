@@ -20,7 +20,7 @@ export const environment = {
 
   // roles
   roles: {
-    admin: "TM-CM-MuleSoft",
+    admin: "",//"TM-CM-MuleSoft",
     user: "TM-CM-JuniorStudents",
     guest: ""
   }

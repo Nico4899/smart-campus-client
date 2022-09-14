@@ -36,9 +36,6 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
   // datasource containing provided data from the api, to be displayed in the html datatables, as well as the current selected object
   dataSource: MatTableDataSource<GrpcComponent.AsObject> = new MatTableDataSource<GrpcComponent.AsObject>();
 
-  // search values from search bars
-  searchKey: string = "";
-
   // sorter and paginator for tables
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -75,10 +72,6 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  // search function
-  applySearch() {
-    this.dataSource.filter = this.searchKey?.trim().toLowerCase();
-  }
 
   private static interpretListComponentsResponse(response: ListComponentsResponse, self: ComponentsTableComponent): void {
     self.dataSource.data = response.toObject().componentsList;

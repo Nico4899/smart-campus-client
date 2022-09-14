@@ -1,12 +1,3 @@
-<div class="search">
-  <mat-form-field>
-    <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applySearch()">
-    <button mat-button mat-icon-button matSuffix aria-label="Filter">
-      <mat-icon>filter_list</mat-icon>
-    </button>
-  </mat-form-field>
-</div>
-
 <div class="mat-elevation-z0">
   <table class="fav-components-table"
          mat-table [dataSource]="dataSource"
