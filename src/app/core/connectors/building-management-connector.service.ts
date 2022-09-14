@@ -285,30 +285,8 @@ export class BuildingManagementConnectorService {
   }
    */
 
-  async removeBuildingFavorite(request: RemoveFavoriteRequest, callback: (id: string, self: FavoriteBuildingsTableComponent) =>
-    void, self: FavoriteBuildingsTableComponent) {
-    this.client.removeFavorite(request, {}, (error: RpcError, response: RemoveResponse) => {
-      if (error) {
-        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
-      } else {
-        callback(request.getIdentificationNumber(), self);
-      }
-    })
-  }
-
-  async removeRoomFavorite(request: RemoveFavoriteRequest, callback: (id: string, self: FavoriteRoomsTableComponent) =>
-    void, self: FavoriteRoomsTableComponent) {
-    this.client.removeFavorite(request, {}, (error: RpcError, response: RemoveResponse) => {
-      if (error) {
-        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
-      } else {
-        callback(request.getIdentificationNumber(), self);
-      }
-    })
-  }
-
-  async removeComponentFavorite(request: RemoveFavoriteRequest, callback: (id: string, self: FavoriteComponentsTableComponent) =>
-    void, self: FavoriteComponentsTableComponent) {
+  async removeFavorite(request: RemoveFavoriteRequest, callback: (id: string, self: FavoriteBuildingsTableComponent | FavoriteComponentsTableComponent | FavoriteRoomsTableComponent) =>
+    void, self: FavoriteBuildingsTableComponent | FavoriteComponentsTableComponent | FavoriteRoomsTableComponent) {
     this.client.removeFavorite(request, {}, (error: RpcError, response: RemoveResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});

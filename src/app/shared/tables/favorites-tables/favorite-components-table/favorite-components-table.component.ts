@@ -13,6 +13,8 @@ import {MatDialog} from "@angular/material/dialog";
 import {TranslateService} from "@ngx-translate/core";
 import {AuthServiceService} from "../../../../core/authentication/auth-service.service";
 import {RemoveFavoriteComponent} from "../../../dialogs/remove-favorite/remove-favorite.component";
+import {FavoriteBuildingsTableComponent} from "../favorite-buildings-table/favorite-buildings-table.component";
+import {FavoriteRoomsTableComponent} from "../favorite-rooms-table/favorite-rooms-table.component";
 
 @Component({
   selector: 'app-favorite-components-table',
@@ -64,15 +66,16 @@ export class FavoriteComponentsTableComponent implements OnInit, AfterViewInit {
     self.dataSource.data = response.toObject().componentsList;
   }
 
-  private static interpretRemoveFavoriteResponse(id: string, self: FavoriteComponentsTableComponent): void {
-    self.dataSource.data = self.dataSource.data.filter(e => e.identificationNumber != id);
+  private static interpretRemoveFavoriteResponse(id: string, self: FavoriteBuildingsTableComponent | FavoriteComponentsTableComponent | FavoriteRoomsTableComponent): void {
+    let favoriteTableComponent = self as FavoriteComponentsTableComponent;
+    favoriteTableComponent.dataSource.data = favoriteTableComponent.dataSource.data.filter(e => e.identificationNumber != id);
   }
 
   openRemoveFavoriteDialog(identificationNumber: string) {
     const dialogRef = this.dialog.open(RemoveFavoriteComponent, {data: identificationNumber});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
-        this.buildingManagementConnector.removeComponentFavorite(
+        this.buildingManagementConnector.removeFavorite(
           FavoriteComponentsTableComponent.buildRemoveRequest(result), FavoriteComponentsTableComponent.interpretRemoveFavoriteResponse, this);
       } else {
         return;

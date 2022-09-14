@@ -15,6 +15,8 @@ import {AuthServiceService} from "../../../../core/authentication/auth-service.s
 import {RemoveFavoriteComponent} from "../../../dialogs/remove-favorite/remove-favorite.component";
 import {FilterBuildingsComponent} from "../../../dialogs/filter-buildings/filter-buildings.component";
 import {FilterRoomsComponent} from "../../../dialogs/filter-rooms/filter-rooms.component";
+import {FavoriteBuildingsTableComponent} from "../favorite-buildings-table/favorite-buildings-table.component";
+import {FavoriteComponentsTableComponent} from "../favorite-components-table/favorite-components-table.component";
 
 @Component({
   selector: 'app-favorite-rooms-table',
@@ -63,15 +65,16 @@ export class FavoriteRoomsTableComponent implements OnInit, AfterViewInit {
     self.dataSource.data = response.toObject().roomsList;
   }
 
-  private static interpretRemoveFavoriteResponse(id: string, self: FavoriteRoomsTableComponent): void {
-    self.dataSource.data = self.dataSource.data.filter(e => e.identificationNumber != id);
+  private static interpretRemoveFavoriteResponse(id: string, self: FavoriteBuildingsTableComponent | FavoriteComponentsTableComponent | FavoriteRoomsTableComponent): void {
+    let favoriteTableComponent = self as FavoriteRoomsTableComponent;
+    favoriteTableComponent.dataSource.data = favoriteTableComponent.dataSource.data.filter(e => e.identificationNumber != id);
   }
 
   openRemoveFavoriteDialog(identificationNumber: string) {
     const dialogRef = this.dialog.open(RemoveFavoriteComponent, {data: identificationNumber});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
-        this.buildingManagementConnector.removeRoomFavorite(
+        this.buildingManagementConnector.removeFavorite(
           FavoriteRoomsTableComponent.buildRemoveRequest(result), FavoriteRoomsTableComponent.interpretRemoveFavoriteResponse, this);
       } else {
         return;
