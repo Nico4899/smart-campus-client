@@ -58,6 +58,7 @@ export class FavoriteBuildingsTableComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     // run initial calls
     let listFavoriteBuildingsRequest = new ListFavoriteBuildingsRequest();
+    listFavoriteBuildingsRequest.setOwner(this.authService.eMail as string);
     this.buildingManagementConnector.listFavoriteBuildings(listFavoriteBuildingsRequest, FavoriteBuildingsTableComponent.interpretListFavoriteBuildingsResponse, this);
   }
 
