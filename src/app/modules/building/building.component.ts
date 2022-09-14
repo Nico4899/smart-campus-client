@@ -29,6 +29,19 @@ export class BuildingComponent implements OnInit {
     minZoom: 8,
   };
 
+  marker = {
+    position: {
+      lat: 49.0119,
+      lng: 8.4170
+    },
+    label: {
+      color: 'red',
+      text: 'Marked Position'
+    },
+    title: 'Title',
+    options: {animation: google.maps.Animation.BOUNCE}
+  }
+
 
 
 
@@ -64,10 +77,13 @@ export class BuildingComponent implements OnInit {
       lng: this.building.grpcGeographicalLocation!.longitude
     }
 
+    this.marker.position = {
+      lat: this.building.grpcGeographicalLocation!.latitude,
+      lng: this.building.grpcGeographicalLocation!.longitude
+    }
 
-
-
-
+    this.marker.title = this.building.buildingName;
+    this.marker.label.text = this.building.buildingName;
 
   }
 

@@ -25,8 +25,11 @@
       width="100%"
       [zoom]="zoom"
       [center]="center"
-      [options]="options"
-    ></google-map>
+      [options]="options">
+      <map-marker [position]="marker.position" [label] ="marker.label" [title]="marker.title" [options]="marker.options">
+
+      </map-marker>
+    </google-map>
   </mat-tab>
   <mat-tab label="details">
     Details.
