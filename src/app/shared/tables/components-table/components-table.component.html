@@ -10,13 +10,14 @@
   <table mat-table
          class="components-table"
          [dataSource]="dataSource"
-         matSort
-         multiTemplateDataRows>
+         matSort>
     <ng-container matColumnDef="componentType">
       <th mat-header-cell *matHeaderCellDef mat-sort-header="componentType"
           sortActionDescription="Sort by componentType">
         TYPE</th>
-      <td mat-cell *matCellDef="let component"> {{component.componentType | componentType}} </td>
+      <td mat-cell *matCellDef="let component"
+          routerLink="/components/{{component.identificationNumber}}">
+        {{component.componentType | componentType}} </td>
     </ng-container>
 
     <ng-container matColumnDef="edit_component">
@@ -43,33 +44,8 @@
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="expand">
-      <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
-      <td mat-cell *matCellDef="let component">
-        <button mat-icon-button aria-label="expand row" (click)="(expandedComponent = expandedComponent === component ? null : component); $event.stopPropagation()">
-          <mat-icon *ngIf="expandedComponent !== component">keyboard_arrow_down</mat-icon>
-          <mat-icon *ngIf="expandedComponent === component">keyboard_arrow_up</mat-icon>
-        </button>
-      </td>
-    </ng-container>
-
-    <!-- Expanded Description Column - The detail row is made up of this one column that spans across all columns -->
-    <ng-container matColumnDef="expandedDetail">
-      <td mat-cell *matCellDef="let component" [attr.colspan]="columnsToDisplayWithExpand.length">
-        <div class="component-detail"
-             [@detailExpand]="component == expandedComponent ? 'expanded' : 'collapsed'">
-          <div class="component-description">{{component.componentDescription}}</div>
-        </div>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
-    <tr mat-row *matRowDef="let component; columns: columnsToDisplayWithExpand;"
-        class="component-row"
-        [class.expanded-row]="expandedComponent === component"
-        (click)="expandedComponent = expandedComponent === component ? null : component">
-    </tr>
-    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
 
   </table>
   <mat-paginator [pageSizeOptions]="[5, 10, 20]"

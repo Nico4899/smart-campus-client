@@ -42,8 +42,6 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
 
   // columns to be displayed
   columnsToDisplay: string[] = ['componentType', 'edit_component', 'delete_component'];
-  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
-  expandedComponent!: string;
 
   constructor(private buildingManagementConnector: BuildingManagementConnectorService, private route: ActivatedRoute,
               private dialog: MatDialog, public authService: AuthServiceService) {
