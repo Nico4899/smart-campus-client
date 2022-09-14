@@ -21,6 +21,8 @@ import {RemoveRequest} from "../../../../proto/generated/building_management_pb"
 import {FilterProblemsComponent} from "../../dialogs/filter-problems/filter-problems.component";
 import {EditProblemComponent} from "../../dialogs/edit-problem/edit-problem.component";
 import {ExpandAnimation} from "../../animations";
+import {TranslateService} from "@ngx-translate/core";
+import {AuthServiceService} from "../../../core/authentication/auth-service.service";
 
 @Component({
   selector: 'app-problems-table',
@@ -61,7 +63,8 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedProblem!: string;
 
-  constructor(private problemManagementConnector: ProblemManagementConnectorService, private dialog: MatDialog) {
+  constructor(private problemManagementConnector: ProblemManagementConnectorService, private dialog: MatDialog,
+              translateService: TranslateService, public authService: AuthServiceService) {
   }
 
   ngOnInit() {
