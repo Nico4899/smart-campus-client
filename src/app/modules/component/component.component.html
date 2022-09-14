@@ -1,6 +1,9 @@
-<h1>{{component.componentType | componentType}}</h1>
-<h3>{{component.componentDescription}}</h3>
-
-<mat-tab label="notifications">
-  <app-notifications-table></app-notifications-table>
-</mat-tab>
+<mat-tab-group>
+  <mat-tab label="notifications">
+    <app-notifications-table></app-notifications-table>
+  </mat-tab>
+  <mat-tab label="details">
+    <h1>{{component.componentType | componentType}}</h1>
+    <h3>{{component.componentDescription}}</h3>
+  </mat-tab>
+</mat-tab-group>

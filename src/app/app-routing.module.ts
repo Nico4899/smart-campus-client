@@ -61,7 +61,7 @@ const routes: Routes = [{
     component: ComponentComponent,
     canActivate: [AuthGuardGuard],
     data: {
-      role: environment.roles.guest
+      roles: [environment.roles.guest, environment.roles.user, environment.roles.admin]
     }
   }]
 }, {
