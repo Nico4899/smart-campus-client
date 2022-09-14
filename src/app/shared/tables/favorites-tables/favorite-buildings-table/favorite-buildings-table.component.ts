@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {
-  GrpcBuilding,
+  GrpcBuilding, GrpcBuildingFilterValueSelection, ListBuildingsRequest,
   ListFavoriteBuildingsRequest,
   ListFavoriteBuildingsResponse, RemoveFavoriteRequest, RemoveRequest, RemoveResponse
 } from "../../../../../proto/generated/building_management_pb";
@@ -13,6 +13,7 @@ import {RemoveComponent} from "../../../dialogs/remove/remove.component";
 import {MatDialog} from "@angular/material/dialog";
 import {AuthServiceService} from "../../../../core/authentication/auth-service.service";
 import {RemoveFavoriteComponent} from "../../../dialogs/remove-favorite/remove-favorite.component";
+import {FilterBuildingsComponent} from "../../../dialogs/filter-buildings/filter-buildings.component";
 
 @Component({
   selector: 'app-favorite-buildings-table',
@@ -77,7 +78,30 @@ export class FavoriteBuildingsTableComponent implements OnInit, AfterViewInit {
     })
   }
 
+  openFilterFavoriteBuildingsDialog() {
+    const dialogRef = this.dialog.open(FilterBuildingsComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.event == 'ok') {
+        this.buildingManagementConnector.listFavoriteBuildings(FavoriteBuildingsTableComponent.buildListFavoriteBuildingsRequest(result),
+          FavoriteBuildingsTableComponent.interpretListFavoriteBuildingsResponse, this);
+      } else {
+        return;
+      }
+    })
+  }
+
   // private utils
+  public static buildListFavoriteBuildingsRequest(result: any): ListFavoriteBuildingsRequest {
+    let request = new ListFavoriteBuildingsRequest();
+    let selection = new GrpcBuildingFilterValueSelection();
+    selection.setGrpcComponentTypesList(result.data.componentTypes);
+    selection.setGrpcRoomTypesList(result.data.roomTypes);
+    selection.setGrpcCampusLocationsList(result.data.campusLocations);
+    request.setGrpcFilterValueSelection(selection);
+    request.setOwner(result.data.owner);
+    return request;
+  }
+
   private static buildRemoveRequest(result: any): RemoveFavoriteRequest {
     let request = new RemoveFavoriteRequest();
     request.setIdentificationNumber(result.data.identificationNumber);

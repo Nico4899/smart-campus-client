@@ -133,6 +133,16 @@ export class BuildingsTableComponent implements OnInit {
   }
 
   // private utils
+  public static buildListBuildingsRequest(result: any): ListBuildingsRequest {
+    let request = new ListBuildingsRequest();
+    let selection = new GrpcBuildingFilterValueSelection();
+    selection.setGrpcComponentTypesList(result.data.componentTypes);
+    selection.setGrpcRoomTypesList(result.data.roomTypes);
+    selection.setGrpcCampusLocationsList(result.data.campusLocations);
+    request.setGrpcFilterValueSelection(selection);
+    return request;
+  }
+
   private static buildCreateBuildingRequest(result: any): CreateBuildingRequest {
     let request = new CreateBuildingRequest();
     request.setBuildingNumber(result.data.buildingNumber);
@@ -172,15 +182,7 @@ export class BuildingsTableComponent implements OnInit {
     return request;
   }
 
-  public static buildListBuildingsRequest(result: any): ListBuildingsRequest {
-    let request = new ListBuildingsRequest();
-    let selection = new GrpcBuildingFilterValueSelection();
-    selection.setGrpcComponentTypesList(result.data.componentTypes);
-    selection.setGrpcRoomTypesList(result.data.roomTypes);
-    selection.setGrpcCampusLocationsList(result.data.campusLocations);
-    request.setGrpcFilterValueSelection(selection);
-    return request;
-  }
+
 
   useLanguage(language: string): void {
     this.translateService.use(language);

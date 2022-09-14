@@ -8,7 +8,7 @@ import {
   ListRoomsResponse,
   RemoveRequest,
   UpdateRoomRequest,
-  UpdateRoomResponse
+  UpdateRoomResponse, ListFavoriteRoomsRequest, GrpcBuildingFilterValueSelection
 } from "../../../../proto/generated/building_management_pb";
 import {BuildingManagementConnectorService} from "../../../core/connectors/building-management-connector.service";
 import {ActivatedRoute} from "@angular/router";
@@ -20,6 +20,7 @@ import {AddRoomComponent} from '../../dialogs/add-room/add-room.component'
 import {EditRoomComponent} from '../../dialogs/edit-room/edit-room.component'
 import {RemoveComponent} from "../../dialogs/remove/remove.component";
 import {AuthServiceService} from "../../../core/authentication/auth-service.service";
+import {FilterRoomsComponent} from "../../dialogs/filter-rooms/filter-rooms.component";
 
 @Component({
   selector: 'app-rooms-table',
@@ -126,7 +127,27 @@ export class RoomsTableComponent implements OnInit {
     })
   }
 
+  openFilterRoomsDialog() {
+    const dialogRef = this.dialog.open(FilterRoomsComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.event == 'ok') {
+        this.buildingManagementConnector.listRooms(RoomsTableComponent.buildListRoomsRequest(result),
+          RoomsTableComponent.interpretListRoomsResponse, this);
+      } else {
+        return;
+      }
+    })
+  }
+
   //private utils here
+  public static buildListRoomsRequest(result: any): ListRoomsRequest {
+    let request = new ListRoomsRequest();
+    let selection = new GrpcBuildingFilterValueSelection();
+    selection.setGrpcComponentTypesList(result.data.componentTypes);
+    selection.setGrpcRoomTypesList(result.data.roomTypes);
+    request.setGrpcFilterValueSelection(selection);
+    return request;
+  }
 
   private static buildCreateRoomRequest(bin: string, result: any): CreateRoomRequest {
     let request = new CreateRoomRequest();

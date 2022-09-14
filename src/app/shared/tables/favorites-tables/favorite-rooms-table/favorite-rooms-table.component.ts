@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {
+  GrpcBuildingFilterValueSelection,
   GrpcRoom, ListFavoriteBuildingsRequest, ListFavoriteBuildingsResponse,
   ListFavoriteRoomsRequest,
   ListFavoriteRoomsResponse, RemoveFavoriteRequest
@@ -12,6 +13,8 @@ import { TranslateService } from '@ngx-translate/core';
 import {MatDialog} from "@angular/material/dialog";
 import {AuthServiceService} from "../../../../core/authentication/auth-service.service";
 import {RemoveFavoriteComponent} from "../../../dialogs/remove-favorite/remove-favorite.component";
+import {FilterBuildingsComponent} from "../../../dialogs/filter-buildings/filter-buildings.component";
+import {FilterRoomsComponent} from "../../../dialogs/filter-rooms/filter-rooms.component";
 
 @Component({
   selector: 'app-favorite-rooms-table',
@@ -76,7 +79,29 @@ export class FavoriteRoomsTableComponent implements OnInit, AfterViewInit {
     })
   }
 
+  openFilterFavoriteRoomsDialog() {
+    const dialogRef = this.dialog.open(FilterRoomsComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.event == 'ok') {
+        this.buildingManagementConnector.listFavoriteRooms(FavoriteRoomsTableComponent.buildListFavoriteRoomsRequest(result),
+          FavoriteRoomsTableComponent.interpretListFavoriteRoomsResponse, this);
+      } else {
+        return;
+      }
+    })
+  }
+
   // private utils
+  public static buildListFavoriteRoomsRequest(result: any): ListFavoriteRoomsRequest {
+    let request = new ListFavoriteRoomsRequest();
+    let selection = new GrpcBuildingFilterValueSelection();
+    selection.setGrpcComponentTypesList(result.data.componentTypes);
+    selection.setGrpcRoomTypesList(result.data.roomTypes);
+    request.setGrpcFilterValueSelection(selection);
+    request.setOwner(result.data.owner);
+    return request;
+  }
+
   private static buildRemoveRequest(result: any): RemoveFavoriteRequest {
     let request = new RemoveFavoriteRequest();
     request.setIdentificationNumber(result.data.identificationNumber);

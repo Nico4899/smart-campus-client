@@ -1,7 +1,7 @@
 <div class="search">
   <mat-form-field>
     <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applySearch()">
-    <button mat-button mat-icon-button matSuffix aria-label="Filter">
+    <button mat-button mat-icon-button matSuffix aria-label="Filter" (click)="openFilterFavoriteBuildingsDialog()">
       <mat-icon>filter_list</mat-icon>
     </button>
   </mat-form-field>
