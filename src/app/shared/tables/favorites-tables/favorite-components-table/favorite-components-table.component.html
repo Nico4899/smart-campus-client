@@ -10,7 +10,8 @@
 <div class="mat-elevation-z0">
   <table class="fav-components-table"
          mat-table [dataSource]="dataSource"
-         matSort>
+         matSort
+         multiTemplateDataRows>
     <ng-container matColumnDef="componentType">
       <th mat-header-cell *matHeaderCellDef mat-sort-header="componentType"
           sortActionDescription="Sort by componentType">
