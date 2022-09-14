@@ -83,9 +83,9 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
     }
   }
 
-  changeState(operation: GrpcStateOperation) {
+  changeState(operation: GrpcStateOperation, identificationNumber: string) {
     this.problemManagementConnector.changeProblemState(
-      ProblemsTableComponent.buildChangeProblemStateRequest(operation), ProblemsTableComponent.interpretChangeProblemStateResponse, this);
+      ProblemsTableComponent.buildChangeProblemStateRequest(operation, identificationNumber), ProblemsTableComponent.interpretChangeProblemStateResponse, this);
   }
 
   // private callback methods for api calls
@@ -174,9 +174,10 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
     return request;
   }
 
-  private static buildChangeProblemStateRequest(result: any): ChangeStateRequest {
+  private static buildChangeProblemStateRequest(operation: GrpcStateOperation, identificationNumber: string): ChangeStateRequest {
     let request = new ChangeStateRequest();
-    request.setGrpcStateOperation(result.data.stateOperation);
+    request.setGrpcStateOperation(operation);
+    request.setIdentificationNumber(identificationNumber);
     return request;
   }
 }
