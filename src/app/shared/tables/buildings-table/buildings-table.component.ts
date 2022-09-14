@@ -21,6 +21,7 @@ import {EditBuildingComponent} from "../../dialogs/edit-building/edit-building.c
 import {FilterBuildingsComponent} from "../../dialogs/filter-buildings/filter-buildings.component";
 import {RemoveComponent} from "../../dialogs/remove/remove.component";
 import { TranslateService } from '@ngx-translate/core';
+import {AuthServiceService} from "../../../core/authentication/auth-service.service";
 
 @Component({
   selector: 'app-buildings-table',
@@ -44,7 +45,7 @@ export class BuildingsTableComponent implements OnInit {
   columnsToDisplay: string[] = ['buildingNumber', 'buildingName', 'address', 'campusLocation', 'edit_building', 'delete_building'];
 
   constructor(private buildingManagementConnector: BuildingManagementConnectorService, private dialog: MatDialog,
-              translateService: TranslateService) {
+              translateService: TranslateService, public authService: AuthServiceService) {
     // inject building management client and current rout to obtain path variables
     this.translateService = translateService;
   }

@@ -20,6 +20,7 @@ import {MatDialog} from '@angular/material/dialog'
 import {MatTableDataSource} from "@angular/material/table";
 import {RemoveComponent} from "../../dialogs/remove/remove.component";
 import {ExpandAnimation} from "../../animations";
+import {AuthServiceService} from "../../../core/authentication/auth-service.service";
 
 @Component({
   selector: 'app-components-table',
@@ -47,7 +48,8 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedComponent!: string;
 
-  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private route: ActivatedRoute, private dialog: MatDialog) {
+  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private route: ActivatedRoute,
+              private dialog: MatDialog, public authService: AuthServiceService) {
     // inject building management client and current rout to obtain path variables
   }
 

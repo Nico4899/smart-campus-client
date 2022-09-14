@@ -3,12 +3,16 @@ import {MatTableDataSource} from "@angular/material/table";
 import {
   GrpcBuilding,
   ListFavoriteBuildingsRequest,
-  ListFavoriteBuildingsResponse
+  ListFavoriteBuildingsResponse, RemoveFavoriteRequest, RemoveRequest, RemoveResponse
 } from "../../../../../proto/generated/building_management_pb";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
 import {BuildingManagementConnectorService} from "../../../../core/connectors/building-management-connector.service";
 import { TranslateService } from '@ngx-translate/core';
+import {RemoveComponent} from "../../../dialogs/remove/remove.component";
+import {MatDialog} from "@angular/material/dialog";
+import {AuthServiceService} from "../../../../core/authentication/auth-service.service";
+import {RemoveFavoriteComponent} from "../../../dialogs/remove-favorite/remove-favorite.component";
 
 @Component({
   selector: 'app-favorite-buildings-table',
@@ -30,7 +34,8 @@ export class FavoriteBuildingsTableComponent implements OnInit, AfterViewInit {
   // columns to be displayed
   columnsToDisplay: string[] = ['buildingNumber', 'buildingName', 'address', 'campusLocation', 'remove_favorite_building'];
 
-  constructor(private buildingManagementConnector: BuildingManagementConnectorService) {
+  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private dialog: MatDialog,
+              translateService: TranslateService, public authService: AuthServiceService) {
     // inject building management client and current rout to obtain path variables
   }
 
@@ -54,5 +59,29 @@ export class FavoriteBuildingsTableComponent implements OnInit, AfterViewInit {
   // private callback methods for api calls
   private static interpretListFavoriteBuildingsResponse(response: ListFavoriteBuildingsResponse, self: FavoriteBuildingsTableComponent): void {
     self.dataSource.data = response.toObject().buildingsList;
+  }
+
+  private static interpretRemoveFavoriteResponse(id: string, self: FavoriteBuildingsTableComponent): void {
+    self.dataSource.data = self.dataSource.data.filter(e => e.identificationNumber != id);
+  }
+
+  openRemoveFavoriteDialog(identificationNumber: string) {
+    const dialogRef = this.dialog.open(RemoveFavoriteComponent, {data: identificationNumber});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.event == 'ok') {
+        this.buildingManagementConnector.removeBuildingFavorite(
+          FavoriteBuildingsTableComponent.buildRemoveRequest(result), FavoriteBuildingsTableComponent.interpretRemoveFavoriteResponse, this);
+      } else {
+        return;
+      }
+    })
+  }
+
+  // private utils
+  private static buildRemoveRequest(result: any): RemoveFavoriteRequest {
+    let request = new RemoveFavoriteRequest();
+    request.setIdentificationNumber(result.data.identificationNumber);
+    request.setOwner(result.data.owner);
+    return request;
   }
 }

@@ -19,6 +19,7 @@ import {MatDialog} from '@angular/material/dialog'
 import {AddRoomComponent} from '../../dialogs/add-room/add-room.component'
 import {EditRoomComponent} from '../../dialogs/edit-room/edit-room.component'
 import {RemoveComponent} from "../../dialogs/remove/remove.component";
+import {AuthServiceService} from "../../../core/authentication/auth-service.service";
 
 @Component({
   selector: 'app-rooms-table',
@@ -43,7 +44,8 @@ export class RoomsTableComponent implements OnInit {
   // columns to be displayed
   displayedColumns: string[] = ['roomNumber', 'roomName', 'floor', 'roomType', 'edit_room', 'delete_room'];
 
-  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private route: ActivatedRoute, private dialog: MatDialog) {
+  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private route: ActivatedRoute,
+              private dialog: MatDialog, public authService: AuthServiceService) {
     // inject building management client and current rout to obtain path variables
   }
 

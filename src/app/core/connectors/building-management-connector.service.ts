@@ -273,12 +273,47 @@ export class BuildingManagementConnectorService {
     })
   }
 
+  /*
   async removeFavorite(request: RemoveFavoriteRequest, callback: (response: RemoveResponse, self: FavoritesComponent) => void, self: FavoritesComponent) {
     this.client.removeFavorite(request, {}, (error: RpcError, response: RemoveResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
         callback(response, self);
+      }
+    })
+  }
+   */
+
+  async removeBuildingFavorite(request: RemoveFavoriteRequest, callback: (id: string, self: FavoriteBuildingsTableComponent) =>
+    void, self: FavoriteBuildingsTableComponent) {
+    this.client.removeFavorite(request, {}, (error: RpcError, response: RemoveResponse) => {
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(request.getIdentificationNumber(), self);
+      }
+    })
+  }
+
+  async removeRoomFavorite(request: RemoveFavoriteRequest, callback: (id: string, self: FavoriteRoomsTableComponent) =>
+    void, self: FavoriteRoomsTableComponent) {
+    this.client.removeFavorite(request, {}, (error: RpcError, response: RemoveResponse) => {
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(request.getIdentificationNumber(), self);
+      }
+    })
+  }
+
+  async removeComponentFavorite(request: RemoveFavoriteRequest, callback: (id: string, self: FavoriteComponentsTableComponent) =>
+    void, self: FavoriteComponentsTableComponent) {
+    this.client.removeFavorite(request, {}, (error: RpcError, response: RemoveResponse) => {
+      if (error) {
+        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
+      } else {
+        callback(request.getIdentificationNumber(), self);
       }
     })
   }
