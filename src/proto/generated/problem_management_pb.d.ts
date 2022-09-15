@@ -293,18 +293,18 @@ export class GrpcProblem extends jspb.Message {
   getProblemReporter(): string;
   setProblemReporter(value: string): GrpcProblem;
 
-  getCreationTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setCreationTime(value?: google_protobuf_timestamp_pb.Timestamp): GrpcProblem;
-  hasCreationTime(): boolean;
-  clearCreationTime(): GrpcProblem;
+  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): GrpcProblem;
+  hasCreatedOn(): boolean;
+  clearCreatedOn(): GrpcProblem;
 
   getReferenceIdentificationNumber(): string;
   setReferenceIdentificationNumber(value: string): GrpcProblem;
 
-  getLastModified(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setLastModified(value?: google_protobuf_timestamp_pb.Timestamp): GrpcProblem;
-  hasLastModified(): boolean;
-  clearLastModified(): GrpcProblem;
+  getLastModifiedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setLastModifiedOn(value?: google_protobuf_timestamp_pb.Timestamp): GrpcProblem;
+  hasLastModifiedOn(): boolean;
+  clearLastModifiedOn(): GrpcProblem;
 
   getPossibleStateOperationsList(): Array<GrpcStateOperation>;
   setPossibleStateOperationsList(value: Array<GrpcStateOperation>): GrpcProblem;
@@ -326,9 +326,9 @@ export namespace GrpcProblem {
     problemTitle: string,
     problemDescription: string,
     problemReporter: string,
-    creationTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     referenceIdentificationNumber: string,
-    lastModified?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    lastModifiedOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     possibleStateOperationsList: Array<GrpcStateOperation>,
   }
 }
