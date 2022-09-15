@@ -36,6 +36,9 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
   // datasource containing provided data from the api, to be displayed in the html datatables, as well as the current selected object
   dataSource: MatTableDataSource<GrpcComponent.AsObject> = new MatTableDataSource<GrpcComponent.AsObject>();
 
+  // data loading
+  isLoading = true;
+
   // sorter and paginator for tables
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -73,10 +76,10 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
 
   private static interpretListComponentsResponse(response: ListComponentsResponse, self: ComponentsTableComponent): void {
     self.dataSource.data = response.toObject().componentsList;
+    self.isLoading = false;
   }
 
   private static interpretCreateComponentResponse(response: CreateComponentResponse, self: ComponentsTableComponent): void {
-    console.log(response.getComponent()?.toObject()!)
     self.dataSource.data.push(response.getComponent()?.toObject()!);
   }
 
