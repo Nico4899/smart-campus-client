@@ -2430,9 +2430,9 @@ proto.edu.kit.tm.cm.proto.GrpcProblem.toObject = function(includeInstance, msg) 
     problemTitle: jspb.Message.getFieldWithDefault(msg, 3, ""),
     problemDescription: jspb.Message.getFieldWithDefault(msg, 4, ""),
     problemReporter: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    creationTime: (f = msg.getCreationTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     referenceIdentificationNumber: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    lastModified: (f = msg.getLastModified()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    lastModifiedOn: (f = msg.getLastModifiedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     possibleStateOperationsList: (f = jspb.Message.getRepeatedField(msg, 9)) == null ? undefined : f
   };
 
@@ -2493,7 +2493,7 @@ proto.edu.kit.tm.cm.proto.GrpcProblem.deserializeBinaryFromReader = function(msg
     case 6:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setCreationTime(value);
+      msg.setCreatedOn(value);
       break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
@@ -2502,7 +2502,7 @@ proto.edu.kit.tm.cm.proto.GrpcProblem.deserializeBinaryFromReader = function(msg
     case 8:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setLastModified(value);
+      msg.setLastModifiedOn(value);
       break;
     case 9:
       var values = /** @type {!Array<!proto.edu.kit.tm.cm.proto.GrpcStateOperation>} */ (reader.isDelimited() ? reader.readPackedEnum() : [reader.readEnum()]);
@@ -2574,7 +2574,7 @@ proto.edu.kit.tm.cm.proto.GrpcProblem.serializeBinaryToWriter = function(message
       f
     );
   }
-  f = message.getCreationTime();
+  f = message.getCreatedOn();
   if (f != null) {
     writer.writeMessage(
       6,
@@ -2589,7 +2589,7 @@ proto.edu.kit.tm.cm.proto.GrpcProblem.serializeBinaryToWriter = function(message
       f
     );
   }
-  f = message.getLastModified();
+  f = message.getLastModifiedOn();
   if (f != null) {
     writer.writeMessage(
       8,
@@ -2698,10 +2698,10 @@ proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.setProblemReporter = function(va
 
 
 /**
- * optional google.protobuf.Timestamp creation_time = 6;
+ * optional google.protobuf.Timestamp created_on = 6;
  * @return {?proto.google.protobuf.Timestamp}
  */
-proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.getCreationTime = function() {
+proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.getCreatedOn = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
     jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 6));
 };
@@ -2711,7 +2711,7 @@ proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.getCreationTime = function() {
  * @param {?proto.google.protobuf.Timestamp|undefined} value
  * @return {!proto.edu.kit.tm.cm.proto.GrpcProblem} returns this
 */
-proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.setCreationTime = function(value) {
+proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.setCreatedOn = function(value) {
   return jspb.Message.setWrapperField(this, 6, value);
 };
 
@@ -2720,8 +2720,8 @@ proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.setCreationTime = function(value
  * Clears the message field making it undefined.
  * @return {!proto.edu.kit.tm.cm.proto.GrpcProblem} returns this
  */
-proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.clearCreationTime = function() {
-  return this.setCreationTime(undefined);
+proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.clearCreatedOn = function() {
+  return this.setCreatedOn(undefined);
 };
 
 
@@ -2729,7 +2729,7 @@ proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.clearCreationTime = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.hasCreationTime = function() {
+proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.hasCreatedOn = function() {
   return jspb.Message.getField(this, 6) != null;
 };
 
@@ -2753,10 +2753,10 @@ proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.setReferenceIdentificationNumber
 
 
 /**
- * optional google.protobuf.Timestamp last_modified = 8;
+ * optional google.protobuf.Timestamp last_modified_on = 8;
  * @return {?proto.google.protobuf.Timestamp}
  */
-proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.getLastModified = function() {
+proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.getLastModifiedOn = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
     jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 8));
 };
@@ -2766,7 +2766,7 @@ proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.getLastModified = function() {
  * @param {?proto.google.protobuf.Timestamp|undefined} value
  * @return {!proto.edu.kit.tm.cm.proto.GrpcProblem} returns this
 */
-proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.setLastModified = function(value) {
+proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.setLastModifiedOn = function(value) {
   return jspb.Message.setWrapperField(this, 8, value);
 };
 
@@ -2775,8 +2775,8 @@ proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.setLastModified = function(value
  * Clears the message field making it undefined.
  * @return {!proto.edu.kit.tm.cm.proto.GrpcProblem} returns this
  */
-proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.clearLastModified = function() {
-  return this.setLastModified(undefined);
+proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.clearLastModifiedOn = function() {
+  return this.setLastModifiedOn(undefined);
 };
 
 
@@ -2784,7 +2784,7 @@ proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.clearLastModified = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.hasLastModified = function() {
+proto.edu.kit.tm.cm.proto.GrpcProblem.prototype.hasLastModifiedOn = function() {
   return jspb.Message.getField(this, 8) != null;
 };
 

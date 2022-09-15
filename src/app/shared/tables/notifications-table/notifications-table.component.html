@@ -3,7 +3,8 @@
          class="notifications-table"
          [dataSource]="dataSource"
          multiTemplateDataRows
-         matSort>
+         matSort
+         multiTemplateDataRows>
     <ng-container matColumnDef="notificationTitle">
       <th mat-header-cell *matHeaderCellDef>TITLE</th>
       <td mat-cell *matCellDef="let notification">{{notification.notificationTitle}}</td>
