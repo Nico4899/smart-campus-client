@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthServiceService} from "../../../core/authentication/auth-service.service";
 
 @Component({
   selector: 'app-sidebar',
@@ -8,7 +8,8 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authService: AuthServiceService) {
+  }
 
   ngOnInit(): void {
   }

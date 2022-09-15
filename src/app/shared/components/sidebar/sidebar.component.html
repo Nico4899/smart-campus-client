@@ -8,14 +8,19 @@
     <mat-icon>apartment</mat-icon>
     {{'sidebar.buildings' | translate}}
   </a>
+  <div [hidden]="!authService.isUser()">
+    <mat-divider></mat-divider>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="problems">
+      <mat-icon>priority_high</mat-icon>
+      {{'sidebar.problems' | translate}}
+    </a>
+  </div>
+  <div [hidden]="!authService.isUser()">
+    <mat-divider></mat-divider>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="favorites">
+      <mat-icon>favorite</mat-icon>
+      {{'sidebar.favorites' | translate}}
+    </a>
+  </div>
   <mat-divider></mat-divider>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="problems">
-    <mat-icon>priority_high</mat-icon>
-    {{'sidebar.problems' | translate}}
-  </a>
-  <mat-divider></mat-divider>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="favorites">
-    <mat-icon>favorite</mat-icon>
-    {{'sidebar.favorites' | translate}}
-  </a>
 </mat-nav-list>
