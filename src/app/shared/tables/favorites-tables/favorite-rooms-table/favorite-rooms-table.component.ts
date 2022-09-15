@@ -2,21 +2,33 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {
   GrpcBuildingFilterValueSelection,
-  GrpcRoom, ListFavoriteBuildingsRequest, ListFavoriteBuildingsResponse,
+  GrpcRoom,
   ListFavoriteRoomsRequest,
-  ListFavoriteRoomsResponse, RemoveFavoriteRequest
+  ListFavoriteRoomsResponse,
+  RemoveFavoriteRequest
 } from "../../../../../proto/generated/building_management_pb";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
-import {BuildingManagementConnectorService} from "../../../../core/connectors/building-management-connector.service";
-import { TranslateService } from '@ngx-translate/core';
+import {
+  BuildingManagementConnectorService
+} from "../../../../core/connectors/building-management-connector.service";
+import {TranslateService} from '@ngx-translate/core';
 import {MatDialog} from "@angular/material/dialog";
-import {AuthServiceService} from "../../../../core/authentication/auth-service.service";
-import {RemoveFavoriteComponent} from "../../../dialogs/remove-favorite/remove-favorite.component";
-import {FilterBuildingsComponent} from "../../../dialogs/filter-buildings/filter-buildings.component";
-import {FilterRoomsComponent} from "../../../dialogs/filter-rooms/filter-rooms.component";
-import {FavoriteBuildingsTableComponent} from "../favorite-buildings-table/favorite-buildings-table.component";
-import {FavoriteComponentsTableComponent} from "../favorite-components-table/favorite-components-table.component";
+import {
+  AuthServiceService
+} from "../../../../core/authentication/auth-service.service";
+import {
+  RemoveFavoriteComponent
+} from "../../../dialogs/remove-favorite/remove-favorite.component";
+import {
+  FilterRoomsComponent
+} from "../../../dialogs/filter-rooms/filter-rooms.component";
+import {
+  FavoriteBuildingsTableComponent
+} from "../favorite-buildings-table/favorite-buildings-table.component";
+import {
+  FavoriteComponentsTableComponent
+} from "../favorite-components-table/favorite-components-table.component";
 
 @Component({
   selector: 'app-favorite-rooms-table',
@@ -34,6 +46,9 @@ export class FavoriteRoomsTableComponent implements OnInit, AfterViewInit {
 
   // search values from search bars
   searchKey: string = "";
+
+  // data loading
+  isLoading = true;
 
   // columns to be displayed
   columnsToDisplay: string[] = ['roomNumber', 'roomName', 'floor', 'roomType', 'remove_favorite_room'];
@@ -63,6 +78,7 @@ export class FavoriteRoomsTableComponent implements OnInit, AfterViewInit {
   // private callback methods for api calls
   private static interpretListFavoriteRoomsResponse(response: ListFavoriteRoomsResponse, self: FavoriteRoomsTableComponent): void {
     self.dataSource.data = response.toObject().roomsList;
+    self.isLoading = false;
   }
 
   private static interpretRemoveFavoriteResponse(id: string, self: FavoriteBuildingsTableComponent | FavoriteComponentsTableComponent | FavoriteRoomsTableComponent): void {
@@ -86,6 +102,7 @@ export class FavoriteRoomsTableComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(FilterRoomsComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
+        this.isLoading = true;
         this.buildingManagementConnector.listFavoriteRooms(FavoriteRoomsTableComponent.buildListFavoriteRoomsRequest(result),
           FavoriteRoomsTableComponent.interpretListFavoriteRoomsResponse, this);
       } else {

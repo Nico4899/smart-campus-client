@@ -55,6 +55,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import { RemoveComponent } from './dialogs/remove/remove.component';
 import {MatExpansionModule} from "@angular/material/expansion";
 import {TranslateModule} from "@ngx-translate/core";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -126,7 +128,9 @@ import {TranslateModule} from "@ngx-translate/core";
     ReactiveFormsModule,
     MatCheckboxModule,
     MatExpansionModule,
-    TranslateModule
+    TranslateModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule
   ]
 })
 export class SharedModule {

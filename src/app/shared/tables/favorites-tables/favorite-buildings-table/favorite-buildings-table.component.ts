@@ -47,6 +47,9 @@ export class FavoriteBuildingsTableComponent implements OnInit, AfterViewInit {
   // search values from search bars
   searchKey: string = "";
 
+  // data loading
+  isLoading = true;
+
   // columns to be displayed
   columnsToDisplay: string[] = ['buildingNumber', 'buildingName', 'address', 'campusLocation', 'remove_favorite_building'];
 
@@ -76,6 +79,7 @@ export class FavoriteBuildingsTableComponent implements OnInit, AfterViewInit {
   // private callback methods for api calls
   private static interpretListFavoriteBuildingsResponse(response: ListFavoriteBuildingsResponse, self: FavoriteBuildingsTableComponent): void {
     self.dataSource.data = response.toObject().buildingsList;
+    self.isLoading = false;
   }
 
   private static interpretRemoveFavoriteResponse(id: string, self: FavoriteBuildingsTableComponent | FavoriteComponentsTableComponent | FavoriteRoomsTableComponent): void {
@@ -99,6 +103,7 @@ export class FavoriteBuildingsTableComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(FilterBuildingsComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
+        this.isLoading = true;
         this.buildingManagementConnector.listFavoriteBuildings(FavoriteBuildingsTableComponent.buildListFavoriteBuildingsRequest(result),
           FavoriteBuildingsTableComponent.interpretListFavoriteBuildingsResponse, this);
       } else {

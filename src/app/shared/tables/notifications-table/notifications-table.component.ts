@@ -29,6 +29,9 @@ export class NotificationsTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  // data loading
+  isLoading = true;
+
   // columns to be displayed
   columnsToDisplay: string[] = ['notificationTitle', 'creationTime', 'lastModified'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
@@ -62,5 +65,6 @@ export class NotificationsTableComponent implements OnInit, AfterViewInit {
   // private callback methods for api calls
   private static interpretListNotificationsResponse(response: ListNotificationsResponse, self: NotificationsTableComponent): void {
     self.dataSource.data = response.toObject().notificationsList;
+    self.isLoading = false;
   }
 }

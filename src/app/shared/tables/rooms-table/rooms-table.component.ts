@@ -42,6 +42,9 @@ export class RoomsTableComponent implements OnInit {
   // search values from search bars
   searchKey: string = "";
 
+  // data loading
+  isLoading = true;
+
   // columns to be displayed
   displayedColumns: string[] = ['roomNumber', 'roomName', 'floor', 'roomType', 'edit_room', 'delete_room'];
 
@@ -75,6 +78,7 @@ export class RoomsTableComponent implements OnInit {
   // private callback methods for api calls
   private static interpretListRoomsResponse(response: ListRoomsResponse, self: RoomsTableComponent): void {
     self.dataSource.data = response.toObject().roomsList;
+    self.isLoading = false;
   }
 
   private static interpretCreateRoomResponse(response: CreateRoomResponse, self: RoomsTableComponent): void {
@@ -131,6 +135,7 @@ export class RoomsTableComponent implements OnInit {
     const dialogRef = this.dialog.open(FilterRoomsComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
+        this.isLoading = true;
         this.buildingManagementConnector.listRooms(RoomsTableComponent.buildListRoomsRequest(result),
           RoomsTableComponent.interpretListRoomsResponse, this);
       } else {

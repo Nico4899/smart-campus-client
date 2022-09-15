@@ -29,4 +29,8 @@
                  showFirstLastButtons
                  aria-label="Select page of components">
   </mat-paginator>
+
+  <div *ngIf="isLoading">
+    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+  </div>
 </div>

@@ -33,8 +33,9 @@ export class FavoriteComponentsTableComponent implements OnInit, AfterViewInit {
 
   // columns to be displayed
   columnsToDisplay: string[] = ['componentType', 'remove_favorite_component'];
-  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
-  expandedComponent!: string;
+
+  // data loading
+  isLoading = true;
 
   constructor(private buildingManagementConnector: BuildingManagementConnectorService, private dialog: MatDialog,
               translateService: TranslateService, public authService: AuthServiceService) {
@@ -56,6 +57,7 @@ export class FavoriteComponentsTableComponent implements OnInit, AfterViewInit {
   // private callback methods for api calls
   private static interpretListFavoriteComponentsResponse(response: ListFavoriteComponentsResponse, self: FavoriteComponentsTableComponent): void {
     self.dataSource.data = response.toObject().componentsList;
+    self.isLoading = false;
   }
 
   private static interpretRemoveFavoriteResponse(id: string, self: FavoriteBuildingsTableComponent | FavoriteComponentsTableComponent | FavoriteRoomsTableComponent): void {

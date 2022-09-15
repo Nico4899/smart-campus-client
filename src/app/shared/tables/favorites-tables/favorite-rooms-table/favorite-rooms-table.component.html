@@ -62,4 +62,8 @@
                  showFirstLastButtons
                  aria-label="Select page of rooms">
   </mat-paginator>
+
+  <div *ngIf="isLoading">
+    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+  </div>
 </div>

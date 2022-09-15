@@ -41,6 +41,9 @@ export class BuildingsTableComponent implements OnInit {
   // search values from search bars
   searchKey: string = "";
 
+  // data loading
+  isLoading = true;
+
   // columns to be displayed
   columnsToDisplay: string[] = ['buildingNumber', 'buildingName', 'address', 'campusLocation', 'edit_building', 'delete_building'];
 
@@ -72,6 +75,7 @@ export class BuildingsTableComponent implements OnInit {
   // private callback methods for api calls
   private static interpretListBuildingsResponse(response: ListBuildingsResponse, self: BuildingsTableComponent): void {
     self.dataSource.data = response.toObject().buildingsList;
+    self.isLoading = false;
   }
 
   private static interpretCreateBuildingResponse(response: CreateBuildingResponse, self: BuildingsTableComponent): void {
@@ -125,6 +129,7 @@ export class BuildingsTableComponent implements OnInit {
     const dialogRef = this.dialog.open(FilterBuildingsComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
+        this.isLoading = true;
         this.buildingManagementConnector.listBuildings(BuildingsTableComponent.buildListBuildingsRequest(result), BuildingsTableComponent.interpretListBuildingsResponse, this);
       } else {
         return;

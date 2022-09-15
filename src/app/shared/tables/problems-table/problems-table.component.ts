@@ -52,6 +52,9 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
   // search values from search bars
   searchKey: string = "";
 
+  // data loading
+  isLoading = true;
+
   columnsToDisplay: string[] = ['problemTitle', 'problemState', 'problemReporter', 'creationTime', 'lastModified', 'actions', 'edit_problem', 'delete_problem'];
   expandedProblem!: string;
 
@@ -91,6 +94,7 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
   // private callback methods for api calls
   private static interpretListProblemsResponse(response: ListProblemsResponse, self: ProblemsTableComponent): void {
     self.dataSource.data = response.toObject().problemsList;
+    self.isLoading = false;
   }
 
   private static interpretUpdateProblemResponse(response: UpdateProblemResponse, self: ProblemsTableComponent): void {
@@ -134,8 +138,10 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         if (this.authService.isAdmin()) {
+          this.isLoading = true;
           this.problemManagementConnector.listProblems(ProblemsTableComponent.buildListProblemsRequest(result), ProblemsTableComponent.interpretListProblemsResponse, this);
         } else if (this.authService.isUser()) {
+          this.isLoading = true;
           this.problemManagementConnector.listProblemsForUser(ProblemsTableComponent.buildListProblemsForUserRequest(result, this.authService.eMail as string), ProblemsTableComponent.interpretListProblemsResponse, this);
         }
       } else {
