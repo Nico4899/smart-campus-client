@@ -13,14 +13,14 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header="createdOn"
           sortActionDescription="Sort by createdOn">
         CREATED</th>
-      <td mat-cell *matCellDef="let notification"> {{notification.createdOn | date:'medium'}} </td>
+      <td mat-cell *matCellDef="let notification"> {{notification.createdOn.nanos | date:'medium'}} </td>
     </ng-container>
 
     <ng-container matColumnDef="lastModifiedOn">
       <th mat-header-cell *matHeaderCellDef mat-sort-header="lastModifiedOn"
           sortActionDescription="Sort by lastModifiedOn">
         MODIFIED</th>
-      <td mat-cell *matCellDef="let notification"> {{notification.lastModifiedOn | date:'medium'}} </td>
+      <td mat-cell *matCellDef="let notification"> {{notification.lastModifiedOn.nanos | date:'medium'}} </td>
     </ng-container>
 
     <ng-container matColumnDef="expand">
