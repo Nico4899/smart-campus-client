@@ -1,6 +1,5 @@
 import * as jspb from 'google-protobuf'
 
-import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb';
 
 
 export class GetBuildingRequest extends jspb.Message {
@@ -854,10 +853,8 @@ export namespace RemoveResponse {
 }
 
 export class GrpcNotification extends jspb.Message {
-  getCreatedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setCreatedOn(value?: google_protobuf_timestamp_pb.Timestamp): GrpcNotification;
-  hasCreatedOn(): boolean;
-  clearCreatedOn(): GrpcNotification;
+  getCreatedOn(): number;
+  setCreatedOn(value: number): GrpcNotification;
 
   getIdentificationNumber(): string;
   setIdentificationNumber(value: string): GrpcNotification;
@@ -871,10 +868,8 @@ export class GrpcNotification extends jspb.Message {
   getNotificationDescription(): string;
   setNotificationDescription(value: string): GrpcNotification;
 
-  getLastModifiedOn(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setLastModifiedOn(value?: google_protobuf_timestamp_pb.Timestamp): GrpcNotification;
-  hasLastModifiedOn(): boolean;
-  clearLastModifiedOn(): GrpcNotification;
+  getLastModifiedOn(): number;
+  setLastModifiedOn(value: number): GrpcNotification;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GrpcNotification.AsObject;
@@ -886,12 +881,12 @@ export class GrpcNotification extends jspb.Message {
 
 export namespace GrpcNotification {
   export type AsObject = {
-    createdOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    createdOn: number,
     identificationNumber: string,
     parentIdentificationNumber: string,
     notificationTitle: string,
     notificationDescription: string,
-    lastModifiedOn?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    lastModifiedOn: number,
   }
 }
 

@@ -15,8 +15,6 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
-var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
-goog.object.extend(proto, google_protobuf_timestamp_pb);
 goog.exportSymbol('proto.edu.kit.tm.cm.proto.CreateBuildingRequest', null, global);
 goog.exportSymbol('proto.edu.kit.tm.cm.proto.CreateBuildingResponse', null, global);
 goog.exportSymbol('proto.edu.kit.tm.cm.proto.CreateComponentRequest', null, global);
@@ -7443,12 +7441,12 @@ proto.edu.kit.tm.cm.proto.GrpcNotification.prototype.toObject = function(opt_inc
  */
 proto.edu.kit.tm.cm.proto.GrpcNotification.toObject = function(includeInstance, msg) {
   var f, obj = {
-    createdOn: (f = msg.getCreatedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    createdOn: jspb.Message.getFieldWithDefault(msg, 1, 0),
     identificationNumber: jspb.Message.getFieldWithDefault(msg, 2, ""),
     parentIdentificationNumber: jspb.Message.getFieldWithDefault(msg, 3, ""),
     notificationTitle: jspb.Message.getFieldWithDefault(msg, 4, ""),
     notificationDescription: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    lastModifiedOn: (f = msg.getLastModifiedOn()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    lastModifiedOn: jspb.Message.getFieldWithDefault(msg, 6, 0)
   };
 
   if (includeInstance) {
@@ -7486,8 +7484,7 @@ proto.edu.kit.tm.cm.proto.GrpcNotification.deserializeBinaryFromReader = functio
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new google_protobuf_timestamp_pb.Timestamp;
-      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      var value = /** @type {number} */ (reader.readInt64());
       msg.setCreatedOn(value);
       break;
     case 2:
@@ -7507,8 +7504,7 @@ proto.edu.kit.tm.cm.proto.GrpcNotification.deserializeBinaryFromReader = functio
       msg.setNotificationDescription(value);
       break;
     case 6:
-      var value = new google_protobuf_timestamp_pb.Timestamp;
-      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      var value = /** @type {number} */ (reader.readInt64());
       msg.setLastModifiedOn(value);
       break;
     default:
@@ -7541,11 +7537,10 @@ proto.edu.kit.tm.cm.proto.GrpcNotification.prototype.serializeBinary = function(
 proto.edu.kit.tm.cm.proto.GrpcNotification.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getCreatedOn();
-  if (f != null) {
-    writer.writeMessage(
+  if (f !== 0) {
+    writer.writeInt64(
       1,
-      f,
-      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+      f
     );
   }
   f = message.getIdentificationNumber();
@@ -7577,50 +7572,30 @@ proto.edu.kit.tm.cm.proto.GrpcNotification.serializeBinaryToWriter = function(me
     );
   }
   f = message.getLastModifiedOn();
-  if (f != null) {
-    writer.writeMessage(
+  if (f !== 0) {
+    writer.writeInt64(
       6,
-      f,
-      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+      f
     );
   }
 };
 
 
 /**
- * optional google.protobuf.Timestamp created_on = 1;
- * @return {?proto.google.protobuf.Timestamp}
+ * optional int64 created_on = 1;
+ * @return {number}
  */
 proto.edu.kit.tm.cm.proto.GrpcNotification.prototype.getCreatedOn = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 1));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
- * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @param {number} value
  * @return {!proto.edu.kit.tm.cm.proto.GrpcNotification} returns this
-*/
+ */
 proto.edu.kit.tm.cm.proto.GrpcNotification.prototype.setCreatedOn = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.edu.kit.tm.cm.proto.GrpcNotification} returns this
- */
-proto.edu.kit.tm.cm.proto.GrpcNotification.prototype.clearCreatedOn = function() {
-  return this.setCreatedOn(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.edu.kit.tm.cm.proto.GrpcNotification.prototype.hasCreatedOn = function() {
-  return jspb.Message.getField(this, 1) != null;
+  return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -7697,39 +7672,20 @@ proto.edu.kit.tm.cm.proto.GrpcNotification.prototype.setNotificationDescription 
 
 
 /**
- * optional google.protobuf.Timestamp last_modified_on = 6;
- * @return {?proto.google.protobuf.Timestamp}
+ * optional int64 last_modified_on = 6;
+ * @return {number}
  */
 proto.edu.kit.tm.cm.proto.GrpcNotification.prototype.getLastModifiedOn = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 6));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
 
 /**
- * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @param {number} value
  * @return {!proto.edu.kit.tm.cm.proto.GrpcNotification} returns this
-*/
+ */
 proto.edu.kit.tm.cm.proto.GrpcNotification.prototype.setLastModifiedOn = function(value) {
-  return jspb.Message.setWrapperField(this, 6, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.edu.kit.tm.cm.proto.GrpcNotification} returns this
- */
-proto.edu.kit.tm.cm.proto.GrpcNotification.prototype.clearLastModifiedOn = function() {
-  return this.setLastModifiedOn(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.edu.kit.tm.cm.proto.GrpcNotification.prototype.hasLastModifiedOn = function() {
-  return jspb.Message.getField(this, 6) != null;
+  return jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
