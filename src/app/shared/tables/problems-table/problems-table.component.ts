@@ -55,7 +55,7 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
   // data loading
   isLoading = true;
 
-  columnsToDisplay: string[] = ['problemTitle', 'problemState', 'problemReporter', 'creationTime', 'lastModified', 'actions', 'edit_problem', 'delete_problem'];
+  columnsToDisplay: string[] = ['problemTitle', 'problemState', 'problemReporter', 'createdOn', 'lastModifiedOn', 'actions', 'edit_problem', 'delete_problem'];
   expandedProblem!: string;
 
   constructor(private problemManagementConnector: ProblemManagementConnectorService, private dialog: MatDialog,

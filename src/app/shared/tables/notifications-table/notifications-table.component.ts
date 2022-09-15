@@ -33,7 +33,7 @@ export class NotificationsTableComponent implements OnInit, AfterViewInit {
   isLoading = true;
 
   // columns to be displayed
-  columnsToDisplay: string[] = ['notificationTitle', 'creationTime', 'lastModified'];
+  columnsToDisplay: string[] = ['notificationTitle', 'createdOn', 'lastModifiedOn'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedNotification!: string;
 

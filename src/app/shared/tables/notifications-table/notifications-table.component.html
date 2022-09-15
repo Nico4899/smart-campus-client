@@ -9,18 +9,18 @@
       <td mat-cell *matCellDef="let notification">{{notification.notificationTitle}}</td>
     </ng-container>
 
-    <ng-container matColumnDef="creationTime">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header="creationTime"
-          sortActionDescription="Sort by creationTime">
+    <ng-container matColumnDef="createdOn">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="createdOn"
+          sortActionDescription="Sort by createdOn">
         CREATED</th>
-      <td mat-cell *matCellDef="let notification"> {{notification.creationTime | date:'medium'}} </td>
+      <td mat-cell *matCellDef="let notification"> {{notification.createdOn | date:'medium'}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="lastModified">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header="lastModified"
-          sortActionDescription="Sort by lastModified">
+    <ng-container matColumnDef="lastModifiedOn">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="lastModifiedOn"
+          sortActionDescription="Sort by lastModifiedOn">
         MODIFIED</th>
-      <td mat-cell *matCellDef="let notification"> {{notification.lastModified | date:'medium'}} </td>
+      <td mat-cell *matCellDef="let notification"> {{notification.lastModifiedOn | date:'medium'}} </td>
     </ng-container>
 
     <ng-container matColumnDef="expand">
