@@ -12,61 +12,68 @@ import {AuthGuardGuard} from "./core/authentication/guards/auth-guard.guard";
 import {environment} from "../environments/environment";
 
 const routes: Routes = [{
-  path: '',
-  component: DefaultComponent,
-  children: [{
     path: '',
-    component: DashboardComponent,
-    canActivate: [AuthGuardGuard],
-    data: {
-      roles: [environment.roles.guest, environment.roles.user, environment.roles.admin]
-    }
+    redirectTo: 'dashboard',
+    pathMatch: "full"
   }, {
-    path: 'buildings',
-    component: BuildingsComponent,
-    canActivate: [AuthGuardGuard],
-    data: {
-      roles: [environment.roles.guest, environment.roles.user, environment.roles.admin]
+    path: '',
+    component: DefaultComponent,
+    children: [{
+      path: 'dashboard',
+      component: DashboardComponent,
+      canActivate: [AuthGuardGuard],
+      data: {
+        roles: [environment.roles.guest, environment.roles.user, environment.roles.admin]
+      }
+    }, {
+      path: 'buildings',
+      component: BuildingsComponent,
+      canActivate: [AuthGuardGuard],
+      data: {
+        roles: [environment.roles.guest, environment.roles.user, environment.roles.admin]
+      }
+    }, {
+      path: 'problems',
+      component: ProblemsComponent,
+      canActivate: [AuthGuardGuard],
+      data: {
+        roles: [environment.roles.user, environment.roles.admin]
+      }
+    }, {
+      path: 'favorites',
+      component: FavoritesComponent,
+      canActivate: [AuthGuardGuard],
+      data: {
+        roles: [environment.roles.user, environment.roles.admin]
+      }
+    }, {
+      path: "buildings/:bin",
+      component: BuildingComponent,
+      canActivate: [AuthGuardGuard],
+      data: {
+        roles: [environment.roles.guest, environment.roles.user, environment.roles.admin]
+      }
+    }, {
+      path: "rooms/:rin",
+      component: RoomComponent,
+      canActivate: [AuthGuardGuard],
+      data: {
+        roles: [environment.roles.guest, environment.roles.user, environment.roles.admin]
+      }
+    }, {
+      path: "components/:cin",
+      component: ComponentComponent,
+      canActivate: [AuthGuardGuard],
+      data: {
+        roles: [environment.roles.guest, environment.roles.user, environment.roles.admin]
+      }
+    }]
+  },
+    {
+      path: '**', redirectTo: ""
     }
-  }, {
-    path: 'problems',
-    component: ProblemsComponent,
-    canActivate: [AuthGuardGuard],
-    data: {
-      roles: [environment.roles.user, environment.roles.admin]
-    }
-  }, {
-    path: 'favorites',
-    component: FavoritesComponent,
-    canActivate: [AuthGuardGuard],
-    data: {
-      roles: [environment.roles.user, environment.roles.admin]
-    }
-  }, {
-    path: "buildings/:bin",
-    component: BuildingComponent,
-    canActivate: [AuthGuardGuard],
-    data: {
-      roles: [environment.roles.guest, environment.roles.user, environment.roles.admin]
-    }
-  }, {
-    path: "rooms/:rin",
-    component: RoomComponent,
-    canActivate: [AuthGuardGuard],
-    data: {
-      roles: [environment.roles.guest, environment.roles.user, environment.roles.admin]
-    }
-  }, {
-    path: "components/:cin",
-    component: ComponentComponent,
-    canActivate: [AuthGuardGuard],
-    data: {
-      roles: [environment.roles.guest, environment.roles.user, environment.roles.admin]
-    }
-  }]
-}, {
-  path: '**', redirectTo: ""
-}];
+  ]
+;
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
