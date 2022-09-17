@@ -10,13 +10,11 @@ table {
 .mat-column-creationTime {
   width: 30%;
   padding-left: 16px;
-  border-left: 1px solid;
 }
 
 .mat-column-lastModified {
   width: 30%;
   padding-left: 16px;
-  border-left: 1px solid;
 }
 
 .mat-form-field {

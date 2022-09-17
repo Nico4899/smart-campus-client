@@ -10,31 +10,26 @@ table {
 .mat-column-problemState {
   width: 10%;
   padding-left: 16px;
-  border-left: 1px solid;
 }
 
 .mat-column-problemReporter {
   width: 15%;
   padding-left: 16px;
-  border-left: 1px solid;
 }
 
 .mat-column-actions {
   width: 15%;
   padding-left: 16px;
-  border-left: 1px solid;
 }
 
 .mat-column-creationTime {
   width: 15%;
   padding-left: 16px;
-  border-left: 1px solid;
 }
 
 .mat-column-lastModified {
   width: 15%;
   padding-left: 16px;
-  border-left: 1px solid;
 }
 
 td, th {

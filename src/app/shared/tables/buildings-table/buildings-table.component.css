@@ -3,19 +3,16 @@
 }
 
 .mat-column-buildingNumber {
-  border-right: 1px solid;
   width: 20%;
   padding-left: 16px;
 }
 
 .mat-column-buildingName {
   padding-left: 16px;
-  border-right: 1px solid;
   width: 30%;
 }
 
 .mat-column-address {
-  border-right: 1px solid;
   width: 30%;
   padding-left: 16px;
 }
