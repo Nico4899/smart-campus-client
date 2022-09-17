@@ -56,6 +56,12 @@ export class AuthServiceService {
     return claims["email"];
   }
 
+  get name() {
+    let claims = this.oAuthService.getIdentityClaims() as {given_name: string};
+    if(claims == null) return [];
+    return claims["given_name"];
+  }
+
   get token() {
     return this.oAuthService.getIdToken();
   }
