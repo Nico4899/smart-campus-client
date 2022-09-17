@@ -1,3 +1,49 @@
 <div>
   <h1>{{ 'dashboard.title' | translate }}</h1>
+  <h2>{{ 'dashboard.hello' | translate }} <span [hidden]="isLoggedIn()">Guest</span><span
+    [hidden]="!isLoggedIn()">{{getName()}}</span>
+    <!-- TODO knopf direkt hinter den namen packen      -->
+    <button *ngIf="!isLoggedIn()" mat-menu-item (click)="login()">
+      <mat-icon>login</mat-icon>
+      Sign in
+    </button>
+    <button *ngIf="isLoggedIn()" mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      Sign out
+    </button>
+  </h2>
+
+  (todo übersetzung wenn der text steht)
+  Smartcampus bietet verschiedene Services zu Gebäudeinformationen und aktuellen Problemen von
+  Gebäuden am KIT.
+  Dazu gehören:
+  <ul>
+    <li>
+      das Betrachten<span [hidden]="!isAdmin()">, Hinzufügen, Entfernen und Bearbeiten</span> von
+      <a routerLinkActive="active" routerLink="buildings">Gebäuden</a>
+    </li>
+    <li [hidden]="!isUser()">
+      das Favorisieren von Gebäuden, Räumen oder Komponenten
+    </li>
+    <li [hidden]="!isUser()">
+      das Betrachten und Verwalten der <a routerLinkActive="active"
+                                          routerLink="favorites">Favoriten</a>
+    </li>
+    <li [hidden]="!isUser()">
+      das Melden von Problem bezüglich Gebäuden, Räumen oder Komponenten
+    </li>
+    <li [hidden]="!isUser()">
+      das Betrachten und Verwalten von <span
+      [hidden]="isAdmin()">eigenen</span><span [hidden]="!isAdmin()">allen</span> bereits
+      gemeldeten <a routerLinkActive="active" routerLink="problems">Problemen</a>
+    </li>
+    <li [hidden]="isLoggedIn()">
+      für weitere Services melde dich an...
+    </li>
+  </ul>
+
+  <h2>NEWS:</h2>
+  Z.B. Release oder neue Version 1.2.3 usw
+
+
 </div>

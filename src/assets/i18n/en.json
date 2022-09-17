@@ -1,6 +1,7 @@
 {
   "dashboard" : {
-    "title" : "English dashboard works!"
+    "title" : "Welcome to Smartcampus",
+    "hello" : "Hello"
   },
   "sidebar" : {
     "dashboard" : "Dashboard",
