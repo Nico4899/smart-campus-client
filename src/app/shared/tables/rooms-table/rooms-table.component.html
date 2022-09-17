@@ -31,8 +31,7 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header="roomName"
           sortActionDescription="Sort by roomName">
         NAME</th>
-      <td mat-cell *matCellDef="let room"
-          routerLink="/rooms/{{room.identificationNumber}}">
+      <td mat-cell *matCellDef="let room">
         {{room.roomName}}
       </td>
     </ng-container>
@@ -53,7 +52,7 @@
 
     <ng-container matColumnDef="edit_room">
       <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let room">
+      <td mat-cell *matCellDef="let room" (click)="$event.stopPropagation()">
         <button *ngIf="authService.isAdmin()"
                 mat-icon-button
                 (click)="openUpdateRoomDialog(room)">
@@ -64,7 +63,7 @@
 
     <ng-container matColumnDef="delete_room">
       <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let room">
+      <td mat-cell *matCellDef="let room" (click)="$event.stopPropagation()">
         <button *ngIf="authService.isAdmin()"
                 mat-icon-button color="warn"
                 (click)="openRemoveRoomDialog(room.identificationNumber)">
@@ -74,7 +73,8 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+        routerLink="/rooms/{{row.identificationNumber}}"></tr>
   </table>
   <mat-paginator [pageSizeOptions]="[5, 10, 20]"
                  showFirstLastButtons
