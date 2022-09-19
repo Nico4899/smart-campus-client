@@ -1,7 +1,8 @@
 {
   "dashboard" : {
     "title" : "Welcome to Smartcampus",
-    "hello" : "Hello"
+    "hello" : "Hello ",
+    "guest" : "guest!"
   },
   "sidebar" : {
     "dashboard" : "Dashboard",

@@ -1,7 +1,9 @@
 {
   "dashboard" : {
     "title" : "Wilkommen zu Smartcampus",
-    "hello" : "Hallo"  },
+    "hello" : "Hallo ",
+    "guest" : "Gast!"
+  },
   "sidebar" : {
     "dashboard" : "Übersicht",
     "buildings" : "Gebäude",
