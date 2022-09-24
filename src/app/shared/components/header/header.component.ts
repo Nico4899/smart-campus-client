@@ -48,4 +48,8 @@ export class HeaderComponent implements OnInit {
     this.translateService.use(language);
     sessionStorage.setItem('languageChosen', language);
   }
+
+  getName(): any[] | string{
+    return this.authService.eMail.slice(0, 5);
+  }
 }

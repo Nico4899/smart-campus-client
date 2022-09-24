@@ -38,8 +38,8 @@ export class DashboardComponent implements OnInit {
     return this.authService.isAdmin();
   }
 
-  getName(): any[] | string{ //TODO name zurückgeben
-    return this.authService.eMail;
+  getName(): any[] | string{
+    return this.authService.eMail.slice(0, 5);
   }
 
 }

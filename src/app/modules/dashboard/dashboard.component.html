@@ -1,7 +1,7 @@
 <div>
   <h1>{{ 'dashboard.title' | translate }}</h1>
   <h2>{{ 'dashboard.hello' | translate }} <span [hidden]="isLoggedIn()">{{ 'dashboard.guest' | translate }}</span><span
-    [hidden]="!isLoggedIn()">{{getName()}}</span>
+    [hidden]="!isLoggedIn()">{{getName()}}!</span>
     <!-- TODO knopf direkt hinter den namen packen      -->
     <button *ngIf="!isLoggedIn()" mat-menu-item (click)="login()">
       <mat-icon>login</mat-icon>
