@@ -13,29 +13,54 @@
     </button>
   </h2>
 
-  (todo übersetzung wenn der text steht)
-  Smartcampus bietet verschiedene Services zu Gebäudeinformationen und aktuellen Problemen von
-  Gebäuden am KIT.
-  Dazu gehören:
+  Smartcampus bietet Zugriff auf Daten zu Gebäuden am Campus des Karlsruher Institut für Technologie.
+  Diese Daten umfassen unter anderem Barrierefreiheitsdaten, Einzelheiten zu Räumen von Interesse sowie Probleme bezüglich einzelner Elemente
+  in einem Gebäude oder auch bezüglich des gesamten Gebäudes. Probleme können von jedem angemeldeten Benutzer gemeldet werden.
+  Diese werden dann auf Richtigkeit und Dringlichkeit überprüft und dementsrpechend behoben. Den Fortschritt eines gemeldeten Problems
+  kann man dabei als angemeldeter Benutzer hier auf der Website überprüfen. Zu den bereitgestellten Services gehören:
   <ul>
     <li>
-      das Betrachten<span [hidden]="!isAdmin()">, Hinzufügen, Entfernen und Bearbeiten</span> von
+      <h3>
+        <strong>Betrachten</strong><span [hidden]="!isAdmin()">, <strong>Hinzufügen, Entfernen</strong> und
+        <strong>Bearbeiten</strong></span> von
       <a routerLinkActive="active" routerLink="buildings">Gebäuden</a>
+      </h3>
     </li>
     <li [hidden]="!isUser()">
-      das Favorisieren von Gebäuden, Räumen oder Komponenten
+      <h3>
+        <strong>Favorisieren</strong> von Gebäuden, Räumen oder Komponenten
+      </h3>
     </li>
     <li [hidden]="!isUser()">
-      das Betrachten und Verwalten der <a routerLinkActive="active"
-                                          routerLink="favorites">Favoriten</a>
+      <h3>
+          <strong>Betrachten</strong> und <strong>Verwalten</strong> der <a routerLinkActive="active"
+                                              routerLink="favorites">Favoriten</a>
+      </h3>
     </li>
     <li [hidden]="!isUser()">
-      das Melden von Problem bezüglich Gebäuden, Räumen oder Komponenten
+      <h3><strong>Melden</strong> von Problem bezüglich Gebäuden, Räumen oder Komponenten<br>
+        <small>
+          Probleme können von jedem angemeldeten Benutzer gemeldet werden.
+          Diese werden dann auf Richtigkeit und Dringlichkeit überprüft und dementsrpechend behoben.
+        </small>
+      </h3>
     </li>
     <li [hidden]="!isUser()">
-      das Betrachten und Verwalten von <span
-      [hidden]="isAdmin()">eigenen</span><span [hidden]="!isAdmin()">allen</span> bereits
-      gemeldeten <a routerLinkActive="active" routerLink="problems">Problemen</a>
+      <h3>
+        <strong>Betrachten </strong> <span [hidden]="!isAdmin()">und <strong>Verwalten</strong> von </span><span
+        [hidden]="isAdmin()">eigenen</span><span [hidden]="!isAdmin()">allen</span> bereits
+        gemeldeten <a routerLinkActive="active" routerLink="problems">Problemen</a><br>
+        <small>
+          <span [hidden]="!isAdmin()">
+            Als Admin können alle von Benutzern gemeldeten Probleme eingesehen und bearbeitet
+            werden. Dabei können sowohl Titel und Beschreibung des Problems, als auch sein Status verändert werden.
+          </span>
+          <span [hidden]="isAdmin()">
+            Als Benutzer kann man seine gemeldeten Probleme einsehen.
+          </span>
+          Ein Problem kann den Status "OPEN", "ACCEPTED", "IN_PROGRESS", "DECLINED" oder "CLOSED" haben.
+        </small>
+      </h3>
     </li>
     <li [hidden]="isLoggedIn()">
       für weitere Services melde dich an...
