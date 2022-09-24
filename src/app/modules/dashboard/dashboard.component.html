@@ -21,20 +21,31 @@
   <ul>
     <li>
       <h3>
-        <strong>Betrachten</strong><span [hidden]="!isAdmin()">, <strong>Hinzufügen, Entfernen</strong> und
+        <strong>Betrachten</strong><span [hidden]="!isAdmin()"><strong>, Hinzufügen, Entfernen</strong> und
         <strong>Bearbeiten</strong></span> von
-      <a routerLinkActive="active" routerLink="buildings">Gebäuden</a>
+      <a routerLinkActive="active" routerLink="buildings">Gebäuden</a> / <a routerLinkActive="active" routerLink="rooms">Räumen</a>
+         / <a routerLinkActive="active" routerLink="components">Komponenten</a><br>
+        <small>
+          <span [hidden]="!isAdmin()">Als Admin können in der Datenbank vorhandene Objekte über den Bearbeiten-Button
+          im User Interface hinzugefügt, bearbeitet und gelöscht werden.</span>
+          Alle zu Gebäuden zugehörige Daten können über das System gesucht (zum Beispiel über den Namen eines
+          Gebäudes) und eingesehen werden.
+        </small>
       </h3>
     </li>
     <li [hidden]="!isUser()">
       <h3>
-        <strong>Favorisieren</strong> von Gebäuden, Räumen oder Komponenten
+        <strong>Favorisieren</strong> von Gebäuden, Räumen oder Komponenten<br>
+        <small>Gebäude / Räume / Komponenten können in ihrer jeweiligen Ansicht über den Favorisieren-Button zur
+          Favoritenliste des Benutzers hinzugefügt werden.
+        </small>
       </h3>
     </li>
     <li [hidden]="!isUser()">
       <h3>
           <strong>Betrachten</strong> und <strong>Verwalten</strong> der <a routerLinkActive="active"
-                                              routerLink="favorites">Favoriten</a>
+                                              routerLink="favorites">Favoriten</a><br>
+        <small>Als Benutzer kann man seine bereits favorisierten Gebäude / Räume / Komponenten einsehen und anpassen.</small>
       </h3>
     </li>
     <li [hidden]="!isUser()">
