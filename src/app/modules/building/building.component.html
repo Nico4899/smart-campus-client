@@ -32,7 +32,13 @@
     </google-map>
   </mat-tab>
   <mat-tab label="details">
-    Details.
+    <h3>Details for Building</h3>
+    <h4>Name</h4>
+    <p>{{building.buildingName}}</p>
+    <h4>Building number</h4>
+    <p>{{building.buildingNumber}}</p>
+    <h4>Position</h4>
+    <p>Coordinates: {{building.grpcGeographicalLocation!.latitude}}, {{building.grpcGeographicalLocation!.longitude}}</p>
   </mat-tab>
 </mat-tab-group>
 
