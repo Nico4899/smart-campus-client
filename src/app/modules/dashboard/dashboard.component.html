@@ -1,7 +1,15 @@
 <div>
-  <h1>{{ 'dashboard.title' | translate }}</h1>
-  <h2>{{ 'dashboard.hello' | translate }} <span [hidden]="isLoggedIn()">{{ 'dashboard.guest' | translate }}</span><span
-    [hidden]="!isLoggedIn()">{{getName()}}!</span>
+  <h1>
+    {{ 'dashboard.title' | translate }}
+  </h1>
+  <h2>
+    {{ 'dashboard.hello' | translate }}
+    <span [hidden]="isLoggedIn()">
+      {{ 'dashboard.guest' | translate }}
+    </span>
+    <span [hidden]="!isLoggedIn()">
+      {{getName()}}!
+    </span>
     <!-- TODO knopf direkt hinter den namen packen      -->
     <button *ngIf="!isLoggedIn()" mat-menu-item (click)="login()">
       <mat-icon>login</mat-icon>
@@ -13,67 +21,113 @@
     </button>
   </h2>
 
-  Smartcampus bietet Zugriff auf Daten zu Gebäuden am Campus des Karlsruher Institut für Technologie.
-  Diese Daten umfassen unter anderem Barrierefreiheitsdaten, Einzelheiten zu Räumen von Interesse sowie Probleme bezüglich einzelner Elemente
-  in einem Gebäude oder auch bezüglich des gesamten Gebäudes. Probleme können von jedem angemeldeten Benutzer gemeldet werden.
-  Diese werden dann auf Richtigkeit und Dringlichkeit überprüft und dementsrpechend behoben. Den Fortschritt eines gemeldeten Problems
-  kann man dabei als angemeldeter Benutzer hier auf der Website überprüfen. Zu den bereitgestellten Services gehören:
+  {{ 'dashboard.introduction' | translate }}
   <ul>
     <li>
       <h3>
-        <strong>Betrachten</strong><span [hidden]="!isAdmin()"><strong>, Hinzufügen, Entfernen</strong> und
-        <strong>Bearbeiten</strong></span> von
-      <a routerLinkActive="active" routerLink='app-buildings'>Gebäuden</a> / Räumen / Komponenten<br>
-        <small>
-          <span [hidden]="!isAdmin()">Als Admin können in der Datenbank vorhandene Objekte über den Bearbeiten-Button
-          im User Interface hinzugefügt, bearbeitet und gelöscht werden.</span>
-          Alle zu Gebäuden zugehörige Daten können über das System gesucht (zum Beispiel über den Namen eines
-          Gebäudes) und eingesehen werden.
-        </small>
-      </h3>
-    </li>
-    <li [hidden]="!isUser()">
-      <h3>
-        <strong>Favorisieren</strong> von Gebäuden, Räumen oder Komponenten<br>
-        <small>Gebäude / Räume / Komponenten können in ihrer jeweiligen Ansicht über den Favorisieren-Button zur
-          Favoritenliste des Benutzers hinzugefügt werden.
-        </small>
-      </h3>
-    </li>
-    <li [hidden]="!isUser()">
-      <h3>
-          <strong>Betrachten</strong> und <strong>Verwalten</strong> der <a routerLinkActive="active"
-                                              routerLink="favorites">Favoriten</a><br>
-        <small>Als Benutzer kann man seine bereits favorisierten Gebäude / Räume / Komponenten einsehen und anpassen.</small>
-      </h3>
-    </li>
-    <li [hidden]="!isUser()">
-      <h3><strong>Melden</strong> von Problem bezüglich Gebäuden, Räumen oder Komponenten<br>
-        <small>
-          Probleme können von jedem angemeldeten Benutzer gemeldet werden.
-          Diese werden dann auf Richtigkeit und Dringlichkeit überprüft und dementsrpechend behoben.
-        </small>
-      </h3>
-    </li>
-    <li [hidden]="!isUser()">
-      <h3>
-        <strong>Betrachten </strong> <span [hidden]="!isAdmin()">und <strong>Verwalten</strong> von </span><span
-        [hidden]="isAdmin()">eigenen</span><span [hidden]="!isAdmin()">allen</span> bereits
-        gemeldeten <a routerLinkActive="active" routerLink="problems">Problemen</a><br>
+        <strong>{{ 'dashboard.view' | translate }}</strong>
+        <span [hidden]="!isAdmin()">
+          <strong>,
+            {{ 'dashboard.add_remove' | translate }}
+          </strong>
+          {{ 'dashboard.and' | translate }}
+          <strong>
+            {{ 'dashboard.edit' | translate }}
+          </strong>
+        </span>
+        {{ 'dashboard.of' | translate }}
+        <a routerLinkActive="active" routerLink='app-buildings'>
+          {{ 'dashboard.of_buildings' | translate }}
+        </a>
+        / {{ 'dashboard.of_rooms' | translate }}/ {{ 'dashboard.of_components' | translate }}
+        <br>
         <small>
           <span [hidden]="!isAdmin()">
-            Als Admin können alle von Benutzern gemeldeten Probleme eingesehen und bearbeitet
-            werden. Dabei können sowohl Titel und Beschreibung des Problems, als auch sein Status verändert werden.
+            {{ 'dashboard.viewing_adding_removing_editing_admin_description' | translate }}
+          </span>
+          {{ 'dashboard.viewing_adding_removing_editing_description' | translate }}
+        </small>
+      </h3>
+    </li>
+    <li [hidden]="!isUser()">
+      <h3>
+        <strong>
+          {{ 'dashboard.favor' | translate }}
+        </strong>
+        {{ 'dashboard.of_buildings, rooms or components' | translate }}
+        <br>
+        <small>
+          {{ 'dashboard.favor_description' | translate }}
+        </small>
+      </h3>
+    </li>
+    <li [hidden]="!isUser()">
+      <h3>
+          <strong>
+            {{ 'dashboard.view' | translate }}
+          </strong>
+        {{ 'dashboard.and' | translate }}
+        <strong>
+          {{ 'dashboard.edit' | translate }}
+        </strong>
+        {{ 'dashboard.of' | translate }}
+        <a routerLinkActive="active" routerLink="favorites">
+          {{ 'dashboard.favorites' | translate }}
+        </a>
+        <br>
+        <small>
+          {{ 'dashboard.viewing_editing_favorites_description' | translate }}
+        </small>
+      </h3>
+    </li>
+    <li [hidden]="!isUser()">
+      <h3>
+        <strong>
+          {{ 'dashboard.report' | translate }}
+        </strong>
+        {{ 'dashboard.of_problems_regarding_buildings_rooms_components' | translate }}
+        <br>
+        <small>
+          {{ 'dashboard.report_problem_description' | translate }}
+        </small>
+      </h3>
+    </li>
+    <li [hidden]="!isUser()">
+      <h3>
+        <strong>
+          {{ 'dashboard.view' | translate }}
+        </strong>
+        <span [hidden]="!isAdmin()">
+          {{ 'dashboard.and' | translate }}
+          <strong>
+            {{ 'dashboard.edit' | translate }}
+          </strong>
+          {{ 'dashboard.of' | translate }}
+        </span>
+        <span [hidden]="isAdmin()">
+          {{ 'dashboard.your_own' | translate }}
+        </span>
+        <span [hidden]="!isAdmin()">
+          {{ 'dashboard.all' | translate }}
+        </span>
+        {{ 'dashboard.already_reported' | translate }}
+        <a routerLinkActive="active" routerLink="problems">
+          {{ 'dashboard.of_problems' | translate }}
+        </a>
+        <br>
+        <small>
+          <span [hidden]="!isAdmin()">
+            {{ 'dashboard.viewing_editing_problems_admin_description' | translate }}
           </span>
           <span [hidden]="isAdmin()">
-            Als Benutzer kann man seine gemeldeten Probleme einsehen.
+            {{ 'dashboard.viewing_editing_problems_user_description' | translate }}
           </span>
-          Ein Problem kann den Status "OPEN", "ACCEPTED", "IN_PROGRESS", "DECLINED" oder "CLOSED" haben.
+          {{ 'dashboard.viewing_editing_problems_description' | translate }}
         </small>
       </h3>
     </li>
     <li [hidden]="isLoggedIn()">
-      für weitere Services melde dich an...
+      {{ 'dashboard.for_more_services_log_in' | translate }}
     </li>
   </ul>
 
