@@ -38,8 +38,7 @@ export class BuildingComponent implements OnInit {
       color: 'red',
       text: 'Marked Position'
     },
-    title: 'Title',
-    options: {animation: google.maps.Animation.BOUNCE}
+    title: 'Title'
   }
 
 
