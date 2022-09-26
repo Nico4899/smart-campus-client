@@ -36,10 +36,10 @@
           </mat-menu>
         </li>
         <li>
-          <button *ngIf="!isLoggedIn()" mat-button color="white" (click)="login()">
+          <button *ngIf="!isLoggedIn()" mat-icon-button (click)="login()">
             Sign in
           </button>
-          <button *ngIf="isLoggedIn()" mat-button color="white" (click)="logout()">
+          <button *ngIf="isLoggedIn()" mat-icon-button (click)="logout()">
             {{getName()}}
           </button>
         </li>
