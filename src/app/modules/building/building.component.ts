@@ -40,7 +40,7 @@ export class BuildingComponent implements OnInit {
     },
     title: 'Title',
     options: {
-      icon: '../../assets/images/google-maps-pin-icon.png',
+      icon: '../../assets/images/marker.png',
       draggable: false
     }
   }
@@ -78,20 +78,31 @@ export class BuildingComponent implements OnInit {
     this.center = {
       lat: this.building.grpcGeographicalLocation!.latitude,
       lng: this.building.grpcGeographicalLocation!.longitude
-    }
-
-    this.marker.position = {
-      lat: this.building.grpcGeographicalLocation!.latitude,
-      lng: this.building.grpcGeographicalLocation!.longitude
-    }
-
-    this.marker.title = this.building.buildingName;
-    this.marker.label.text = this.building.buildingName;
+    };
 
   }
 
   // private callback methods for api calls
   private static interpretGetBuildingResponse(response: GetBuildingResponse, self: BuildingComponent): void {
     self.building = response.getGrpcBuilding()?.toObject()!;
+
+
+
+    self.marker.position = {
+      lat: self.building.grpcGeographicalLocation!.latitude,
+      lng: self.building.grpcGeographicalLocation!.longitude
+    };
+
+    self.center = {
+      lat: self.building.grpcGeographicalLocation!.latitude,
+      lng: self.building.grpcGeographicalLocation!.longitude
+    };
+
+
+    self.marker.title = self.building.buildingName;
+    self.marker.label.text = self.building.buildingName;
+
+
+
   }
 }
