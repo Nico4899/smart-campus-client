@@ -39,9 +39,15 @@
           <button *ngIf="!isLoggedIn()" mat-icon-button (click)="login()">
             Sign in
           </button>
-          <button *ngIf="isLoggedIn()" mat-icon-button (click)="logout()">
+          <button *ngIf="isLoggedIn()" mat-icon-button [matMenuTriggerFor]="menu">
             {{getName()}}
           </button>
+          <mat-menu #menu="matMenu">
+            <button *ngIf="isLoggedIn()" mat-menu-item (click)="logout()">
+              <mat-icon>logout</mat-icon>
+              Sign out
+            </button>
+          </mat-menu>
         </li>
       </ul>
     </div>
