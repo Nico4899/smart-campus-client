@@ -60,6 +60,7 @@ import {
 import {
   FavoriteRoomsTableComponent
 } from "../../shared/tables/favorites-tables/favorite-rooms-table/favorite-rooms-table.component";
+import {AuthServiceService} from "../authentication/auth-service.service";
 
 @Injectable({
   providedIn: 'root'
@@ -68,7 +69,7 @@ export class BuildingManagementConnectorService {
 
   private readonly client: BuildingManagementClient;
 
-  constructor(private snackbar: MatSnackBar) {
+  constructor(private snackbar: MatSnackBar, private authService: AuthServiceService) {
     this.client = new BuildingManagementClient(environment.clientUrls.building_management, null, null);
   }
 
@@ -133,8 +134,9 @@ export class BuildingManagementConnectorService {
   }
 
   async listFavoriteBuildings(request: ListFavoriteBuildingsRequest, callback: (response: ListFavoriteBuildingsResponse, self: FavoriteBuildingsTableComponent) => void, self: FavoriteBuildingsTableComponent) {
-    this.client.listFavoriteBuildings(request, {}, (error: RpcError, response: ListFavoriteBuildingsResponse) => {
+    this.client.listFavoriteBuildings(request, {authentication: `Bearer ${this.authService.token}`}, (error: RpcError, response: ListFavoriteBuildingsResponse) => {
       if (error) {
+        console.log(error.message);
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
         callback(response, self);

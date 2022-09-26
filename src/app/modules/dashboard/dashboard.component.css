@@ -1,9 +1,10 @@
 #welcome-image {
   opacity: 0.05;
-  width: 100%;
-  height: 100%;
+  width: 40%;
+  margin: auto;
+  height: auto;
   position: fixed;
   z-index: -5000;
-  top: 60px;
-  left: 0;
+  top: 75px;
+  left: 250px;
 }
