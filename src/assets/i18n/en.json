@@ -55,5 +55,11 @@
     "favorite_buildings": "Buildings",
     "favorite_rooms": "Rooms",
     "favorite_components": "Components"
+  },
+  "campus_location_pipe": {
+    "east_campus": "East Campus",
+    "north_campus" : "North Campus",
+    "west_campus" : "West Campus",
+    "south_campus" : "South Campus"
   }
 }
