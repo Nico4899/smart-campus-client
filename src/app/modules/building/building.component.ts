@@ -36,11 +36,11 @@ export class BuildingComponent implements OnInit {
     },
     label: {
       color: 'red',
-      text: 'Marked Position'
+      text: ''
     },
     title: 'Title',
     options: {
-      icon: '../../assets/google-maps-pin-icon.png',
+      icon: '../../assets/images/google-maps-pin-icon.png',
       draggable: false
     }
   }
