@@ -1,7 +1,8 @@
 #welcome-image {
   opacity: 0.05;
-  width: 50%;
-  height: 75%;
+  width: 40%;
+  margin: auto;
+  height: auto;
   position: fixed;
   z-index: -5000;
   top: 75px;
