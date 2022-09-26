@@ -13,24 +13,23 @@
          multiTemplateDataRows
          matSort>
     <ng-container matColumnDef="problemTitle">
-      <th mat-header-cell *matHeaderCellDef> TITLE </th>
+      <th mat-header-cell *matHeaderCellDef> {{"problems_table.title" | translate}} </th>
       <td mat-cell *matCellDef="let problem"> {{problem.problemTitle}} </td>
     </ng-container>
 
     <ng-container matColumnDef="problemState">
       <th mat-header-cell *matHeaderCellDef mat-sort-header="problemState"
-          sortActionDescription="Sort by problemState">
-        State </th>
+          sortActionDescription="Sort by problemState">{{"problems_table.state" | translate}}</th>
       <td mat-cell *matCellDef="let problem"> {{problem.problemState | problemState}} </td>
     </ng-container>
 
     <ng-container matColumnDef="problemReporter">
-      <th mat-header-cell *matHeaderCellDef> REPORTER </th>
+      <th mat-header-cell *matHeaderCellDef>{{"problems_table.reporter" | translate}}</th>
       <td mat-cell *matCellDef="let problem"> {{problem.problemReporter}} </td>
     </ng-container>
 
     <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef [hidden]="!authService.isAdmin()"> ACTIONS </th>
+      <th mat-header-cell *matHeaderCellDef [hidden]="!authService.isAdmin()">{{"problems_table.actions" | translate}}</th>
       <td mat-cell *matCellDef="let problem" (click)="$event.stopPropagation()" [hidden]="!authService.isAdmin()">
         <ul>
           <li *ngFor="let operation of problem.possibleStateOperationsList">
@@ -42,15 +41,13 @@
 
     <ng-container matColumnDef="createdOn">
       <th mat-header-cell *matHeaderCellDef mat-sort-header="createdOn"
-          sortActionDescription="Sort by createdOn">
-        CREATED </th>
+          sortActionDescription="Sort by createdOn">{{"problems_table.created_time" | translate}}</th>
       <td mat-cell *matCellDef="let problem"> {{problem.createdOn | date:'medium'}} </td>
     </ng-container>
 
     <ng-container matColumnDef="lastModifiedOn">
       <th mat-header-cell *matHeaderCellDef mat-sort-header="lastModifiedOn"
-          sortActionDescription="Sort by lastModifiedOn">
-        MODIFIED </th>
+          sortActionDescription="Sort by lastModifiedOn">{{"problems_table.modified_time" | translate}}</th>
       <td mat-cell *matCellDef="let problem"> {{problem.lastModifiedOn | date:'medium'}} </td>
     </ng-container>
 
