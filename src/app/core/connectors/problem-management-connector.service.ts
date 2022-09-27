@@ -13,6 +13,8 @@ import {environment} from "../../../environments/environment";
 import {ProblemManagementClient} from "../../../proto/generated/Problem_managementServiceClientPb";
 import {ProblemsTableComponent} from "../../shared/tables/problems-table/problems-table.component";
 
+import {BuildingsTableComponent} from "../../shared/tables/buildings-table/buildings-table.component"
+
 @Injectable({
   providedIn: 'root'
 })
@@ -54,7 +56,7 @@ export class ProblemManagementConnectorService {
     })
   }
 
-  async createProblem(request: CreateProblemRequest, callback: (response: CreateProblemResponse, self: ProblemsTableComponent) => void, self: ProblemsTableComponent) {
+  async createProblem(request: CreateProblemRequest, callback: (response: CreateProblemResponse, self: ProblemsTableComponent | BuildingsTableComponent) => void, self: ProblemsTableComponent | BuildingsTableComponent) {
     this.client.createProblem(request, {}, (error: RpcError, response: CreateProblemResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});

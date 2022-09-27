@@ -18,14 +18,25 @@ import {
   ListFavoriteBuildingsRequest,
   ListFavoriteBuildingsResponse
 } from "../../../../proto/generated/building_management_pb";
+
+import {
+  CreateProblemRequest,
+  CreateProblemResponse
+} from "../../../../proto/generated/problem_management_pb"
 import {BuildingManagementConnectorService} from "../../../core/connectors/building-management-connector.service";
+import {ProblemManagementConnectorService} from "../../../core/connectors/problem-management-connector.service"
+
 import {MatDialog} from "@angular/material/dialog";
+
+import {AddProblemComponent} from '../../dialogs/add-problem/add-problem.component'
 import {AddBuildingComponent} from "../../dialogs/add-building/add-building.component";
 import {EditBuildingComponent} from "../../dialogs/edit-building/edit-building.component";
 import {FilterBuildingsComponent} from "../../dialogs/filter-buildings/filter-buildings.component";
 import {RemoveComponent} from "../../dialogs/remove/remove.component";
 import { TranslateService } from '@ngx-translate/core';
 import {AuthServiceService} from "../../../core/authentication/auth-service.service";
+
+import {ProblemsTableComponent} from "../problems-table/problems-table.component"
 
 @Component({
   selector: 'app-buildings-table',
@@ -55,7 +66,7 @@ export class BuildingsTableComponent implements OnInit {
   favoriteBuildingList!: GrpcBuilding.AsObject[];
 
 
-  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private dialog: MatDialog,
+  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private problemManagementConnector: ProblemManagementConnectorService, private dialog: MatDialog,
               translateService: TranslateService, public authService: AuthServiceService) {
     // inject building management client and current rout to obtain path variables
     this.translateService = translateService;
@@ -87,7 +98,7 @@ export class BuildingsTableComponent implements OnInit {
 
   }
 
-  isInFavoriteList(building: GrpcBuilding.AsObject): boolean {
+  private isInFavoriteList(building: GrpcBuilding.AsObject): boolean {
     var id = building.identificationNumber;
     for (var b of this.favoriteBuildingList) {
       if(b.identificationNumber == id){
@@ -98,6 +109,10 @@ export class BuildingsTableComponent implements OnInit {
   }
 
   // private callback methods for api calls
+  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: BuildingsTableComponent | ProblemsTableComponent): void{
+    return;
+  }
+
   private static interpretListBuildingsResponse(response: ListBuildingsResponse, self: BuildingsTableComponent): void {
     self.dataSource.data = response.toObject().buildingsList;
     self.isLoading = false;
@@ -128,6 +143,17 @@ export class BuildingsTableComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.buildingManagementConnector.createBuilding(BuildingsTableComponent.buildCreateBuildingRequest(result), BuildingsTableComponent.interpretCreateBuildingResponse, this);
+      } else {
+        return;
+      }
+    })
+  }
+
+  openCreateProblemDialog() {
+    const dialogRef = this.dialog.open(AddProblemComponent);
+    dialogRef.afterClosed().subscribe( result => {
+      if(result.event == 'ok'){
+        this.problemManagementConnector.createProblem(BuildingsTableComponent.buildCreateProblemRequest(result), BuildingsTableComponent.interpretCreateProblemResponse, this);
       } else {
         return;
       }
@@ -184,6 +210,14 @@ export class BuildingsTableComponent implements OnInit {
     return request;
   }
 
+  private static buildCreateProblemRequest(result: any): CreateProblemRequest {
+    let request = new CreateProblemRequest();
+    request.setProblemTitle(result.data.problemTitle);
+    request.setProblemDescription(result.data.problelDescription);
+    request.setReferenceIdentificationNumber(result.data.referenceIdentificationNumber);
+    return request;
+  }
+
   private static buildCreateBuildingRequest(result: any): CreateBuildingRequest {
     let request = new CreateBuildingRequest();
     request.setBuildingNumber(result.data.buildingNumber);
@@ -199,6 +233,8 @@ export class BuildingsTableComponent implements OnInit {
     request.setGrpcGeographicalLocation(geographicalLocation);
     return request;
   }
+
+
 
   private static buildUpdateBuildingRequest(result: any): UpdateBuildingRequest {
     let request = new UpdateBuildingRequest();
@@ -217,6 +253,8 @@ export class BuildingsTableComponent implements OnInit {
     return request;
   }
 
+
+
   private static buildRemoveRequest(result: any): RemoveRequest {
     let request = new RemoveRequest();
     request.setIdentificationNumber(result.data.identificationNumber);
@@ -229,17 +267,14 @@ export class BuildingsTableComponent implements OnInit {
     return request;
   }
 
-
   toggleFavorite(building: GrpcBuilding.AsObject) {
 
     if(this.isInFavoriteList(building)){
       // TODO create favorite access
     } else {
-      // TODO remove vavorite access
+      // TODO remove favorite access
     }
   }
-
-
 
   useLanguage(language: string): void {
     this.translateService.use(language);
