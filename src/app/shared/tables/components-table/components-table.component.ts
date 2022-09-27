@@ -87,7 +87,7 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
     self.isLoading = false;
   }
 
-  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: BuildingsTableComponent | ProblemsTableComponent | RoomsTableComponent | ComponentsTableComponent): void{
+  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: any): void{
     return;
   }
 

@@ -87,7 +87,7 @@ export class RoomsTableComponent implements OnInit {
 
   // private callback methods for api calls
 
-  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: BuildingsTableComponent | ProblemsTableComponent | RoomsTableComponent | ComponentsTableComponent): void{
+  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: any): void{
     return;
   }
 

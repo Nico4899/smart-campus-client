@@ -6,6 +6,10 @@ import {ActivatedRoute} from "@angular/router";
 
 import {GoogleMap, MapInfoWindow, MapMarker} from '@angular/google-maps'
 import { AuthServiceService } from 'src/app/core/authentication/auth-service.service';
+import { ProblemManagementConnectorService } from 'src/app/core/connectors/problem-management-connector.service';
+import { MatDialog } from '@angular/material/dialog';
+import {CreateProblemRequest, CreateProblemResponse } from 'src/proto/generated/problem_management_pb';
+import { AddProblemComponent } from 'src/app/shared/dialogs/add-problem/add-problem.component';
 
 
 
@@ -61,7 +65,7 @@ export class BuildingComponent implements OnInit {
   // main object
   building: GrpcBuilding.AsObject = new GrpcBuilding().toObject();
 
-  constructor(private buildingManagementConnector: BuildingManagementConnectorService,public authService: AuthServiceService, private route: ActivatedRoute) {
+  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private problemManagementConnector: ProblemManagementConnectorService,public authService: AuthServiceService, private route: ActivatedRoute, private dialog: MatDialog) {
     // inject building management client and current rout to obtain path variables
   }
 
@@ -88,19 +92,14 @@ export class BuildingComponent implements OnInit {
   private static interpretGetBuildingResponse(response: GetBuildingResponse, self: BuildingComponent): void {
     self.building = response.getGrpcBuilding()?.toObject()!;
 
-
-
     self.marker.position = {
       lat: self.building.grpcGeographicalLocation!.latitude,
       lng: self.building.grpcGeographicalLocation!.longitude
     };
-
     self.center = {
       lat: self.building.grpcGeographicalLocation!.latitude,
       lng: self.building.grpcGeographicalLocation!.longitude
     };
-
-
     self.marker.title = self.building.buildingName;
     self.marker.label.text = self.building.buildingName;
 
@@ -114,12 +113,43 @@ export class BuildingComponent implements OnInit {
     request.setOwner(this.authService.name as string);
     request.setReferenceIdentificationNumber(this.bin);
     this.buildingManagementConnector.createFavorite(request, BuildingComponent.interpretCreateFavoriteResponse, this);
-
   }
+
+  openCreateProblemDialog() {
+    const dialogRef = this.dialog.open(AddProblemComponent);
+    dialogRef.afterClosed().subscribe( result => {
+      if(result.event == 'ok'){
+        this.problemManagementConnector.createProblem(BuildingComponent.buildCreateProblemRequest(result), BuildingComponent.interpretCreateProblemResponse, this);
+      } else {
+        return;
+      }
+    })
+  }
+
+
 
 
   private static interpretCreateFavoriteResponse(response: CreateFavoriteResponse, self: any): void {
   }
+
+
+  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: any): void{
+    return;
+  }
+
+
+
+
+  private static buildCreateProblemRequest(result: any): CreateProblemRequest {
+    let request = new CreateProblemRequest();
+    request.setProblemTitle(result.data.problemTitle);
+    request.setProblemDescription(result.data.problelDescription);
+    request.setReferenceIdentificationNumber(result.data.referenceIdentificationNumber);
+    request.setProblemReporter(result.data.problemReporter);
+    return request;
+  }
+
+
 
 
 }

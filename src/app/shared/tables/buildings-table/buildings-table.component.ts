@@ -63,7 +63,7 @@ export class BuildingsTableComponent implements OnInit {
   isLoading = true;
 
   // columns to be displayed
-  columnsToDisplay: string[] = ['buildingNumber', 'buildingName', 'address', 'campusLocation', 'edit_building', 'delete_building'];
+  columnsToDisplay: string[] = ['buildingNumber', 'buildingName', 'address', 'campusLocation', 'addFavorite', 'report problem' , 'edit_building', 'delete_building'];
 
   // favorite list to compare list to
   favoriteBuildingList!: GrpcBuilding.AsObject[];
@@ -97,7 +97,7 @@ export class BuildingsTableComponent implements OnInit {
 
   // private callback methods for api calls
 
-  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: BuildingsTableComponent | ProblemsTableComponent | RoomsTableComponent | ComponentsTableComponent): void{
+  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: any): void{
     return;
   }
 

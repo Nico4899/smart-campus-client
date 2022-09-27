@@ -16,7 +16,7 @@ export class AddProblemComponent {
   // ID number of the problematic building/room/component/whatever
   referenceIdentificationNumber !: string;
 
-  constructor(public dialogRef: MatDialogRef<AddProblemComponent>, private authService: AuthServiceService, @Inject(MAT_DIALOG_DATA) public data: string) {
+  constructor(public dialogRef: MatDialogRef<AddProblemComponent>, public authService: AuthServiceService, @Inject(MAT_DIALOG_DATA) public data: string) {
     this.referenceIdentificationNumber = data;
     this.dialogRef.disableClose = true;
   }

@@ -9,6 +9,10 @@ import {
 import {BuildingManagementConnectorService} from "../../core/connectors/building-management-connector.service";
 import {ActivatedRoute} from "@angular/router";
 import { AuthServiceService } from 'src/app/core/authentication/auth-service.service';
+import { CreateProblemRequest, CreateProblemResponse } from 'src/proto/generated/problem_management_pb';
+import { ProblemManagementConnectorService } from 'src/app/core/connectors/problem-management-connector.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddProblemComponent } from 'src/app/shared/dialogs/add-problem/add-problem.component';
 
 @Component({
   selector: 'app-component',
@@ -23,7 +27,7 @@ export class ComponentComponent implements OnInit {
   // datasource containing provided data from the api, to be displayed in the html datatables, as well as the current selected object
   component: GrpcComponent.AsObject = new GrpcComponent().toObject();
 
-  constructor(private buildingManagementConnector: BuildingManagementConnectorService,public authService: AuthServiceService, private route: ActivatedRoute) {
+  constructor(private buildingManagementConnector: BuildingManagementConnectorService , private problemManagementConnector: ProblemManagementConnectorService,public authService: AuthServiceService, private route: ActivatedRoute, private dialog: MatDialog) {
     // inject building management client and current rout to obtain path variables
   }
 
@@ -51,10 +55,38 @@ export class ComponentComponent implements OnInit {
     request.setOwner(this.authService.name as string);
     request.setReferenceIdentificationNumber(this.cin);
     this.buildingManagementConnector.createFavorite(request, ComponentComponent.interpretCreateFavoriteResponse, this);
-
   }
 
 
+  openCreateProblemDialog() {
+    const dialogRef = this.dialog.open(AddProblemComponent);
+    dialogRef.afterClosed().subscribe( result => {
+      if(result.event == 'ok'){
+        this.problemManagementConnector.createProblem(ComponentComponent.buildCreateProblemRequest(result), ComponentComponent.interpretCreateProblemResponse, this);
+      } else {
+        return;
+      }
+    })
+  }
+
+
+
   private static interpretCreateFavoriteResponse(response: CreateFavoriteResponse, self: any): void {
+  }
+
+
+  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: any): void{
+    return;
+  }
+
+
+
+  private static buildCreateProblemRequest(result: any): CreateProblemRequest {
+    let request = new CreateProblemRequest();
+    request.setProblemTitle(result.data.problemTitle);
+    request.setProblemDescription(result.data.problelDescription);
+    request.setReferenceIdentificationNumber(result.data.referenceIdentificationNumber);
+    request.setProblemReporter(result.data.problemReporter);
+    return request;
   }
 }
