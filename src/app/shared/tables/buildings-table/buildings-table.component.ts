@@ -36,6 +36,7 @@ import {RemoveComponent} from "../../dialogs/remove/remove.component";
 import { TranslateService } from '@ngx-translate/core';
 import {AuthServiceService} from "../../../core/authentication/auth-service.service";
 
+
 import {ProblemsTableComponent} from "../problems-table/problems-table.component"
 import { RoomsTableComponent } from '../rooms-table/rooms-table.component';
 import { ComponentsTableComponent } from '../components-table/components-table.component';
@@ -92,25 +93,10 @@ export class BuildingsTableComponent implements OnInit {
   applySearch() {
     this.dataSource.filter = this.searchKey?.trim().toLowerCase();
   }
-  // shorthand to refresh our favorite buildings
-  refreshFavoriteList() {
-    // fix bugs
-    //this.buildingManagementConnector.listFavoriteBuildings(
-      //BuildingsTableComponent.buildListFavoriteBuildingRequest(), BuildingsTableComponent.interpretListFavoriteBuildingsResponse, this);
 
-  }
-
-  private isInFavoriteList(building: GrpcBuilding.AsObject): boolean {
-    var id = building.identificationNumber;
-    for (var b of this.favoriteBuildingList) {
-      if(b.identificationNumber == id){
-        return true;
-      }
-    }
-    return false;
-  }
 
   // private callback methods for api calls
+
   private static interpretCreateProblemResponse(response: CreateProblemResponse, self: BuildingsTableComponent | ProblemsTableComponent | RoomsTableComponent | ComponentsTableComponent): void{
     return;
   }
@@ -133,11 +119,10 @@ export class BuildingsTableComponent implements OnInit {
     self.dataSource.data = self.dataSource.data.filter(e => e.identificationNumber != id);
   }
 
-  private static interpretListFavoriteBuildingsResponse( response: ListFavoriteBuildingsResponse,  self: BuildingsTableComponent): void {
-
-    self.favoriteBuildingList = response.toObject().buildingsList;
+  private static interpretCreateFavoriteResponse(response: CreateFavoriteResponse, self: any): void {
 
   }
+
 
   // button methods
   openCreateBuildingDialog() {
@@ -207,10 +192,6 @@ export class BuildingsTableComponent implements OnInit {
     return request;
   }
 
-  public static buildListFavoriteBuildingRequest(): ListFavoriteBuildingsRequest {
-    let request = new ListFavoriteBuildingsRequest();
-    return request;
-  }
 
   private static buildCreateProblemRequest(result: any): CreateProblemRequest {
     let request = new CreateProblemRequest();
@@ -257,26 +238,32 @@ export class BuildingsTableComponent implements OnInit {
   }
 
 
-
   private static buildRemoveRequest(result: any): RemoveRequest {
     let request = new RemoveRequest();
     request.setIdentificationNumber(result.data.identificationNumber);
     return request;
   }
 
-  private static listFavoriteBuildingsRequest(result: any): ListFavoriteBuildingsRequest {
-    let request = new ListFavoriteBuildingsRequest();
+  private static buildCreateFavoriteRequest(result: any): CreateFavoriteRequest {
+    let request = new CreateFavoriteRequest();
     request.setOwner(result.data.owner);
+    request.setReferenceIdentificationNumber(result.data.referenceIdentificationNumber);
     return request;
   }
 
-  toggleFavorite(building: GrpcBuilding.AsObject) {
 
-    if(this.isInFavoriteList(building)){
-      // TODO create favorite access
-    } else {
-      // TODO remove favorite access
+  addFavorite(building: GrpcBuilding.AsObject) {
+    const id = building.identificationNumber;
+    const name: string = this.authService.name as string;
+
+    const result = {
+      data : {
+        referenceIdentificationNumber: id,
+        owner: name
+      }
     }
+    this.buildingManagementConnector.createFavorite( BuildingsTableComponent.buildCreateFavoriteRequest(result),BuildingsTableComponent.interpretCreateFavoriteResponse, this);
+
   }
 
   useLanguage(language: string): void {

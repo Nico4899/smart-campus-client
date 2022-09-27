@@ -194,7 +194,7 @@ export class BuildingManagementConnectorService {
     })
   }
 
-  async createFavorite(request: CreateFavoriteRequest, callback: (response: CreateFavoriteResponse, self: BuildingComponent | RoomComponent) => void, self: BuildingComponent | RoomComponent) {
+  async createFavorite(request: CreateFavoriteRequest, callback: (response: CreateFavoriteResponse, self: BuildingComponent | RoomComponent | BuildingsTableComponent | RoomsTableComponent | ComponentsTableComponent) => void, self: BuildingComponent | RoomComponent | BuildingsTableComponent | RoomsTableComponent | ComponentsTableComponent) {
     this.client.createFavorite(request, {}, (error: RpcError, response: CreateFavoriteResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
