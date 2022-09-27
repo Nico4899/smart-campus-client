@@ -263,7 +263,6 @@ export class BuildingsTableComponent implements OnInit {
       }
     }
     this.buildingManagementConnector.createFavorite( BuildingsTableComponent.buildCreateFavoriteRequest(result),BuildingsTableComponent.interpretCreateFavoriteResponse, this);
-
   }
 
   useLanguage(language: string): void {

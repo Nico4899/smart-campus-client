@@ -8,7 +8,7 @@ import {
   ListRoomsResponse,
   RemoveRequest,
   UpdateRoomRequest,
-  UpdateRoomResponse, ListFavoriteRoomsRequest, GrpcBuildingFilterValueSelection
+  UpdateRoomResponse, ListFavoriteRoomsRequest, GrpcBuildingFilterValueSelection, CreateFavoriteResponse, CreateFavoriteRequest
 } from "../../../../proto/generated/building_management_pb";
 import {
   CreateProblemRequest,
@@ -111,6 +111,11 @@ export class RoomsTableComponent implements OnInit {
   }
 
 
+  private static interpretCreateFavoriteResponse(response: CreateFavoriteResponse, self: any): void {
+
+  }
+
+
   //button methods start
   openCreateRoomDialog() {
     const dialogRef = this.dialog.open(AddRoomComponent);
@@ -173,6 +178,19 @@ export class RoomsTableComponent implements OnInit {
     })
   }
 
+  addFavorite(room: GrpcRoom.AsObject) {
+    const id = room.identificationNumber;
+    const name: string = this.authService.name as string;
+
+    const result = {
+      data : {
+        referenceIdentificationNumber: id,
+        owner: name
+      }
+    }
+    this.buildingManagementConnector.createFavorite( RoomsTableComponent.buildCreateFavoriteRequest(result),RoomsTableComponent.interpretCreateFavoriteResponse, this);
+  }
+
   //private utils here
   public static buildListRoomsRequest(result: any): ListRoomsRequest {
     let request = new ListRoomsRequest();
@@ -226,6 +244,14 @@ export class RoomsTableComponent implements OnInit {
   private static buildRemoveRequest(result: any): RemoveRequest {
     let request = new RemoveRequest();
     request.setIdentificationNumber(result.data.identificationNumber);
+    return request;
+  }
+
+
+  private static buildCreateFavoriteRequest(result: any): CreateFavoriteRequest {
+    let request = new CreateFavoriteRequest();
+    request.setOwner(result.data.owner);
+    request.setReferenceIdentificationNumber(result.data.referenceIdentificationNumber);
     return request;
   }
 
