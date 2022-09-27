@@ -1,16 +1,25 @@
 import {Component, OnInit} from '@angular/core';
 import {
-  CreateFavoriteRequest, CreateFavoriteResponse, GetBuildingRequest, GetBuildingResponse, GrpcBuilding} from "../../../proto/generated/building_management_pb";
-import {BuildingManagementConnectorService} from "../../core/connectors/building-management-connector.service";
+  CreateFavoriteRequest,
+  CreateFavoriteResponse,
+  GetBuildingRequest,
+  GetBuildingResponse,
+  GrpcBuilding
+} from "../../../proto/generated/building_management_pb";
+import {
+  BuildingManagementConnectorService
+} from "../../core/connectors/building-management-connector.service";
 import {ActivatedRoute} from "@angular/router";
-
-import {GoogleMap, MapInfoWindow, MapMarker} from '@angular/google-maps'
-import { AuthServiceService } from 'src/app/core/authentication/auth-service.service';
-import { ProblemManagementConnectorService } from 'src/app/core/connectors/problem-management-connector.service';
-import { MatDialog } from '@angular/material/dialog';
-import {CreateProblemRequest, CreateProblemResponse } from 'src/proto/generated/problem_management_pb';
-import { AddProblemComponent } from 'src/app/shared/dialogs/add-problem/add-problem.component';
-
+import {AuthServiceService} from 'src/app/core/authentication/auth-service.service';
+import {
+  ProblemManagementConnectorService
+} from 'src/app/core/connectors/problem-management-connector.service';
+import {MatDialog} from '@angular/material/dialog';
+import {
+  CreateProblemRequest,
+  CreateProblemResponse
+} from 'src/proto/generated/problem_management_pb';
+import {AddProblemComponent} from 'src/app/shared/dialogs/add-problem/add-problem.component';
 
 
 @Component({
@@ -52,20 +61,14 @@ export class BuildingComponent implements OnInit {
   }
 
 
-
-
-
   // path variable
   bin: string = "";
-
-
-
 
 
   // main object
   building: GrpcBuilding.AsObject = new GrpcBuilding().toObject();
 
-  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private problemManagementConnector: ProblemManagementConnectorService,public authService: AuthServiceService, private route: ActivatedRoute, private dialog: MatDialog) {
+  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private problemManagementConnector: ProblemManagementConnectorService, public authService: AuthServiceService, private route: ActivatedRoute, private dialog: MatDialog) {
     // inject building management client and current rout to obtain path variables
   }
 
@@ -106,19 +109,16 @@ export class BuildingComponent implements OnInit {
   }
 
   addFavorite(): void {
-    const id = this.building.identificationNumber;
-    const owner: string = this.authService.name as string;
-
     let request = new CreateFavoriteRequest();
-    request.setOwner(this.authService.name as string);
+    request.setOwner(this.authService.eMail as string);
     request.setReferenceIdentificationNumber(this.bin);
     this.buildingManagementConnector.createFavorite(request, BuildingComponent.interpretCreateFavoriteResponse, this);
   }
 
   openCreateProblemDialog() {
     const dialogRef = this.dialog.open(AddProblemComponent);
-    dialogRef.afterClosed().subscribe( result => {
-      if(result.event == 'ok'){
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.event == 'ok') {
         this.problemManagementConnector.createProblem(BuildingComponent.buildCreateProblemRequest(result), BuildingComponent.interpretCreateProblemResponse, this);
       } else {
         return;
@@ -127,17 +127,13 @@ export class BuildingComponent implements OnInit {
   }
 
 
-
-
   private static interpretCreateFavoriteResponse(response: CreateFavoriteResponse, self: any): void {
   }
 
 
-  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: any): void{
+  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: any): void {
     return;
   }
-
-
 
 
   private static buildCreateProblemRequest(result: any): CreateProblemRequest {
@@ -148,8 +144,6 @@ export class BuildingComponent implements OnInit {
     request.setProblemReporter(result.data.problemReporter);
     return request;
   }
-
-
 
 
 }
