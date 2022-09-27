@@ -38,10 +38,8 @@
           </strong>
         </span>
         {{ 'dashboard.of' | translate }}
-        <a routerLinkActive="active" class="routerLink" routerLink='/buildings'>
-          {{ 'dashboard.of_buildings' | translate }}
-        </a>
-        / {{ 'dashboard.of_rooms' | translate }}/ {{ 'dashboard.of_components' | translate }}
+        <a routerLinkActive="active" class="routerLink"
+           routerLink='/buildings'>{{'dashboard.of_buildings'|translate}}</a>/{{'dashboard.of_rooms'|translate}}/{{'dashboard.of_components'|translate}}
         <br>
         <small>
           <span [hidden]="!isAdmin()">
@@ -65,9 +63,9 @@
     </li>
     <li [hidden]="!isUser()">
       <h3>
-          <strong>
-            {{ 'dashboard.view' | translate }}
-          </strong>
+        <strong>
+          {{ 'dashboard.view' | translate }}
+        </strong>
         {{ 'dashboard.and' | translate }}
         <strong>
           {{ 'dashboard.edit' | translate }}
