@@ -1,12 +1,12 @@
 #welcome-image {
-  opacity: 0.05;
-  width: 70%;
-  margin: auto;
-  height: auto;
-  position: fixed;
+  opacity: 0.1;
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: -5000;
-  top: 100px;
-  left: 250px;
+  -webkit-filter: invert(50%);
 }
 
 .routerLink{
