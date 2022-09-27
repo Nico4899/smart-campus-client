@@ -12,7 +12,11 @@ import {
   ListBuildingsResponse,
   RemoveRequest,
   UpdateBuildingRequest,
-  UpdateBuildingResponse
+  UpdateBuildingResponse,
+  CreateFavoriteRequest,
+  CreateFavoriteResponse,
+  ListFavoriteBuildingsRequest,
+  ListFavoriteBuildingsResponse
 } from "../../../../proto/generated/building_management_pb";
 import {BuildingManagementConnectorService} from "../../../core/connectors/building-management-connector.service";
 import {MatDialog} from "@angular/material/dialog";
@@ -47,6 +51,10 @@ export class BuildingsTableComponent implements OnInit {
   // columns to be displayed
   columnsToDisplay: string[] = ['buildingNumber', 'buildingName', 'address', 'campusLocation', 'edit_building', 'delete_building'];
 
+  // favorite list to compare list to
+  favoriteBuildingList!: GrpcBuilding.AsObject[];
+
+
   constructor(private buildingManagementConnector: BuildingManagementConnectorService, private dialog: MatDialog,
               translateService: TranslateService, public authService: AuthServiceService) {
     // inject building management client and current rout to obtain path variables
@@ -71,6 +79,23 @@ export class BuildingsTableComponent implements OnInit {
   applySearch() {
     this.dataSource.filter = this.searchKey?.trim().toLowerCase();
   }
+  // shorthand to refresh our favorite buildings
+  refreshFavoriteList() {
+    // fix bugs
+    //this.buildingManagementConnector.listFavoriteBuildings(
+      //BuildingsTableComponent.buildListFavoriteBuildingRequest(), BuildingsTableComponent.interpretListFavoriteBuildingsResponse, this);
+
+  }
+
+  isInFavoriteList(building: GrpcBuilding.AsObject): boolean {
+    var id = building.identificationNumber;
+    for (var b of this.favoriteBuildingList) {
+      if(b.identificationNumber == id){
+        return true;
+      }
+    }
+    return false;
+  }
 
   // private callback methods for api calls
   private static interpretListBuildingsResponse(response: ListBuildingsResponse, self: BuildingsTableComponent): void {
@@ -89,6 +114,12 @@ export class BuildingsTableComponent implements OnInit {
 
   private static interpretRemoveBuildingResponse(id: string, self: BuildingsTableComponent): void {
     self.dataSource.data = self.dataSource.data.filter(e => e.identificationNumber != id);
+  }
+
+  private static interpretListFavoriteBuildingsResponse( response: ListFavoriteBuildingsResponse,  self: BuildingsTableComponent): void {
+
+    self.favoriteBuildingList = response.toObject().buildingsList;
+
   }
 
   // button methods
@@ -148,6 +179,11 @@ export class BuildingsTableComponent implements OnInit {
     return request;
   }
 
+  public static buildListFavoriteBuildingRequest(): ListFavoriteBuildingsRequest {
+    let request = new ListFavoriteBuildingsRequest();
+    return request;
+  }
+
   private static buildCreateBuildingRequest(result: any): CreateBuildingRequest {
     let request = new CreateBuildingRequest();
     request.setBuildingNumber(result.data.buildingNumber);
@@ -185,6 +221,22 @@ export class BuildingsTableComponent implements OnInit {
     let request = new RemoveRequest();
     request.setIdentificationNumber(result.data.identificationNumber);
     return request;
+  }
+
+  private static listFavoriteBuildingsRequest(result: any): ListFavoriteBuildingsRequest {
+    let request = new ListFavoriteBuildingsRequest();
+    request.setOwner(result.data.owner);
+    return request;
+  }
+
+
+  toggleFavorite(building: GrpcBuilding.AsObject) {
+
+    if(this.isInFavoriteList(building)){
+      // TODO create favorite access
+    } else {
+      // TODO remove vavorite access
+    }
   }
 
 

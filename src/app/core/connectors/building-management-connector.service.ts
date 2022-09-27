@@ -133,7 +133,7 @@ export class BuildingManagementConnectorService {
     })
   }
 
-  async listFavoriteBuildings(request: ListFavoriteBuildingsRequest, callback: (response: ListFavoriteBuildingsResponse, self: FavoriteBuildingsTableComponent) => void, self: FavoriteBuildingsTableComponent) {
+  async listFavoriteBuildings(request: ListFavoriteBuildingsRequest, callback: (response: ListFavoriteBuildingsResponse, self:( FavoriteBuildingsTableComponent | BuildingsTableComponent )) => void, self: (FavoriteBuildingsTableComponent | BuildingsTableComponent)) {
     this.client.listFavoriteBuildings(request, {authentication: `Bearer ${this.authService.token}`}, (error: RpcError, response: ListFavoriteBuildingsResponse) => {
       if (error) {
         console.log(error.message);
