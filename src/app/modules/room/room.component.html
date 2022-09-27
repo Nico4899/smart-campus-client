@@ -17,10 +17,13 @@
     <app-notifications-table></app-notifications-table>
   </mat-tab>
   <mat-tab label="details">
-    <h3>Details</h3>
-    <h4>Name</h4>
-    <p>{{room.roomName}}</p>
-    <h4>Floor: {{room.floor}}</h4>
+    <mat-list>
+      <mat-list-item>{{ 'room_details.name' | translate }}: {{room.roomName}}</mat-list-item>
+      <mat-list-item>{{ 'room_details.number' | translate }}: {{room.roomNumber}}</mat-list-item>
+      <mat-list-item>{{ 'room_details.floor' | translate }}: {{room.floor}}</mat-list-item>
+      <mat-list-item>{{ 'room_details.type' | translate }}: {{room.roomType | roomType}}</mat-list-item>
+      <mat-list-item>{{ 'room_details.coordinates' | translate }}: {{room.grpcGeographicalLocation!.latitude}}, {{room.grpcGeographicalLocation!.longitude}}</mat-list-item>
+    </mat-list>
   </mat-tab>
 </mat-tab-group>
 

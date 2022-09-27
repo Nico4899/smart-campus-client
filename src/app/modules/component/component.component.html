@@ -12,7 +12,10 @@
     <app-notifications-table></app-notifications-table>
   </mat-tab>
   <mat-tab label="details">
-    <h1>{{component.componentType | componentType}}</h1>
-    <h3>{{component.componentDescription}}</h3>
+    <mat-list>
+      <mat-list-item>{{ 'component_details.type' | translate }}: {{component.componentType | componentType}}</mat-list-item>
+      <mat-list-item>{{ 'component_details.description' | translate }}: {{component.componentDescription}}</mat-list-item>
+      <mat-list-item>{{ 'component_details.coordinates' | translate }}: {{component.grpcGeographicalLocation!.latitude}}, {{component.grpcGeographicalLocation!.longitude}}</mat-list-item>
+    </mat-list>
   </mat-tab>
 </mat-tab-group>

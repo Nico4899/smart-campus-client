@@ -37,13 +37,14 @@
     </google-map>
   </mat-tab>
   <mat-tab label="details">
-    <h3>Details for Building</h3>
-    <h4>Name</h4>
-    <p>{{building.buildingName}}</p>
-    <h4>Building number</h4>
-    <p>{{building.buildingNumber}}</p>
-    <h4>Position</h4>
-    <p>Coordinates: {{building.grpcGeographicalLocation!.latitude}}, {{building.grpcGeographicalLocation!.longitude}}</p>
+    <mat-list>
+      <mat-list-item>{{ 'building_details.name' | translate }}: {{building.buildingName}}</mat-list-item>
+      <mat-list-item>{{ 'building_details.number' | translate }}: {{building.buildingNumber}}</mat-list-item>
+      <mat-list-item>{{ 'building_details.address' | translate }}: {{building.buildingAddress}}</mat-list-item>
+      <mat-list-item>{{ 'building_details.campus' | translate }}: {{building.campusLocation | campusLocation}}</mat-list-item>
+      <mat-list-item>{{ 'building_details.coordinates' | translate }}: {{building.grpcGeographicalLocation!.latitude}}, {{building.grpcGeographicalLocation!.longitude}}</mat-list-item>
+      <mat-list-item>{{ 'building_details.floors' | translate }}: {{building.grpcFloors!.lowestFloor}} {{ 'building_details.to' | translate }} {{building.grpcFloors!.highestFloor}}</mat-list-item>
+    </mat-list>
   </mat-tab>
 </mat-tab-group>
 
