@@ -6,6 +6,8 @@ import {ActivatedRoute} from "@angular/router";
 import {
   CreateComponentRequest,
   CreateComponentResponse,
+  CreateFavoriteRequest,
+  CreateFavoriteResponse,
   GrpcComponent,
   GrpcGeographicalLocation,
   ListComponentsRequest,
@@ -105,6 +107,13 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
   }
 
 
+  private static interpretCreateFavoriteResponse(response: CreateFavoriteResponse, self: any): void {
+
+  }
+
+
+
+
   openCreateComponentDialog() {
     const dialogRef = this.dialog.open(AddComponentComponent);
     dialogRef.afterClosed().subscribe(result => {
@@ -150,6 +159,18 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
     )
   }
 
+  addFavorite(component: GrpcComponent.AsObject) {
+    const id = component.identificationNumber;
+    const name: string = this.authService.name as string;
+    const result = {
+      data : {
+        referenceIdentificationNumber: id,
+        owner: name
+      }
+    }
+    this.buildingManagementConnector.createFavorite( ComponentsTableComponent.buildCreateFavoriteRequest(result),ComponentsTableComponent.interpretCreateFavoriteResponse, this);
+  }
+
   private static buildCreateComponentRequest(identificationNumber: string, result: any): CreateComponentRequest {
     let request = new CreateComponentRequest();
     request.setComponentDescription(result.data.componentDescription);
@@ -187,6 +208,14 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
   private static buildRemoveRequest(result: any): RemoveRequest {
     let request = new RemoveRequest();
     request.setIdentificationNumber(result.data.identificationNumber);
+    return request;
+  }
+
+
+  private static buildCreateFavoriteRequest(result: any): CreateFavoriteRequest {
+    let request = new CreateFavoriteRequest();
+    request.setOwner(result.data.owner);
+    request.setReferenceIdentificationNumber(result.data.referenceIdentificationNumber);
     return request;
   }
 

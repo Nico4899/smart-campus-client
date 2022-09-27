@@ -181,7 +181,6 @@ export class RoomsTableComponent implements OnInit {
   addFavorite(room: GrpcRoom.AsObject) {
     const id = room.identificationNumber;
     const name: string = this.authService.name as string;
-
     const result = {
       data : {
         referenceIdentificationNumber: id,
