@@ -1,8 +1,6 @@
 import {Component} from '@angular/core';
 import {GrpcCampusLocation} from "../../../../proto/generated/building_management_pb";
 import {MatDialogRef} from "@angular/material/dialog";
-import {FormControl, Validators} from "@angular/forms";
-
 
 @Component({
   selector: 'app-add-building',
@@ -18,6 +16,7 @@ export class AddBuildingComponent {
   campusLocation!: GrpcCampusLocation;
   longitude!: number;
   latitude!: number;
+  address!: string;
 
   campusLocations = Object.values(GrpcCampusLocation);
 
@@ -27,7 +26,8 @@ export class AddBuildingComponent {
   }
 
   ok() {
-    this.dialogRef.close({event: 'ok',
+    this.dialogRef.close({
+      event: 'ok',
       data: {
         highestFloor: this.highestFloor,
         lowestFloor: this.lowestFloor,
@@ -35,7 +35,8 @@ export class AddBuildingComponent {
         buildingNumber: this.buildingNumber,
         campusLocation: this.campusLocation,
         longitude: this.longitude,
-        latitude: this.latitude
+        latitude: this.latitude,
+        address: this.address
       }
     });
   }

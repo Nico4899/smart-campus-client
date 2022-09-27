@@ -63,6 +63,6 @@ export class AuthServiceService {
   }
 
   get token() {
-    return this.oAuthService.getIdToken();
+    return this.oAuthService.getAccessToken();
   }
 }

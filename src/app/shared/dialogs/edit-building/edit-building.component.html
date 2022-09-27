@@ -12,6 +12,11 @@
   </mat-form-field>
 
   <mat-form-field appearance="fill">
+    <mat-label>Address</mat-label>
+    <input matInput placeholder="e.g., Petermaffaymagdich 3" [(ngModel)]="address" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
     <mat-label>Campus Location</mat-label>
     <mat-select [(ngModel)]="campusLocation" required>
       <mat-option *ngFor="let campusLocation of campusLocations" [value]="campusLocation">

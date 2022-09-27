@@ -20,6 +20,7 @@ export class EditBuildingComponent {
   longitude!: number;
   latitude!: number;
   identificationNumber!: string;
+  address!: string;
 
   campusLocations = Object.values(GrpcCampusLocation);
 
@@ -47,7 +48,8 @@ export class EditBuildingComponent {
         campusLocation: this.campusLocation,
         longitude: this.longitude,
         latitude: this.latitude,
-        identificationNumber: this.identificationNumber
+        identificationNumber: this.identificationNumber,
+        address: this.address
       }
     });
   }

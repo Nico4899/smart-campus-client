@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BuildingComponent} from "../../modules/building/building.component";
 import {RoomComponent} from "../../modules/room/room.component";
-import {BuildingsComponent} from "../../modules/buildings/buildings.component";
 import {environment} from "../../../environments/environment";
 import {
   CreateBuildingRequest,
@@ -45,7 +44,6 @@ import {
 import {RpcError} from "grpc-web";
 import {BuildingManagementClient} from "../../../proto/generated/Building_managementServiceClientPb";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {FavoritesComponent} from "../../modules/favorites/favorites.component";
 import {ComponentComponent} from "../../modules/component/component.component";
 import {NotificationsTableComponent} from "../../shared/tables/notifications-table/notifications-table.component";
 import {ComponentsTableComponent} from "../../shared/tables/components-table/components-table.component";
@@ -133,10 +131,9 @@ export class BuildingManagementConnectorService {
     })
   }
 
-  async listFavoriteBuildings(request: ListFavoriteBuildingsRequest, callback: (response: ListFavoriteBuildingsResponse, self:FavoriteBuildingsTableComponent) => void, self: FavoriteBuildingsTableComponent) {
+  async listFavoriteBuildings(request: ListFavoriteBuildingsRequest, callback: (response: ListFavoriteBuildingsResponse, self: FavoriteBuildingsTableComponent) => void, self: FavoriteBuildingsTableComponent) {
     this.client.listFavoriteBuildings(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: ListFavoriteBuildingsResponse) => {
       if (error) {
-        console.log(error.message);
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
         callback(response, self);
@@ -145,7 +142,7 @@ export class BuildingManagementConnectorService {
   }
 
   async listFavoriteRooms(request: ListFavoriteRoomsRequest, callback: (response: ListFavoriteRoomsResponse, self: FavoriteRoomsTableComponent) => void, self: FavoriteRoomsTableComponent) {
-    this.client.listFavoriteRooms(request, {}, (error: RpcError, response: ListFavoriteRoomsResponse) => {
+    this.client.listFavoriteRooms(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: ListFavoriteRoomsResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
@@ -155,7 +152,7 @@ export class BuildingManagementConnectorService {
   }
 
   async listFavoriteComponents(request: ListFavoriteComponentsRequest, callback: (response: ListFavoriteComponentsResponse, self: FavoriteComponentsTableComponent) => void, self: FavoriteComponentsTableComponent) {
-    this.client.listFavoriteComponents(request, {}, (error: RpcError, response: ListFavoriteComponentsResponse) => {
+    this.client.listFavoriteComponents(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: ListFavoriteComponentsResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
@@ -165,7 +162,7 @@ export class BuildingManagementConnectorService {
   }
 
   async createBuilding(request: CreateBuildingRequest, callback: (response: CreateBuildingResponse, self: BuildingsTableComponent) => void, self: BuildingsTableComponent) {
-    this.client.createBuilding(request, {}, (error: RpcError, response: CreateBuildingResponse) => {
+    this.client.createBuilding(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: CreateBuildingResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
@@ -175,7 +172,7 @@ export class BuildingManagementConnectorService {
   }
 
   async createRoom(request: CreateRoomRequest, callback: (response: CreateRoomResponse, self: RoomsTableComponent) => void, self: RoomsTableComponent) {
-    this.client.createRoom(request, {}, (error: RpcError, response: CreateRoomResponse) => {
+    this.client.createRoom(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: CreateRoomResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
@@ -185,7 +182,7 @@ export class BuildingManagementConnectorService {
   }
 
   async createComponent(request: CreateComponentRequest, callback: (response: CreateComponentResponse, self: ComponentsTableComponent) => void, self: ComponentsTableComponent) {
-    this.client.createComponent(request, {}, (error: RpcError, response: CreateComponentResponse) => {
+    this.client.createComponent(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: CreateComponentResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
@@ -194,8 +191,8 @@ export class BuildingManagementConnectorService {
     })
   }
 
-  async createFavorite(request: CreateFavoriteRequest, callback: (response: CreateFavoriteResponse, self: BuildingComponent | RoomComponent | ComponentComponent | BuildingsTableComponent | RoomsTableComponent | ComponentsTableComponent) => void, self: BuildingComponent | RoomComponent | ComponentComponent| BuildingsTableComponent | RoomsTableComponent | ComponentsTableComponent) {
-    this.client.createFavorite(request, {}, (error: RpcError, response: CreateFavoriteResponse) => {
+  async createFavorite(request: CreateFavoriteRequest, callback: (response: CreateFavoriteResponse, self: BuildingComponent | RoomComponent | ComponentComponent | BuildingsTableComponent | RoomsTableComponent | ComponentsTableComponent) => void, self: BuildingComponent | RoomComponent | ComponentComponent | BuildingsTableComponent | RoomsTableComponent | ComponentsTableComponent) {
+    this.client.createFavorite(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: CreateFavoriteResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
@@ -205,7 +202,7 @@ export class BuildingManagementConnectorService {
   }
 
   async updateBuilding(request: UpdateBuildingRequest, callback: (response: UpdateBuildingResponse, self: BuildingsTableComponent) => void, self: BuildingsTableComponent) {
-    this.client.updateBuilding(request, {}, (error: RpcError, response: UpdateBuildingResponse) => {
+    this.client.updateBuilding(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: UpdateBuildingResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
@@ -215,7 +212,7 @@ export class BuildingManagementConnectorService {
   }
 
   async updateRoom(request: UpdateRoomRequest, callback: (response: UpdateRoomResponse, self: RoomsTableComponent) => void, self: RoomsTableComponent) {
-    this.client.updateRoom(request, {}, (error: RpcError, response: UpdateRoomResponse) => {
+    this.client.updateRoom(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: UpdateRoomResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
@@ -225,7 +222,7 @@ export class BuildingManagementConnectorService {
   }
 
   async updateComponent(request: UpdateComponentRequest, callback: (response: UpdateComponentResponse, self: ComponentsTableComponent) => void, self: ComponentsTableComponent) {
-    this.client.updateComponent(request, {}, (error: RpcError, response: UpdateComponentResponse) => {
+    this.client.updateComponent(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: UpdateComponentResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
@@ -235,7 +232,7 @@ export class BuildingManagementConnectorService {
   }
 
   async removeBuilding(request: RemoveRequest, callback: (id: string, self: BuildingsTableComponent) => void, self: BuildingsTableComponent) {
-    this.client.removeBuilding(request, {}, (error: RpcError, response: RemoveResponse) => {
+    this.client.removeBuilding(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: RemoveResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
@@ -245,7 +242,7 @@ export class BuildingManagementConnectorService {
   }
 
   async removeRoom(request: RemoveRequest, callback: (id: string, self: RoomsTableComponent) => void, self: RoomsTableComponent) {
-    this.client.removeRoom(request, {}, (error: RpcError, response: RemoveResponse) => {
+    this.client.removeRoom(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: RemoveResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
@@ -256,7 +253,7 @@ export class BuildingManagementConnectorService {
 
   //TODO never invokes call for some unexpected reason
   async removeComponent(request: RemoveRequest, callback: (id: string, self: ComponentsTableComponent) => void, self: ComponentsTableComponent) {
-    this.client.removeComponent(request, {}, (error: RpcError, response: RemoveResponse) => {
+    this.client.removeComponent(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: RemoveResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again." + error.code.toString(), "", {duration: 1500});
       } else {
@@ -275,21 +272,9 @@ export class BuildingManagementConnectorService {
     })
   }
 
-  /*
-  async removeFavorite(request: RemoveFavoriteRequest, callback: (response: RemoveResponse, self: FavoritesComponent) => void, self: FavoritesComponent) {
-    this.client.removeFavorite(request, {}, (error: RpcError, response: RemoveResponse) => {
-      if (error) {
-        this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
-      } else {
-        callback(response, self);
-      }
-    })
-  }
-   */
-
   async removeFavorite(request: RemoveFavoriteRequest, callback: (id: string, self: FavoriteBuildingsTableComponent | FavoriteComponentsTableComponent | FavoriteRoomsTableComponent) =>
     void, self: FavoriteBuildingsTableComponent | FavoriteComponentsTableComponent | FavoriteRoomsTableComponent) {
-    this.client.removeFavorite(request, {}, (error: RpcError, response: RemoveResponse) => {
+    this.client.removeFavorite(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: RemoveResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
