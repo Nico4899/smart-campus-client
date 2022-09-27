@@ -67,6 +67,18 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
     this.dataSource.sort = this.sort;
   }
 
+  getLink(problem: GrpcProblem.AsObject) {
+    if (problem.referenceIdentificationNumber.match("c-\\d+")) {
+      return "/components/" + problem.referenceIdentificationNumber;
+    } else if(problem.referenceIdentificationNumber.match("r-\\d+")) {
+      return "/rooms/" + problem.referenceIdentificationNumber;
+    } else if(problem.referenceIdentificationNumber.match("b-\\d+")){
+      return "/buildings/" + problem.referenceIdentificationNumber;
+    } else {
+      return "";
+    }
+  }
+
   applySearch() {
     this.dataSource.filter = this.searchKey?.trim().toLowerCase();
 

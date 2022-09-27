@@ -21,7 +21,8 @@ export class AuthServiceService {
   constructor(private readonly oAuthService: OAuthService) {
     this.oAuthService.configure(config);
     this.oAuthService.tokenValidationHandler = new JwksValidationHandler();
-    this.oAuthService.loadDiscoveryDocumentAndTryLogin()
+    this.oAuthService.loadDiscoveryDocumentAndTryLogin();
+    this.oAuthService.setupAutomaticSilentRefresh();
   }
 
   logout() {

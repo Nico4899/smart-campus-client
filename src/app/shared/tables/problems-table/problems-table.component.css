@@ -53,6 +53,10 @@ tr.detail-row {
   width: 80vw;
 }
 
+.problem-reference {
+  opacity: 0.5;
+}
+
 ul li {
   list-style: none;
   margin: 3px;

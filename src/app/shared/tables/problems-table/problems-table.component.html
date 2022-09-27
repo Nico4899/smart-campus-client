@@ -80,6 +80,7 @@
              [@detailExpand]="problem == expandedProblem ? 'expanded' : 'collapsed'">
           <div class="problem-description">
             {{problem.problemDescription}}
+            <span class="problem-reference" routerLinkActive="active" routerLink="{{getLink(problem)}}"> -> jump to reference <-</span>
           </div>
         </div>
       </td>
