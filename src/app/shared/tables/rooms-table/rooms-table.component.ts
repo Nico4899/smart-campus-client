@@ -30,6 +30,7 @@ import {FilterRoomsComponent} from "../../dialogs/filter-rooms/filter-rooms.comp
 import { ProblemsTableComponent } from '../problems-table/problems-table.component';
 import { BuildingsTableComponent } from '../buildings-table/buildings-table.component';
 import { AddProblemComponent } from '../../dialogs/add-problem/add-problem.component';
+import { ComponentsTableComponent } from '../components-table/components-table.component';
 
 @Component({
   selector: 'app-rooms-table',
@@ -86,7 +87,7 @@ export class RoomsTableComponent implements OnInit {
 
   // private callback methods for api calls
 
-  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: BuildingsTableComponent | ProblemsTableComponent | RoomsTableComponent): void{
+  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: BuildingsTableComponent | ProblemsTableComponent | RoomsTableComponent | ComponentsTableComponent): void{
     return;
   }
 

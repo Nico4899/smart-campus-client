@@ -38,6 +38,7 @@ import {AuthServiceService} from "../../../core/authentication/auth-service.serv
 
 import {ProblemsTableComponent} from "../problems-table/problems-table.component"
 import { RoomsTableComponent } from '../rooms-table/rooms-table.component';
+import { ComponentsTableComponent } from '../components-table/components-table.component';
 
 @Component({
   selector: 'app-buildings-table',
@@ -110,7 +111,7 @@ export class BuildingsTableComponent implements OnInit {
   }
 
   // private callback methods for api calls
-  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: BuildingsTableComponent | ProblemsTableComponent | RoomsTableComponent): void{
+  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: BuildingsTableComponent | ProblemsTableComponent | RoomsTableComponent | ComponentsTableComponent): void{
     return;
   }
 

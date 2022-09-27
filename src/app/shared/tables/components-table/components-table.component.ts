@@ -21,6 +21,12 @@ import {MatTableDataSource} from "@angular/material/table";
 import {RemoveComponent} from "../../dialogs/remove/remove.component";
 import {ExpandAnimation} from "../../animations";
 import {AuthServiceService} from "../../../core/authentication/auth-service.service";
+import { ProblemManagementConnectorService } from 'src/app/core/connectors/problem-management-connector.service';
+import {CreateProblemRequest, CreateProblemResponse } from 'src/proto/generated/problem_management_pb';
+import { BuildingsTableComponent } from '../buildings-table/buildings-table.component';
+import { ProblemsTableComponent } from '../problems-table/problems-table.component';
+import { RoomsTableComponent } from '../rooms-table/rooms-table.component';
+import { AddProblemComponent } from '../../dialogs/add-problem/add-problem.component';
 
 @Component({
   selector: 'app-components-table',
@@ -46,7 +52,7 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
   // columns to be displayed
   columnsToDisplay: string[] = ['componentType', 'edit_component', 'delete_component'];
 
-  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private route: ActivatedRoute,
+  constructor(private buildingManagementConnector: BuildingManagementConnectorService,private problemManagementConnector: ProblemManagementConnectorService, private route: ActivatedRoute,
               private dialog: MatDialog, public authService: AuthServiceService) {
     // inject building management client and current rout to obtain path variables
   }
@@ -79,9 +85,15 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
     self.isLoading = false;
   }
 
+  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: BuildingsTableComponent | ProblemsTableComponent | RoomsTableComponent | ComponentsTableComponent): void{
+    return;
+  }
+
   private static interpretCreateComponentResponse(response: CreateComponentResponse, self: ComponentsTableComponent): void {
     self.dataSource.data.push(response.getComponent()?.toObject()!);
   }
+
+
 
   private static interpretUpdateComponentResponse(response: UpdateComponentResponse, self: ComponentsTableComponent): void {
     self.dataSource.data = self.dataSource.data.filter(e => e.identificationNumber != response.getComponent()?.getIdentificationNumber());
@@ -98,6 +110,17 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.buildingManagementConnector.createComponent(ComponentsTableComponent.buildCreateComponentRequest(this.parentIdentificationNumber, result), ComponentsTableComponent.interpretCreateComponentResponse, this);
+      } else {
+        return;
+      }
+    })
+  }
+
+  openCreateProblemDialog() {
+    const dialogRef = this.dialog.open(AddProblemComponent);
+    dialogRef.afterClosed().subscribe( result => {
+      if(result.event == 'ok'){
+        this.problemManagementConnector.createProblem(ComponentsTableComponent.buildCreateProblemRequest(result), ComponentsTableComponent.interpretCreateProblemResponse, this);
       } else {
         return;
       }
@@ -136,6 +159,15 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
     geographicalLocation.setLongitude(result.data.longitude);
     geographicalLocation.setLatitude(result.data.latitude);
     request.setGrpcGeographicalLocation(geographicalLocation);
+    return request;
+  }
+
+  private static buildCreateProblemRequest(result: any): CreateProblemRequest {
+    let request = new CreateProblemRequest();
+    request.setProblemTitle(result.data.problemTitle);
+    request.setProblemDescription(result.data.problelDescription);
+    request.setReferenceIdentificationNumber(result.data.referenceIdentificationNumber);
+    request.setProblemReporter(result.data.problemReporter);
     return request;
   }
 

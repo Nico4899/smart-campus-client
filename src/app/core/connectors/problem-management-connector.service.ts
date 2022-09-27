@@ -15,6 +15,7 @@ import {ProblemsTableComponent} from "../../shared/tables/problems-table/problem
 
 import {BuildingsTableComponent} from "../../shared/tables/buildings-table/buildings-table.component"
 import { RoomsTableComponent } from 'src/app/shared/tables/rooms-table/rooms-table.component';
+import { ComponentsTableComponent } from 'src/app/shared/tables/components-table/components-table.component';
 
 @Injectable({
   providedIn: 'root'
@@ -57,7 +58,7 @@ export class ProblemManagementConnectorService {
     })
   }
 
-  async createProblem(request: CreateProblemRequest, callback: (response: CreateProblemResponse, self: ProblemsTableComponent | BuildingsTableComponent | RoomsTableComponent) => void, self: ProblemsTableComponent | BuildingsTableComponent | RoomsTableComponent) {
+  async createProblem(request: CreateProblemRequest, callback: (response: CreateProblemResponse, self: ProblemsTableComponent | BuildingsTableComponent | RoomsTableComponent | ComponentsTableComponent) => void, self: ProblemsTableComponent | BuildingsTableComponent | RoomsTableComponent | ComponentsTableComponent) {
     this.client.createProblem(request, {}, (error: RpcError, response: CreateProblemResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
