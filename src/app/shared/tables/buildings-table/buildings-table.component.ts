@@ -37,6 +37,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {AuthServiceService} from "../../../core/authentication/auth-service.service";
 
 import {ProblemsTableComponent} from "../problems-table/problems-table.component"
+import { RoomsTableComponent } from '../rooms-table/rooms-table.component';
 
 @Component({
   selector: 'app-buildings-table',
@@ -109,7 +110,7 @@ export class BuildingsTableComponent implements OnInit {
   }
 
   // private callback methods for api calls
-  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: BuildingsTableComponent | ProblemsTableComponent): void{
+  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: BuildingsTableComponent | ProblemsTableComponent | RoomsTableComponent): void{
     return;
   }
 
@@ -215,6 +216,7 @@ export class BuildingsTableComponent implements OnInit {
     request.setProblemTitle(result.data.problemTitle);
     request.setProblemDescription(result.data.problelDescription);
     request.setReferenceIdentificationNumber(result.data.referenceIdentificationNumber);
+    request.setProblemReporter(result.data.problemReporter);
     return request;
   }
 
