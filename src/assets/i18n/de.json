@@ -51,6 +51,14 @@
   "components_table": {
     "campus_location" : "Campus"
   },
+  "problems_table" : {
+    "title" : "Titel",
+    "state" : "Status",
+    "reporter" : "Reporter",
+    "created_time" : "Erstellungsdatum",
+    "modified_time" : "Zuletzt bearbeitet",
+    "actions" : "Aktionen"
+  },
   "favorites": {
     "favorite_buildings": "Gebäude",
     "favorite_rooms": "Räume",

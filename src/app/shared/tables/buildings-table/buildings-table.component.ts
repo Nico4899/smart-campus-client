@@ -12,16 +12,34 @@ import {
   ListBuildingsResponse,
   RemoveRequest,
   UpdateBuildingRequest,
-  UpdateBuildingResponse
+  UpdateBuildingResponse,
+  CreateFavoriteRequest,
+  CreateFavoriteResponse,
+  ListFavoriteBuildingsRequest,
+  ListFavoriteBuildingsResponse
 } from "../../../../proto/generated/building_management_pb";
+
+import {
+  CreateProblemRequest,
+  CreateProblemResponse
+} from "../../../../proto/generated/problem_management_pb"
 import {BuildingManagementConnectorService} from "../../../core/connectors/building-management-connector.service";
+import {ProblemManagementConnectorService} from "../../../core/connectors/problem-management-connector.service"
+
 import {MatDialog} from "@angular/material/dialog";
+
+import {AddProblemComponent} from '../../dialogs/add-problem/add-problem.component'
 import {AddBuildingComponent} from "../../dialogs/add-building/add-building.component";
 import {EditBuildingComponent} from "../../dialogs/edit-building/edit-building.component";
 import {FilterBuildingsComponent} from "../../dialogs/filter-buildings/filter-buildings.component";
 import {RemoveComponent} from "../../dialogs/remove/remove.component";
 import { TranslateService } from '@ngx-translate/core';
 import {AuthServiceService} from "../../../core/authentication/auth-service.service";
+
+
+import {ProblemsTableComponent} from "../problems-table/problems-table.component"
+import { RoomsTableComponent } from '../rooms-table/rooms-table.component';
+import { ComponentsTableComponent } from '../components-table/components-table.component';
 
 @Component({
   selector: 'app-buildings-table',
@@ -45,9 +63,13 @@ export class BuildingsTableComponent implements OnInit {
   isLoading = true;
 
   // columns to be displayed
-  columnsToDisplay: string[] = ['buildingNumber', 'buildingName', 'address', 'campusLocation', 'edit_building', 'delete_building'];
+  columnsToDisplay: string[] = ['buildingNumber', 'buildingName', 'address', 'campusLocation', 'addFavorite', 'report problem' , 'edit_building', 'delete_building'];
 
-  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private dialog: MatDialog,
+  // favorite list to compare list to
+  favoriteBuildingList!: GrpcBuilding.AsObject[];
+
+
+  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private problemManagementConnector: ProblemManagementConnectorService, private dialog: MatDialog,
               translateService: TranslateService, public authService: AuthServiceService) {
     // inject building management client and current rout to obtain path variables
     this.translateService = translateService;
@@ -72,7 +94,13 @@ export class BuildingsTableComponent implements OnInit {
     this.dataSource.filter = this.searchKey?.trim().toLowerCase();
   }
 
+
   // private callback methods for api calls
+
+  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: any): void{
+    return;
+  }
+
   private static interpretListBuildingsResponse(response: ListBuildingsResponse, self: BuildingsTableComponent): void {
     self.dataSource.data = response.toObject().buildingsList;
     self.isLoading = false;
@@ -91,12 +119,28 @@ export class BuildingsTableComponent implements OnInit {
     self.dataSource.data = self.dataSource.data.filter(e => e.identificationNumber != id);
   }
 
+  private static interpretCreateFavoriteResponse(response: CreateFavoriteResponse, self: any): void {
+
+  }
+
+
   // button methods
   openCreateBuildingDialog() {
     const dialogRef = this.dialog.open(AddBuildingComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.buildingManagementConnector.createBuilding(BuildingsTableComponent.buildCreateBuildingRequest(result), BuildingsTableComponent.interpretCreateBuildingResponse, this);
+      } else {
+        return;
+      }
+    })
+  }
+
+  openCreateProblemDialog() {
+    const dialogRef = this.dialog.open(AddProblemComponent);
+    dialogRef.afterClosed().subscribe( result => {
+      if(result.event == 'ok'){
+        this.problemManagementConnector.createProblem(BuildingsTableComponent.buildCreateProblemRequest(result), BuildingsTableComponent.interpretCreateProblemResponse, this);
       } else {
         return;
       }
@@ -148,6 +192,16 @@ export class BuildingsTableComponent implements OnInit {
     return request;
   }
 
+
+  private static buildCreateProblemRequest(result: any): CreateProblemRequest {
+    let request = new CreateProblemRequest();
+    request.setProblemTitle(result.data.problemTitle);
+    request.setProblemDescription(result.data.problelDescription);
+    request.setReferenceIdentificationNumber(result.data.referenceIdentificationNumber);
+    request.setProblemReporter(result.data.problemReporter);
+    return request;
+  }
+
   private static buildCreateBuildingRequest(result: any): CreateBuildingRequest {
     let request = new CreateBuildingRequest();
     request.setBuildingNumber(result.data.buildingNumber);
@@ -163,6 +217,8 @@ export class BuildingsTableComponent implements OnInit {
     request.setGrpcGeographicalLocation(geographicalLocation);
     return request;
   }
+
+
 
   private static buildUpdateBuildingRequest(result: any): UpdateBuildingRequest {
     let request = new UpdateBuildingRequest();
@@ -181,13 +237,33 @@ export class BuildingsTableComponent implements OnInit {
     return request;
   }
 
+
   private static buildRemoveRequest(result: any): RemoveRequest {
     let request = new RemoveRequest();
     request.setIdentificationNumber(result.data.identificationNumber);
     return request;
   }
 
+  private static buildCreateFavoriteRequest(result: any): CreateFavoriteRequest {
+    let request = new CreateFavoriteRequest();
+    request.setOwner(result.data.owner);
+    request.setReferenceIdentificationNumber(result.data.referenceIdentificationNumber);
+    return request;
+  }
 
+
+  addFavorite(building: GrpcBuilding.AsObject) {
+    const id = building.identificationNumber;
+    const name: string = this.authService.name as string;
+
+    const result = {
+      data : {
+        referenceIdentificationNumber: id,
+        owner: name
+      }
+    }
+    this.buildingManagementConnector.createFavorite( BuildingsTableComponent.buildCreateFavoriteRequest(result),BuildingsTableComponent.interpretCreateFavoriteResponse, this);
+  }
 
   useLanguage(language: string): void {
     this.translateService.use(language);

@@ -1,6 +1,8 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
+import {AuthServiceService} from "../../../core/authentication/auth-service.service"
+
 @Component({
   selector: 'app-add-problem',
   templateUrl: './add-problem.component.html',
@@ -12,10 +14,10 @@ export class AddProblemComponent {
   problemDescription !: string;
 
   // ID number of the problematic building/room/component/whatever
-  correspondingIdentificationNumber !: string;
+  referenceIdentificationNumber !: string;
 
-  constructor(public dialogRef: MatDialogRef<AddProblemComponent>, @Inject(MAT_DIALOG_DATA) public data: string) {
-    this.correspondingIdentificationNumber = data;
+  constructor(public dialogRef: MatDialogRef<AddProblemComponent>, public authService: AuthServiceService, @Inject(MAT_DIALOG_DATA) public data: string) {
+    this.referenceIdentificationNumber = data;
     this.dialogRef.disableClose = true;
   }
 
@@ -25,7 +27,8 @@ export class AddProblemComponent {
       data: {
         problemTitle: this.problemTitle,
         problemDescription: this.problemDescription,
-        externalIdentifier: this.correspondingIdentificationNumber
+        referenceIdentificationNumber: this.referenceIdentificationNumber,
+        problemReporter: this.authService.name
       }
     })
   }

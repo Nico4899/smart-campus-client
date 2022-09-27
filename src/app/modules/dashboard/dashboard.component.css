@@ -1,10 +1,14 @@
 #welcome-image {
   opacity: 0.05;
-  width: 40%;
+  width: 70%;
   margin: auto;
   height: auto;
   position: fixed;
   z-index: -5000;
-  top: 75px;
+  top: 100px;
   left: 250px;
+}
+
+.routerLink{
+  color: #c44dff;
 }

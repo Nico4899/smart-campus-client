@@ -133,8 +133,8 @@ export class BuildingManagementConnectorService {
     })
   }
 
-  async listFavoriteBuildings(request: ListFavoriteBuildingsRequest, callback: (response: ListFavoriteBuildingsResponse, self: FavoriteBuildingsTableComponent) => void, self: FavoriteBuildingsTableComponent) {
-    this.client.listFavoriteBuildings(request, {authentication: `Bearer ${this.authService.token}`}, (error: RpcError, response: ListFavoriteBuildingsResponse) => {
+  async listFavoriteBuildings(request: ListFavoriteBuildingsRequest, callback: (response: ListFavoriteBuildingsResponse, self:FavoriteBuildingsTableComponent) => void, self: FavoriteBuildingsTableComponent) {
+    this.client.listFavoriteBuildings(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: ListFavoriteBuildingsResponse) => {
       if (error) {
         console.log(error.message);
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
@@ -194,7 +194,7 @@ export class BuildingManagementConnectorService {
     })
   }
 
-  async createFavorite(request: CreateFavoriteRequest, callback: (response: CreateFavoriteResponse, self: BuildingComponent | RoomComponent) => void, self: BuildingComponent | RoomComponent) {
+  async createFavorite(request: CreateFavoriteRequest, callback: (response: CreateFavoriteResponse, self: BuildingComponent | RoomComponent | ComponentComponent | BuildingsTableComponent | RoomsTableComponent | ComponentsTableComponent) => void, self: BuildingComponent | RoomComponent | ComponentComponent| BuildingsTableComponent | RoomsTableComponent | ComponentsTableComponent) {
     this.client.createFavorite(request, {}, (error: RpcError, response: CreateFavoriteResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});

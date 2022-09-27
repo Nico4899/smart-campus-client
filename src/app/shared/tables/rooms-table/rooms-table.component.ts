@@ -8,9 +8,15 @@ import {
   ListRoomsResponse,
   RemoveRequest,
   UpdateRoomRequest,
-  UpdateRoomResponse, ListFavoriteRoomsRequest, GrpcBuildingFilterValueSelection
+  UpdateRoomResponse, ListFavoriteRoomsRequest, GrpcBuildingFilterValueSelection, CreateFavoriteResponse, CreateFavoriteRequest
 } from "../../../../proto/generated/building_management_pb";
+import {
+  CreateProblemRequest,
+  CreateProblemResponse
+} from "../../../../proto/generated/problem_management_pb"
 import {BuildingManagementConnectorService} from "../../../core/connectors/building-management-connector.service";
+import {ProblemManagementConnectorService} from "../../../core/connectors/problem-management-connector.service"
+
 import {ActivatedRoute} from "@angular/router";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
@@ -21,6 +27,10 @@ import {EditRoomComponent} from '../../dialogs/edit-room/edit-room.component'
 import {RemoveComponent} from "../../dialogs/remove/remove.component";
 import {AuthServiceService} from "../../../core/authentication/auth-service.service";
 import {FilterRoomsComponent} from "../../dialogs/filter-rooms/filter-rooms.component";
+import { ProblemsTableComponent } from '../problems-table/problems-table.component';
+import { BuildingsTableComponent } from '../buildings-table/buildings-table.component';
+import { AddProblemComponent } from '../../dialogs/add-problem/add-problem.component';
+import { ComponentsTableComponent } from '../components-table/components-table.component';
 
 @Component({
   selector: 'app-rooms-table',
@@ -48,7 +58,7 @@ export class RoomsTableComponent implements OnInit {
   // columns to be displayed
   displayedColumns: string[] = ['roomNumber', 'roomName', 'floor', 'roomType', 'edit_room', 'delete_room'];
 
-  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private route: ActivatedRoute,
+  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private problemManagementConnector: ProblemManagementConnectorService, private route: ActivatedRoute,
               private dialog: MatDialog, public authService: AuthServiceService) {
     // inject building management client and current rout to obtain path variables
   }
@@ -76,6 +86,11 @@ export class RoomsTableComponent implements OnInit {
   }
 
   // private callback methods for api calls
+
+  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: any): void{
+    return;
+  }
+
   private static interpretListRoomsResponse(response: ListRoomsResponse, self: RoomsTableComponent): void {
     self.dataSource.data = response.toObject().roomsList;
     self.isLoading = false;
@@ -96,6 +111,11 @@ export class RoomsTableComponent implements OnInit {
   }
 
 
+  private static interpretCreateFavoriteResponse(response: CreateFavoriteResponse, self: any): void {
+
+  }
+
+
   //button methods start
   openCreateRoomDialog() {
     const dialogRef = this.dialog.open(AddRoomComponent);
@@ -108,6 +128,20 @@ export class RoomsTableComponent implements OnInit {
       }
     })
   }
+
+
+  openCreateProblemDialog() {
+    const dialogRef = this.dialog.open(AddProblemComponent);
+    dialogRef.afterClosed().subscribe( result => {
+      if(result.event == 'ok'){
+        this.problemManagementConnector.createProblem(RoomsTableComponent.buildCreateProblemRequest(result), RoomsTableComponent.interpretCreateProblemResponse, this);
+      } else {
+        return;
+      }
+    })
+  }
+
+
 
   openUpdateRoomDialog(room: GrpcRoom.AsObject) {
     const dialogRef = this.dialog.open(EditRoomComponent, {data: room})
@@ -144,6 +178,18 @@ export class RoomsTableComponent implements OnInit {
     })
   }
 
+  addFavorite(room: GrpcRoom.AsObject) {
+    const id = room.identificationNumber;
+    const name: string = this.authService.name as string;
+    const result = {
+      data : {
+        referenceIdentificationNumber: id,
+        owner: name
+      }
+    }
+    this.buildingManagementConnector.createFavorite( RoomsTableComponent.buildCreateFavoriteRequest(result),RoomsTableComponent.interpretCreateFavoriteResponse, this);
+  }
+
   //private utils here
   public static buildListRoomsRequest(result: any): ListRoomsRequest {
     let request = new ListRoomsRequest();
@@ -153,6 +199,17 @@ export class RoomsTableComponent implements OnInit {
     request.setGrpcFilterValueSelection(selection);
     return request;
   }
+
+
+  private static buildCreateProblemRequest(result: any): CreateProblemRequest {
+    let request = new CreateProblemRequest();
+    request.setProblemTitle(result.data.problemTitle);
+    request.setProblemDescription(result.data.problelDescription);
+    request.setReferenceIdentificationNumber(result.data.referenceIdentificationNumber);
+    request.setProblemReporter(result.data.problemReporter);
+    return request;
+  }
+
 
   private static buildCreateRoomRequest(bin: string, result: any): CreateRoomRequest {
     let request = new CreateRoomRequest();
@@ -186,6 +243,14 @@ export class RoomsTableComponent implements OnInit {
   private static buildRemoveRequest(result: any): RemoveRequest {
     let request = new RemoveRequest();
     request.setIdentificationNumber(result.data.identificationNumber);
+    return request;
+  }
+
+
+  private static buildCreateFavoriteRequest(result: any): CreateFavoriteRequest {
+    let request = new CreateFavoriteRequest();
+    request.setOwner(result.data.owner);
+    request.setReferenceIdentificationNumber(result.data.referenceIdentificationNumber);
     return request;
   }
 

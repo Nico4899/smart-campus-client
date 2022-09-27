@@ -19,6 +19,26 @@
         {{component.componentType | componentType}} </td>
     </ng-container>
 
+
+    <ng-container matColumnDef="addFavorite">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let room" (click)="$event.stopPropagation()">
+        <button *ngIf="authService.isUser()" mat-icon-button (click)="addFavorite(room)">
+          <mat-icon>heart</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="report problem">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef  (click)="$event.stopPropagation()">
+        <button *ngIf="authService.isUser()" (click)="openCreateProblemDialog()" )>
+          <mat-icon>flash</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
     <ng-container matColumnDef="edit_component">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let component" (click)="$event.stopPropagation()">
