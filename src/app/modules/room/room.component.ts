@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {BuildingManagementConnectorService} from "../../core/connectors/building-management-connector.service";
 import {ActivatedRoute} from "@angular/router";
-import {GetRoomRequest, GetRoomResponse, GrpcRoom} from "../../../proto/generated/building_management_pb";
+import {CreateFavoriteRequest, CreateFavoriteResponse, GetRoomRequest, GetRoomResponse, GrpcRoom} from "../../../proto/generated/building_management_pb";
+import { AuthServiceService } from 'src/app/core/authentication/auth-service.service';
 
 @Component({
   selector: 'app-room',
@@ -16,7 +17,7 @@ export class RoomComponent implements OnInit {
   // main object
   room: GrpcRoom.AsObject = new GrpcRoom().toObject();
 
-  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private route: ActivatedRoute) {
+  constructor(private buildingManagementConnector: BuildingManagementConnectorService, public authService: AuthServiceService, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -29,6 +30,21 @@ export class RoomComponent implements OnInit {
 
   private static interpretGetRoomResponse(response: GetRoomResponse, self: RoomComponent): void {
     self.room = response.getRoom()?.toObject()!;
+  }
+
+  addFavorite(): void {
+    const id = this.room.identificationNumber;
+    const owner: string = this.authService.name as string;
+
+    let request = new CreateFavoriteRequest();
+    request.setOwner(this.authService.name as string);
+    request.setReferenceIdentificationNumber(this.rin);
+    this.buildingManagementConnector.createFavorite(request, RoomComponent.interpretCreateFavoriteResponse, this);
+
+  }
+
+
+  private static interpretCreateFavoriteResponse(response: CreateFavoriteResponse, self: any): void {
   }
 
 }

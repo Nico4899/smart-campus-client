@@ -1,13 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {
-  GetBuildingRequest,
-  GetBuildingResponse,
-  GrpcBuilding
-} from "../../../proto/generated/building_management_pb";
-import {
-  BuildingManagementConnectorService
-} from "../../core/connectors/building-management-connector.service";
+  CreateFavoriteRequest, CreateFavoriteResponse, GetBuildingRequest, GetBuildingResponse, GrpcBuilding} from "../../../proto/generated/building_management_pb";
+import {BuildingManagementConnectorService} from "../../core/connectors/building-management-connector.service";
 import {ActivatedRoute} from "@angular/router";
+
+import {GoogleMap, MapInfoWindow, MapMarker} from '@angular/google-maps'
+import { AuthServiceService } from 'src/app/core/authentication/auth-service.service';
+
 
 
 @Component({
@@ -48,13 +47,21 @@ export class BuildingComponent implements OnInit {
     }
   }
 
+
+
+
+
   // path variable
   bin: string = "";
+
+
+
+
 
   // main object
   building: GrpcBuilding.AsObject = new GrpcBuilding().toObject();
 
-  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private route: ActivatedRoute) {
+  constructor(private buildingManagementConnector: BuildingManagementConnectorService,public authService: AuthServiceService, private route: ActivatedRoute) {
     // inject building management client and current rout to obtain path variables
   }
 
@@ -97,7 +104,22 @@ export class BuildingComponent implements OnInit {
     self.marker.title = self.building.buildingName;
     self.marker.label.text = self.building.buildingName;
 
+  }
 
+  addFavorite(): void {
+    const id = this.building.identificationNumber;
+    const owner: string = this.authService.name as string;
+
+    let request = new CreateFavoriteRequest();
+    request.setOwner(this.authService.name as string);
+    request.setReferenceIdentificationNumber(this.bin);
+    this.buildingManagementConnector.createFavorite(request, BuildingComponent.interpretCreateFavoriteResponse, this);
 
   }
+
+
+  private static interpretCreateFavoriteResponse(response: CreateFavoriteResponse, self: any): void {
+  }
+
+
 }
