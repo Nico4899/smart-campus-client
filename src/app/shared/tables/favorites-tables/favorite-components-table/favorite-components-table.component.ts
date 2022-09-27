@@ -45,6 +45,7 @@ export class FavoriteComponentsTableComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     // run initial calls
     let listFavoriteComponentsRequest = new ListFavoriteComponentsRequest();
+    listFavoriteComponentsRequest.setOwner(this.authService.eMail as string);
     this.buildingManagementConnector.listFavoriteComponents(listFavoriteComponentsRequest, FavoriteComponentsTableComponent.interpretListFavoriteComponentsResponse, this);
   }
 
@@ -70,7 +71,7 @@ export class FavoriteComponentsTableComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.buildingManagementConnector.removeFavorite(
-          FavoriteComponentsTableComponent.buildRemoveRequest(result), FavoriteComponentsTableComponent.interpretRemoveFavoriteResponse, this);
+          FavoriteComponentsTableComponent.buildRemoveRequest(result, this.authService.eMail as string), FavoriteComponentsTableComponent.interpretRemoveFavoriteResponse, this);
       } else {
         return;
       }
@@ -78,10 +79,10 @@ export class FavoriteComponentsTableComponent implements OnInit, AfterViewInit {
   }
 
   // private utils
-  private static buildRemoveRequest(result: any): RemoveFavoriteRequest {
+  private static buildRemoveRequest(result: any, email: string): RemoveFavoriteRequest {
     let request = new RemoveFavoriteRequest();
     request.setIdentificationNumber(result.data.identificationNumber);
-    request.setOwner(result.data.owner);
+    request.setOwner(email);
     return request;
   }
 }

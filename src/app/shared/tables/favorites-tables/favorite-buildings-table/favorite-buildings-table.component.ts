@@ -92,7 +92,7 @@ export class FavoriteBuildingsTableComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.buildingManagementConnector.removeFavorite(
-          FavoriteBuildingsTableComponent.buildRemoveRequest(result), FavoriteBuildingsTableComponent.interpretRemoveFavoriteResponse, this);
+          FavoriteBuildingsTableComponent.buildRemoveRequest(result, this.authService.eMail as string), FavoriteBuildingsTableComponent.interpretRemoveFavoriteResponse, this);
       } else {
         return;
       }
@@ -104,7 +104,7 @@ export class FavoriteBuildingsTableComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.isLoading = true;
-        this.buildingManagementConnector.listFavoriteBuildings(FavoriteBuildingsTableComponent.buildListFavoriteBuildingsRequest(result),
+        this.buildingManagementConnector.listFavoriteBuildings(FavoriteBuildingsTableComponent.buildListFavoriteBuildingsRequest(result, this.authService.eMail as string),
           FavoriteBuildingsTableComponent.interpretListFavoriteBuildingsResponse, this);
       } else {
         return;
@@ -113,21 +113,21 @@ export class FavoriteBuildingsTableComponent implements OnInit, AfterViewInit {
   }
 
   // private utils
-  public static buildListFavoriteBuildingsRequest(result: any): ListFavoriteBuildingsRequest {
+  public static buildListFavoriteBuildingsRequest(result: any, email: string): ListFavoriteBuildingsRequest {
     let request = new ListFavoriteBuildingsRequest();
     let selection = new GrpcBuildingFilterValueSelection();
     selection.setGrpcComponentTypesList(result.data.componentTypes);
     selection.setGrpcRoomTypesList(result.data.roomTypes);
     selection.setGrpcCampusLocationsList(result.data.campusLocations);
     request.setGrpcFilterValueSelection(selection);
-    request.setOwner(result.data.owner);
+    request.setOwner(email);
     return request;
   }
 
-  private static buildRemoveRequest(result: any): RemoveFavoriteRequest {
+  private static buildRemoveRequest(result: any, email: string): RemoveFavoriteRequest {
     let request = new RemoveFavoriteRequest();
     request.setIdentificationNumber(result.data.identificationNumber);
-    request.setOwner(result.data.owner);
+    request.setOwner(email);
     return request;
   }
 }

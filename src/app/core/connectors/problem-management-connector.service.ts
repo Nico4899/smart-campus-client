@@ -19,6 +19,7 @@ import { ComponentsTableComponent } from 'src/app/shared/tables/components-table
 import { BuildingComponent } from 'src/app/modules/building/building.component';
 import { RoomComponent } from 'src/app/modules/room/room.component';
 import { ComponentComponent } from 'src/app/modules/component/component.component';
+import {AuthServiceService} from "../authentication/auth-service.service";
 
 @Injectable({
   providedIn: 'root'
@@ -27,12 +28,12 @@ export class ProblemManagementConnectorService {
 
   private readonly client: ProblemManagementClient;
 
-  constructor(private snackbar: MatSnackBar) {
+  constructor(private snackbar: MatSnackBar, private authService: AuthServiceService) {
     this.client = new ProblemManagementClient(environment.clientUrls.problem_management, null, null);
   }
 
   async listProblems(request: ListProblemsRequest, callback: (response: ListProblemsResponse, self: ProblemsTableComponent) => void, self: ProblemsTableComponent) {
-    this.client.listProblems(request, {}, (error: RpcError, response: ListProblemsResponse) => {
+    this.client.listProblems(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: ListProblemsResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
@@ -42,7 +43,7 @@ export class ProblemManagementConnectorService {
   }
 
   async listProblemsForUser(request: ListProblemsForUserRequest, callback: (response: ListProblemsResponse, self: ProblemsTableComponent) => void, self: ProblemsTableComponent) {
-    this.client.listProblemsForUser(request, {}, (error: RpcError, response: ListProblemsResponse) => {
+    this.client.listProblemsForUser(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: ListProblemsResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
@@ -52,7 +53,7 @@ export class ProblemManagementConnectorService {
   }
 
   async getProblem(request: GetProblemRequest, callback: (response: GetProblemResponse, self: ProblemsTableComponent) => void, self: ProblemsTableComponent) {
-    this.client.getProblem(request, {}, (error: RpcError, response: GetProblemResponse) => {
+    this.client.getProblem(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: GetProblemResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
@@ -62,7 +63,7 @@ export class ProblemManagementConnectorService {
   }
 
   async createProblem(request: CreateProblemRequest, callback: (response: CreateProblemResponse, self: ProblemsTableComponent | BuildingsTableComponent | RoomsTableComponent | ComponentsTableComponent | BuildingComponent | RoomComponent | ComponentComponent) => void, self: ProblemsTableComponent | BuildingsTableComponent | RoomsTableComponent | ComponentsTableComponent | BuildingComponent | RoomComponent | ComponentComponent) {
-    this.client.createProblem(request, {}, (error: RpcError, response: CreateProblemResponse) => {
+    this.client.createProblem(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: CreateProblemResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
@@ -72,7 +73,7 @@ export class ProblemManagementConnectorService {
   }
 
   async updateProblem(request: UpdateProblemRequest, callback: (response: UpdateProblemResponse, self: ProblemsTableComponent) => void, self: ProblemsTableComponent) {
-    this.client.updateProblem(request, {}, (error: RpcError, response: UpdateProblemResponse) => {
+    this.client.updateProblem(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: UpdateProblemResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
@@ -82,7 +83,7 @@ export class ProblemManagementConnectorService {
   }
 
   async removeProblem(request: RemoveRequest, callback: (id: string, self: ProblemsTableComponent) => void, self: ProblemsTableComponent) {
-    this.client.removeProblem(request, {}, (error: RpcError, response: RemoveResponse) => {
+    this.client.removeProblem(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: RemoveResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {
@@ -92,7 +93,7 @@ export class ProblemManagementConnectorService {
   }
 
   async changeProblemState(request:ChangeStateRequest, callback: (response: ChangeStateResponse, self: ProblemsTableComponent) => void, self: ProblemsTableComponent) {
-    this.client.changeState(request, {}, (error: RpcError, response: ChangeStateResponse) => {
+    this.client.changeState(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: ChangeStateResponse) => {
       if (error) {
         this.snackbar.open("Error occurred, please try again.", "", {duration: 1500});
       } else {

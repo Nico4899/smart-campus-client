@@ -1,6 +1,4 @@
 import { Component, Inject } from '@angular/core';
-
-
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {GrpcProblem, GrpcProblemState} from '../../../../proto/generated/problem_management_pb'
 
@@ -11,17 +9,12 @@ import {GrpcProblem, GrpcProblemState} from '../../../../proto/generated/problem
 })
 export class EditProblemComponent{
 
-  problemTitle !: string;
-
-  problemDescription !: string;
-
-  problemReporter !: string;
-
-  problemState !: GrpcProblemState;
-
-  // ID number of the problematic building/room/component/whatever
-  referenceIdentificationNumber !: string;
-
+  problemTitle!: string;
+  problemDescription!: string;
+  problemReporter!: string;
+  problemState!: GrpcProblemState;
+  referenceIdentificationNumber!: string;
+  identificationNumber!: string;
 
   constructor(public dialogRef: MatDialogRef<EditProblemComponent>, @Inject(MAT_DIALOG_DATA) public data: GrpcProblem.AsObject) {
     this.dialogRef.disableClose = true;
@@ -30,12 +23,11 @@ export class EditProblemComponent{
     this.problemState = data.problemState;
     this.problemReporter = data.problemReporter;
     this.referenceIdentificationNumber = data.referenceIdentificationNumber;
-
+    this.identificationNumber = data.identificationNumber;
   }
 
   ngOnInit(): void {
   }
-
 
   ok() {
     this.dialogRef.close({
@@ -45,7 +37,8 @@ export class EditProblemComponent{
         problemDescription: this.problemDescription,
         problemState: this.problemState,
         problemReporter: this.problemReporter,
-        referenceIdentificationNumber: this.referenceIdentificationNumber
+        referenceIdentificationNumber: this.referenceIdentificationNumber,
+        identificationNumber: this.identificationNumber
       }
     })
   }
@@ -53,7 +46,4 @@ export class EditProblemComponent{
   cancel() {
     this.dialogRef.close({event: 'cancel'});
   }
-
-
-
 }

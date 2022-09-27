@@ -37,11 +37,8 @@ export class RoomComponent implements OnInit {
   }
 
   addFavorite(): void {
-    const id = this.room.identificationNumber;
-    const owner: string = this.authService.name as string;
-
     let request = new CreateFavoriteRequest();
-    request.setOwner(this.authService.name as string);
+    request.setOwner(this.authService.eMail as string);
     request.setReferenceIdentificationNumber(this.rin);
     this.buildingManagementConnector.createFavorite(request, RoomComponent.interpretCreateFavoriteResponse, this);
   }
@@ -57,8 +54,6 @@ export class RoomComponent implements OnInit {
       }
     })
   }
-
-
 
   private static interpretCreateFavoriteResponse(response: CreateFavoriteResponse, self: any): void {
   }

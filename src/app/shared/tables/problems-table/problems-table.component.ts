@@ -3,16 +3,13 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog} from "@angular/material/dialog";
-import {
-  ProblemManagementConnectorService
-} from "../../../core/connectors/problem-management-connector.service";
+import {ProblemManagementConnectorService} from "../../../core/connectors/problem-management-connector.service";
 import {RemoveComponent} from "../../dialogs/remove/remove.component";
 import {
   ChangeStateRequest,
   ChangeStateResponse,
   GrpcFilterValueSelection,
   GrpcProblem,
-  GrpcProblemState,
   GrpcStateOperation,
   ListProblemsForUserRequest,
   ListProblemsRequest,
@@ -20,20 +17,12 @@ import {
   UpdateProblemRequest,
   UpdateProblemResponse
 } from "../../../../proto/generated/problem_management_pb";
-import {
-  RemoveRequest
-} from "../../../../proto/generated/building_management_pb";
-import {
-  FilterProblemsComponent
-} from "../../dialogs/filter-problems/filter-problems.component";
-import {
-  EditProblemComponent
-} from "../../dialogs/edit-problem/edit-problem.component";
+import {RemoveRequest} from "../../../../proto/generated/building_management_pb";
+import {FilterProblemsComponent} from "../../dialogs/filter-problems/filter-problems.component";
+import {EditProblemComponent} from "../../dialogs/edit-problem/edit-problem.component";
 import {ExpandAnimation} from "../../animations";
 import {TranslateService} from "@ngx-translate/core";
-import {
-  AuthServiceService
-} from "../../../core/authentication/auth-service.service";
+import {AuthServiceService} from "../../../core/authentication/auth-service.service";
 
 @Component({
   selector: 'app-problems-table',
@@ -59,7 +48,7 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
   expandedProblem!: string;
 
   constructor(private problemManagementConnector: ProblemManagementConnectorService, private dialog: MatDialog,
-              translateService: TranslateService, public authService: AuthServiceService) {
+              private translateService: TranslateService, public authService: AuthServiceService) {
   }
 
   ngOnInit() {
@@ -115,7 +104,7 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
     const dialogRef = this.dialog.open(EditProblemComponent, {data: problem});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
-        this.problemManagementConnector.updateProblem(ProblemsTableComponent.buildUpdateProblemRequest(result), ProblemsTableComponent.interpretUpdateProblemResponse, this);
+        this.problemManagementConnector.updateProblem(ProblemsTableComponent.buildUpdateProblemRequest(result, this.authService.eMail as string), ProblemsTableComponent.interpretUpdateProblemResponse, this);
       } else {
         return;
       }
@@ -150,10 +139,13 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
     })
   }
 
-  private static buildUpdateProblemRequest(result: any): UpdateProblemRequest {
+  private static buildUpdateProblemRequest(result: any, email: string): UpdateProblemRequest {
     let request = new UpdateProblemRequest();
     request.setProblemTitle(result.data.problemTitle);
     request.setProblemDescription(result.data.problemDescription);
+    request.setIdentificationNumber(result.data.identificationNumber);
+    request.setReferenceIdentificationNumber(result.data.referenceIdentificationNumber);
+    request.setProblemReporter(email);
     return request;
   }
 

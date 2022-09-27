@@ -61,6 +61,7 @@ export class FavoriteRoomsTableComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     // run initial calls
     let listFavoriteRoomsRequest = new ListFavoriteRoomsRequest();
+    listFavoriteRoomsRequest.setOwner(this.authService.eMail as string)
     this.buildingManagementConnector.listFavoriteRooms(listFavoriteRoomsRequest, FavoriteRoomsTableComponent.interpretListFavoriteRoomsResponse, this);
   }
 
@@ -91,7 +92,7 @@ export class FavoriteRoomsTableComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.buildingManagementConnector.removeFavorite(
-          FavoriteRoomsTableComponent.buildRemoveRequest(result), FavoriteRoomsTableComponent.interpretRemoveFavoriteResponse, this);
+          FavoriteRoomsTableComponent.buildRemoveRequest(result, this.authService.eMail as string), FavoriteRoomsTableComponent.interpretRemoveFavoriteResponse, this);
       } else {
         return;
       }
@@ -103,7 +104,7 @@ export class FavoriteRoomsTableComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.isLoading = true;
-        this.buildingManagementConnector.listFavoriteRooms(FavoriteRoomsTableComponent.buildListFavoriteRoomsRequest(result),
+        this.buildingManagementConnector.listFavoriteRooms(FavoriteRoomsTableComponent.buildListFavoriteRoomsRequest(result, this.authService.eMail as string),
           FavoriteRoomsTableComponent.interpretListFavoriteRoomsResponse, this);
       } else {
         return;
@@ -112,20 +113,20 @@ export class FavoriteRoomsTableComponent implements OnInit, AfterViewInit {
   }
 
   // private utils
-  public static buildListFavoriteRoomsRequest(result: any): ListFavoriteRoomsRequest {
+  public static buildListFavoriteRoomsRequest(result: any, email: string): ListFavoriteRoomsRequest {
     let request = new ListFavoriteRoomsRequest();
     let selection = new GrpcBuildingFilterValueSelection();
     selection.setGrpcComponentTypesList(result.data.componentTypes);
     selection.setGrpcRoomTypesList(result.data.roomTypes);
     request.setGrpcFilterValueSelection(selection);
-    request.setOwner(result.data.owner);
+    request.setOwner(email);
     return request;
   }
 
-  private static buildRemoveRequest(result: any): RemoveFavoriteRequest {
+  private static buildRemoveRequest(result: any, email: string): RemoveFavoriteRequest {
     let request = new RemoveFavoriteRequest();
     request.setIdentificationNumber(result.data.identificationNumber);
-    request.setOwner(result.data.owner);
+    request.setOwner(email);
     return request;
   }
 }
