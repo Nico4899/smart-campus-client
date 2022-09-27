@@ -9,7 +9,7 @@
     "and" : "and ",
     "edit" : "Edit ",
     "of" : " ",
-    "of_buildings" : "buildings ",
+    "of_buildings" : "buildings",
     "of_rooms" : "rooms ",
     "of_components" : "components ",
     "viewing_adding_removing_editing_admin_description" : "As admin you can add, edit and delete objects in the database using the User Interface of SmartCampus. ",

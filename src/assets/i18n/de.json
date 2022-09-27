@@ -9,7 +9,7 @@
     "and" : "und ",
     "edit" : "Bearbeiten ",
     "of" : "von ",
-    "of_buildings" : "Gebäuden ",
+    "of_buildings" : "Gebäuden",
     "of_rooms" : "Räumen ",
     "of_components" : "Komponenten ",
     "viewing_adding_removing_editing_admin_description" : "Als Admin können Objekte in der Datenbank\n            im User Interface hinzugefügt, bearbeitet und gelöscht werden.",
