@@ -8,12 +8,12 @@ table {
 }
 
 .mat-column-problemState {
-  width: 10%;
+  width: 15%;
   padding-left: 16px;
 }
 
 .mat-column-problemReporter {
-  width: 15%;
+  width: 20%;
   padding-left: 16px;
 }
 
