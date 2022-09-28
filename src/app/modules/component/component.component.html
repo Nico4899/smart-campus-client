@@ -12,10 +12,10 @@
 </div>
 
 <mat-tab-group>
-  <mat-tab label="notifications">
+  <mat-tab label="{{ 'component.notifications_label' | translate }}">
     <app-notifications-table></app-notifications-table>
   </mat-tab>
-  <mat-tab label="details">
+  <mat-tab label="{{ 'component.details_label' | translate }}">
     <mat-list>
       <mat-list-item>{{ 'component_details.type' | translate }}: {{component.componentType | componentType}}</mat-list-item>
       <mat-list-item>{{ 'component_details.description' | translate }}: {{component.componentDescription}}</mat-list-item>

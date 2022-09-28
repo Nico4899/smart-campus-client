@@ -13,16 +13,16 @@
 </div>
 
 <mat-tab-group>
-  <mat-tab label="rooms">
+  <mat-tab label="{{ 'building.rooms_label' | translate }}">
     <app-rooms-table></app-rooms-table>
   </mat-tab>
-  <mat-tab label="components">
+  <mat-tab label="{{ 'building.components_label' | translate }}">
     <app-components-table></app-components-table>
   </mat-tab>
-  <mat-tab label="notifications">
+  <mat-tab label="{{ 'building.notifications_label' | translate }}">
     <app-notifications-table></app-notifications-table>
   </mat-tab>
-  <mat-tab label="map">
+  <mat-tab label="{{ 'building.map_label' | translate }}">
     <div id="map" class="map"></div>
     <google-map
       height="500px"
@@ -35,7 +35,7 @@
       </map-marker>
     </google-map>
   </mat-tab>
-  <mat-tab label="details">
+  <mat-tab label="{{ 'building.details_label' | translate }}">
     <mat-list>
       <mat-list-item>{{ 'building_details.name' | translate }}: {{building.buildingName}}</mat-list-item>
       <mat-list-item>{{ 'building_details.number' | translate }}: {{building.buildingNumber}}</mat-list-item>

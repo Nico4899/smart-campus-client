@@ -1,9 +1,10 @@
-<h1 mat-dialog-title> Select building filter values.</h1>
+<h1 mat-dialog-title>{{'dialogs.filter_buildings.title' | translate}}</h1>
+<span>{{'dialogs.filter_buildings.usage' | translate}}</span>
 
 <mat-dialog-content>
   <div class="filter-selections">
     <div class="campus-location-selection">
-      <h2> Campus Locations </h2>
+      <h2>{{'dialogs.filter_buildings.campus_locations_label' | translate}}</h2>
       <ul>
         <li *ngFor="let campusLocation of selectedCampusLocations">
           <mat-checkbox [(ngModel)]="campusLocation.selected"> {{campusLocation.campusLocation | campusLocation}} </mat-checkbox>
@@ -12,7 +13,7 @@
     </div>
 
     <div class="room-type-selection">
-      <h2> Room Types </h2>
+      <h2>{{'dialogs.filter_buildings.room_types_label' | translate}}</h2>
       <ul>
         <li *ngFor="let roomType of selectedRoomTypes">
           <mat-checkbox [(ngModel)]="roomType.selected"> {{roomType.roomType | roomType}} </mat-checkbox>
@@ -21,7 +22,7 @@
     </div>
 
     <div class="component-type-selection">
-      <h2> Component Types </h2>
+      <h2>{{'dialogs.filter_buildings.component_types_label' | translate}}</h2>
       <ul>
         <li *ngFor="let componentType of selectedComponentTypes">
           <mat-checkbox [(ngModel)]="componentType.selected"> {{componentType.componentType | componentType}} </mat-checkbox>
@@ -33,6 +34,6 @@
 </mat-dialog-content>
 
 <div mat-dialog-actions>
-  <button mat-button (click)="ok()">Ok</button>
-  <button mat-button (click)="cancel()" color="warn">Cancel</button>
+  <button mat-button (click)="ok()">{{'dialogs.ok' | translate}}</button>
+  <button mat-button (click)="cancel()" color="warn">{{'dialogs.cancel' | translate}}</button>
 </div>

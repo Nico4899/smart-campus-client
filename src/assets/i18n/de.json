@@ -172,5 +172,157 @@
       "remove_problem": "ausgewähltes problem konnte nicht entfernt werden, prüfe ob du eingeloggt bist neu und versuche es erneut.",
       "change_problem_state": "der zustand des ausgewählten gebäudes konnte nicht gewechselt werden, prüfe ob du eingeloggt bist und versuche es erneut."
     }
+  },
+  "building": {
+    "rooms_label": "Räume",
+    "components_label": "Komponenten",
+    "notifications_label": "Benachrichtigungen",
+    "details_label": "Details",
+    "map_label": "Karte"
+  },
+  "component": {
+    "notifications_label": "Benachrichtigungen",
+    "details_label": "Details"
+  },
+  "rooms": {
+    "components_label": "Komponenten",
+    "notifications_label": "Benachrichtigungen",
+    "details_label": "Details"
+  },
+  "dialogs": {
+    "add_building": {
+      "title": "Gebäude hinzufügen",
+      "usage": "Trage die gewünschten Werte in die folgenden Felder ein und bestätige mit 'Ok' oder breche mit 'Abbrechen' ab. Falls kein oder ein invalider Wert eingegeben wurde, wird entweder nicht akzeptiert oder ein fehler angezeigt. In diesem fall müssen sie den Vorgang wiederholen.",
+      "name_label": "Name",
+      "name_placeholder": "z.B. Audimax",
+      "number_label": "Nummer",
+      "number_placeholder": "z.B. 30.30",
+      "address_label": "Adresse",
+      "address_placeholder": "z.B. Kastanienstraße 3",
+      "campus_location_label": "Campus",
+      "latitude_label": "Latitude",
+      "latitude_placeholder": "z.B. 32.2",
+      "longitude_label": "Longitude",
+      "longitude_placeholder": "z.B. 7.1",
+      "highest_floor_label": "Oberste Etage",
+      "highest_floor_placeholder": "z.B. 3",
+      "lowest_floor_label": "Unterste Etage",
+      "lowest_floor_placeholder": "z.B. -2"
+    },
+    "add_component": {
+      "title": "Komponente hinzufügen",
+      "usage": "Trage die gewünschten Werte in die folgenden Felder ein und bestätige mit 'Ok' oder breche mit 'Abbrechen' ab. Falls kein oder ein invalider Wert eingegeben wurde, wird entweder nicht akzeptiert oder ein fehler angezeigt. In diesem fall müssen sie den Vorgang wiederholen.",
+      "description_label": "Beschreibung",
+      "description_placeholder": "z.B. Aufzug in der alten Bibliothek",
+      "component_type_label": "Komponenten Typ",
+      "latitude_label": "Latitude",
+      "latitude_placeholder": "z.B. 32.2",
+      "longitude_label": "Longitude",
+      "longitude_placeholder": "z.B. 7.1"
+    },
+    "add_problem": {
+      "title": "Problem melden",
+      "usage": "Wähle einen passenden Titel und beschreibe das problem so genau wie möglich, bestätige mit 'Ok' oder breche mit 'Abbrechen' ab. Nach dem bestätigen kannst du das Problem nicht mehr selbst ändern, aber das einsehen aller deiner Probleme sowie deren Zustände ist dennoch möglich.",
+      "problem_title_label": "Problem Titel",
+      "problem_title_placeholder": "z.B. Tür der Bibliothek öffnet nicht richtig.",
+      "problem_description_label": "Problem Beschreibung",
+      "problem_description_placeholder": "z.B. die Tür öffnet nicht richtig, ich vermute es liegt daran das etwas unter der Tür klemmt."
+    },
+    "add_room": {
+      "title": "Raum hinzufügen",
+      "usage": "Trage die gewünschten Werte in die folgenden Felder ein und bestätige mit 'Ok' oder breche mit 'Abbrechen' ab. Falls kein oder ein invalider Wert eingegeben wurde, wird entweder nicht akzeptiert oder ein fehler angezeigt. In diesem fall müssen sie den Vorgang wiederholen.",
+      "name_label": "Name",
+      "name_placeholder": "z.B. Seminar room 25",
+      "number_label": "Nummer",
+      "number_placeholder": "z.B. -1.025",
+      "floor_label": "Stockwerk",
+      "floor_placeholder": "z.B. -1",
+      "room_type_label": "Raum Typ",
+      "latitude_label": "Latitude",
+      "latitude_placeholder": "z.B. 32.2",
+      "longitude_label": "Longitude",
+      "longitude_placeholder": "z.B. 7.1"
+    },
+    "edit_building": {
+      "title": "Gebäude bearbeiten",
+      "usage": "Trage die gewünschten Werte in die folgenden Felder ein und bestätige mit 'Ok' oder breche mit 'Abbrechen' ab. Falls kein oder ein invalider Wert eingegeben wurde, wird entweder nicht akzeptiert oder ein fehler angezeigt. In diesem fall müssen sie den Vorgang wiederholen.",
+      "name_label": "Name",
+      "name_placeholder": "z.B. Audimax",
+      "number_label": "Nummer",
+      "number_placeholder": "z.B. 30.30",
+      "address_label": "Adresse",
+      "address_placeholder": "z.B. Kastanienstraße 3",
+      "campus_location_label": "Campus",
+      "latitude_label": "Latitude",
+      "latitude_placeholder": "z.B. 32.2",
+      "longitude_label": "Longitude",
+      "longitude_placeholder": "z.B. 7.1",
+      "highest_floor_label": "Oberste Etage",
+      "highest_floor_placeholder": "z.B. 3",
+      "lowest_floor_label": "Unterste Etage",
+      "lowest_floor_placeholder": "z.B. -2"
+    },
+    "edit_component": {
+      "title": "Komponente bearbeiten",
+      "usage": "Trage die gewünschten Werte in die folgenden Felder ein und bestätige mit 'Ok' oder breche mit 'Abbrechen' ab. Falls kein oder ein invalider Wert eingegeben wurde, wird entweder nicht akzeptiert oder ein fehler angezeigt. In diesem fall müssen sie den Vorgang wiederholen.",
+      "description_label": "Beschreibung",
+      "description_placeholder": "z.B. Aufzug in der alten Bibliothek",
+      "component_type_label": "Komponenten Typ",
+      "latitude_label": "Latitude",
+      "latitude_placeholder": "z.B. 32.2",
+      "longitude_label": "Longitude",
+      "longitude_placeholder": "z.B. 7.1"
+    },
+    "edit_problem": {
+      "title": "Problem bearbeiten",
+      "usage": "Wähle einen besser passenden Titel und beschreibe das Problem genauer, bestätige dann mit 'Ok' oder breche den Vorgang mit 'Abbrechen' ab.",
+      "problem_title_label": "Problem Titel",
+      "problem_title_placeholder": "z.B. Tür der Bibliothek öffnet nicht richtig.",
+      "problem_description_label": "Problem Beschreibung",
+      "problem_description_placeholder": "z.B. die Tür öffnet nicht richtig, ich vermute es liegt daran das etwas unter der Tür klemmt."
+    },
+    "edit_room": {
+      "title": "Raum bearbeiten",
+      "usage": "Trage die gewünschten Werte in die folgenden Felder ein und bestätige mit 'Ok' oder breche mit 'Abbrechen' ab. Falls kein oder ein invalider Wert eingegeben wurde, wird entweder nicht akzeptiert oder ein fehler angezeigt. In diesem fall müssen sie den Vorgang wiederholen.",
+      "name_label": "Name",
+      "name_placeholder": "z.B. Seminar room 25",
+      "number_label": "Nummer",
+      "number_placeholder": "z.B. -1.025",
+      "floor_label": "Stockwerk",
+      "floor_placeholder": "z.B. -1",
+      "room_type_label": "Raum Typ",
+      "latitude_label": "Latitude",
+      "latitude_placeholder": "z.B. 32.2",
+      "longitude_label": "Longitude",
+      "longitude_placeholder": "z.B. 7.1"
+    },
+    "delete": {
+      "title": "Bist du sicher das du dieses Element löschen willst?",
+      "warning": "Das Löschen kann nicht Rückgängig gemacht werden und ist final."
+    },
+    "delete_favorite": {
+      "title": "Bist du sicher das du dieses Element aus deinen Favoriten löschen willst?",
+      "warning": "Das Löschen kann nicht Rückgängig gemacht werden und ist final. Es kann allerdings jederzeit erneut hinzugefügt werden."
+    },
+    "filter_buildings": {
+      "title": "Gebäude filtern",
+      "usage": "Wähle die gewünschten filter werte und bestätige mit 'Ok' oder breche den Vorgang mit 'Abbrechen' ab.",
+      "campus_locations_label": "Campus",
+      "room_types_label": "Raum Typen",
+      "component_types_label": "Komponenten Typen"
+    },
+    "filter_problems": {
+      "title": "Probleme filtern",
+      "usage": "Wähle die gewünschten filter werte und bestätige mit 'Ok' oder breche den Vorgang mit 'Abbrechen' ab.",
+      "problem_states_label": "Problem Zustände"
+    },
+    "filter_rooms": {
+      "title": "Räume filtern",
+      "usage": "Wähle die gewünschten filter werte und bestätige mit 'Ok' oder breche den Vorgang mit 'Abbrechen' ab.",
+      "room_types_label": "Raum Typen",
+      "component_types_label": "Komponenten Typen"
+    },
+    "ok": "Ok",
+    "cancel": "Abbrechen"
   }
 }

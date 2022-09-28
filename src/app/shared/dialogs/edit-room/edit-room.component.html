@@ -1,23 +1,24 @@
-<h1 mat-dialog-title>Add room</h1>
+<h1 mat-dialog-title>{{'dialogs.edit_room.title' | translate}}</h1>
+<span>{{'dialogs.edit_room.usage' | translate}}</span>
 
 <div mat-dialog-content>
   <mat-form-field appearance="fill">
-    <mat-label>Name</mat-label>
-    <input placeholder="Seminarraum 25" matInput [(ngModel)]="roomName" required>
+    <mat-label>{{'dialogs.edit_room.name_label' | translate}}</mat-label>
+    <input placeholder="{{'dialogs.edit_room.name_placeholder' | translate}}" matInput [(ngModel)]="roomName" required>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>Number</mat-label>
-    <input placeholder="-1.025" matInput [(ngModel)]="roomNumber" required>
+    <mat-label>{{'dialogs.edit_room.number_label' | translate}}</mat-label>
+    <input placeholder="{{'dialogs.edit_room.number_placeholder' | translate}}" matInput [(ngModel)]="roomNumber" required>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>Floor</mat-label>
-    <input matInput placeholder="-1" [(ngModel)]="floor">
+    <mat-label>{{'dialogs.edit_room.floor_label' | translate}}</mat-label>
+    <input matInput placeholder="{{'dialogs.edit_room.floor_placeholder' | translate}}" [(ngModel)]="floor">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>Room Type</mat-label>
+    <mat-label>{{'dialogs.edit_room.room_type_label' | translate}}</mat-label>
     <mat-select [(ngModel)]="roomType" required>
       <mat-option *ngFor="let roomType of roomTypes" [value]="roomType">
         {{roomType | roomType}}
@@ -26,18 +27,17 @@
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>Latitude</mat-label>
-    <input placeholder="3.2" matInput [(ngModel)]="latitude" required>
+    <mat-label>{{'dialogs.edit_room.latitude_label' | translate}}</mat-label>
+    <input placeholder="{{'dialogs.edit_room.latitude_placeholder' | translate}}" matInput [(ngModel)]="latitude" required>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>Longitude</mat-label>
-    <input placeholder="32.2" matInput [(ngModel)]="longitude" required>
+    <mat-label>{{'dialogs.edit_room.longitude_label' | translate}}</mat-label>
+    <input placeholder="{{'dialogs.edit_room.longitude_placeholder' | translate}}" matInput [(ngModel)]="longitude" required>
   </mat-form-field>
 </div>
 
 <div mat-dialog-actions>
-  <button mat-button (click)="ok()">Ok</button>
-  <button mat-button (click)="cancel()" color="warn">Cancel</button>
+  <button mat-button (click)="ok()">{{'dialogs.ok' | translate}}</button>
+  <button mat-button (click)="cancel()" color="warn">{{'dialogs.cancel' | translate}}</button>
 </div>
-

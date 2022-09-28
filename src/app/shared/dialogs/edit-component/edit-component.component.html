@@ -1,15 +1,14 @@
-<h1>Edit Component</h1>
+<h1 mat-dialog-title>{{'dialogs.edit_component.title' | translate}}</h1>
+<span>{{'dialogs.edit_component.usage' | translate}}</span>
 
 <div mat-dialog-content>
   <mat-form-field appearance="fill">
-    <mat-label>Description</mat-label>
-    <textarea placeholder="e.g., The left elevator in the building" matInput [(ngModel)]="componentDescription" required></textarea>
+    <mat-label>{{'dialogs.edit_component.description_label' | translate}}</mat-label>
+    <textarea placeholder="{{'dialogs.edit_component.description_placeholder' | translate}}" matInput [(ngModel)]="componentDescription"></textarea>
   </mat-form-field>
 
-
-
   <mat-form-field appearance="fill">
-    <mat-label>Component Type</mat-label>
+    <mat-label>{{'dialogs.edit_component.component_type_label' | translate}}</mat-label>
     <mat-select [(ngModel)]="componentType" required>
       <mat-option *ngFor="let componentType of componentTypes" [value]="componentType">
         {{componentType |componentType}}
@@ -18,17 +17,17 @@
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>Latitude</mat-label>
-    <input placeholder="3.2" matInput [(ngModel)]="latitude" required>
+    <mat-label>{{'dialogs.edit_component.latitude_label' | translate}}</mat-label>
+    <input placeholder="{{'dialogs.edit_component.latitude_placeholder' | translate}}" matInput [(ngModel)]="latitude" required>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>Longitude</mat-label>
-    <input placeholder="32.2" matInput [(ngModel)]="longitude" required>
+    <mat-label>{{'dialogs.edit_component.longitude_label' | translate}}</mat-label>
+    <input placeholder="{{'dialogs.edit_component.longitude_placeholder' | translate}}" matInput [(ngModel)]="longitude" required>
   </mat-form-field>
 </div>
 
 <div mat-dialog-actions>
-  <button mat-button (click)="ok()">Ok</button>
-  <button mat-button (click)="cancel()" color="warn">Cancel</button>
+  <button mat-button (click)="ok()">{{'dialogs.ok' | translate}}</button>
+  <button mat-button (click)="cancel()" color="warn">{{'dialogs.cancel' | translate}}</button>
 </div>

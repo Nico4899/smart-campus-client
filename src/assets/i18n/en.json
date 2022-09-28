@@ -71,32 +71,32 @@
     "south_campus": "South Campus"
   },
   "component_type_pipe": {
-    "elevator" : "elevator",
-    "stairs" : "stairs"
+    "elevator": "elevator",
+    "stairs": "stairs"
   },
   "problem_state_pipe": {
-    "accepted" : "Accepted",
-    "closed" : "Closed",
-    "declined" : "Declined",
-    "in_progress" : "In Progress",
-    "open" : "Open"
+    "accepted": "Accepted",
+    "closed": "Closed",
+    "declined": "Declined",
+    "in_progress": "In Progress",
+    "open": "Open"
   },
-  "problem_state_operation_pipe" : {
-    "accept" : "Accept",
-    "approach" : "Approach",
-    "close" : "Close",
-    "decline" : "Decline",
-    "hold" : "Hold"
+  "problem_state_operation_pipe": {
+    "accept": "Accept",
+    "approach": "Approach",
+    "close": "Close",
+    "decline": "Decline",
+    "hold": "Hold"
   },
-  "room_type_pipe" : {
-    "cafeteria" : "Cafeteria",
-    "lecture_room" : "Lecture Room",
-    "library" : "Library",
-    "office" : "Office",
-    "restroom" : "Restroom",
-    "restroom_handicapped" : "Restroom Handicapped",
-    "seminar_room" : "Seminar Room",
-    "sports" : "Sports Room"
+  "room_type_pipe": {
+    "cafeteria": "Cafeteria",
+    "lecture_room": "Lecture Room",
+    "library": "Library",
+    "office": "Office",
+    "restroom": "Restroom",
+    "restroom_handicapped": "Restroom Handicapped",
+    "seminar_room": "Seminar Room",
+    "sports": "Sports Room"
   },
   "building_details": {
     "name": "Name",
@@ -119,7 +119,7 @@
     "description": "Description",
     "coordinates": "Coordinates"
   },
-  "tooltips" : {
+  "tooltips": {
     "select_language": "select language",
     "toggle_dark_mode": "change to dark mode",
     "toggle_light_mode": "change to light mode",
@@ -172,5 +172,157 @@
       "remove_problem": "could not remove the selected building from server, please check if you are logged in or reload the page and try again.",
       "change_problem_state": "could change the state of the selected problem, please check if you are logged in or reload the page and try again."
     }
+  },
+  "building": {
+    "rooms_label": "Rooms",
+    "components_label": "Components",
+    "notifications_label": "Notifications",
+    "details_label": "Details",
+    "map_label": "Map"
+  },
+  "component": {
+    "notifications_label": "Notifications",
+    "details_label": "Details"
+  },
+  "room": {
+    "components_label": "Components",
+    "notifications_label": "Notifications",
+    "details_label": "Details"
+  },
+  "dialogs": {
+    "add_building": {
+      "title": "Add building",
+      "usage": "Fill in the following input- & text-fields and submit with 'Ok' or abort the process with 'Cancel'. In case a value was not provided it wont be submittable, if a value has invalid format an error will be thrown on submitting.",
+      "name_label": "Name",
+      "name_placeholder": "e.g., Audimax",
+      "number_label": "Number",
+      "number_placeholder": "e.g., 30.30",
+      "address_label": "Address",
+      "address_placeholder": "e.g., Kastanienstraße 3",
+      "campus_location_label": "Campus Location",
+      "latitude_label": "Latitude",
+      "latitude_placeholder": "e.g., 32.2",
+      "longitude_label": "Longitude",
+      "longitude_placeholder": "e.g., 7.1",
+      "highest_floor_label": "Highest Floor",
+      "highest_floor_placeholder": "e.g., 3",
+      "lowest_floor_label": "Lowest Floor",
+      "lowest_floor_placeholder": "e.g., -2"
+    },
+    "add_component": {
+      "title": "Add component",
+      "usage": "Fill in the following input- & text-fields and submit with 'Ok' or abort the process with 'Cancel'. In case a value was not provided it wont be submittable, if a value has invalid format an error will be thrown on submitting.",
+      "description_label": "Description",
+      "description_placeholder": "e.g., elevator in the old library",
+      "component_type_label": "Component Type",
+      "latitude_label": "Latitude",
+      "latitude_placeholder": "e.g., 32.2",
+      "longitude_label": "Longitude",
+      "longitude_placeholder": "e.g., 7.1"
+    },
+    "add_problem": {
+      "title": "Report problem",
+      "usage": "Choose a fitting title and describe the problem precisely, then submit with 'Ok' or abort the process with 'Cancel'. After submitting the problem you cannot change it yourself, but you can view the state and all your submitted problems in your problems list.",
+      "problem_title_label": "Problem Title",
+      "problem_title_placeholder": "e.g., door to library doesn't open up properly",
+      "problem_description_label": "Problem Description",
+      "problem_description_placeholder": "e.g., the door doesn't open up properly. I think something is stuck under the door, so it cannot be opened."
+    },
+    "add_room": {
+      "title": "Add room",
+      "usage": "Fill in the following input- & text-fields and submit with 'Ok' or abort the process with 'Cancel'. In case a value was not provided it wont be submittable, if a value has invalid format an error will be thrown on submitting.",
+      "name_label": "Name",
+      "name_placeholder": "e.g., Seminar room 25",
+      "number_label": "Number",
+      "number_placeholder": "e.g., -1.025",
+      "floor_label": "Floor",
+      "floor_placeholder": "e.g., -1",
+      "room_type_label": "room_type",
+      "latitude_label": "Latitude",
+      "latitude_placeholder": "e.g., 32.2",
+      "longitude_label": "Longitude",
+      "longitude_placeholder": "e.g., 7.1"
+    },
+    "edit_building": {
+      "title": "Edit building",
+      "usage": "Change the following input- & text-fields you want to change and submit with 'Ok' or abort the process with 'Cancel'. In case a value was not provided it wont be submittable, if a value has invalid format an error will be thrown on submitting.",
+      "name_label": "Name",
+      "name_placeholder": "e.g., Audimax",
+      "number_label": "Number",
+      "number_placeholder": "e.g., 30.30",
+      "address_label": "Address",
+      "address_placeholder": "e.g., Kastanienstraße 3",
+      "campus_location_label": "Campus Location",
+      "latitude_label": "Latitude",
+      "latitude_placeholder": "e.g., 32.2",
+      "longitude_label": "Longitude",
+      "longitude_placeholder": "e.g., 7.1",
+      "highest_floor_label": "Highest Floor",
+      "highest_floor_placeholder": "e.g., 3",
+      "lowest_floor_label": "Lowest Floor",
+      "lowest_floor_placeholder": "e.g., -2"
+    },
+    "edit_component": {
+      "title": "Edit component",
+      "usage": "Change in the following input- & text-fields you want to change and submit with 'Ok' or abort the process with 'Cancel'. In case a value was not provided it wont be submittable, if a value has invalid format an error will be thrown on submitting.",
+      "description_label": "Description",
+      "description_placeholder": "e.g., elevator in the old library",
+      "component_type_label": "Component Type",
+      "latitude_label": "Latitude",
+      "latitude_placeholder": "e.g., 32.2",
+      "longitude_label": "Longitude",
+      "longitude_placeholder": "e.g., 7.1"
+    },
+    "edit_problem": {
+      "title": "Edit problem",
+      "usage": "Choose a more fitting title and describe the problem more precisely, then submit with 'Ok' or abort the process with 'Cancel'. After submitting the problem you cannot change it yourself, but you can view the state and all your submitted problems in your problems list.",
+      "problem_title_label": "Problem Title",
+      "problem_title_placeholder": "e.g., door to library doesn't open up properly",
+      "problem_description_label": "Problem Description",
+      "problem_description_placeholder": "e.g., the door doesn't open up properly. I think something is stuck under the door, so it cannot be opened."
+    },
+    "edit_room": {
+      "title": "Edit room",
+      "usage": "Change the following input- & text-fields that you want and submit with 'Ok' or abort the process with 'Cancel'. In case a value was not provided it wont be submittable, if a value has invalid format an error will be thrown on submitting.",
+      "name_label": "Name",
+      "name_placeholder": "e.g., Seminar room 25",
+      "number_label": "Number",
+      "number_placeholder": "e.g., -1.025",
+      "floor_label": "Floor",
+      "floor_placeholder": "e.g., -1",
+      "room_type_label": "Room Type",
+      "latitude_label": "Latitude",
+      "latitude_placeholder": "e.g., 32.2",
+      "longitude_label": "Longitude",
+      "longitude_placeholder": "e.g., 7.1"
+    },
+    "delete": {
+      "title": "Are you sure you want to delete this element?",
+      "warning": "Deleting this element cannot be undone, deleting is will be final."
+    },
+    "delete_favorite": {
+      "title": "Are you sure you want to delete this element from your favorites?",
+      "warning": "Deleting this element as favorite cannot be undone, deleting is will be final. In case u want to find it again, you wil have have to add it again."
+    },
+    "filter_buildings": {
+      "title": "Filter buildings",
+      "usage": "Select the filter values you want, and submit with 'Ok' or abort the process with 'Cancel'.",
+      "campus_locations_label": "Campus Locations",
+      "room_types_label": "Room Types",
+      "component_types_label": "Component Types"
+    },
+    "filter_problems": {
+      "title": "Filter problems",
+      "usage": "Select the filter values you want, and submit with 'Ok' or abort the process with 'Cancel'.",
+      "problem_states_label": "Problem States"
+    },
+    "filter_rooms": {
+      "title": "Filter problems",
+      "usage": "Select the filter values you want, and submit with 'Ok' or abort the process with 'Cancel'.",
+      "room_types_label": "Room Types",
+      "component_types_label": "Component Types"
+    },
+    "ok": "Ok",
+    "cancel": "Cancel"
   }
 }

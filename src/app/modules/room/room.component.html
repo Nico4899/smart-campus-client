@@ -13,16 +13,14 @@
   </div>
 </div>
 
-
-
 <mat-tab-group>
-  <mat-tab label="components">
+  <mat-tab label="{{ 'room.components_label' | translate }}">
     <app-components-table></app-components-table>
   </mat-tab>
-  <mat-tab label="notifications">
+  <mat-tab label="{{ 'room.notifications_label' | translate }}">
     <app-notifications-table></app-notifications-table>
   </mat-tab>
-  <mat-tab label="details">
+  <mat-tab label="{{ 'room.details_label' | translate }}">
     <mat-list>
       <mat-list-item>{{ 'room_details.name' | translate }}: {{room.roomName}}</mat-list-item>
       <mat-list-item>{{ 'room_details.number' | translate }}: {{room.roomNumber}}</mat-list-item>
