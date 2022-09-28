@@ -3,11 +3,14 @@
   <h3>{{building.buildingName}}</h3>
 </div>
 
-<button (click)="addFavorite()">
-  Add to favorites
+<button (click)="addFavorite()" mat-icon-button>
+  <mat-icon>star</mat-icon>
 </button>
 
-<button (click)="openCreateProblemDialog()">Report Problem</button>
+<button (click)="openCreateProblemDialog()" mat-icon-button>
+  <mat-icon>report_problem</mat-icon>
+</button>
+
 
 <div>
   <button mat-button></button>
