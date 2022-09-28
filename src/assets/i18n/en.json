@@ -94,8 +94,8 @@
     "south_campus": "South Campus"
   },
   "component_type_pipe": {
-    "elevator": "elevator",
-    "stairs": "stairs"
+    "elevator": "Elevator",
+    "stairs": "Stairs"
   },
   "problem_state_pipe": {
     "accepted": "Accepted",
