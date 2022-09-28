@@ -51,7 +51,7 @@ export class BuildingComponent implements OnInit {
     },
     label: {
       color: 'red',
-      text: ''
+      text: ' '
     },
     title: 'Title',
     options: {
