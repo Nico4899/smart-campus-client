@@ -1,4 +1,14 @@
 {
+  "general" : {
+    "buildings" : "Buildings",
+    "rooms" : "Rooms",
+    "components" : "Components",
+    "notifications" : "Notifications",
+    "problems" : "Problems",
+    "details" : "Details",
+    "search" : "Search",
+    "filter" : "Filter"
+  },
   "dashboard": {
     "title": "Welcome to SmartCampus",
     "hello": "Hello ",
@@ -38,18 +48,23 @@
     "favorites": "Favorites"
   },
   "buildings_table": {
+    "name" : "Name",
     "number": "Number",
     "address": "Address",
     "campus_location": "Campus Location"
   },
   "rooms_table": {
+    "category" : "Category",
     "number": "Number",
     "level": "Level",
     "type": "Type",
     "campus_location": "Campus Location"
   },
   "components_table": {
-    "campus_location": "Campus Location"
+    "type": "Type",
+    "campus_location": "Campus Location",
+    "created_time": "Created",
+    "modified_time": "Modified"
   },
   "problems_table": {
     "title": "Title",
@@ -58,6 +73,11 @@
     "created_time": "Created",
     "modified_time": "Modified",
     "actions": "Actions"
+  },
+  "notifications_table" : {
+    "created_time": "Created",
+    "modified_time": "Modified",
+    "title": "Title"
   },
   "favorites": {
     "favorite_buildings": "Buildings",
@@ -105,7 +125,12 @@
     "campus": "Campus",
     "coordinates": "Coordinates",
     "floors": "Floors",
-    "to": "to"
+    "to": "to",
+    "rooms" : "Rooms",
+    "components" : "Components",
+    "problems" : "Problems",
+    "map" : "Map",
+    "details" : "Details"
   },
   "room_details": {
     "name": "Name",

@@ -1,7 +1,7 @@
 <div class="search">
   <mat-form-field>
-    <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applySearch()">
-    <button mat-button mat-icon-button matSuffix aria-label="Filter" (click)="openFilterBuildingsDialog()" matTooltip="{{ 'tooltips.filter' | translate }}">
+    <input matInput [(ngModel)]="searchKey" placeholder="{{ 'general.search' | translate }}" autocomplete="off" (keyup)="applySearch()">
+    <button mat-button mat-icon-button matSuffix aria-label="{{ 'general.filter' | translate }}" (click)="openFilterBuildingsDialog()" matTooltip="{{ 'tooltips.filter' | translate }}">
       <mat-icon>filter_list</mat-icon>
     </button>
   </mat-form-field>
@@ -31,7 +31,7 @@
     <ng-container matColumnDef="buildingName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header="buildingName"
           sortActionDescription="Sort by buildingName">
-        Name
+        {{ 'buildings_table.name' | translate }}
       </th>
       <td mat-cell *matCellDef="let building">
         {{building.buildingName}}

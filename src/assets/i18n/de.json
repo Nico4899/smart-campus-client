@@ -1,4 +1,14 @@
 {
+  "general" : {
+    "buildings" : "Gebäude",
+    "rooms" : "Räume",
+    "components" : "Komponenten",
+    "notifications" : "Notifications",
+    "problems" : "Problems",
+    "details" : "Details",
+    "search" : "Suche",
+    "filter" : "Filter"
+  },
   "dashboard": {
     "title": "Wilkommen zu SmartCampus",
     "hello": "Hallo ",
@@ -38,18 +48,23 @@
     "favorites": "Favoriten"
   },
   "buildings_table": {
+    "name" : "Name",
     "number": "Nummer",
     "address": "Adresse",
     "campus_location": "Campus"
   },
   "rooms_table": {
+    "category" : "Kategorie",
     "level": "Stockwerk",
-    "type": "Raum-Typ",
+    "type": "Typ",
     "campus_location": "Campus",
     "number": "Nummer"
   },
   "components_table": {
-    "campus_location": "Campus"
+    "type" : "Typ",
+    "campus_location": "Campus",
+    "created_time": "Erstellungsdatum",
+    "modified_time": "Zuletzt bearbeitet"
   },
   "problems_table": {
     "title": "Titel",
@@ -58,6 +73,11 @@
     "created_time": "Erstellungsdatum",
     "modified_time": "Zuletzt bearbeitet",
     "actions": "Aktionen"
+  },
+  "notifications_table" : {
+    "created_time": "Erstellungsdatum",
+    "modified_time": "Zuletzt bearbeitet",
+    "title": "Titel"
   },
   "favorites": {
     "favorite_buildings": "Gebäude",
@@ -105,7 +125,12 @@
     "campus": "Campus",
     "coordinates": "Koordinaten",
     "floors": "Stockwerke",
-    "to": "bis"
+    "to": "bis",
+    "rooms" : "Räume",
+    "components" : "Komponenten",
+    "problems" : "Probleme",
+    "map" : "Karte",
+    "details" : "Details"
   },
   "room_details": {
     "name": "Name",
