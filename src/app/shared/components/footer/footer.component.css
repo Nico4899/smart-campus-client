@@ -1,3 +1,72 @@
 footer {
   padding: 20px;
 }
+
+.footer-links {
+  width: 521px;
+  height: 23px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  text-align: center;
+  margin: auto;
+  color: #7a7a7a;
+  font-variant: small-caps;
+}
+
+.center-line {
+  width: 200px;
+  height: 0;
+  opacity: 30%;
+  border-color: #606060;
+  border-width: 1px;
+  border-style: solid;
+  margin: auto;
+}
+
+.logo-title {
+  margin: auto;
+  text-align: center;
+}
+
+.title {
+  width: 99px;
+  height: 27px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.6;
+  padding-left: 3px;
+  color: #7a7a7a;
+  font-variant: small-caps;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
+a:link {
+  text-decoration: none;
+  color: #7a7a7a;
+}
+
+a:visited {
+  text-decoration: none;
+  color: #7a7a7a;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #5b5b5b;
+}
+
+a:active {
+  text-decoration: underline;
+  color: #7a7a7a;
+}
+
+a{
+  margin-right: 5px;
+  margin-left: 5px;
+}

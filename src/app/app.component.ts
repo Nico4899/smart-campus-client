@@ -31,6 +31,7 @@ export class AppComponent {
     }
 
     // add custom icons
-    this.matIconRegistry.addSvgIcon('kit', this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/images/KIT_ICON.svg"));
+    this.matIconRegistry.addSvgIcon('kit-header', this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/images/KIT_ICON_HEADER.svg"));
+    this.matIconRegistry.addSvgIcon('kit-footer', this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/images/KIT_ICON_FOOTER.svg"));
   }
 }

@@ -350,5 +350,10 @@
     },
     "ok": "Ok",
     "cancel": "Cancel"
+  },
+  "footer": {
+    "data_protection": "Data Protection",
+    "impressum": "Impressum",
+    "copyrights": "Copyright"
   }
 }
