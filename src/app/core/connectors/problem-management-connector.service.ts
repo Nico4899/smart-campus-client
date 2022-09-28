@@ -28,6 +28,7 @@ import {TranslateService} from "@ngx-translate/core";
 export class ProblemManagementConnectorService {
 
   private readonly client: ProblemManagementClient;
+  private readonly errDuration: number = 3500;
 
   constructor(private snackbar: MatSnackBar, private authService: AuthServiceService, private translateService: TranslateService) {
     this.client = new ProblemManagementClient(environment.clientUrls.problem_management, null, null);
@@ -38,7 +39,7 @@ export class ProblemManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.problem_connector.list_problems").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);
       }
@@ -50,7 +51,7 @@ export class ProblemManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.problem_connector.list_problems_for_user").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);
       }
@@ -62,7 +63,7 @@ export class ProblemManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.problem_connector.get_problem").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);
       }
@@ -74,7 +75,7 @@ export class ProblemManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.problem_connector.create_problem").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);
       }
@@ -86,7 +87,7 @@ export class ProblemManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.problem_connector.update_problem").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);
       }
@@ -98,7 +99,7 @@ export class ProblemManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.problem_connector.remove_problem").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(request.getIdentificationNumber(), self);
       }
@@ -110,7 +111,7 @@ export class ProblemManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.problem_connector.change_problem_state").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);
       }
