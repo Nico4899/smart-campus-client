@@ -1,15 +1,18 @@
 <div class="roomTitle">
   <h1>{{room.roomNumber}}</h1>
   <h3>{{room.roomName}}</h3>
+
+  <div class="controls">
+    <button (click)="addFavorite()" mat-icon-button>
+      <mat-icon>favorite</mat-icon>
+    </button>
+
+    <button (click)="openCreateProblemDialog()" mat-icon-button>
+      <mat-icon>priority_high</mat-icon>
+    </button>
+  </div>
 </div>
 
-<button (click)="addFavorite()" mat-icon-button>
-  <mat-icon>star</mat-icon>
-</button>
-
-<button (click)="openCreateProblemDialog()" mat-icon-button>
-  <mat-icon>report_problem</mat-icon>
-</button>
 
 
 <mat-tab-group>
