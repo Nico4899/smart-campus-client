@@ -289,7 +289,6 @@ export class BuildingManagementConnectorService {
     })
   }
 
-  //TODO never invokes call for some unexpected reason PLEASE CHECK
   async removeComponent(request: RemoveRequest, callback: (id: string, self: ComponentsTableComponent) => void, self: ComponentsTableComponent) {
     this.client.removeComponent(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: RemoveResponse) => {
       if (error) {

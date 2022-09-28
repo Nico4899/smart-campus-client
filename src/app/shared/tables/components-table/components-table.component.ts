@@ -23,12 +23,9 @@ import {MatTableDataSource} from "@angular/material/table";
 import {RemoveComponent} from "../../dialogs/remove/remove.component";
 import {ExpandAnimation} from "../../animations";
 import {AuthServiceService} from "../../../core/authentication/auth-service.service";
-import { ProblemManagementConnectorService } from 'src/app/core/connectors/problem-management-connector.service';
-import {CreateProblemRequest, CreateProblemResponse } from 'src/proto/generated/problem_management_pb';
-import { BuildingsTableComponent } from '../buildings-table/buildings-table.component';
-import { ProblemsTableComponent } from '../problems-table/problems-table.component';
-import { RoomsTableComponent } from '../rooms-table/rooms-table.component';
-import { AddProblemComponent } from '../../dialogs/add-problem/add-problem.component';
+import {ProblemManagementConnectorService} from 'src/app/core/connectors/problem-management-connector.service';
+import {CreateProblemRequest, CreateProblemResponse} from 'src/proto/generated/problem_management_pb';
+import {AddProblemComponent} from '../../dialogs/add-problem/add-problem.component';
 
 @Component({
   selector: 'app-components-table',
@@ -54,7 +51,7 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
   // columns to be displayed
   columnsToDisplay: string[] = ['componentType', 'edit_component', 'delete_component'];
 
-  constructor(private buildingManagementConnector: BuildingManagementConnectorService,private problemManagementConnector: ProblemManagementConnectorService, private route: ActivatedRoute,
+  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private problemManagementConnector: ProblemManagementConnectorService, private route: ActivatedRoute,
               private dialog: MatDialog, public authService: AuthServiceService) {
     // inject building management client and current rout to obtain path variables
   }
@@ -81,20 +78,14 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-
   private static interpretListComponentsResponse(response: ListComponentsResponse, self: ComponentsTableComponent): void {
     self.dataSource.data = response.toObject().componentsList;
     self.isLoading = false;
   }
 
-  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: any): void{
-    return;
-  }
-
   private static interpretCreateComponentResponse(response: CreateComponentResponse, self: ComponentsTableComponent): void {
     self.dataSource.data.push(response.getComponent()?.toObject()!);
   }
-
 
 
   private static interpretUpdateComponentResponse(response: UpdateComponentResponse, self: ComponentsTableComponent): void {
@@ -106,30 +97,11 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
     self.dataSource.data = self.dataSource.data.filter(e => e.identificationNumber != id);
   }
 
-
-  private static interpretCreateFavoriteResponse(response: CreateFavoriteResponse, self: any): void {
-
-  }
-
-
-
-
   openCreateComponentDialog() {
     const dialogRef = this.dialog.open(AddComponentComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.buildingManagementConnector.createComponent(ComponentsTableComponent.buildCreateComponentRequest(this.parentIdentificationNumber, result), ComponentsTableComponent.interpretCreateComponentResponse, this);
-      } else {
-        return;
-      }
-    })
-  }
-
-  openCreateProblemDialog() {
-    const dialogRef = this.dialog.open(AddProblemComponent);
-    dialogRef.afterClosed().subscribe( result => {
-      if(result.event == 'ok'){
-        this.problemManagementConnector.createProblem(ComponentsTableComponent.buildCreateProblemRequest(result), ComponentsTableComponent.interpretCreateProblemResponse, this);
       } else {
         return;
       }
@@ -150,25 +122,13 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
   openRemoveComponentDialog(identificationNumber: string) {
     const dialogRef = this.dialog.open(RemoveComponent, {data: identificationNumber});
     dialogRef.afterClosed().subscribe(result => {
-        if (result.event == 'ok ') {
+        if (result.event == 'ok') {
           this.buildingManagementConnector.removeComponent(ComponentsTableComponent.buildRemoveRequest(result), ComponentsTableComponent.interpretRemoveComponentResponse, this);
         } else {
           return;
         }
       }
     )
-  }
-
-  addFavorite(component: GrpcComponent.AsObject) {
-    const id = component.identificationNumber;
-    const name: string = this.authService.name as string;
-    const result = {
-      data : {
-        referenceIdentificationNumber: id,
-        owner: name
-      }
-    }
-    this.buildingManagementConnector.createFavorite( ComponentsTableComponent.buildCreateFavoriteRequest(result),ComponentsTableComponent.interpretCreateFavoriteResponse, this);
   }
 
   private static buildCreateComponentRequest(identificationNumber: string, result: any): CreateComponentRequest {
@@ -180,15 +140,6 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
     geographicalLocation.setLongitude(result.data.longitude);
     geographicalLocation.setLatitude(result.data.latitude);
     request.setGrpcGeographicalLocation(geographicalLocation);
-    return request;
-  }
-
-  private static buildCreateProblemRequest(result: any): CreateProblemRequest {
-    let request = new CreateProblemRequest();
-    request.setProblemTitle(result.data.problemTitle);
-    request.setProblemDescription(result.data.problelDescription);
-    request.setReferenceIdentificationNumber(result.data.referenceIdentificationNumber);
-    request.setProblemReporter(result.data.problemReporter);
     return request;
   }
 
@@ -210,13 +161,4 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
     request.setIdentificationNumber(result.data.identificationNumber);
     return request;
   }
-
-
-  private static buildCreateFavoriteRequest(result: any): CreateFavoriteRequest {
-    let request = new CreateFavoriteRequest();
-    request.setOwner(result.data.owner);
-    request.setReferenceIdentificationNumber(result.data.referenceIdentificationNumber);
-    return request;
-  }
-
 }

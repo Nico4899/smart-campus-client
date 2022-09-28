@@ -30,6 +30,7 @@ export class DefaultComponent implements OnInit {
     let side = sessionStorage.getItem('toggleSide') as string;
     let dark = sessionStorage.getItem('toggleDark') as string;
     let lang = sessionStorage.getItem('languageChosen') as string;
+
     if (lang) {
       this.translateService.use(lang);
     } else {
