@@ -39,7 +39,9 @@
     "viewing_editing_problems_admin_description": "Als Admin können alle von Benutzern gemeldeten Probleme eingesehen und bearbeitet\n            werden. Dabei können sowohl Titel und Beschreibung des Problems, als auch sein Status verändert werden. ",
     "viewing_editing_problems_user_description": "Als Benutzer kann man seine gemeldeten Probleme einsehen.",
     "viewing_editing_problems_description": "Ein Problem kann den Status \"OPEN\", \"ACCEPTED\", \"IN_PROGRESS\", \"DECLINED\" oder \"CLOSED\" haben. ",
-    "for_more_services_log_in": "für weitere Services melde dich an... "
+    "for_more_services_log_in": "für weitere Services melde dich an... ",
+    "login": "Anmelden",
+    "logout": "Abmelden"
   },
   "sidebar": {
     "dashboard": "Übersicht",
@@ -355,5 +357,9 @@
     "data_protection": "Datenschutz",
     "impressum": "Impressum",
     "copyrights": "Copyright"
+  },
+  "header": {
+    "login": "Anmelden",
+    "logout": "Abmelden"
   }
 }

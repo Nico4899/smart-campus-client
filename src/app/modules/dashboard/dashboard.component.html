@@ -19,13 +19,13 @@
           <mat-icon>
             login
           </mat-icon>
-          Sign in
+          {{'dashboard.login' | translate}}
         </button>
         <button *ngIf="isLoggedIn()" mat-menu-item (click)="logout()">
           <mat-icon>
             logout
           </mat-icon>
-          Sign out
+          {{'dashboard.logout' | translate}}
         </button>
       </div>
     </div>

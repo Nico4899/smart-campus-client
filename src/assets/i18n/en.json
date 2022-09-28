@@ -39,7 +39,9 @@
     "viewing_editing_problems_admin_description": "As admin you can view and edit all problems reported by users, including yourself. You can change the description, title and status of a problem. ",
     "viewing_editing_problems_user_description": "As logged in user you can view your reported problems. ",
     "viewing_editing_problems_description": "A problem can have the status \"OPEN\", \"ACCEPTED\", \"IN_PROGRESS\", \"DECLINED\" or \"CLOSED\". ",
-    "for_more_services_log_in": "for more services log in... "
+    "for_more_services_log_in": "for more services log in... ",
+    "login": "Sign in",
+    "logout": "Sign out"
   },
   "sidebar": {
     "dashboard": "Dashboard",
@@ -352,8 +354,12 @@
     "cancel": "Cancel"
   },
   "footer": {
-    "data_protection": "Data Protection",
+    "data_protection": "Privacy",
     "impressum": "Impressum",
     "copyrights": "Copyright"
+  },
+  "header": {
+    "login": "Sign in",
+    "logout": "Sign out"
   }
 }

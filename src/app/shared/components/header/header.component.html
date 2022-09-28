@@ -34,9 +34,9 @@
             </button>
           </mat-menu>
         </li>
-        <li>
+        <li class="login-button">
           <button *ngIf="!isLoggedIn()" mat-icon-button (click)="login()">
-            Sign in
+            {{'header.login' | translate}}
           </button>
           <button *ngIf="isLoggedIn()" mat-icon-button [matMenuTriggerFor]="menu">
             {{getName()}}
@@ -44,7 +44,7 @@
           <mat-menu #menu="matMenu">
             <button *ngIf="isLoggedIn()" mat-menu-item (click)="logout()">
               <mat-icon>logout</mat-icon>
-              Sign out
+              {{'header.logout' | translate}}
             </button>
           </mat-menu>
         </li>
