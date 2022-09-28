@@ -17,7 +17,7 @@ export class ProblemStatePipe implements PipeTransform {
     let key = ''
     switch (value) {
       case GrpcProblemState.ACCEPTED:
-        key = 'problem_state_type.accepted'
+        key = 'problem_state_pipe.accepted'
         break
       case GrpcProblemState.CLOSED:
         key = 'problem_state_pipe.closed'
