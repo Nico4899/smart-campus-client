@@ -70,6 +70,34 @@
     "west_campus": "West Campus",
     "south_campus": "South Campus"
   },
+  "component_type_pipe": {
+    "elevator" : "elevator",
+    "stairs" : "stairs"
+  },
+  "problem_state_pipe": {
+    "accepted" : "Accepted",
+    "closed" : "Closed",
+    "declined" : "Declined",
+    "in_progress" : "In Progress",
+    "open" : "Open"
+  },
+  "problem_state_operation_pipe" : {
+    "accept" : "Accept",
+    "approach" : "Approach",
+    "close" : "Close",
+    "decline" : "Decline",
+    "hold" : "Hold"
+  },
+  "room_type_pipe" : {
+    "cafeteria" : "Cafeteria",
+    "lecture_room" : "Lecture Room",
+    "library" : "Library",
+    "office" : "Office",
+    "restroom" : "Restroom",
+    "restroom_handicapped" : "Restroom Handicapped",
+    "seminar_room" : "Seminar Room",
+    "sports" : "Sports Room"
+  },
   "building_details": {
     "name": "Name",
     "number": "Number",
