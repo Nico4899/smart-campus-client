@@ -90,5 +90,25 @@
     "type": "Typ",
     "description": "Beschreibung",
     "coordinates": "Koordinaten"
+  },
+  "tooltips" : {
+    "select_language": "wähle sprache",
+    "toggle_dark_mode": "wechsel zum dunkel modus",
+    "toggle_light_mode": "wechsel zum hell modus",
+    "add_favorite": "füge zu favoriten hinzu",
+    "report_problem": "melde ein problem",
+    "filter": "filter",
+    "add_building": "füge gebäude hinzu",
+    "delete_building": "entferne gebäude",
+    "edit_building": "bearbeite gebäude",
+    "add_component": "füge komponente hinzu",
+    "edit_component": "bearbeite komponente",
+    "delete_component": "entferne komponente",
+    "edit_problem": "bearbeite problem",
+    "delete_problem": "entferne problem",
+    "add_room": "füge raum hinzu",
+    "edit_room": "bearbeite raum",
+    "delete_room": "entferne raum",
+    "delete_favorite": "entferne aus favoriten"
   }
 }

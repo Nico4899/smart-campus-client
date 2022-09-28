@@ -85,6 +85,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {TranslateModule} from "@ngx-translate/core";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -134,32 +135,33 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     FavoriteRoomsTableComponent,
     FavoriteComponentsTableComponent
   ],
-  imports: [
-    CommonModule,
-    MatToolbarModule,
-    MatDividerModule,
-    MatIconModule,
-    MatButtonModule,
-    FlexModule,
-    MatMenuModule,
-    MatListModule,
-    RouterModule,
-    MatSlideToggleModule,
-    MatTableModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatPaginatorModule,
-    MatInputModule,
-    MatSortModule,
-    MatDialogModule,
-    MatSelectModule,
-    ReactiveFormsModule,
-    MatCheckboxModule,
-    MatExpansionModule,
-    TranslateModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule
-  ]
+    imports: [
+        CommonModule,
+        MatToolbarModule,
+        MatDividerModule,
+        MatIconModule,
+        MatButtonModule,
+        FlexModule,
+        MatMenuModule,
+        MatListModule,
+        RouterModule,
+        MatSlideToggleModule,
+        MatTableModule,
+        MatFormFieldModule,
+        FormsModule,
+        MatPaginatorModule,
+        MatInputModule,
+        MatSortModule,
+        MatDialogModule,
+        MatSelectModule,
+        ReactiveFormsModule,
+        MatCheckboxModule,
+        MatExpansionModule,
+        TranslateModule,
+        MatProgressBarModule,
+        MatProgressSpinnerModule,
+        MatTooltipModule
+    ]
 })
 export class SharedModule {
 }

@@ -1,7 +1,7 @@
 <div class="search">
   <mat-form-field>
     <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applySearch()" #input>
-    <button mat-button mat-icon-button matSuffix aria-label="Filter" (click)="openFilterProblemsDialog()">
+    <button mat-button mat-icon-button matSuffix aria-label="Filter" matTooltip="{{ 'tooltips.filter' | translate }}" (click)="openFilterProblemsDialog()">
       <mat-icon>filter_list</mat-icon>
     </button>
   </mat-form-field>
@@ -56,7 +56,8 @@
       <td mat-cell *matCellDef="let problem" (click)="$event.stopPropagation()">
         <button *ngIf="authService.isAdmin()"
                 mat-icon-button
-                (click)="openUpdateProblemDialog(problem)">
+                (click)="openUpdateProblemDialog(problem)"
+                matTooltip="{{ 'tooltips.edit_problem' | translate}}">
           <mat-icon>edit</mat-icon>
         </button>
       </td>
@@ -67,7 +68,8 @@
       <td mat-cell *matCellDef="let problem" (click)="$event.stopPropagation()">
         <button *ngIf="authService.isAdmin()"
                 mat-icon-button color="warn"
-                (click)="openRemoveProblemDialog(problem.identificationNumber)">
+                (click)="openRemoveProblemDialog(problem.identificationNumber)"
+        matTooltip="{{ 'tooltips.delete_problem' | translate}}">
           <mat-icon>delete</mat-icon>
         </button>
       </td>

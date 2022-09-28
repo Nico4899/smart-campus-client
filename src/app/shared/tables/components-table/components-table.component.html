@@ -1,7 +1,8 @@
 <div class="search">
   <button *ngIf="authService.isAdmin()"
           mat-icon-button color="primary"
-          (click)="openCreateComponentDialog()">
+          (click)="openCreateComponentDialog()"
+          matTooltip="{{ 'tooltips.add_component' | translate }}">
     <mat-icon>add</mat-icon>
   </button>
 </div>
@@ -19,33 +20,13 @@
         {{component.componentType | componentType}} </td>
     </ng-container>
 
-
-    <ng-container matColumnDef="addFavorite">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let room" (click)="$event.stopPropagation()">
-        <button *ngIf="authService.isUser()" mat-icon-button (click)="addFavorite(room)">
-          <mat-icon>heart</mat-icon>
-        </button>
-      </td>
-    </ng-container>
-
-
-    <ng-container matColumnDef="report problem">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef  (click)="$event.stopPropagation()">
-        <button *ngIf="authService.isUser()" (click)="openCreateProblemDialog()" )>
-          <mat-icon>flash</mat-icon>
-        </button>
-      </td>
-    </ng-container>
-
     <ng-container matColumnDef="edit_component">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let component" (click)="$event.stopPropagation()">
         <button *ngIf="authService.isAdmin()"
                 mat-icon-button
-                (click)="openUpdateComponentDialog(component)">
-          <!-- insert dialog here and update call + set it to hidden when we have authentication running -->
+                (click)="openUpdateComponentDialog(component)"
+                matTooltip="{{ 'tooltips.edit_component' | translate }}">
           <mat-icon>edit</mat-icon>
         </button>
       </td>
@@ -56,8 +37,8 @@
       <td mat-cell *matCellDef="let component" (click)="$event.stopPropagation()">
         <button *ngIf="authService.isAdmin()"
                 mat-icon-button color="warn"
-                (click)="openRemoveComponentDialog(component.identificationNumber)">
-          <!-- insert dialog here and remove call + set it to hidden when we have authentication running -->
+                (click)="openRemoveComponentDialog(component.identificationNumber)"
+                matTooltip="{{ 'tooltips.delete_component' | translate }}">
           <mat-icon>delete</mat-icon>
         </button>
       </td>

@@ -1,7 +1,7 @@
 <div class="search">
   <mat-form-field>
     <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applySearch()">
-    <button mat-button mat-icon-button matSuffix aria-label="Filter" (click)="openFilterFavoriteRoomsDialog()">
+    <button mat-button mat-icon-button matSuffix aria-label="Filter" matTooltip="{{ 'tooltips.filter' | translate}}" (click)="openFilterFavoriteRoomsDialog()">
       <mat-icon>filter_list</mat-icon>
     </button>
   </mat-form-field>
@@ -48,7 +48,8 @@
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let room" (click)="$event.stopPropagation()">
         <button mat-icon-button color="warn"
-                (click)="openRemoveFavoriteDialog(room.identificationNumber)">
+                (click)="openRemoveFavoriteDialog(room.identificationNumber)"
+                matTooltip="{{ 'tooltips.delete_favorite' | translate}}">
           <mat-icon>delete</mat-icon>
         </button>
       </td>

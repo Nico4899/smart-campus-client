@@ -29,6 +29,7 @@ import {OAuthModule} from "angular-oauth2-oidc";
 import {TranslateModule} from "@ngx-translate/core";
 
 import {GoogleMapsModule} from '@angular/google-maps'
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -41,26 +42,27 @@ import {GoogleMapsModule} from '@angular/google-maps'
     FavoritesComponent,
     ComponentComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    SharedModule,
-    MatSidenavModule,
-    MatListModule,
-    MatTableModule,
-    MatInputModule,
-    MatSortModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatGridListModule,
-    MatIconModule,
-    MatMenuModule,
-    MatTabsModule,
-    HttpClientModule,
-    OAuthModule.forRoot(),
-    TranslateModule,
-    GoogleMapsModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        SharedModule,
+        MatSidenavModule,
+        MatListModule,
+        MatTableModule,
+        MatInputModule,
+        MatSortModule,
+        MatPaginatorModule,
+        MatButtonModule,
+        MatGridListModule,
+        MatIconModule,
+        MatMenuModule,
+        MatTabsModule,
+        HttpClientModule,
+        OAuthModule.forRoot(),
+        TranslateModule,
+        GoogleMapsModule,
+        MatTooltipModule
+    ],
   exports: [
     MatSortModule,
     MatSnackBarModule

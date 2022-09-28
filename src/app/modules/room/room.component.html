@@ -3,11 +3,11 @@
   <h3>{{room.roomName}}</h3>
 
   <div class="controls">
-    <button (click)="addFavorite()" mat-icon-button>
+    <button  mat-icon-button (click)="addFavorite()" matTooltip="{{ 'tooltips.add_favorite' | translate }}">
       <mat-icon>favorite</mat-icon>
     </button>
 
-    <button (click)="openCreateProblemDialog()" mat-icon-button>
+    <button  mat-icon-button (click)="openCreateProblemDialog()" matTooltip="{{ 'tooltips.report_problem' | translate }}">
       <mat-icon>priority_high</mat-icon>
     </button>
   </div>

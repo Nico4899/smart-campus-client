@@ -34,7 +34,7 @@ export class NotificationsTableComponent implements OnInit, AfterViewInit {
 
   // columns to be displayed
   columnsToDisplay: string[] = ['notificationTitle', 'createdOn', 'lastModifiedOn'];
-  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
+  columnsToDisplayWithExpand = [...this.columnsToDisplay];
   expandedNotification!: string;
 
   constructor(private buildingManagementConnector: BuildingManagementConnectorService, private route: ActivatedRoute) {

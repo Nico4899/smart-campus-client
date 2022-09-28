@@ -90,5 +90,25 @@
     "type": "Type",
     "description": "Description",
     "coordinates": "Coordinates"
+  },
+  "tooltips" : {
+    "select_language": "select language",
+    "toggle_dark_mode": "change to dark mode",
+    "toggle_light_mode": "change to light mode",
+    "add_favorite": "add to favorites",
+    "report_problem": "report a problem",
+    "filter": "filter",
+    "add_building": "add building",
+    "delete_building": "delete building",
+    "edit_building": "edit building",
+    "add_component": "add component",
+    "edit_component": "edit component",
+    "delete_component": "delete component",
+    "edit_problem": "edit problem",
+    "delete_problem": "delete problem",
+    "add_room": "add room",
+    "edit_room": "edit room",
+    "delete_room": "delete room",
+    "delete_favorite": "remove from favorites"
   }
 }

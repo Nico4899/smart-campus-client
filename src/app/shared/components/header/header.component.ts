@@ -1,7 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AuthServiceService} from "../../../core/authentication/auth-service.service";
-import {AppComponent} from "../../../app.component";
-import { TranslateService } from '@ngx-translate/core';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -49,7 +48,7 @@ export class HeaderComponent implements OnInit {
     sessionStorage.setItem('languageChosen', language);
   }
 
-  getName(): any[] | string{
+  getName(): any[] | string {
     return this.authService.eMail.slice(0, 5);
   }
 }
