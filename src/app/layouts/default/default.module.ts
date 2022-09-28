@@ -30,6 +30,7 @@ import {TranslateModule} from "@ngx-translate/core";
 
 import {GoogleMapsModule} from '@angular/google-maps'
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {FlexModule} from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -42,27 +43,28 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     FavoritesComponent,
     ComponentComponent
   ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        SharedModule,
-        MatSidenavModule,
-        MatListModule,
-        MatTableModule,
-        MatInputModule,
-        MatSortModule,
-        MatPaginatorModule,
-        MatButtonModule,
-        MatGridListModule,
-        MatIconModule,
-        MatMenuModule,
-        MatTabsModule,
-        HttpClientModule,
-        OAuthModule.forRoot(),
-        TranslateModule,
-        GoogleMapsModule,
-        MatTooltipModule
-    ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    SharedModule,
+    MatSidenavModule,
+    MatListModule,
+    MatTableModule,
+    MatInputModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatGridListModule,
+    MatIconModule,
+    MatMenuModule,
+    MatTabsModule,
+    HttpClientModule,
+    OAuthModule.forRoot(),
+    TranslateModule,
+    GoogleMapsModule,
+    MatTooltipModule,
+    FlexModule
+  ],
   exports: [
     MatSortModule,
     MatSnackBarModule

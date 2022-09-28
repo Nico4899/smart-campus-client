@@ -2,23 +2,33 @@
   <h1>
     {{ 'dashboard.title' | translate }}
   </h1>
+
   <h2>
-    {{ 'dashboard.hello' | translate }}
-    <span [hidden]="isLoggedIn()">
-      {{ 'dashboard.guest' | translate }}
-    </span>
-    <span [hidden]="!isLoggedIn()">
-      {{getName()}}!
-    </span>
-    <!-- TODO knopf direkt hinter den namen packen      -->
-    <button *ngIf="!isLoggedIn()" mat-menu-item (click)="login()">
-      <mat-icon>login</mat-icon>
-      Sign in
-    </button>
-    <button *ngIf="isLoggedIn()" mat-menu-item (click)="logout()">
-      <mat-icon>logout</mat-icon>
-      Sign out
-    </button>
+    <div fxLayout = "row">
+      <div fxFlexAlign="center">
+        {{ 'dashboard.hello' | translate }}
+        <span [hidden]="isLoggedIn()">
+          {{ 'dashboard.guest' | translate }}
+        </span>
+        <span [hidden]="!isLoggedIn()">
+          {{getName()}}!
+        </span>
+      </div>
+      <div fxFlexAlign="center" fxFlexOffset="20px">
+        <button *ngIf="!isLoggedIn()" mat-menu-item (click)="login()">
+          <mat-icon>
+            login
+          </mat-icon>
+          Sign in
+        </button>
+        <button *ngIf="isLoggedIn()" mat-menu-item (click)="logout()">
+          <mat-icon>
+            logout
+          </mat-icon>
+          Sign out
+        </button>
+      </div>
+    </div>
   </h2>
 
   {{ 'dashboard.introduction' | translate }}

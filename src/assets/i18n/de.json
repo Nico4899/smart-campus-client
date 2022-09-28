@@ -4,7 +4,7 @@
     "rooms" : "Räume",
     "components" : "Komponenten",
     "notifications" : "Benachrichtigungen",
-    "problems" : "Problem",
+    "problems" : "Probleme",
     "details" : "Details",
     "search" : "Suche",
     "filter" : "Filter"
@@ -100,7 +100,7 @@
     "closed" : "Geschlossen",
     "declined" : "Abgelehnt",
     "in_progress" : "In Bearbeitung",
-    "open" : "offen"
+    "open" : "Offen"
   },
   "problem_state_operation_pipe" : {
     "accept" : "Akzeptieren",
