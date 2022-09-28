@@ -1,7 +1,8 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, NgZone, ViewChild} from '@angular/core';
 
 import {GrpcComponent, GrpcComponentType} from '../../../../proto/generated/building_management_pb'
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {CdkTextareaAutosize} from "@angular/cdk/text-field";
 
 @Component({
   selector: 'app-edit-component',
@@ -17,9 +18,11 @@ export class EditComponentComponent {
   identificationNumber!: string;
   parentIdentificationNumber!: string;
 
+  @ViewChild('autosize') autosize!: CdkTextareaAutosize;
+
   componentTypes = Object.values(GrpcComponentType);
 
-  constructor(public dialogRef: MatDialogRef<EditComponentComponent>, @Inject(MAT_DIALOG_DATA) public data: GrpcComponent.AsObject) {
+  constructor(public dialogRef: MatDialogRef<EditComponentComponent>, private _ngZone: NgZone, @Inject(MAT_DIALOG_DATA) public data: GrpcComponent.AsObject) {
     this.dialogRef.disableClose = true;
     this.componentDescription = data.componentDescription;
     this.identificationNumber = data.identificationNumber;

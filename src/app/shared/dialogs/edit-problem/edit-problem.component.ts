@@ -1,6 +1,7 @@
-import { Component, Inject } from '@angular/core';
+import {Component, Inject, NgZone, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {GrpcProblem, GrpcProblemState} from '../../../../proto/generated/problem_management_pb'
+import {CdkTextareaAutosize} from "@angular/cdk/text-field";
 
 @Component({
   selector: 'app-edit-problem',
@@ -16,7 +17,9 @@ export class EditProblemComponent{
   referenceIdentificationNumber!: string;
   identificationNumber!: string;
 
-  constructor(public dialogRef: MatDialogRef<EditProblemComponent>, @Inject(MAT_DIALOG_DATA) public data: GrpcProblem.AsObject) {
+  @ViewChild('autosize') autosize!: CdkTextareaAutosize;
+
+  constructor(public dialogRef: MatDialogRef<EditProblemComponent>, private _ngZone: NgZone, @Inject(MAT_DIALOG_DATA) public data: GrpcProblem.AsObject) {
     this.dialogRef.disableClose = true;
     this.problemTitle = data.problemTitle;
     this.problemDescription = data.problemDescription;
@@ -24,9 +27,6 @@ export class EditProblemComponent{
     this.problemReporter = data.problemReporter;
     this.referenceIdentificationNumber = data.referenceIdentificationNumber;
     this.identificationNumber = data.identificationNumber;
-  }
-
-  ngOnInit(): void {
   }
 
   ok() {

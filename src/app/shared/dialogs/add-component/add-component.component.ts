@@ -1,8 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, NgZone, ViewChild} from '@angular/core';
 
 import {GrpcComponentType} from '../../../../proto/generated/building_management_pb'
 
 import {MatDialogRef} from '@angular/material/dialog'
+import {CdkTextareaAutosize} from "@angular/cdk/text-field";
+import {take} from "rxjs";
 
 @Component({
   selector: 'app-add-component',
@@ -16,9 +18,11 @@ export class AddComponentComponent {
   longitude !: number;
   latitude !: number;
 
+  @ViewChild('autosize') autosize!: CdkTextareaAutosize;
+
   componentTypes = Object.values(GrpcComponentType);
 
-  constructor(public dialogRef: MatDialogRef<AddComponentComponent>) {
+  constructor(public dialogRef: MatDialogRef<AddComponentComponent>, private _ngZone: NgZone) {
     this.dialogRef.disableClose = true;
     this.componentTypes = this.componentTypes.filter(e => e != 0);
   }

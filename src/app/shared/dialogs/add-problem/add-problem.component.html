@@ -4,12 +4,17 @@
 <div mat-dialog-content>
   <mat-form-field appearance="fill">
     <mat-label>{{'dialogs.add_problem.problem_title_label' | translate}}</mat-label>
-    <input placeholder="{{'dialogs.add_problem.problem_title_placeholder' | translate}}" matInput [(ngModel)]="problemTitle" required>
+    <input placeholder="{{'dialogs.add_problem.problem_title_placeholder' | translate}}" matInput
+           [(ngModel)]="problemTitle" required>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>{{'dialogs.add_problem.problem_description_label' | translate}}</mat-label>
-    <textarea placeholder="{{'dialogs.add_problem.problem_description_placeholder' | translate}}" matInput [(ngModel)]="problemDescription" required></textarea>
+    <textarea placeholder="{{'dialogs.add_problem.problem_description_placeholder' | translate}}" matInput
+              [(ngModel)]="problemDescription" required cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="1"
+              cdkAutosizeMaxRows="5"></textarea>
   </mat-form-field>
 </div>
 

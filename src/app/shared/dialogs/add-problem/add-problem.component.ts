@@ -1,7 +1,8 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, NgZone, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 import {AuthServiceService} from "../../../core/authentication/auth-service.service"
+import {CdkTextareaAutosize} from "@angular/cdk/text-field";
 
 @Component({
   selector: 'app-add-problem',
@@ -13,10 +14,12 @@ export class AddProblemComponent {
   problemTitle !: string;
   problemDescription !: string;
 
+  @ViewChild('autosize') autosize!: CdkTextareaAutosize;
+
   // ID number of the problematic building/room/component/whatever
   referenceIdentificationNumber !: string;
 
-  constructor(public dialogRef: MatDialogRef<AddProblemComponent>, public authService: AuthServiceService, @Inject(MAT_DIALOG_DATA) public data: string) {
+  constructor(public dialogRef: MatDialogRef<AddProblemComponent>, private _ngZone: NgZone, public authService: AuthServiceService, @Inject(MAT_DIALOG_DATA) public data: string) {
     this.referenceIdentificationNumber = data;
     this.dialogRef.disableClose = true;
   }
