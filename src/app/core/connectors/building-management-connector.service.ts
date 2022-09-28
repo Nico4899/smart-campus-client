@@ -67,6 +67,7 @@ import {TranslateService} from "@ngx-translate/core";
 export class BuildingManagementConnectorService {
 
   private readonly client: BuildingManagementClient;
+  private readonly errDuration: number = 3500;
 
   constructor(private translateService: TranslateService, private snackbar: MatSnackBar, private authService: AuthServiceService) {
     this.client = new BuildingManagementClient(environment.clientUrls.building_management, null, null);
@@ -77,7 +78,7 @@ export class BuildingManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.building_connector.list_buildings").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);
       }
@@ -89,7 +90,7 @@ export class BuildingManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.building_connector.list_rooms").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);
       }
@@ -101,7 +102,7 @@ export class BuildingManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.building_connector.list_components").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);
       }
@@ -113,7 +114,7 @@ export class BuildingManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.building_connector.list_notifications").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);
       }
@@ -125,7 +126,7 @@ export class BuildingManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.building_connector.get_building").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);
       }
@@ -137,7 +138,7 @@ export class BuildingManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.building_connector.get_room").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);
       }
@@ -149,7 +150,7 @@ export class BuildingManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.building_connector.list_favorite_buildings").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);
       }
@@ -161,7 +162,7 @@ export class BuildingManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.building_connector.list_favorite_rooms").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);
       }
@@ -173,7 +174,7 @@ export class BuildingManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.building_connector.list_favorite_components").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);
       }
@@ -185,7 +186,7 @@ export class BuildingManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.building_connector.create_building").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);
       }
@@ -197,7 +198,7 @@ export class BuildingManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.building_connector.create_room").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);
       }
@@ -209,7 +210,7 @@ export class BuildingManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.building_connector.create_component").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);
       }
@@ -221,7 +222,7 @@ export class BuildingManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.building_connector.create_favorite").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);
       }
@@ -233,7 +234,7 @@ export class BuildingManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.building_connector.update_building").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);
       }
@@ -245,7 +246,7 @@ export class BuildingManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.building_connector.update_room").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);
       }
@@ -257,7 +258,7 @@ export class BuildingManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.building_connector.update_component").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);
       }
@@ -269,7 +270,7 @@ export class BuildingManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.building_connector.remove_building").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(request.getIdentificationNumber(), self);
       }
@@ -281,7 +282,7 @@ export class BuildingManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.building_connector.remove_room").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(request.getIdentificationNumber(), self);
       }
@@ -294,7 +295,7 @@ export class BuildingManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.building_connector.remove_component").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(request.getIdentificationNumber(), self);
       }
@@ -306,7 +307,7 @@ export class BuildingManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.building_connector.get_component").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);
       }
@@ -319,7 +320,7 @@ export class BuildingManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.building_connector.remove_favorite").subscribe((r: string) => result = r);
-        this.snackbar.open(result, "", {duration: 1500});
+        this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(request.getIdentificationNumber(), self);
       }

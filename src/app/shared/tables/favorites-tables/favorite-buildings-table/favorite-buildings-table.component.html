@@ -1,6 +1,6 @@
 <div class="search">
   <mat-form-field>
-    <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applySearch()">
+    <input matInput [(ngModel)]="searchKey" placeholder="{{ 'general.search' | translate }}" autocomplete="off" (keyup)="applySearch()">
     <button mat-button mat-icon-button matSuffix aria-label="Filter" matTooltip="{{ 'tooltips.filter' | translate}}" (click)="openFilterFavoriteBuildingsDialog()">
       <mat-icon>filter_list</mat-icon>
     </button>

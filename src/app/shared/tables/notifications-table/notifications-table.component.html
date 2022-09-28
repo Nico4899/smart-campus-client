@@ -5,21 +5,21 @@
          multiTemplateDataRows
          matSort>
     <ng-container matColumnDef="notificationTitle">
-      <th mat-header-cell *matHeaderCellDef>TITLE</th>
+      <th mat-header-cell *matHeaderCellDef>{{ 'notifications_table.title' | translate }}</th>
       <td mat-cell *matCellDef="let notification">{{notification.notificationTitle}}</td>
     </ng-container>
 
     <ng-container matColumnDef="createdOn">
       <th mat-header-cell *matHeaderCellDef mat-sort-header="createdOn"
           sortActionDescription="Sort by createdOn">
-        CREATED</th>
+        {{ 'notifications_table.created_time' | translate }}</th>
       <td mat-cell *matCellDef="let notification"> {{notification.createdOn | date:'medium'}} </td>
     </ng-container>
 
     <ng-container matColumnDef="lastModifiedOn">
       <th mat-header-cell *matHeaderCellDef mat-sort-header="lastModifiedOn"
           sortActionDescription="Sort by lastModifiedOn">
-        MODIFIED</th>
+        {{ 'notifications_table.modified_time' | translate }}</th>
       <td mat-cell *matCellDef="let notification"> {{notification.lastModifiedOn | date:'medium'}} </td>
     </ng-container>
 

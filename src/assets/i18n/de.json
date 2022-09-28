@@ -1,4 +1,14 @@
 {
+  "general" : {
+    "buildings" : "Gebäude",
+    "rooms" : "Räume",
+    "components" : "Komponenten",
+    "notifications" : "Benachrichtigungen",
+    "problems" : "Problem",
+    "details" : "Details",
+    "search" : "Suche",
+    "filter" : "Filter"
+  },
   "dashboard": {
     "title": "Wilkommen zu SmartCampus",
     "hello": "Hallo ",
@@ -38,26 +48,37 @@
     "favorites": "Favoriten"
   },
   "buildings_table": {
+    "name" : "Name",
     "number": "Nummer",
     "address": "Adresse",
     "campus_location": "Campus"
   },
   "rooms_table": {
+    "name" : "Name",
+    "category" : "Kategorie",
     "level": "Stockwerk",
-    "type": "Raum-Typ",
+    "type": "Typ",
     "campus_location": "Campus",
     "number": "Nummer"
   },
   "components_table": {
-    "campus_location": "Campus"
+    "type" : "Typ",
+    "campus_location": "Campus",
+    "created_time": "Erstellt",
+    "modified_time": "Zuletzt bearbeitet"
   },
   "problems_table": {
     "title": "Titel",
     "state": "Status",
     "reporter": "Reporter",
-    "created_time": "Erstellungsdatum",
+    "created_time": "Erstellt",
     "modified_time": "Zuletzt bearbeitet",
     "actions": "Aktionen"
+  },
+  "notifications_table" : {
+    "created_time": "Erstellt",
+    "modified_time": "Zuletzt bearbeitet",
+    "title": "Titel"
   },
   "favorites": {
     "favorite_buildings": "Gebäude",
@@ -105,7 +126,12 @@
     "campus": "Campus",
     "coordinates": "Koordinaten",
     "floors": "Stockwerke",
-    "to": "bis"
+    "to": "bis",
+    "rooms" : "Räume",
+    "components" : "Komponenten",
+    "problems" : "Probleme",
+    "map" : "Karte",
+    "details" : "Details"
   },
   "room_details": {
     "name": "Name",
@@ -123,54 +149,54 @@
     "select_language": "wähle sprache",
     "toggle_dark_mode": "wechsel zum dunkel modus",
     "toggle_light_mode": "wechsel zum hell modus",
-    "add_favorite": "füge zu favoriten hinzu",
-    "report_problem": "melde ein problem",
-    "filter": "filter",
-    "add_building": "füge gebäude hinzu",
-    "delete_building": "entferne gebäude",
-    "edit_building": "bearbeite gebäude",
-    "add_component": "füge komponente hinzu",
-    "edit_component": "bearbeite komponente",
-    "delete_component": "entferne komponente",
-    "edit_problem": "bearbeite problem",
-    "delete_problem": "entferne problem",
-    "add_room": "füge raum hinzu",
-    "edit_room": "bearbeite raum",
-    "delete_room": "entferne raum",
-    "delete_favorite": "entferne aus favoriten"
+    "add_favorite": "füge zu Favoriten hinzu",
+    "report_problem": "melde ein Problem",
+    "filter": "Filter",
+    "add_building": "füge Gebäude hinzu",
+    "delete_building": "entferne Gebäude",
+    "edit_building": "bearbeite Gebäude",
+    "add_component": "füge Komponente hinzu",
+    "edit_component": "bearbeite Komponente",
+    "delete_component": "entferne Komponente",
+    "edit_problem": "bearbeite Problem",
+    "delete_problem": "entferne Problem",
+    "add_room": "füge Raum hinzu",
+    "edit_room": "bearbeite Raum",
+    "delete_room": "entferne Raum",
+    "delete_favorite": "entferne aus Favoriten"
   },
   "errors": {
     "building_connector": {
-      "list_buildings": "gebäude konnten nicht geladen werden, lade die seite neu und versuche es erneut.",
-      "list_rooms": "räume konnten nicht geladen werden, lade die seite neu und versuche es erneut.",
-      "list_components": "komponenten konnten nicht geladen werden, lade die seite neu und versuche es erneut.",
-      "list_notifications": "benachrichtigungen konnten nicht geladen werden, lade die seite neu und versuche es erneut.",
-      "get_building": "gebäude konnte nicht geladen werden, lade die seite neu und versuche es erneut.",
-      "get_component": "komponente konnte nicht geladen werden, lade die seite neu und versuche es erneut.",
-      "get_room": "raum konnte nicht geladen werden, lade die seite neu und versuche es erneut.",
-      "list_favorite_buildings": "deine favorisierten gebäude konnten nicht geladen werden, prüfe ob du eingeloggt bist, lade die seite neu und versuche es erneut.",
-      "list_favorite_rooms": "deine favorisierten räume konnten nicht geladen werden, prüfe ob du eingeloggt bist, lade die seite neu und versuche es erneut.",
-      "list_favorite_components": "deine favorisierten komponenten konnten nicht geladen werden, prüfe ob du eingeloggt bist, lade die seite neu und versuche es erneut.",
-      "create_building": "gewünschtes gebäude konnte nicht erstellt werden, prüfe ob du eingeloggt bist, die eingabe werte korrekt waren und versuche es erneut.",
-      "create_room": "gewünschter raum konnte nicht erstellt werden, prüfe ob du eingeloggt bist, die eingabe werte korrekt waren und versuche es erneut.",
-      "create_component": "gewünschte komponente konnte nicht erstellt werden, prüfe ob du eingeloggt bist, die eingabe werte korrekt waren und versuche es erneut.",
-      "create_favorite": "gewünschter favorit konnte nicht erstellt werden, prüfe ob du eingeloggt bist und versuche es erneut.",
-      "update_building": "ausgewähltes gebäude konnte nicht aktualisiert werden, prüfe ob du eingeloggt bist, die eingabe werte korrekt waren und versuche es erneut.",
-      "update_room": "ausgewählte raum konnte nicht aktualisiert werden, prüfe ob du eingeloggt bist, die eingabe werte korrekt waren und versuche es erneut.",
-      "update_component": "ausgewählte komponente konnte nicht aktualisiert werden, prüfe ob du eingeloggt bist, die eingabe werte korrekt waren und versuche es erneut.",
-      "remove_building": "ausgewähltes gebäude konnte nicht entfernt werden, prüfe ob du eingeloggt bist und versuche es erneut.",
-      "remove_room": "ausgewählter raum konnte nicht entfernt werden, prüfe ob du eingeloggt bist und versuche es erneut.",
-      "remove_component": "ausgewählte komponente konnte nicht entfernt werden, prüfe ob du eingeloggt bist und versuche es erneut.",
-      "remove_favorite": "ausgewählter favorit konnte nicht entfernt werden, prüfe ob du eingeloggt bist und versuche es erneut."
+      "list_buildings": "Gebäude konnten nicht geladen werden, lade die Seite neu und versuche es erneut.",
+      "list_rooms": "Räume konnten nicht geladen werden, lade die Seite neu und versuche es erneut.",
+      "list_components": "Komponenten konnten nicht geladen werden, lade die Seite neu und versuche es erneut.",
+      "list_notifications": "Benachrichtigungen konnten nicht geladen werden, lade die Seite neu und versuche es erneut.",
+      "get_building": "Gebäude konnte nicht geladen werden, lade die Seite neu und versuche es erneut.",
+      "get_component": "Komponente konnte nicht geladen werden, lade die Seite neu und versuche es erneut.",
+      "get_room": "Raum konnte nicht geladen werden, lade die Seite neu und versuche es erneut.",
+      "list_favorite_buildings": "Deine favorisierten Gebäude konnten nicht geladen werden, prüfe ob du eingeloggt bist, lade die Seite neu und versuche es erneut.",
+      "list_favorite_rooms": "Deine favorisierten Räume konnten nicht geladen werden, prüfe ob du eingeloggt bist, lade die Seite neu und versuche es erneut.",
+      "list_favorite_components": "Deine favorisierten Komponenten konnten nicht geladen werden, prüfe ob du eingeloggt bist, lade die Seite neu und versuche es erneut.",
+      "create_building": "Gewünschtes Gebäude konnte nicht erstellt werden, prüfe ob du eingeloggt bist, die eingabe Werte korrekt waren und versuche es erneut.",
+      "create_room": "Gewünschter Raum konnte nicht erstellt werden, prüfe ob du eingeloggt bist, die eingabe Werte korrekt waren und versuche es erneut.",
+      "create_component": "Gewünschte komponente konnte nicht erstellt werden, prüfe ob du eingeloggt bist, die eingabe Werte korrekt waren und versuche es erneut.",
+      "create_favorite": "Gewünschter Favorit konnte nicht erstellt werden, prüfe ob du eingeloggt bist und versuche es erneut.",
+      "update_building": "Ausgewähltes Gebäude konnte nicht aktualisiert werden, prüfe ob du eingeloggt bist, die eingabe Werte korrekt waren und versuche es erneut.",
+      "update_room": "Ausgewählte Raum konnte nicht aktualisiert werden, prüfe ob du eingeloggt bist, die eingabe Werte korrekt waren und versuche es erneut.",
+      "update_component": "Ausgewählte komponente konnte nicht aktualisiert werden, prüfe ob du eingeloggt bist, die eingabe Werte korrekt waren und versuche es erneut.",
+      "remove_building": "Ausgewähltes Gebäude konnte nicht entfernt werden, prüfe ob du eingeloggt bist und versuche es erneut.",
+      "remove_room": "Ausgewählter Raum konnte nicht entfernt werden, prüfe ob du eingeloggt bist und versuche es erneut.",
+      "remove_component": "Ausgewählte komponente konnte nicht entfernt werden, prüfe ob du eingeloggt bist und versuche es erneut.",
+      "remove_favorite": "Ausgewählter Favorit konnte nicht entfernt werden, prüfe ob du eingeloggt bist und versuche es erneut."
     },
     "problem_connector": {
-      "list_problems": "probleme konnten nicht geladen werden, prüfe ob du eingeloggt bist neu und versuche es erneut.",
-      "list_problems_for_user": "deine probleme konnten nicht geladen werden, prüfe ob du eingeloggt bist neu und versuche es erneut.",
-      "get_problem": "problem konnte nicht geladen werden, prüfe ob du eingeloggt bist neu und versuche es erneut.",
-      "create_problem": "gewünschtes problem konnte nicht erstellt werden, prüfe ob du eingeloggt bist neu und versuche es erneut.",
-      "update_problem": "ausgewähltes problem konnte nicht aktualisiert werden, prüfe ob du eingeloggt bist neu und versuche es erneut.",
-      "remove_problem": "ausgewähltes problem konnte nicht entfernt werden, prüfe ob du eingeloggt bist neu und versuche es erneut.",
-      "change_problem_state": "der zustand des ausgewählten gebäudes konnte nicht gewechselt werden, prüfe ob du eingeloggt bist und versuche es erneut."
+      "list_problems": "Probleme konnten nicht geladen werden, prüfe ob du eingeloggt bist neu und versuche es erneut.",
+      "list_problems_for_user": "Deine Probleme konnten nicht geladen werden, prüfe ob du eingeloggt bist neu und versuche es erneut.",
+      "get_problem": "Problem konnte nicht geladen werden, prüfe ob du eingeloggt bist neu und versuche es erneut.",
+      "create_problem": "Gewünschtes Problem konnte nicht erstellt werden, prüfe ob du eingeloggt bist neu und versuche es erneut.",
+      "update_problem": "Ausgewähltes Problem konnte nicht aktualisiert werden, prüfe ob du eingeloggt bist neu und versuche es erneut.",
+      "remove_problem": "Ausgewähltes Problem konnte nicht entfernt werden, prüfe ob du eingeloggt bist neu und versuche es erneut.",
+      "change_problem_state": "Der zustand des ausgewählten Gebäudes konnte nicht gewechselt werden, prüfe ob du eingeloggt bist und versuche es erneut."
     }
   },
   "building": {
