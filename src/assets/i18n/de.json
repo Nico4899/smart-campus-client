@@ -1,63 +1,63 @@
 {
-  "dashboard" : {
-    "title" : "Wilkommen zu SmartCampus",
-    "hello" : "Hallo ",
-    "guest" : "Gast!",
-    "introduction" : "Smartcampus bietet Zugriff auf Daten zu Gebäuden am Campus des Karlsruher Instituts für Technologie.\n  Diese Daten umfassen unter anderem Barrierefreiheitsdaten, Einzelheiten zu Räumen von Interesse sowie Probleme bezüglich einzelner Elemente\n  in einem Gebäude oder auch bezüglich des gesamten Gebäudes. Probleme können von jedem angemeldeten Benutzer gemeldet werden. Ein solches Problem könnte \nbeispielsweise ein nicht funktionierender Aufzug sein.\n  Diese gemeldeten Probleme werden dann auf Richtigkeit und Dringlichkeit überprüft und dementsrpechend behoben. Den Fortschritt eines gemeldeten Problems\n  kann man dabei als angemeldeter Benutzer hier auf der Website überprüfen. Zu den bereitgestellten Services gehören:",
-    "view" : "Betrachten",
-    "add_remove" : ", Hinzufügen, Entfernen ",
-    "and" : "und ",
-    "edit" : "Bearbeiten ",
-    "of" : "von ",
-    "of_buildings" : "Gebäuden",
-    "of_rooms" : "Räumen",
-    "of_components" : "Komponenten",
-    "viewing_adding_removing_editing_admin_description" : "Als Admin können Objekte in der Datenbank\n            im User Interface hinzugefügt, bearbeitet und gelöscht werden.",
+  "dashboard": {
+    "title": "Wilkommen zu SmartCampus",
+    "hello": "Hallo ",
+    "guest": "Gast!",
+    "introduction": "Smartcampus bietet Zugriff auf Daten zu Gebäuden am Campus des Karlsruher Instituts für Technologie.\n  Diese Daten umfassen unter anderem Barrierefreiheitsdaten, Einzelheiten zu Räumen von Interesse sowie Probleme bezüglich einzelner Elemente\n  in einem Gebäude oder auch bezüglich des gesamten Gebäudes. Probleme können von jedem angemeldeten Benutzer gemeldet werden. Ein solches Problem könnte \nbeispielsweise ein nicht funktionierender Aufzug sein.\n  Diese gemeldeten Probleme werden dann auf Richtigkeit und Dringlichkeit überprüft und dementsrpechend behoben. Den Fortschritt eines gemeldeten Problems\n  kann man dabei als angemeldeter Benutzer hier auf der Website überprüfen. Zu den bereitgestellten Services gehören:",
+    "view": "Betrachten",
+    "add_remove": ", Hinzufügen, Entfernen ",
+    "and": "und ",
+    "edit": "Bearbeiten ",
+    "of": "von ",
+    "of_buildings": "Gebäuden",
+    "of_rooms": "Räumen",
+    "of_components": "Komponenten",
+    "viewing_adding_removing_editing_admin_description": "Als Admin können Objekte in der Datenbank\n            im User Interface hinzugefügt, bearbeitet und gelöscht werden.",
     "viewing_adding_removing_editing_description": "Alle zu Gebäuden zugehörige Daten können über das System gesucht (zum Beispiel über den Namen eines\n          Gebäudes) und eingesehen werden.",
-    "favor" : "Favorisieren ",
-    "of_buildings, rooms or components" : "von Gebäuden, Räumen oder Komponenten ",
-    "favor_description" : "Gebäude/Räume/Komponenten können in ihrer jeweiligen Ansicht über den Herz-Knopf zur\n          Favoritenliste des Benutzers hinzugefügt werden.",
-    "favorites" : "Favoriten ",
-    "viewing_editing_favorites_description" : "Als Benutzer kann man seine bereits favorisierten Gebäude/Räume/Komponenten einsehen und anpassen.",
-    "report" : "Melden ",
-    "of_problems_regarding_buildings_rooms_components" : "von Problem bezüglich Gebäuden, Räumen oder Komponenten ",
-    "report_problem_description" : "Probleme können von jedem angemeldeten Benutzer gemeldet werden.\n          Diese werden dann auf Richtigkeit und Dringlichkeit überprüft und dementsrpechend behoben.",
-    "your_own" : "eigenen ",
-    "all" : "allen ",
-    "already_reported" : "bereits gemeldeten ",
-    "of_problems" : "Problemen ",
-    "viewing_editing_problems_admin_description" : "Als Admin können alle von Benutzern gemeldeten Probleme eingesehen und bearbeitet\n            werden. Dabei können sowohl Titel und Beschreibung des Problems, als auch sein Status verändert werden. ",
-    "viewing_editing_problems_user_description" : "Als Benutzer kann man seine gemeldeten Probleme einsehen.",
+    "favor": "Favorisieren ",
+    "of_buildings, rooms or components": "von Gebäuden, Räumen oder Komponenten ",
+    "favor_description": "Gebäude/Räume/Komponenten können in ihrer jeweiligen Ansicht über den Herz-Knopf zur\n          Favoritenliste des Benutzers hinzugefügt werden.",
+    "favorites": "Favoriten ",
+    "viewing_editing_favorites_description": "Als Benutzer kann man seine bereits favorisierten Gebäude/Räume/Komponenten einsehen und anpassen.",
+    "report": "Melden ",
+    "of_problems_regarding_buildings_rooms_components": "von Problem bezüglich Gebäuden, Räumen oder Komponenten ",
+    "report_problem_description": "Probleme können von jedem angemeldeten Benutzer gemeldet werden.\n          Diese werden dann auf Richtigkeit und Dringlichkeit überprüft und dementsrpechend behoben.",
+    "your_own": "eigenen ",
+    "all": "allen ",
+    "already_reported": "bereits gemeldeten ",
+    "of_problems": "Problemen ",
+    "viewing_editing_problems_admin_description": "Als Admin können alle von Benutzern gemeldeten Probleme eingesehen und bearbeitet\n            werden. Dabei können sowohl Titel und Beschreibung des Problems, als auch sein Status verändert werden. ",
+    "viewing_editing_problems_user_description": "Als Benutzer kann man seine gemeldeten Probleme einsehen.",
     "viewing_editing_problems_description": "Ein Problem kann den Status \"OPEN\", \"ACCEPTED\", \"IN_PROGRESS\", \"DECLINED\" oder \"CLOSED\" haben. ",
-    "for_more_services_log_in" : "für weitere Services melde dich an... "
+    "for_more_services_log_in": "für weitere Services melde dich an... "
   },
-  "sidebar" : {
-    "dashboard" : "Übersicht",
-    "buildings" : "Gebäude",
-    "problems" : "Probleme",
-    "favorites" : "Favoriten"
+  "sidebar": {
+    "dashboard": "Übersicht",
+    "buildings": "Gebäude",
+    "problems": "Probleme",
+    "favorites": "Favoriten"
   },
-  "buildings_table" : {
-    "number" : "Nummer",
-    "address" : "Adresse",
-    "campus_location" : "Campus"
+  "buildings_table": {
+    "number": "Nummer",
+    "address": "Adresse",
+    "campus_location": "Campus"
   },
-  "rooms_table" : {
+  "rooms_table": {
     "level": "Stockwerk",
     "type": "Raum-Typ",
-    "campus_location" : "Campus",
-    "number" : "Nummer"
+    "campus_location": "Campus",
+    "number": "Nummer"
   },
   "components_table": {
-    "campus_location" : "Campus"
+    "campus_location": "Campus"
   },
-  "problems_table" : {
-    "title" : "Titel",
-    "state" : "Status",
-    "reporter" : "Reporter",
-    "created_time" : "Erstellungsdatum",
-    "modified_time" : "Zuletzt bearbeitet",
-    "actions" : "Aktionen"
+  "problems_table": {
+    "title": "Titel",
+    "state": "Status",
+    "reporter": "Reporter",
+    "created_time": "Erstellungsdatum",
+    "modified_time": "Zuletzt bearbeitet",
+    "actions": "Aktionen"
   },
   "favorites": {
     "favorite_buildings": "Gebäude",
@@ -66,8 +66,29 @@
   },
   "campus_location_pipe": {
     "east_campus": "Ost Campus",
-    "north_campus" : "Nord Campus",
-    "west_campus" : "West Campus",
-    "south_campus" : "Süd Campus"
+    "north_campus": "Nord Campus",
+    "west_campus": "West Campus",
+    "south_campus": "Süd Campus"
+  },
+  "building_details": {
+    "name": "Name",
+    "number": "Nummer",
+    "address": "Adresse",
+    "campus": "Campus",
+    "coordinates": "Koordinaten",
+    "floors": "Stockwerke",
+    "to": "bis"
+  },
+  "room_details": {
+    "name": "Name",
+    "number": "Nummer",
+    "type": "Typ",
+    "coordinates": "Koordinaten",
+    "floor": "Stockwerk"
+  },
+  "component_details": {
+    "type": "Typ",
+    "description": "Beschreibung",
+    "coordinates": "Koordinaten"
   }
 }

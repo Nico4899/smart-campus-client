@@ -8,7 +8,7 @@ import {
 })
 export class CampusLocationPipe implements PipeTransform {
 
-  transform(value: GrpcCampusLocation | string, ...args: unknown[]): unknown {
+  transform(value: GrpcCampusLocation | string, ...args: unknown[]): unknown { //TODO übersetzen
     switch (value) {
       case GrpcCampusLocation.EAST_CAMPUS: return "East Campus"
       case GrpcCampusLocation.NORTH_CAMPUS: return "North Campus"
