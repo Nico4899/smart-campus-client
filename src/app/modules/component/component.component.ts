@@ -6,13 +6,22 @@ import {
   GetComponentResponse,
   GrpcComponent
 } from "../../../proto/generated/building_management_pb";
-import {BuildingManagementConnectorService} from "../../core/connectors/building-management-connector.service";
+import {
+  BuildingManagementConnectorService
+} from "../../core/connectors/building-management-connector.service";
 import {ActivatedRoute} from "@angular/router";
 import {AuthServiceService} from 'src/app/core/authentication/auth-service.service';
-import {CreateProblemRequest, CreateProblemResponse} from 'src/proto/generated/problem_management_pb';
-import {ProblemManagementConnectorService} from 'src/app/core/connectors/problem-management-connector.service';
+import {
+  CreateProblemRequest,
+  CreateProblemResponse
+} from 'src/proto/generated/problem_management_pb';
+import {
+  ProblemManagementConnectorService
+} from 'src/app/core/connectors/problem-management-connector.service';
 import {MatDialog} from '@angular/material/dialog';
 import {AddProblemComponent} from 'src/app/shared/dialogs/add-problem/add-problem.component';
+import {TranslateService} from "@ngx-translate/core";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-component',
@@ -21,13 +30,15 @@ import {AddProblemComponent} from 'src/app/shared/dialogs/add-problem/add-proble
 })
 export class ComponentComponent implements OnInit {
 
+  translateService: TranslateService;
   // path variable
   cin: string = "";
 
   // datasource containing provided data from the api, to be displayed in the html datatables, as well as the current selected object
   component: GrpcComponent.AsObject = new GrpcComponent().toObject();
 
-  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private problemManagementConnector: ProblemManagementConnectorService, public authService: AuthServiceService, private route: ActivatedRoute, private dialog: MatDialog) {
+  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private problemManagementConnector: ProblemManagementConnectorService, public authService: AuthServiceService, private route: ActivatedRoute, private dialog: MatDialog, private snackbar: MatSnackBar, translateService: TranslateService) {
+    this.translateService = translateService;
     // inject building management client and current rout to obtain path variables
   }
 
@@ -52,13 +63,19 @@ export class ComponentComponent implements OnInit {
     request.setOwner(this.authService.eMail as string);
     request.setReferenceIdentificationNumber(this.cin);
     this.buildingManagementConnector.createFavorite(request, ComponentComponent.interpretCreateFavoriteResponse, this);
+    this.translateService.get('added_favorite').subscribe((res: string) => {
+      this.snackbar.open(res, "", {duration: 3500});
+    });
   }
 
   openCreateProblemDialog() {
-    const dialogRef = this.dialog.open(AddProblemComponent , {data: this.component.identificationNumber});
+    const dialogRef = this.dialog.open(AddProblemComponent, {data: this.component.identificationNumber});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.problemManagementConnector.createProblem(ComponentComponent.buildCreateProblemRequest(result), ComponentComponent.interpretCreateProblemResponse, this);
+        this.translateService.get('reported_problem').subscribe((res: string) => {
+          this.snackbar.open(res, "", {duration: 3500});
+        });
       } else {
         return;
       }

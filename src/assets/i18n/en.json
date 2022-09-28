@@ -361,5 +361,7 @@
   "header": {
     "login": "Sign in",
     "logout": "Sign out"
-  }
+  },
+  "added_favorite": "added to favorites",
+  "reported_problem": "successfully reported problem"
 }

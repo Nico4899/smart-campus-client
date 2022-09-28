@@ -361,5 +361,7 @@
   "header": {
     "login": "Anmelden",
     "logout": "Abmelden"
-  }
+  },
+  "added_favorite": "Zu Favoriten hinzugefügt",
+  "reported_problem": "Problem erfolgreich gemeldet"
 }
