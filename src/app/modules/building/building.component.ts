@@ -116,7 +116,7 @@ export class BuildingComponent implements OnInit {
   }
 
   openCreateProblemDialog() {
-    const dialogRef = this.dialog.open(AddProblemComponent);
+    const dialogRef = this.dialog.open(AddProblemComponent, {data: this.building.identificationNumber});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.problemManagementConnector.createProblem(BuildingComponent.buildCreateProblemRequest(result), BuildingComponent.interpretCreateProblemResponse, this);
@@ -139,7 +139,7 @@ export class BuildingComponent implements OnInit {
   private static buildCreateProblemRequest(result: any): CreateProblemRequest {
     let request = new CreateProblemRequest();
     request.setProblemTitle(result.data.problemTitle);
-    request.setProblemDescription(result.data.problelDescription);
+    request.setProblemDescription(result.data.problemDescription);
     request.setReferenceIdentificationNumber(result.data.referenceIdentificationNumber);
     request.setProblemReporter(result.data.problemReporter);
     return request;
