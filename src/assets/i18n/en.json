@@ -54,6 +54,7 @@
     "campus_location": "Campus Location"
   },
   "rooms_table": {
+    "name" : "Name",
     "category" : "Category",
     "number": "Number",
     "level": "Level",

@@ -3,8 +3,8 @@
     "buildings" : "Gebäude",
     "rooms" : "Räume",
     "components" : "Komponenten",
-    "notifications" : "Notifications",
-    "problems" : "Problems",
+    "notifications" : "Benachrichtigungen",
+    "problems" : "Problem",
     "details" : "Details",
     "search" : "Suche",
     "filter" : "Filter"
@@ -54,6 +54,7 @@
     "campus_location": "Campus"
   },
   "rooms_table": {
+    "name" : "Name",
     "category" : "Kategorie",
     "level": "Stockwerk",
     "type": "Typ",
@@ -63,19 +64,19 @@
   "components_table": {
     "type" : "Typ",
     "campus_location": "Campus",
-    "created_time": "Erstellungsdatum",
+    "created_time": "Erstellt",
     "modified_time": "Zuletzt bearbeitet"
   },
   "problems_table": {
     "title": "Titel",
     "state": "Status",
     "reporter": "Reporter",
-    "created_time": "Erstellungsdatum",
+    "created_time": "Erstellt",
     "modified_time": "Zuletzt bearbeitet",
     "actions": "Aktionen"
   },
   "notifications_table" : {
-    "created_time": "Erstellungsdatum",
+    "created_time": "Erstellt",
     "modified_time": "Zuletzt bearbeitet",
     "title": "Titel"
   },
