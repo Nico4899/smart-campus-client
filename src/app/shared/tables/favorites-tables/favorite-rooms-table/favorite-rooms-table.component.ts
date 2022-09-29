@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {
-  GrpcBuildingFilterValueSelection,
-  GrpcRoom,
+  GrpcBuildingFilterValueSelection, GrpcComponentType,
+  GrpcRoom, GrpcRoomType,
   ListFavoriteRoomsRequest,
   ListFavoriteRoomsResponse,
   RemoveFavoriteRequest
@@ -37,6 +37,14 @@ import {
 })
 export class FavoriteRoomsTableComponent implements OnInit, AfterViewInit {
 
+  // without N/A values
+  roomTypes = Object.values(GrpcRoomType).filter(e => e != 0) as GrpcRoomType[];
+  componentTypes = Object.values(GrpcComponentType).filter(e => e != 0) as GrpcComponentType[];
+
+  // selected fields for comp
+  selectedComponentTypes: { componentType: GrpcComponentType, selected: boolean }[] = [];
+  selectedRoomTypes: { roomType: GrpcRoomType, selected: boolean }[] = [];
+
   // datasource containing provided data from the api, to be displayed in the html datatables, as well as the current selected object
   dataSource: MatTableDataSource<GrpcRoom.AsObject> = new MatTableDataSource<GrpcRoom.AsObject>();
 
@@ -56,6 +64,11 @@ export class FavoriteRoomsTableComponent implements OnInit, AfterViewInit {
   constructor(private buildingManagementConnector: BuildingManagementConnectorService, private dialog: MatDialog,
               translateService: TranslateService, public authService: AuthServiceService) {
     // inject building management client and current rout to obtain path variables
+
+    // add all constants mapped to false
+    // in case it should be remembered, pass as @Inject Data
+    this.roomTypes.forEach(e => this.selectedRoomTypes.push({roomType: e, selected: false}));
+    this.componentTypes.forEach(e => this.selectedComponentTypes.push({componentType: e, selected: false}));
   }
 
   ngOnInit(): void {
@@ -74,6 +87,10 @@ export class FavoriteRoomsTableComponent implements OnInit, AfterViewInit {
   // search function
   applySearch() {
     this.dataSource.filter = this.searchKey?.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   // private callback methods for api calls
@@ -100,11 +117,18 @@ export class FavoriteRoomsTableComponent implements OnInit, AfterViewInit {
   }
 
   openFilterFavoriteRoomsDialog() {
-    const dialogRef = this.dialog.open(FilterRoomsComponent);
+    const dialogRef = this.dialog.open(FilterRoomsComponent, {
+      data: {
+        selectedComponentTypes: this.selectedComponentTypes,
+        selectedRoomTypes: this.selectedRoomTypes
+      }
+    });
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.isLoading = true;
-        this.buildingManagementConnector.listFavoriteRooms(FavoriteRoomsTableComponent.buildListFavoriteRoomsRequest(result, this.authService.eMail as string),
+        this.selectedRoomTypes = result.data.roomTypes;
+        this.selectedComponentTypes = result.data.componentTypes;
+        this.buildingManagementConnector.listFavoriteRooms(FavoriteRoomsTableComponent.buildListFavoriteRoomsRequest(result, this.authService.eMail as string, this),
           FavoriteRoomsTableComponent.interpretListFavoriteRoomsResponse, this);
       } else {
         return;
@@ -113,11 +137,13 @@ export class FavoriteRoomsTableComponent implements OnInit, AfterViewInit {
   }
 
   // private utils
-  public static buildListFavoriteRoomsRequest(result: any, email: string): ListFavoriteRoomsRequest {
+  public static buildListFavoriteRoomsRequest(result: any, email: string, self: FavoriteRoomsTableComponent): ListFavoriteRoomsRequest {
     let request = new ListFavoriteRoomsRequest();
     let selection = new GrpcBuildingFilterValueSelection();
-    selection.setGrpcComponentTypesList(result.data.componentTypes);
-    selection.setGrpcRoomTypesList(result.data.roomTypes);
+    selection.setGrpcComponentTypesList(self.selectedComponentTypes.filter(e => e.selected).map(e => e.componentType
+    ));
+    selection.setGrpcRoomTypesList(self.selectedRoomTypes.filter(e => e.selected).map(e => e.roomType
+    ));
     request.setGrpcFilterValueSelection(selection);
     request.setOwner(email);
     return request;

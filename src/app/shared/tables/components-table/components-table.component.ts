@@ -84,13 +84,17 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
   }
 
   private static interpretCreateComponentResponse(response: CreateComponentResponse, self: ComponentsTableComponent): void {
-    self.dataSource.data.push(response.getComponent()?.toObject()!);
+    let data = self.dataSource.data;
+    data.push(response.getComponent()!.toObject());
+    self.dataSource.data = data;
   }
 
 
   private static interpretUpdateComponentResponse(response: UpdateComponentResponse, self: ComponentsTableComponent): void {
     self.dataSource.data = self.dataSource.data.filter(e => e.identificationNumber != response.getComponent()?.getIdentificationNumber());
-    self.dataSource.data.push(response.getComponent()?.toObject()!);
+    let data = self.dataSource.data;
+    data.push(response.getComponent()!.toObject());
+    self.dataSource.data = data;
   }
 
   private static interpretRemoveComponentResponse(id: string, self: ComponentsTableComponent): void {

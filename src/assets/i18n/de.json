@@ -228,9 +228,9 @@
       "address_label": "Adresse",
       "address_placeholder": "z.B. Kastanienstraße 3",
       "campus_location_label": "Campus",
-      "latitude_label": "Latitude",
+      "latitude_label": "Breitengrad",
       "latitude_placeholder": "z.B. 32.2",
-      "longitude_label": "Longitude",
+      "longitude_label": "Längengrad",
       "longitude_placeholder": "z.B. 7.1",
       "highest_floor_label": "Oberste Etage",
       "highest_floor_placeholder": "z.B. 3",
@@ -243,9 +243,9 @@
       "description_label": "Beschreibung",
       "description_placeholder": "z.B. Aufzug in der alten Bibliothek",
       "component_type_label": "Komponenten Typ",
-      "latitude_label": "Latitude",
+      "latitude_label": "Breitengrad",
       "latitude_placeholder": "z.B. 32.2",
-      "longitude_label": "Longitude",
+      "longitude_label": "Längengrad",
       "longitude_placeholder": "z.B. 7.1"
     },
     "add_problem": {
@@ -266,9 +266,9 @@
       "floor_label": "Stockwerk",
       "floor_placeholder": "z.B. -1",
       "room_type_label": "Raum Typ",
-      "latitude_label": "Latitude",
+      "latitude_label": "Breitengrad",
       "latitude_placeholder": "z.B. 32.2",
-      "longitude_label": "Longitude",
+      "longitude_label": "Längengrad",
       "longitude_placeholder": "z.B. 7.1"
     },
     "edit_building": {
@@ -281,9 +281,9 @@
       "address_label": "Adresse",
       "address_placeholder": "z.B. Kastanienstraße 3",
       "campus_location_label": "Campus",
-      "latitude_label": "Latitude",
+      "latitude_label": "Breitengrad",
       "latitude_placeholder": "z.B. 32.2",
-      "longitude_label": "Longitude",
+      "longitude_label": "Längengrad",
       "longitude_placeholder": "z.B. 7.1",
       "highest_floor_label": "Oberste Etage",
       "highest_floor_placeholder": "z.B. 3",
@@ -296,9 +296,9 @@
       "description_label": "Beschreibung",
       "description_placeholder": "z.B. Aufzug in der alten Bibliothek",
       "component_type_label": "Komponenten Typ",
-      "latitude_label": "Latitude",
+      "latitude_label": "Breitengrad",
       "latitude_placeholder": "z.B. 32.2",
-      "longitude_label": "Longitude",
+      "longitude_label": "Längengrad",
       "longitude_placeholder": "z.B. 7.1"
     },
     "edit_problem": {
@@ -319,9 +319,9 @@
       "floor_label": "Stockwerk",
       "floor_placeholder": "z.B. -1",
       "room_type_label": "Raum Typ",
-      "latitude_label": "Latitude",
+      "latitude_label": "Breitengrad",
       "latitude_placeholder": "z.B. 32.2",
-      "longitude_label": "Longitude",
+      "longitude_label": "Längengrad",
       "longitude_placeholder": "z.B. 7.1"
     },
     "delete": {

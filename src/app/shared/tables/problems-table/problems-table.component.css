@@ -8,12 +8,12 @@ table {
 }
 
 .mat-column-problemState {
-  width: 15%;
+  width: 10%;
   padding-left: 16px;
 }
 
 .mat-column-problemReporter {
-  width: 20%;
+  width: 15%;
   padding-left: 16px;
 }
 
@@ -30,6 +30,10 @@ table {
 .mat-column-lastModified {
   width: 15%;
   padding-left: 16px;
+}
+
+.mat-column-edit_problem , .mat-column-delete_problem{
+  width: 0;
 }
 
 td, th {

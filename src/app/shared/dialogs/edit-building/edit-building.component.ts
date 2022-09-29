@@ -35,6 +35,7 @@ export class EditBuildingComponent {
     this.identificationNumber = data.identificationNumber;
     this.longitude = this.data.grpcGeographicalLocation?.longitude!;
     this.latitude = this.data.grpcGeographicalLocation?.latitude!;
+    this.address = this.data.buildingAddress;
   }
 
   ok() {

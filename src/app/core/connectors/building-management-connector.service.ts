@@ -74,6 +74,7 @@ export class BuildingManagementConnectorService {
   }
 
   async listBuildings(request: ListBuildingsRequest, callback: (response: ListBuildingsResponse, self: BuildingsTableComponent) => void, self: BuildingsTableComponent) {
+   console.log(request);
     this.client.listBuildings(request, {}, (error: RpcError, response: ListBuildingsResponse) => {
       if (error) {
         let result = "";

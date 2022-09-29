@@ -1,30 +1,27 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
 import {
   CreateBuildingRequest,
   CreateBuildingResponse,
-  CreateFavoriteRequest,
-  CreateFavoriteResponse,
   GrpcBuilding,
   GrpcBuildingFilterValueSelection,
+  GrpcCampusLocation,
+  GrpcComponentType,
   GrpcFloors,
   GrpcGeographicalLocation,
+  GrpcRoomType,
   ListBuildingsRequest,
   ListBuildingsResponse,
   RemoveRequest,
   UpdateBuildingRequest,
   UpdateBuildingResponse
 } from "../../../../proto/generated/building_management_pb";
-
-import {CreateProblemRequest, CreateProblemResponse} from "../../../../proto/generated/problem_management_pb"
 import {BuildingManagementConnectorService} from "../../../core/connectors/building-management-connector.service";
 import {ProblemManagementConnectorService} from "../../../core/connectors/problem-management-connector.service"
 
 import {MatDialog} from "@angular/material/dialog";
-
-import {AddProblemComponent} from '../../dialogs/add-problem/add-problem.component'
 import {AddBuildingComponent} from "../../dialogs/add-building/add-building.component";
 import {EditBuildingComponent} from "../../dialogs/edit-building/edit-building.component";
 import {FilterBuildingsComponent} from "../../dialogs/filter-buildings/filter-buildings.component";
@@ -38,6 +35,17 @@ import {AuthServiceService} from "../../../core/authentication/auth-service.serv
   styleUrls: ['./buildings-table.component.css']
 })
 export class BuildingsTableComponent implements OnInit {
+
+  //filter values
+  // without N/A values
+  campusLocations = Object.values(GrpcCampusLocation).filter(e => e != 0) as GrpcCampusLocation[];
+  roomTypes = Object.values(GrpcRoomType).filter(e => e != 0) as GrpcRoomType[];
+  componentTypes = Object.values(GrpcComponentType).filter(e => e != 0) as GrpcComponentType[];
+
+  // selected fields for comp
+  selectedComponentTypes: { componentType: GrpcComponentType, selected: boolean }[] = [];
+  selectedRoomTypes: { roomType: GrpcRoomType, selected: boolean }[] = [];
+  selectedCampusLocations: { campusLocation: GrpcCampusLocation, selected: boolean }[] = [];
 
   // datasource containing provided data from the api, to be displayed in the html datatables, as well as the current selected object
   dataSource: MatTableDataSource<GrpcBuilding.AsObject> = new MatTableDataSource<GrpcBuilding.AsObject>();
@@ -56,14 +64,17 @@ export class BuildingsTableComponent implements OnInit {
   // columns to be displayed
   columnsToDisplay: string[] = ['buildingNumber', 'buildingName', 'address', 'campusLocation', 'edit_building', 'delete_building'];
 
-  // favorite list to compare list to
-  favoriteBuildingList!: GrpcBuilding.AsObject[];
-
-
-  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private problemManagementConnector: ProblemManagementConnectorService, private dialog: MatDialog,
+  constructor(public changeDetectorRefs: ChangeDetectorRef, private buildingManagementConnector: BuildingManagementConnectorService, private problemManagementConnector: ProblemManagementConnectorService, private dialog: MatDialog,
               translateService: TranslateService, public authService: AuthServiceService) {
     // inject building management client and current rout to obtain path variables
     this.translateService = translateService;
+
+    // add all constants mapped to false
+    // in case it should be remembered, pass as @Inject Data
+    this.campusLocations.forEach(e => this.selectedCampusLocations.push({campusLocation: e, selected: false}));
+    this.roomTypes.forEach(e => this.selectedRoomTypes.push({roomType: e, selected: false}));
+    this.componentTypes.forEach(e => this.selectedComponentTypes.push({componentType: e, selected: false}));
+
   }
 
   ngOnInit(): void {
@@ -83,27 +94,30 @@ export class BuildingsTableComponent implements OnInit {
   // search function
   applySearch() {
     this.dataSource.filter = this.searchKey?.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
 
   // private callback methods for api calls
-
-  private static interpretCreateProblemResponse(response: CreateProblemResponse, self: any): void {
-    return;
-  }
-
   private static interpretListBuildingsResponse(response: ListBuildingsResponse, self: BuildingsTableComponent): void {
     self.dataSource.data = response.toObject().buildingsList;
     self.isLoading = false;
   }
 
   private static interpretCreateBuildingResponse(response: CreateBuildingResponse, self: BuildingsTableComponent): void {
-    self.dataSource.data.push(response.getBuilding()?.toObject()!);
+    let data = self.dataSource.data;
+    data.push(response.getBuilding()!.toObject());
+    self.dataSource.data = data;
   }
 
   private static interpretUpdateBuildingResponse(response: UpdateBuildingResponse, self: BuildingsTableComponent): void {
     self.dataSource.data = self.dataSource.data.filter(e => e.identificationNumber != response.getBuilding()?.getIdentificationNumber());
-    self.dataSource.data.push(response.getBuilding()?.toObject()!);
+    let data = self.dataSource.data;
+    data.push(response.getBuilding()!.toObject());
+    self.dataSource.data = data;
   }
 
   private static interpretRemoveBuildingResponse(id: string, self: BuildingsTableComponent): void {
@@ -145,11 +159,20 @@ export class BuildingsTableComponent implements OnInit {
   }
 
   openFilterBuildingsDialog() {
-    const dialogRef = this.dialog.open(FilterBuildingsComponent);
+    const dialogRef = this.dialog.open(FilterBuildingsComponent, {
+      data: {
+        selectedComponentTypes: this.selectedComponentTypes,
+        selectedRoomTypes: this.selectedRoomTypes,
+        selectedCampusLocations: this.selectedCampusLocations
+      }
+    });
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.isLoading = true;
-        this.buildingManagementConnector.listBuildings(BuildingsTableComponent.buildListBuildingsRequest(result), BuildingsTableComponent.interpretListBuildingsResponse, this);
+        this.selectedRoomTypes = result.data.roomTypes;
+        this.selectedComponentTypes = result.data.componentTypes;
+        this.selectedCampusLocations = result.data.campusLocations;
+        this.buildingManagementConnector.listBuildings(BuildingsTableComponent.buildListBuildingsRequest(result, this), BuildingsTableComponent.interpretListBuildingsResponse, this);
       } else {
         return;
       }
@@ -157,12 +180,12 @@ export class BuildingsTableComponent implements OnInit {
   }
 
   // private utils
-  public static buildListBuildingsRequest(result: any): ListBuildingsRequest {
+  public static buildListBuildingsRequest(result: any, self: BuildingsTableComponent): ListBuildingsRequest {
     let request = new ListBuildingsRequest();
     let selection = new GrpcBuildingFilterValueSelection();
-    selection.setGrpcComponentTypesList(result.data.componentTypes);
-    selection.setGrpcRoomTypesList(result.data.roomTypes);
-    selection.setGrpcCampusLocationsList(result.data.campusLocations);
+    selection.setGrpcComponentTypesList(self.selectedComponentTypes.filter(e => e.selected).map(e => e.componentType));
+    selection.setGrpcRoomTypesList(self.selectedRoomTypes.filter(e => e.selected).map(e => e.roomType));
+    selection.setGrpcCampusLocationsList(self.selectedCampusLocations.filter(e => e.selected).map(e => e.campusLocation));
     request.setGrpcFilterValueSelection(selection);
     return request;
   }

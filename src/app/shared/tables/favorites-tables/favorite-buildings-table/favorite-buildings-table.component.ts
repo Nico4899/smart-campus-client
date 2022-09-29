@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {
   GrpcBuilding,
-  GrpcBuildingFilterValueSelection,
+  GrpcBuildingFilterValueSelection, GrpcCampusLocation, GrpcComponentType, GrpcRoomType,
   ListFavoriteBuildingsRequest,
   ListFavoriteBuildingsResponse,
   RemoveFavoriteRequest
@@ -37,6 +37,17 @@ import {
 })
 export class FavoriteBuildingsTableComponent implements OnInit, AfterViewInit {
 
+  //filter values
+  // without N/A values
+  campusLocations = Object.values(GrpcCampusLocation).filter(e => e != 0) as GrpcCampusLocation[];
+  roomTypes = Object.values(GrpcRoomType).filter(e => e != 0) as GrpcRoomType[];
+  componentTypes = Object.values(GrpcComponentType).filter(e => e != 0) as GrpcComponentType[];
+
+  // selected fields for comp
+  selectedComponentTypes: { componentType: GrpcComponentType, selected: boolean }[] = [];
+  selectedRoomTypes: { roomType: GrpcRoomType, selected: boolean }[] = [];
+  selectedCampusLocations: { campusLocation: GrpcCampusLocation, selected: boolean }[] = [];
+
   // datasource containing provided data from the api, to be displayed in the html datatables, as well as the current selected object
   dataSource: MatTableDataSource<GrpcBuilding.AsObject> = new MatTableDataSource<GrpcBuilding.AsObject>();
 
@@ -56,6 +67,12 @@ export class FavoriteBuildingsTableComponent implements OnInit, AfterViewInit {
   constructor(private buildingManagementConnector: BuildingManagementConnectorService, private dialog: MatDialog,
               translateService: TranslateService, public authService: AuthServiceService) {
     // inject building management client and current rout to obtain path variables
+
+    // add all constants mapped to false
+    // in case it should be remembered, pass as @Inject Data
+    this.campusLocations.forEach(e => this.selectedCampusLocations.push({campusLocation: e, selected: false}));
+    this.roomTypes.forEach(e => this.selectedRoomTypes.push({roomType: e, selected: false}));
+    this.componentTypes.forEach(e => this.selectedComponentTypes.push({componentType: e, selected: false}));
   }
 
   ngOnInit(): void {
@@ -74,6 +91,10 @@ export class FavoriteBuildingsTableComponent implements OnInit, AfterViewInit {
   // search function
   applySearch() {
     this.dataSource.filter = this.searchKey?.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   // private callback methods for api calls
@@ -100,11 +121,20 @@ export class FavoriteBuildingsTableComponent implements OnInit, AfterViewInit {
   }
 
   openFilterFavoriteBuildingsDialog() {
-    const dialogRef = this.dialog.open(FilterBuildingsComponent);
+    const dialogRef = this.dialog.open(FilterBuildingsComponent, {
+      data: {
+        selectedComponentTypes: this.selectedComponentTypes,
+        selectedRoomTypes: this.selectedRoomTypes,
+        selectedCampusLocations: this.selectedCampusLocations
+      }
+    });
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.isLoading = true;
-        this.buildingManagementConnector.listFavoriteBuildings(FavoriteBuildingsTableComponent.buildListFavoriteBuildingsRequest(result, this.authService.eMail as string),
+        this.selectedRoomTypes = result.data.roomTypes;
+        this.selectedComponentTypes = result.data.componentTypes;
+        this.selectedCampusLocations = result.data.campusLocations;
+        this.buildingManagementConnector.listFavoriteBuildings(FavoriteBuildingsTableComponent.buildListFavoriteBuildingsRequest(result, this.authService.eMail as string, this),
           FavoriteBuildingsTableComponent.interpretListFavoriteBuildingsResponse, this);
       } else {
         return;
@@ -113,12 +143,12 @@ export class FavoriteBuildingsTableComponent implements OnInit, AfterViewInit {
   }
 
   // private utils
-  public static buildListFavoriteBuildingsRequest(result: any, email: string): ListFavoriteBuildingsRequest {
+  public static buildListFavoriteBuildingsRequest(result: any, email: string, self: FavoriteBuildingsTableComponent): ListFavoriteBuildingsRequest {
     let request = new ListFavoriteBuildingsRequest();
     let selection = new GrpcBuildingFilterValueSelection();
-    selection.setGrpcComponentTypesList(result.data.componentTypes);
-    selection.setGrpcRoomTypesList(result.data.roomTypes);
-    selection.setGrpcCampusLocationsList(result.data.campusLocations);
+    selection.setGrpcComponentTypesList(self.selectedComponentTypes.filter(e => e.selected).map(e => e.componentType));
+    selection.setGrpcRoomTypesList(self.selectedRoomTypes.filter(e => e.selected).map(e => e.roomType));
+    selection.setGrpcCampusLocationsList(self.selectedCampusLocations.filter(e => e.selected).map(e => e.campusLocation));
     request.setGrpcFilterValueSelection(selection);
     request.setOwner(email);
     return request;

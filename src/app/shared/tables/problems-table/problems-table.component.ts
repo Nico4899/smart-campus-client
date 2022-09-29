@@ -100,7 +100,9 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
 
   private static interpretUpdateProblemResponse(response: UpdateProblemResponse, self: ProblemsTableComponent): void {
     self.dataSource.data = self.dataSource.data.filter(e => e.identificationNumber != response.getProblem()?.getIdentificationNumber());
-    self.dataSource.data.push(response.getProblem()?.toObject()!);
+    let data = self.dataSource.data;
+    data.push(response.getProblem()!.toObject());
+    self.dataSource.data = data;
   }
 
   private static interpretRemoveProblemResponse(id: string, self: ProblemsTableComponent): void {
@@ -170,7 +172,7 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
   private static buildListProblemsRequest(result: any): ListProblemsRequest {
     let request = new ListProblemsRequest();
     let selection = new GrpcFilterValueSelection();
-    selection.setStatesList(result.data.states);
+    selection.setStatesList(result.data.problemStates);
     request.setGrpcFilterValueSelection(selection);
     return request;
   }
@@ -178,7 +180,7 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
   private static buildListProblemsForUserRequest(result: any, email: string): ListProblemsForUserRequest {
     let request = new ListProblemsForUserRequest();
     let selection = new GrpcFilterValueSelection();
-    selection.setStatesList(result.data.states);
+    selection.setStatesList(result.data.problemStates);
     request.setGrpcFilterValueSelection(selection);
     request.setReporter(email);
     return request;
