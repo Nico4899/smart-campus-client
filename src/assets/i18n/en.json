@@ -95,7 +95,18 @@
   },
   "component_type_pipe": {
     "elevator": "Elevator",
-    "stairs": "Stairs"
+    "stairs": "Stairs",
+    "door": "Door",
+    "ramp": "Ramp",
+    "chair": "Chair",
+    "lamp": "Lamp",
+    "window": "Window",
+    "canvas": "Canvas",
+    "whiteboard": "Whiteboard",
+    "beamer": "Beamer",
+    "power_outlet": "Power Outlet",
+    "sink": "Sink",
+    "heater": "Heater"
   },
   "problem_state_pipe": {
     "accepted": "Accepted",
@@ -119,7 +130,8 @@
     "restroom": "Restroom",
     "restroom_handicapped": "Restroom Handicapped",
     "seminar_room": "Seminar Room",
-    "sports": "Sports Room"
+    "sports": "Sports Room",
+    "laboratory" : "Laboratory"
   },
   "building_details": {
     "name": "Name",

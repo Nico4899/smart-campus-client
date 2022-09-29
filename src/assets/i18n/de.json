@@ -95,7 +95,18 @@
   },
   "component_type_pipe": {
     "elevator" : "Aufzug",
-    "stairs" : "Treppen"
+    "stairs" : "Treppen",
+    "door": "Tür",
+    "ramp": "Rampe",
+    "chair": "Stuhl",
+    "lamp": "Lampe",
+    "window": "Fenster",
+    "canvas": "Leinwand",
+    "whiteboard": "Whiteboard",
+    "beamer": "Beamer",
+    "power_outlet": "Steckdose",
+    "sink": "Waschbecken",
+    "heater": "Heizung"
   },
   "problem_state_pipe": {
     "accepted" : "Akzeptiert",
@@ -119,7 +130,8 @@
     "restroom" : "Toilette",
     "restroom_handicapped" : "Behinderten Toilette",
     "seminar_room" : "Seminarraum",
-    "sports" : "Sportraum"
+    "sports" : "Sportraum",
+    "laboratory" : "Labor"
   },
   "building_details": {
     "name": "Name",
