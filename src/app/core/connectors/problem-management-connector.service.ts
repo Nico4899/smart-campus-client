@@ -77,6 +77,9 @@ export class ProblemManagementConnectorService {
         this.translateService.get("errors.problem_connector.create_problem").subscribe((r: string) => result = r);
         this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
+        this.translateService.get('reported_problem').subscribe((res: string) => {
+          this.snackbar.open(res, "", {duration: 3500});
+        });
         callback(response, self);
       }
     })

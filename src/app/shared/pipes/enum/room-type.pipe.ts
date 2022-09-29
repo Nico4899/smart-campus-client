@@ -40,6 +40,9 @@ export class RoomTypePipe implements PipeTransform {
       case GrpcRoomType.SPORTS:
         key = 'room_type_pipe.sports'
         break
+      case GrpcRoomType.LABORATORY:
+        key = 'room_type_pipe.laboratory'
+        break
     }
 
     let result;
