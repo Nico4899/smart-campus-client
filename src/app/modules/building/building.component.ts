@@ -20,6 +20,8 @@ import {
   CreateProblemResponse
 } from 'src/proto/generated/problem_management_pb';
 import {AddProblemComponent} from 'src/app/shared/dialogs/add-problem/add-problem.component';
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -28,6 +30,8 @@ import {AddProblemComponent} from 'src/app/shared/dialogs/add-problem/add-proble
   styleUrls: ['./building.component.css']
 })
 export class BuildingComponent implements OnInit {
+
+  translateService: TranslateService;
 
   // map variables
   zoom = 15;
@@ -68,8 +72,9 @@ export class BuildingComponent implements OnInit {
   // main object
   building: GrpcBuilding.AsObject = new GrpcBuilding().toObject();
 
-  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private problemManagementConnector: ProblemManagementConnectorService, public authService: AuthServiceService, private route: ActivatedRoute, private dialog: MatDialog) {
+  constructor(private buildingManagementConnector: BuildingManagementConnectorService, private problemManagementConnector: ProblemManagementConnectorService, public authService: AuthServiceService, private route: ActivatedRoute, private dialog: MatDialog, private snackbar: MatSnackBar, translateService: TranslateService) {
     // inject building management client and current rout to obtain path variables
+    this.translateService = translateService;
   }
 
   ngOnInit(): void {
@@ -113,6 +118,9 @@ export class BuildingComponent implements OnInit {
     request.setOwner(this.authService.eMail as string);
     request.setReferenceIdentificationNumber(this.bin);
     this.buildingManagementConnector.createFavorite(request, BuildingComponent.interpretCreateFavoriteResponse, this);
+    this.translateService.get('added_favorite').subscribe((res: string) => {
+      this.snackbar.open(res, "", {duration: 3500});
+    });
   }
 
   openCreateProblemDialog() {
@@ -120,6 +128,9 @@ export class BuildingComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.problemManagementConnector.createProblem(BuildingComponent.buildCreateProblemRequest(result), BuildingComponent.interpretCreateProblemResponse, this);
+        this.translateService.get('reported_problem').subscribe((res: string) => {
+          this.snackbar.open(res, "", {duration: 3500});
+        });
       } else {
         return;
       }
