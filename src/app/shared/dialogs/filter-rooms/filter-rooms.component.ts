@@ -13,6 +13,9 @@ export class FilterRoomsComponent {
   selectedComponentTypes: { componentType: GrpcComponentType, selected: boolean }[] = [];
   selectedRoomTypes: { roomType: GrpcRoomType, selected: boolean }[] = [];
 
+  allRTComplete: boolean = true;
+  allCTComplete: boolean = true;
+
   constructor(public dialogRef: MatDialogRef<FilterRoomsComponent>, @Inject(MAT_DIALOG_DATA) public data: {
     selectedComponentTypes: { componentType: GrpcComponentType, selected: boolean }[],
     selectedRoomTypes: { roomType: GrpcRoomType, selected: boolean }[];
@@ -36,5 +39,57 @@ export class FilterRoomsComponent {
 
   cancel() {
     this.dialogRef.close({event: 'cancel'});
+  }
+
+  updateAllComplete(selection: string) {
+    switch (selection) {
+      case 'rt': {
+        this.allRTComplete = this.selectedRoomTypes != null && this.selectedRoomTypes.every(e => e.selected);
+        break;
+      }
+      case 'ct': {
+        this.allCTComplete = this.selectedComponentTypes != null && this.selectedComponentTypes.every(e => e.selected);
+        break;
+      }
+    }
+  }
+
+  someComplete(selection: string): boolean {
+    switch (selection) {
+      case 'rt': {
+        if (this.selectedRoomTypes == null) {
+          return false;
+        }
+        return this.selectedRoomTypes.filter(e => e.selected).length > 0 && !this.allRTComplete;
+      }
+      case 'ct': {
+        if (this.selectedComponentTypes == null) {
+          return false;
+        }
+        return this.selectedComponentTypes.filter(e => e.selected).length > 0 && !this.allCTComplete;
+      }
+    }
+    return false;
+  }
+
+  setAll(completed: boolean, selection: string) {
+    switch (selection) {
+      case 'rt': {
+        this.allRTComplete = completed;
+        if (this.selectedRoomTypes == null) {
+          return;
+        }
+        this.selectedRoomTypes.forEach(t => (t.selected = completed));
+        break;
+      }
+      case 'ct': {
+        this.allCTComplete = completed;
+        if (this.selectedComponentTypes == null) {
+          return;
+        }
+        this.selectedComponentTypes.forEach(t => (t.selected = completed));
+        break;
+      }
+    }
   }
 }

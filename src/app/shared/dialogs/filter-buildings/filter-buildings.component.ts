@@ -14,6 +14,10 @@ export class FilterBuildingsComponent {
   selectedRoomTypes: { roomType: GrpcRoomType, selected: boolean }[] = [];
   selectedCampusLocations: { campusLocation: GrpcCampusLocation, selected: boolean }[] = [];
 
+  allCLComplete: boolean = true;
+  allRTComplete: boolean = true;
+  allCTComplete: boolean = true;
+
   constructor(public dialogRef: MatDialogRef<FilterBuildingsComponent>, @Inject(MAT_DIALOG_DATA) public data: {
     selectedComponentTypes: { componentType: GrpcComponentType, selected: boolean }[],
     selectedRoomTypes: { roomType: GrpcRoomType, selected: boolean }[],
@@ -39,5 +43,75 @@ export class FilterBuildingsComponent {
 
   cancel() {
     this.dialogRef.close({event: 'cancel'});
+  }
+
+  updateAllComplete(selection: string) {
+    switch (selection) {
+      case 'cl': {
+        this.allCLComplete = this.selectedCampusLocations != null && this.selectedCampusLocations.every(e => e.selected);
+        break;
+      }
+      case 'rt': {
+        this.allRTComplete = this.selectedRoomTypes != null && this.selectedRoomTypes.every(e => e.selected);
+        break;
+      }
+      case 'ct': {
+        this.allCTComplete = this.selectedComponentTypes != null && this.selectedComponentTypes.every(e => e.selected);
+        break;
+      }
+    }
+  }
+
+  someComplete(selection: string): boolean {
+    switch (selection) {
+      case 'cl': {
+        if (this.selectedCampusLocations == null) {
+          return false;
+        }
+        return this.selectedCampusLocations.filter(e => e.selected).length > 0 && !this.allCLComplete;
+      }
+      case 'rt': {
+        if (this.selectedRoomTypes == null) {
+          return false;
+        }
+        return this.selectedRoomTypes.filter(e => e.selected).length > 0 && !this.allRTComplete;
+      }
+      case 'ct': {
+        if (this.selectedComponentTypes == null) {
+          return false;
+        }
+        return this.selectedComponentTypes.filter(e => e.selected).length > 0 && !this.allCTComplete;
+      }
+    }
+    return false;
+  }
+
+  setAll(completed: boolean, selection: string) {
+    switch (selection) {
+      case 'cl': {
+        this.allCLComplete = completed;
+        if (this.selectedCampusLocations == null) {
+          return;
+        }
+        this.selectedCampusLocations.forEach(t => (t.selected = completed));
+        break;
+      }
+      case 'rt': {
+        this.allRTComplete = completed;
+        if (this.selectedRoomTypes == null) {
+          return;
+        }
+        this.selectedRoomTypes.forEach(t => (t.selected = completed));
+        break;
+      }
+      case 'ct': {
+        this.allCTComplete = completed;
+        if (this.selectedComponentTypes == null) {
+          return;
+        }
+        this.selectedComponentTypes.forEach(t => (t.selected = completed));
+        break;
+      }
+    }
   }
 }

@@ -71,9 +71,9 @@ export class BuildingsTableComponent implements OnInit {
 
     // add all constants mapped to false
     // in case it should be remembered, pass as @Inject Data
-    this.campusLocations.forEach(e => this.selectedCampusLocations.push({campusLocation: e, selected: false}));
-    this.roomTypes.forEach(e => this.selectedRoomTypes.push({roomType: e, selected: false}));
-    this.componentTypes.forEach(e => this.selectedComponentTypes.push({componentType: e, selected: false}));
+    this.campusLocations.forEach(e => this.selectedCampusLocations.push({campusLocation: e, selected: true}));
+    this.roomTypes.forEach(e => this.selectedRoomTypes.push({roomType: e, selected: true}));
+    this.componentTypes.forEach(e => this.selectedComponentTypes.push({componentType: e, selected: true}));
 
   }
 
@@ -164,7 +164,7 @@ export class BuildingsTableComponent implements OnInit {
         selectedComponentTypes: this.selectedComponentTypes,
         selectedRoomTypes: this.selectedRoomTypes,
         selectedCampusLocations: this.selectedCampusLocations
-      }, width: '445px'
+      }, width: '650px'
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {

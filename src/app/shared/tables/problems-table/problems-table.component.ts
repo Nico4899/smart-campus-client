@@ -55,7 +55,7 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
 
   constructor(private problemManagementConnector: ProblemManagementConnectorService, private dialog: MatDialog,
               private translateService: TranslateService, public authService: AuthServiceService) {
-    this.problemState.forEach(e => this.selectedStates.push({state: e, selected: false}));
+    this.problemState.forEach(e => this.selectedStates.push({state: e, selected: true}));
   }
 
   ngOnInit() {
@@ -146,7 +146,7 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
   }
 
   openFilterProblemsDialog() {
-    const dialogRef = this.dialog.open(FilterProblemsComponent, {data: {selectedStates: this.selectedStates}, width: '445px'});
+    const dialogRef = this.dialog.open(FilterProblemsComponent, {data: {selectedStates: this.selectedStates}, width: '320px'});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         if (this.authService.isAdmin()) {

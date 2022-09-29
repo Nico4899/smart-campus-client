@@ -13,6 +13,8 @@ export class FilterProblemsComponent {
 
   selectedStates: { state: GrpcProblemState, selected: boolean } [] = [];
 
+  allPSComplete: boolean = true;
+
   constructor(public dialogRef: MatDialogRef<FilterProblemsComponent>, @Inject(MAT_DIALOG_DATA) public data: {
     selectedStates: { state: GrpcProblemState, selected: boolean }[];
   }) {
@@ -31,5 +33,39 @@ export class FilterProblemsComponent {
 
   cancel() {
     this.dialogRef.close({event: 'cancel'});
+  }
+
+  updateAllComplete(selection: string) {
+    switch (selection) {
+      case 'ps': {
+        this.allPSComplete = this.selectedStates != null && this.selectedStates.every(e => e.selected);
+        break;
+      }
+    }
+  }
+
+  someComplete(selection: string): boolean {
+    switch (selection) {
+      case 'ps': {
+        if (this.selectedStates == null) {
+          return false;
+        }
+        return this.selectedStates.filter(e => e.selected).length > 0 && !this.allPSComplete;
+      }
+    }
+    return false;
+  }
+
+  setAll(completed: boolean, selection: string) {
+    switch (selection) {
+      case 'ps': {
+        this.allPSComplete = completed;
+        if (this.selectedStates == null) {
+          return;
+        }
+        this.selectedStates.forEach(t => (t.selected = completed));
+        break;
+      }
+    }
   }
 }

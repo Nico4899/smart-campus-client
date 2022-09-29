@@ -4,25 +4,54 @@
 <mat-dialog-content>
   <div class="filter-selections">
 
-    <div class="room-type-selection">
-      <h2>{{'dialogs.filter_rooms.room_types_label' | translate}}</h2>
-      <ul>
-        <li *ngFor="let roomType of selectedRoomTypes">
-          <mat-checkbox [(ngModel)]="roomType.selected"> {{roomType.roomType | roomType}} </mat-checkbox>
-        </li>
-      </ul>
-    </div>
+    <span class="room-type-selection">
+      <span class="room-types">
+        <mat-checkbox class="first-entry"
+                      [checked]="allRTComplete"
+                      [color]="'primary'"
+                      [indeterminate]="someComplete('rt')"
+                      (change)="setAll($event.checked, 'rt')">
+    {{'dialogs.filter_buildings.room_types_label' | translate}}
+        </mat-checkbox>
+      </span>
+      <span class="room-types">
+        <ul>
+          <li *ngFor="let roomType of selectedRoomTypes">
+            <mat-checkbox
+              [(ngModel)]="roomType.selected"
+              [color]="'accent'"
+              (ngModelChange)="updateAllComplete('rt')">
+              {{roomType.roomType | roomType}}
+            </mat-checkbox>
+          </li>
+        </ul>
+      </span>
+    </span>
 
-    <div class="component-type-selection">
-      <h2>{{'dialogs.filter_rooms.component_types_label' | translate}}</h2>
-      <ul>
-        <li *ngFor="let componentType of selectedComponentTypes">
-          <mat-checkbox [(ngModel)]="componentType.selected"> {{componentType.componentType | componentType}} </mat-checkbox>
-        </li>
-      </ul>
-    </div>
+    <span class="component-type-selection">
+      <span class="component-types">
+        <mat-checkbox class="first-entry"
+                      [checked]="allCTComplete"
+                      [color]="'primary'"
+                      [indeterminate]="someComplete('ct')"
+                      (change)="setAll($event.checked, 'ct')">
+    {{'dialogs.filter_buildings.component_types_label' | translate}}
+        </mat-checkbox>
+      </span>
+      <span class="room-types">
+        <ul>
+          <li *ngFor="let componentType of selectedComponentTypes">
+            <mat-checkbox
+              [(ngModel)]="componentType.selected"
+              [color]="'accent'"
+              (ngModelChange)="updateAllComplete('ct')">
+              {{componentType.componentType | componentType}}
+            </mat-checkbox>
+          </li>
+        </ul>
+      </span>
+    </span>
   </div>
-
 </mat-dialog-content>
 
 <div mat-dialog-actions>
