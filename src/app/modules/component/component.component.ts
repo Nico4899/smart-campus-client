@@ -79,6 +79,7 @@ export class ComponentComponent implements OnInit {
     let request = new CreateFavoriteRequest();
     request.setOwner(this.authService.eMail as string);
     request.setReferenceIdentificationNumber(this.cin);
+    this.isFavorite = true;
     this.buildingManagementConnector.createFavorite(request, ComponentComponent.interpretCreateFavoriteResponse, this);
     this.translateService.get('added_favorite').subscribe((res: string) => {
       this.snackbar.open(res, "", {duration: 3500});
@@ -105,13 +106,6 @@ export class ComponentComponent implements OnInit {
     this.translateService.get('remove_favorite').subscribe((res: string) => {
       this.snackbar.open(res, "", {duration: 3500});
     });
-  }
-
-  private static buildRemoveRequest(result: any, email: string): RemoveFavoriteRequest {
-    let request = new RemoveFavoriteRequest();
-    request.setIdentificationNumber(result.data.identificationNumber);
-    request.setOwner(email);
-    return request;
   }
 
   private static interpretRemoveFavoriteResponse(id: string, self: FavoriteBuildingsTableComponent | FavoriteComponentsTableComponent | FavoriteRoomsTableComponent | BuildingComponent | RoomComponent | ComponentComponent): void {

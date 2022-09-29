@@ -31,7 +31,7 @@ export class AddProblemComponent {
         problemTitle: this.problemTitle,
         problemDescription: this.problemDescription,
         referenceIdentificationNumber: this.referenceIdentificationNumber,
-        problemReporter: this.authService.name
+        problemReporter: this.authService.eMail
       }
     })
   }
