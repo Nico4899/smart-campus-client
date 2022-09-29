@@ -73,9 +73,6 @@ export class ComponentComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.problemManagementConnector.createProblem(ComponentComponent.buildCreateProblemRequest(result), ComponentComponent.interpretCreateProblemResponse, this);
-        this.translateService.get('reported_problem').subscribe((res: string) => {
-          this.snackbar.open(res, "", {duration: 3500});
-        });
       } else {
         return;
       }

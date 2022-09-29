@@ -69,9 +69,6 @@ export class RoomComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.problemManagementConnector.createProblem(RoomComponent.buildCreateProblemRequest(result), RoomComponent.interpretCreateProblemResponse, this);
-        this.translateService.get('reported_problem').subscribe((res: string) => {
-          this.snackbar.open(res, "", {duration: 3500});
-        });
       } else {
         return;
       }
