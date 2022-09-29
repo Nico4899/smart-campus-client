@@ -13,7 +13,7 @@ export class FilterProblemsComponent {
 
   selectedStates: { state: GrpcProblemState, selected: boolean } [] = [];
 
-  allPSComplete: boolean = true;
+  allPSComplete: boolean = false;
 
   constructor(public dialogRef: MatDialogRef<FilterProblemsComponent>, @Inject(MAT_DIALOG_DATA) public data: {
     selectedStates: { state: GrpcProblemState, selected: boolean }[];

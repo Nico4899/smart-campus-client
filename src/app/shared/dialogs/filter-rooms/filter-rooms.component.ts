@@ -13,8 +13,8 @@ export class FilterRoomsComponent {
   selectedComponentTypes: { componentType: GrpcComponentType, selected: boolean }[] = [];
   selectedRoomTypes: { roomType: GrpcRoomType, selected: boolean }[] = [];
 
-  allRTComplete: boolean = true;
-  allCTComplete: boolean = true;
+  allRTComplete: boolean = false;
+  allCTComplete: boolean = false;
 
   constructor(public dialogRef: MatDialogRef<FilterRoomsComponent>, @Inject(MAT_DIALOG_DATA) public data: {
     selectedComponentTypes: { componentType: GrpcComponentType, selected: boolean }[],

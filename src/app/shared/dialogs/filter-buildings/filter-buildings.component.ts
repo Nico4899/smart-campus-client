@@ -14,9 +14,9 @@ export class FilterBuildingsComponent {
   selectedRoomTypes: { roomType: GrpcRoomType, selected: boolean }[] = [];
   selectedCampusLocations: { campusLocation: GrpcCampusLocation, selected: boolean }[] = [];
 
-  allCLComplete: boolean = true;
-  allRTComplete: boolean = true;
-  allCTComplete: boolean = true;
+  allCLComplete: boolean = false;
+  allRTComplete: boolean = false;
+  allCTComplete: boolean = false;
 
   constructor(public dialogRef: MatDialogRef<FilterBuildingsComponent>, @Inject(MAT_DIALOG_DATA) public data: {
     selectedComponentTypes: { componentType: GrpcComponentType, selected: boolean }[],
