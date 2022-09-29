@@ -10,6 +10,7 @@ import {
   ChangeStateResponse,
   GrpcFilterValueSelection,
   GrpcProblem,
+  GrpcProblemState,
   GrpcStateOperation,
   ListProblemsForUserRequest,
   ListProblemsRequest,
@@ -32,6 +33,11 @@ import {AuthServiceService} from "../../../core/authentication/auth-service.serv
 })
 export class ProblemsTableComponent implements AfterViewInit, OnInit {
 
+  problemState = Object.values(GrpcProblemState).filter(e => e != 0) as GrpcProblemState[];
+
+  selectedStates: { state: GrpcProblemState, selected: boolean } [] = [];
+
+
   // datasource containing provided data from the api, to be displayed in the html datatables, as well as the current selected object
   dataSource: MatTableDataSource<GrpcProblem.AsObject> = new MatTableDataSource<GrpcProblem.AsObject>();
 
@@ -49,6 +55,7 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
 
   constructor(private problemManagementConnector: ProblemManagementConnectorService, private dialog: MatDialog,
               private translateService: TranslateService, public authService: AuthServiceService) {
+    this.problemState.forEach(e => this.selectedStates.push({state: e, selected: false}));
   }
 
   ngOnInit() {
@@ -70,9 +77,9 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
   getLink(problem: GrpcProblem.AsObject) {
     if (problem.referenceIdentificationNumber.match("c-\\d+")) {
       return "/components/" + problem.referenceIdentificationNumber;
-    } else if(problem.referenceIdentificationNumber.match("r-\\d+")) {
+    } else if (problem.referenceIdentificationNumber.match("r-\\d+")) {
       return "/rooms/" + problem.referenceIdentificationNumber;
-    } else if(problem.referenceIdentificationNumber.match("b-\\d+")){
+    } else if (problem.referenceIdentificationNumber.match("b-\\d+")) {
       return "/buildings/" + problem.referenceIdentificationNumber;
     } else {
       return "";
@@ -137,15 +144,17 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
   }
 
   openFilterProblemsDialog() {
-    const dialogRef = this.dialog.open(FilterProblemsComponent);
+    const dialogRef = this.dialog.open(FilterProblemsComponent, {data: {selectedStates: this.selectedStates}});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         if (this.authService.isAdmin()) {
           this.isLoading = true;
-          this.problemManagementConnector.listProblems(ProblemsTableComponent.buildListProblemsRequest(result), ProblemsTableComponent.interpretListProblemsResponse, this);
+          this.selectedStates = result.data.problemStates;
+          this.problemManagementConnector.listProblems(ProblemsTableComponent.buildListProblemsRequest(result, this), ProblemsTableComponent.interpretListProblemsResponse, this);
         } else if (this.authService.isUser()) {
           this.isLoading = true;
-          this.problemManagementConnector.listProblemsForUser(ProblemsTableComponent.buildListProblemsForUserRequest(result, this.authService.eMail as string), ProblemsTableComponent.interpretListProblemsResponse, this);
+          this.selectedStates = result.data.problemStates;
+          this.problemManagementConnector.listProblemsForUser(ProblemsTableComponent.buildListProblemsForUserRequest(result, this.authService.eMail as string, this), ProblemsTableComponent.interpretListProblemsResponse, this);
         }
       } else {
         return;
@@ -169,18 +178,18 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
     return request;
   }
 
-  private static buildListProblemsRequest(result: any): ListProblemsRequest {
+  private static buildListProblemsRequest(result: any, self: ProblemsTableComponent): ListProblemsRequest {
     let request = new ListProblemsRequest();
     let selection = new GrpcFilterValueSelection();
-    selection.setStatesList(result.data.problemStates);
+    selection.setStatesList(self.selectedStates.filter(e => e.selected).map(e => e.state));
     request.setGrpcFilterValueSelection(selection);
     return request;
   }
 
-  private static buildListProblemsForUserRequest(result: any, email: string): ListProblemsForUserRequest {
+  private static buildListProblemsForUserRequest(result: any, email: string, self: ProblemsTableComponent): ListProblemsForUserRequest {
     let request = new ListProblemsForUserRequest();
     let selection = new GrpcFilterValueSelection();
-    selection.setStatesList(result.data.problemStates);
+    selection.setStatesList(self.selectedStates.filter(e => e.selected).map(e => e.state));
     request.setGrpcFilterValueSelection(selection);
     request.setReporter(email);
     return request;
