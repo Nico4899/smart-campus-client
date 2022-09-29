@@ -5,11 +5,13 @@
 }
 
 mat-drawer {
-  width: 140px;
+  width: 135px;
 }
 
 mat-drawer-container {
   height: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 .content {
