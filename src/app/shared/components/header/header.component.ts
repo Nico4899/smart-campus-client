@@ -48,7 +48,6 @@ export class HeaderComponent implements OnInit {
   }
 
   useLanguage(language: string): void {
-    window.location.reload();
     this.translateService.use(language);
     sessionStorage.setItem('languageChosen', language);
   }
