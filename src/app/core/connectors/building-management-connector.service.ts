@@ -16,7 +16,7 @@ import {
   GetComponentRequest,
   GetComponentResponse,
   GetRoomRequest,
-  GetRoomResponse,
+  GetRoomResponse, IsFavoriteRequest, IsFavoriteResponse,
   ListBuildingsRequest,
   ListBuildingsResponse,
   ListComponentsRequest,
@@ -175,6 +175,18 @@ export class BuildingManagementConnectorService {
       if (error) {
         let result = "";
         this.translateService.get("errors.building_connector.list_favorite_components").subscribe((r: string) => result = r);
+        this.snackbar.open(result, "", {duration: this.errDuration});
+      } else {
+        callback(response, self);
+      }
+    })
+  }
+
+  async isFavorite(request: IsFavoriteRequest, callback: (response: IsFavoriteResponse, self: BuildingComponent | RoomComponent | ComponentComponent) => void, self: BuildingComponent | RoomComponent | ComponentComponent) {
+    this.client.isFavorite(request, {Authorization: `Bearer ${this.authService.token}`}, (error: RpcError, response: IsFavoriteResponse) => {
+      if (error) {
+        let result = "";
+        this.translateService.get("errors.building_connector.is_favorite").subscribe((r: string) => result = r);
         this.snackbar.open(result, "", {duration: this.errDuration});
       } else {
         callback(response, self);

@@ -2,6 +2,46 @@ import * as jspb from 'google-protobuf'
 
 
 
+export class IsFavoriteRequest extends jspb.Message {
+  getOwner(): string;
+  setOwner(value: string): IsFavoriteRequest;
+
+  getIdentificationNumber(): string;
+  setIdentificationNumber(value: string): IsFavoriteRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): IsFavoriteRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: IsFavoriteRequest): IsFavoriteRequest.AsObject;
+  static serializeBinaryToWriter(message: IsFavoriteRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): IsFavoriteRequest;
+  static deserializeBinaryFromReader(message: IsFavoriteRequest, reader: jspb.BinaryReader): IsFavoriteRequest;
+}
+
+export namespace IsFavoriteRequest {
+  export type AsObject = {
+    owner: string,
+    identificationNumber: string,
+  }
+}
+
+export class IsFavoriteResponse extends jspb.Message {
+  getIsFavorite(): boolean;
+  setIsFavorite(value: boolean): IsFavoriteResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): IsFavoriteResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: IsFavoriteResponse): IsFavoriteResponse.AsObject;
+  static serializeBinaryToWriter(message: IsFavoriteResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): IsFavoriteResponse;
+  static deserializeBinaryFromReader(message: IsFavoriteResponse, reader: jspb.BinaryReader): IsFavoriteResponse;
+}
+
+export namespace IsFavoriteResponse {
+  export type AsObject = {
+    isFavorite: boolean,
+  }
+}
+
 export class GetBuildingRequest extends jspb.Message {
   getIdentificationNumber(): string;
   setIdentificationNumber(value: string): GetBuildingRequest;

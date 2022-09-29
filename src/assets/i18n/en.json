@@ -189,7 +189,8 @@
       "remove_building": "Could not remove the selected building, please check if you are logged in and try again.",
       "remove_room": "Could not remove the selected room, please check if you are logged in and try again.",
       "remove_component": "Could not remove the selected component, please check if you are logged in and try again.",
-      "remove_favorite": "Could not remove the selected favorite, please check if you are logged in and try again."
+      "remove_favorite": "Could not remove the selected favorite, please check if you are logged in and try again.",
+      "is_favorite": "Could not decide if element is favorite or not, please try again."
     },
     "problem_connector": {
       "list_problems": "Could not load problems from server, please check if you are logged in or reload the page and try again.",

@@ -189,7 +189,8 @@
       "remove_building": "Ausgewähltes Gebäude konnte nicht entfernt werden, prüfe ob du eingeloggt bist und versuche es erneut.",
       "remove_room": "Ausgewählter Raum konnte nicht entfernt werden, prüfe ob du eingeloggt bist und versuche es erneut.",
       "remove_component": "Ausgewählte komponente konnte nicht entfernt werden, prüfe ob du eingeloggt bist und versuche es erneut.",
-      "remove_favorite": "Ausgewählter Favorit konnte nicht entfernt werden, prüfe ob du eingeloggt bist und versuche es erneut."
+      "remove_favorite": "Ausgewählter Favorit konnte nicht entfernt werden, prüfe ob du eingeloggt bist und versuche es erneut.",
+      "is_favorite": "Es konnte nicht entschieden werden ob das ausgewählte Element zu deinen Favoriten gehört, versuche es bitte erneut."
     },
     "problem_connector": {
       "list_problems": "Probleme konnten nicht geladen werden, prüfe ob du eingeloggt bist neu und versuche es erneut.",

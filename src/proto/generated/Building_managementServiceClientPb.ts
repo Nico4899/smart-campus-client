@@ -465,6 +465,49 @@ export class BuildingManagementClient {
     this.methodDescriptorListFavoriteComponents);
   }
 
+  methodDescriptorIsFavorite = new grpcWeb.MethodDescriptor(
+    '/edu.kit.tm.cm.proto.BuildingManagement/IsFavorite',
+    grpcWeb.MethodType.UNARY,
+    building_management_pb.IsFavoriteRequest,
+    building_management_pb.IsFavoriteResponse,
+    (request: building_management_pb.IsFavoriteRequest) => {
+      return request.serializeBinary();
+    },
+    building_management_pb.IsFavoriteResponse.deserializeBinary
+  );
+
+  isFavorite(
+    request: building_management_pb.IsFavoriteRequest,
+    metadata: grpcWeb.Metadata | null): Promise<building_management_pb.IsFavoriteResponse>;
+
+  isFavorite(
+    request: building_management_pb.IsFavoriteRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: building_management_pb.IsFavoriteResponse) => void): grpcWeb.ClientReadableStream<building_management_pb.IsFavoriteResponse>;
+
+  isFavorite(
+    request: building_management_pb.IsFavoriteRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: building_management_pb.IsFavoriteResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/edu.kit.tm.cm.proto.BuildingManagement/IsFavorite',
+        request,
+        metadata || {},
+        this.methodDescriptorIsFavorite,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/edu.kit.tm.cm.proto.BuildingManagement/IsFavorite',
+    request,
+    metadata || {},
+    this.methodDescriptorIsFavorite);
+  }
+
   methodDescriptorCreateBuilding = new grpcWeb.MethodDescriptor(
     '/edu.kit.tm.cm.proto.BuildingManagement/CreateBuilding',
     grpcWeb.MethodType.UNARY,

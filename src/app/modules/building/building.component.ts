@@ -64,6 +64,8 @@ export class BuildingComponent implements OnInit {
     }
   }
 
+  // favorite
+  isFavorite = false;
 
   // path variable
   bin: string = "";
