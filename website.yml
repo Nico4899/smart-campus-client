@@ -17,7 +17,7 @@ npmbuild:
   image: node:latest
   extends: .npmcache
   script:
-    - npm i –-force -cache .npm --prefer-offline
+    - npm ci --legacy-peer-deps -cache .npm --prefer-offline
     - npm run-script build
   artifacts:
     when: on_success
