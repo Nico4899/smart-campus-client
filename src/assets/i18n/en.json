@@ -364,5 +364,6 @@
     "logout": "Sign out"
   },
   "added_favorite": "added to favorites",
-  "reported_problem": "successfully reported problem"
+  "reported_problem": "successfully reported problem",
+  "remove_favorite": "removed from favorites"
 }

@@ -4,7 +4,7 @@ import {
   CreateFavoriteResponse,
   GetComponentRequest,
   GetComponentResponse,
-  GrpcComponent
+  GrpcComponent, IsFavoriteRequest, IsFavoriteResponse, RemoveFavoriteRequest
 } from "../../../proto/generated/building_management_pb";
 import {
   BuildingManagementConnectorService
@@ -22,6 +22,17 @@ import {MatDialog} from '@angular/material/dialog';
 import {AddProblemComponent} from 'src/app/shared/dialogs/add-problem/add-problem.component';
 import {TranslateService} from "@ngx-translate/core";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {RoomComponent} from "../room/room.component";
+import {BuildingComponent} from "../building/building.component";
+import {
+  FavoriteBuildingsTableComponent
+} from "../../shared/tables/favorites-tables/favorite-buildings-table/favorite-buildings-table.component";
+import {
+  FavoriteComponentsTableComponent
+} from "../../shared/tables/favorites-tables/favorite-components-table/favorite-components-table.component";
+import {
+  FavoriteRoomsTableComponent
+} from "../../shared/tables/favorites-tables/favorite-rooms-table/favorite-rooms-table.component";
 
 @Component({
   selector: 'app-component',
@@ -37,6 +48,9 @@ export class ComponentComponent implements OnInit {
   // datasource containing provided data from the api, to be displayed in the html datatables, as well as the current selected object
   component: GrpcComponent.AsObject = new GrpcComponent().toObject();
 
+  // is favorite
+  isFavorite = false;
+
   constructor(private buildingManagementConnector: BuildingManagementConnectorService, private problemManagementConnector: ProblemManagementConnectorService, public authService: AuthServiceService, private route: ActivatedRoute, private dialog: MatDialog, private snackbar: MatSnackBar, translateService: TranslateService) {
     this.translateService = translateService;
     // inject building management client and current rout to obtain path variables
@@ -51,6 +65,9 @@ export class ComponentComponent implements OnInit {
     let getComponentRequest = new GetComponentRequest();
     getComponentRequest.setIdentificationNumber(this.cin);
     this.buildingManagementConnector.getComponent(getComponentRequest, ComponentComponent.interpretGetComponentResponse, this);
+
+    let isFavoriteRequest = new IsFavoriteRequest().setOwner(this.authService.eMail as string).setIdentificationNumber(this.cin);
+    this.buildingManagementConnector.isFavorite(isFavoriteRequest, ComponentComponent.interpretIsFavoriteResponse,this)
   }
 
   // private callback methods for api calls
@@ -82,11 +99,39 @@ export class ComponentComponent implements OnInit {
     })
   }
 
+  removeFavorite(): void {
+    let request = new RemoveFavoriteRequest();
+    request.setIdentificationNumber(this.cin);
+    request.setOwner(this.authService.eMail as string);
+    this.isFavorite = false;
+    this.buildingManagementConnector.removeFavorite(request, ComponentComponent.interpretRemoveFavoriteResponse, this);
+    this.translateService.get('remove_favorite').subscribe((res: string) => {
+      this.snackbar.open(res, "", {duration: 3500});
+    });
+  }
+
+  private static buildRemoveRequest(result: any, email: string): RemoveFavoriteRequest {
+    let request = new RemoveFavoriteRequest();
+    request.setIdentificationNumber(result.data.identificationNumber);
+    request.setOwner(email);
+    return request;
+  }
+
+  private static interpretRemoveFavoriteResponse(id: string, self: FavoriteBuildingsTableComponent | FavoriteComponentsTableComponent | FavoriteRoomsTableComponent | BuildingComponent | RoomComponent | ComponentComponent): void {
+    if (self instanceof ComponentComponent) {
+      self.isFavorite = false;
+    }
+  }
+
   private static interpretCreateFavoriteResponse(response: CreateFavoriteResponse, self: any): void {
   }
 
   private static interpretCreateProblemResponse(response: CreateProblemResponse, self: any): void {
     return;
+  }
+
+  private static interpretIsFavoriteResponse(response: IsFavoriteResponse, self: BuildingComponent | RoomComponent | ComponentComponent): void {
+    self.isFavorite = response.getIsFavorite();
   }
 
   private static buildCreateProblemRequest(result: any): CreateProblemRequest {

@@ -29,6 +29,9 @@ import {
 import {
   FavoriteComponentsTableComponent
 } from "../favorite-components-table/favorite-components-table.component";
+import {BuildingComponent} from "../../../../modules/building/building.component";
+import {ComponentComponent} from "../../../../modules/component/component.component";
+import {RoomComponent} from "../../../../modules/room/room.component";
 
 @Component({
   selector: 'app-favorite-rooms-table',
@@ -99,7 +102,7 @@ export class FavoriteRoomsTableComponent implements OnInit, AfterViewInit {
     self.isLoading = false;
   }
 
-  private static interpretRemoveFavoriteResponse(id: string, self: FavoriteBuildingsTableComponent | FavoriteComponentsTableComponent | FavoriteRoomsTableComponent): void {
+  private static interpretRemoveFavoriteResponse(id: string, self: FavoriteBuildingsTableComponent | FavoriteComponentsTableComponent | FavoriteRoomsTableComponent | BuildingComponent | RoomComponent | ComponentComponent): void {
     let favoriteTableComponent = self as FavoriteRoomsTableComponent;
     favoriteTableComponent.dataSource.data = favoriteTableComponent.dataSource.data.filter(e => e.identificationNumber != id);
   }

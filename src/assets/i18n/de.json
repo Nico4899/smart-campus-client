@@ -364,5 +364,6 @@
     "logout": "Abmelden"
   },
   "added_favorite": "Zu Favoriten hinzugefügt",
-  "reported_problem": "Problem erfolgreich gemeldet"
+  "reported_problem": "Problem erfolgreich gemeldet",
+  "remove_favorite": "Aus Favoriten Entfernt"
 }

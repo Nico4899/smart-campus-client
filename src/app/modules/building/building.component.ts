@@ -4,25 +4,29 @@ import {
   CreateFavoriteResponse,
   GetBuildingRequest,
   GetBuildingResponse,
-  GrpcBuilding
+  GrpcBuilding, IsFavoriteRequest, IsFavoriteResponse, RemoveFavoriteRequest
 } from "../../../proto/generated/building_management_pb";
-import {
-  BuildingManagementConnectorService
-} from "../../core/connectors/building-management-connector.service";
+import {BuildingManagementConnectorService} from "../../core/connectors/building-management-connector.service";
 import {ActivatedRoute} from "@angular/router";
 import {AuthServiceService} from 'src/app/core/authentication/auth-service.service';
-import {
-  ProblemManagementConnectorService
-} from 'src/app/core/connectors/problem-management-connector.service';
+import {ProblemManagementConnectorService} from 'src/app/core/connectors/problem-management-connector.service';
 import {MatDialog} from '@angular/material/dialog';
-import {
-  CreateProblemRequest,
-  CreateProblemResponse
-} from 'src/proto/generated/problem_management_pb';
+import {CreateProblemRequest, CreateProblemResponse} from 'src/proto/generated/problem_management_pb';
 import {AddProblemComponent} from 'src/app/shared/dialogs/add-problem/add-problem.component';
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {TranslateService} from "@ngx-translate/core";
-
+import {RoomComponent} from "../room/room.component";
+import {ComponentComponent} from "../component/component.component";
+import {RemoveFavoriteComponent} from "../../shared/dialogs/remove-favorite/remove-favorite.component";
+import {
+  FavoriteComponentsTableComponent
+} from "../../shared/tables/favorites-tables/favorite-components-table/favorite-components-table.component";
+import {
+  FavoriteRoomsTableComponent
+} from "../../shared/tables/favorites-tables/favorite-rooms-table/favorite-rooms-table.component";
+import {
+  FavoriteBuildingsTableComponent
+} from "../../shared/tables/favorites-tables/favorite-buildings-table/favorite-buildings-table.component";
 
 @Component({
   selector: 'app-building',
@@ -64,7 +68,7 @@ export class BuildingComponent implements OnInit {
     }
   }
 
-  // favorite
+  // is favorite
   isFavorite = false;
 
   // path variable
@@ -89,13 +93,8 @@ export class BuildingComponent implements OnInit {
     getBuildingRequest.setIdentificationNumber(this.bin);
     this.buildingManagementConnector.getBuilding(getBuildingRequest, BuildingComponent.interpretGetBuildingResponse, this);
 
-    // set center of map correctly
-
-    this.center = {
-      lat: this.building.grpcGeographicalLocation!.latitude,
-      lng: this.building.grpcGeographicalLocation!.longitude
-    };
-
+    let isFavoriteRequest = new IsFavoriteRequest().setOwner(this.authService.eMail as string).setIdentificationNumber(this.bin);
+    this.buildingManagementConnector.isFavorite(isFavoriteRequest, BuildingComponent.interpretIsFavoriteResponse,this)
   }
 
   // private callback methods for api calls
@@ -119,6 +118,7 @@ export class BuildingComponent implements OnInit {
     let request = new CreateFavoriteRequest();
     request.setOwner(this.authService.eMail as string);
     request.setReferenceIdentificationNumber(this.bin);
+    this.isFavorite = true;
     this.buildingManagementConnector.createFavorite(request, BuildingComponent.interpretCreateFavoriteResponse, this);
     this.translateService.get('added_favorite').subscribe((res: string) => {
       this.snackbar.open(res, "", {duration: 3500});
@@ -139,10 +139,36 @@ export class BuildingComponent implements OnInit {
     })
   }
 
+  removeFavorite(): void {
+    let request = new RemoveFavoriteRequest();
+    request.setIdentificationNumber(this.bin);
+    request.setOwner(this.authService.eMail as string);
+    this.isFavorite = false;
+    this.buildingManagementConnector.removeFavorite(request, BuildingComponent.interpretRemoveFavoriteResponse, this);
+    this.translateService.get('remove_favorite').subscribe((res: string) => {
+      this.snackbar.open(res, "", {duration: 3500});
+    });
+  }
+
+  private static buildRemoveRequest(result: any, email: string): RemoveFavoriteRequest {
+    let request = new RemoveFavoriteRequest();
+    request.setIdentificationNumber(result.data.identificationNumber);
+    request.setOwner(email);
+    return request;
+  }
+
+  private static interpretRemoveFavoriteResponse(id: string, self: FavoriteBuildingsTableComponent | FavoriteComponentsTableComponent | FavoriteRoomsTableComponent | BuildingComponent | RoomComponent | ComponentComponent): void {
+    if (self instanceof BuildingComponent) {
+      self.isFavorite = false;
+    }
+  }
 
   private static interpretCreateFavoriteResponse(response: CreateFavoriteResponse, self: any): void {
   }
 
+  private static interpretIsFavoriteResponse(response: IsFavoriteResponse, self: BuildingComponent | RoomComponent | ComponentComponent): void {
+    self.isFavorite = response.getIsFavorite();
+  }
 
   private static interpretCreateProblemResponse(response: CreateProblemResponse, self: any): void {
     return;

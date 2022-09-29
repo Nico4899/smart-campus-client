@@ -1,8 +1,12 @@
 <div class="componentTitle">
   <h1>{{component.componentType | componentType}}</h1>
   <div class="controls">
-    <button  mat-icon-button (click)="addFavorite()" matTooltip="{{ 'tooltips.add_favorite' | translate }}">
-      <mat-icon>favorite</mat-icon>
+    <button *ngIf="!isFavorite" mat-icon-button (click)="addFavorite()" matTooltip="{{ 'tooltips.add_favorite' | translate }}">
+      <mat-icon color="accent">favorite</mat-icon>
+    </button>
+
+    <button *ngIf="isFavorite" mat-icon-button (click)="removeFavorite()" matTooltip="{{ 'tooltips.delete_favorite' | translate }}">
+      <mat-icon color="primary">favorite</mat-icon>
     </button>
 
     <button  mat-icon-button (click)="openCreateProblemDialog()" matTooltip="{{ 'tooltips.report_problem' | translate }}">
