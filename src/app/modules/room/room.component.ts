@@ -80,9 +80,8 @@ export class RoomComponent implements OnInit {
     });
   }
 
-
   openCreateProblemDialog() {
-    const dialogRef = this.dialog.open(AddProblemComponent, {data: this.room.identificationNumber});
+    const dialogRef = this.dialog.open(AddProblemComponent, {data: this.room.identificationNumber, width: '445px'});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.problemManagementConnector.createProblem(RoomComponent.buildCreateProblemRequest(result), RoomComponent.interpretCreateProblemResponse, this);
@@ -101,13 +100,6 @@ export class RoomComponent implements OnInit {
     this.translateService.get('remove_favorite').subscribe((res: string) => {
       this.snackbar.open(res, "", {duration: 3500});
     });
-  }
-
-  private static buildRemoveRequest(result: any, email: string): RemoveFavoriteRequest {
-    let request = new RemoveFavoriteRequest();
-    request.setIdentificationNumber(result.data.identificationNumber);
-    request.setOwner(email);
-    return request;
   }
 
   private static interpretRemoveFavoriteResponse(id: string, self: FavoriteBuildingsTableComponent | FavoriteComponentsTableComponent | FavoriteRoomsTableComponent | BuildingComponent | RoomComponent | ComponentComponent): void {

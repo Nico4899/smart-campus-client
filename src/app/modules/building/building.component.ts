@@ -129,7 +129,7 @@ export class BuildingComponent implements OnInit {
   }
 
   openCreateProblemDialog() {
-    const dialogRef = this.dialog.open(AddProblemComponent, {data: this.building.identificationNumber});
+    const dialogRef = this.dialog.open(AddProblemComponent, {data: this.building.identificationNumber, width: '500px'});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.problemManagementConnector.createProblem(BuildingComponent.buildCreateProblemRequest(result), BuildingComponent.interpretCreateProblemResponse, this);
@@ -148,13 +148,6 @@ export class BuildingComponent implements OnInit {
     this.translateService.get('remove_favorite').subscribe((res: string) => {
       this.snackbar.open(res, "", {duration: 3500});
     });
-  }
-
-  private static buildRemoveRequest(result: any, email: string): RemoveFavoriteRequest {
-    let request = new RemoveFavoriteRequest();
-    request.setIdentificationNumber(result.data.identificationNumber);
-    request.setOwner(email);
-    return request;
   }
 
   private static interpretRemoveFavoriteResponse(id: string, self: FavoriteBuildingsTableComponent | FavoriteComponentsTableComponent | FavoriteRoomsTableComponent | BuildingComponent | RoomComponent | ComponentComponent): void {

@@ -87,7 +87,7 @@ export class ComponentComponent implements OnInit {
   }
 
   openCreateProblemDialog() {
-    const dialogRef = this.dialog.open(AddProblemComponent, {data: this.component.identificationNumber});
+    const dialogRef = this.dialog.open(AddProblemComponent, {data: this.component.identificationNumber, width: '445px'});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.problemManagementConnector.createProblem(ComponentComponent.buildCreateProblemRequest(result), ComponentComponent.interpretCreateProblemResponse, this);

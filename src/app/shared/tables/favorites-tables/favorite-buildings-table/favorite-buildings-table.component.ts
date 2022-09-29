@@ -112,7 +112,7 @@ export class FavoriteBuildingsTableComponent implements OnInit, AfterViewInit {
   }
 
   openRemoveFavoriteDialog(identificationNumber: string) {
-    const dialogRef = this.dialog.open(RemoveFavoriteComponent, {data: identificationNumber});
+    const dialogRef = this.dialog.open(RemoveFavoriteComponent, {data: identificationNumber, width: '445px'});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.buildingManagementConnector.removeFavorite(
@@ -129,7 +129,7 @@ export class FavoriteBuildingsTableComponent implements OnInit, AfterViewInit {
         selectedComponentTypes: this.selectedComponentTypes,
         selectedRoomTypes: this.selectedRoomTypes,
         selectedCampusLocations: this.selectedCampusLocations
-      }
+      }, width: '445px'
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {

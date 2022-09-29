@@ -122,7 +122,7 @@ export class RoomsTableComponent implements OnInit {
 
   //button methods start
   openCreateRoomDialog() {
-    const dialogRef = this.dialog.open(AddRoomComponent);
+    const dialogRef = this.dialog.open(AddRoomComponent, {width: '890px'});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.buildingManagementConnector.createRoom(RoomsTableComponent.buildCreateRoomRequest(this.bin, result),
@@ -134,7 +134,7 @@ export class RoomsTableComponent implements OnInit {
   }
 
   openUpdateRoomDialog(room: GrpcRoom.AsObject) {
-    const dialogRef = this.dialog.open(EditRoomComponent, {data: room})
+    const dialogRef = this.dialog.open(EditRoomComponent, {data: room, width: '890px'})
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.buildingManagementConnector.updateRoom(RoomsTableComponent.buildUpdateRoomRequest(result), RoomsTableComponent.interpretUpdateRoomResponse, this);
@@ -145,7 +145,7 @@ export class RoomsTableComponent implements OnInit {
   }
 
   openRemoveRoomDialog(identificationNumber: string) {
-    const dialogRef = this.dialog.open(RemoveComponent, {data: identificationNumber});
+    const dialogRef = this.dialog.open(RemoveComponent, {data: identificationNumber, width: '445px'});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.buildingManagementConnector.removeRoom(RoomsTableComponent.buildRemoveRequest(result), RoomsTableComponent.interpretRemoveBuildingResponse, this);
@@ -160,7 +160,7 @@ export class RoomsTableComponent implements OnInit {
       data: {
         selectedComponentTypes: this.selectedComponentTypes,
         selectedRoomTypes: this.selectedRoomTypes
-      }
+      }, width: '445px'
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {

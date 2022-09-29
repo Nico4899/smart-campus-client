@@ -124,7 +124,7 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
   }
 
   openUpdateProblemDialog(problem: GrpcProblem.AsObject) {
-    const dialogRef = this.dialog.open(EditProblemComponent, {data: problem});
+    const dialogRef = this.dialog.open(EditProblemComponent, {data: problem, width: '445px'});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.problemManagementConnector.updateProblem(ProblemsTableComponent.buildUpdateProblemRequest(result, this.authService.eMail as string), ProblemsTableComponent.interpretUpdateProblemResponse, this);
@@ -135,7 +135,7 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
   }
 
   openRemoveProblemDialog(identificationNumber: string) {
-    const dialogRef = this.dialog.open(RemoveComponent, {data: identificationNumber});
+    const dialogRef = this.dialog.open(RemoveComponent, {data: identificationNumber, width: '445px'});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.problemManagementConnector.removeProblem(ProblemsTableComponent.buildRemoveRequest(result), ProblemsTableComponent.interpretRemoveProblemResponse, this);
@@ -146,7 +146,7 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
   }
 
   openFilterProblemsDialog() {
-    const dialogRef = this.dialog.open(FilterProblemsComponent, {data: {selectedStates: this.selectedStates}});
+    const dialogRef = this.dialog.open(FilterProblemsComponent, {data: {selectedStates: this.selectedStates}, width: '445px'});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         if (this.authService.isAdmin()) {

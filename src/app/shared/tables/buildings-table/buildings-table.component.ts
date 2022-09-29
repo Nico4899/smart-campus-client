@@ -126,7 +126,7 @@ export class BuildingsTableComponent implements OnInit {
 
   // button methods
   openCreateBuildingDialog() {
-    const dialogRef = this.dialog.open(AddBuildingComponent);
+    const dialogRef = this.dialog.open(AddBuildingComponent, {width: '890px'});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.buildingManagementConnector.createBuilding(BuildingsTableComponent.buildCreateBuildingRequest(result), BuildingsTableComponent.interpretCreateBuildingResponse, this);
@@ -137,7 +137,7 @@ export class BuildingsTableComponent implements OnInit {
   }
 
   openUpdateBuildingDialog(building: GrpcBuilding.AsObject) {
-    const dialogRef = this.dialog.open(EditBuildingComponent, {data: building});
+    const dialogRef = this.dialog.open(EditBuildingComponent, {data: building, width: '890px'});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.buildingManagementConnector.updateBuilding(BuildingsTableComponent.buildUpdateBuildingRequest(result), BuildingsTableComponent.interpretUpdateBuildingResponse, this);
@@ -148,7 +148,7 @@ export class BuildingsTableComponent implements OnInit {
   }
 
   openRemoveBuildingDialog(identificationNumber: string) {
-    const dialogRef = this.dialog.open(RemoveComponent, {data: identificationNumber});
+    const dialogRef = this.dialog.open(RemoveComponent, {data: identificationNumber, width: '445px'});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.buildingManagementConnector.removeBuilding(BuildingsTableComponent.buildRemoveRequest(result), BuildingsTableComponent.interpretRemoveBuildingResponse, this);
@@ -164,7 +164,7 @@ export class BuildingsTableComponent implements OnInit {
         selectedComponentTypes: this.selectedComponentTypes,
         selectedRoomTypes: this.selectedRoomTypes,
         selectedCampusLocations: this.selectedCampusLocations
-      }
+      }, width: '445px'
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {

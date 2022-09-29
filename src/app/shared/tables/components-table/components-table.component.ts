@@ -6,8 +6,6 @@ import {ActivatedRoute} from "@angular/router";
 import {
   CreateComponentRequest,
   CreateComponentResponse,
-  CreateFavoriteRequest,
-  CreateFavoriteResponse,
   GrpcComponent,
   GrpcGeographicalLocation,
   ListComponentsRequest,
@@ -24,8 +22,6 @@ import {RemoveComponent} from "../../dialogs/remove/remove.component";
 import {ExpandAnimation} from "../../animations";
 import {AuthServiceService} from "../../../core/authentication/auth-service.service";
 import {ProblemManagementConnectorService} from 'src/app/core/connectors/problem-management-connector.service';
-import {CreateProblemRequest, CreateProblemResponse} from 'src/proto/generated/problem_management_pb';
-import {AddProblemComponent} from '../../dialogs/add-problem/add-problem.component';
 
 @Component({
   selector: 'app-components-table',
@@ -102,7 +98,7 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
   }
 
   openCreateComponentDialog() {
-    const dialogRef = this.dialog.open(AddComponentComponent);
+    const dialogRef = this.dialog.open(AddComponentComponent, {width: '890px'});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.buildingManagementConnector.createComponent(ComponentsTableComponent.buildCreateComponentRequest(this.parentIdentificationNumber, result), ComponentsTableComponent.interpretCreateComponentResponse, this);
@@ -113,7 +109,7 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
   }
 
   openUpdateComponentDialog(component: GrpcComponent.AsObject) {
-    const dialogRef = this.dialog.open(EditComponentComponent, {data: component});
+    const dialogRef = this.dialog.open(EditComponentComponent, {data: component, width: '890px'});
     dialogRef.afterClosed().subscribe(result => {
       if (result.event == 'ok') {
         this.buildingManagementConnector.updateComponent(ComponentsTableComponent.buildUpdateComponentRequest(result), ComponentsTableComponent.interpretUpdateComponentResponse, this);
@@ -124,7 +120,7 @@ export class ComponentsTableComponent implements OnInit, AfterViewInit {
   }
 
   openRemoveComponentDialog(identificationNumber: string) {
-    const dialogRef = this.dialog.open(RemoveComponent, {data: identificationNumber});
+    const dialogRef = this.dialog.open(RemoveComponent, {data: identificationNumber, width: '445px'});
     dialogRef.afterClosed().subscribe(result => {
         if (result.event == 'ok') {
           this.buildingManagementConnector.removeComponent(ComponentsTableComponent.buildRemoveRequest(result), ComponentsTableComponent.interpretRemoveComponentResponse, this);
