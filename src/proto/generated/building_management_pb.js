@@ -9293,11 +9293,12 @@ proto.edu.kit.tm.cm.proto.GrpcRoomType = {
   RESTROOM: 1,
   RESTROOM_HANDICAPPED: 2,
   OFFICE: 3,
-  LIBRARY: 4,
+  LABORATORY: 4,
   SEMINAR_ROOM: 5,
   LECTURE_ROOM: 6,
   SPORTS: 7,
-  CAFETERIA: 8
+  CAFETERIA: 8,
+  LIBRARY: 9
 };
 
 /**

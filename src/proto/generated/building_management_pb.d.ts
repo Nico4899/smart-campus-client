@@ -1110,11 +1110,12 @@ export enum GrpcRoomType {
   RESTROOM = 1,
   RESTROOM_HANDICAPPED = 2,
   OFFICE = 3,
-  LIBRARY = 4,
+  LABORATORY = 4,
   SEMINAR_ROOM = 5,
   LECTURE_ROOM = 6,
   SPORTS = 7,
   CAFETERIA = 8,
+  LIBRARY = 9,
 }
 export enum GrpcComponentType { 
   UNKNOWN_COMPONENT_TYPE = 0,
