@@ -55,7 +55,7 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
 
   constructor(private problemManagementConnector: ProblemManagementConnectorService, private dialog: MatDialog,
               private translateService: TranslateService, public authService: AuthServiceService) {
-    this.problemState.forEach(e => this.selectedStates.push({state: e, selected: true}));
+    this.problemState.forEach(e => this.selectedStates.push({state: e, selected: false}));
   }
 
   ngOnInit() {

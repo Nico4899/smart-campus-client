@@ -70,8 +70,8 @@ export class FavoriteRoomsTableComponent implements OnInit, AfterViewInit {
 
     // add all constants mapped to false
     // in case it should be remembered, pass as @Inject Data
-    this.roomTypes.forEach(e => this.selectedRoomTypes.push({roomType: e, selected: true}));
-    this.componentTypes.forEach(e => this.selectedComponentTypes.push({componentType: e, selected: true}));
+    this.roomTypes.forEach(e => this.selectedRoomTypes.push({roomType: e, selected: false}));
+    this.componentTypes.forEach(e => this.selectedComponentTypes.push({componentType: e, selected: false}));
   }
 
   ngOnInit(): void {
