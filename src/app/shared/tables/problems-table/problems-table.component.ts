@@ -117,8 +117,10 @@ export class ProblemsTableComponent implements AfterViewInit, OnInit {
   }
 
   private static interpretChangeProblemStateResponse(response: ChangeStateResponse, self: ProblemsTableComponent) {
-    window.location.reload();
-    // nothing here to do
+    self.dataSource.data = self.dataSource.data.filter(e => e.identificationNumber != response.getGrpcProblem()?.getIdentificationNumber());
+    let data = self.dataSource.data;
+    data.push(response.getGrpcProblem()!.toObject());
+    self.dataSource.data = data;
   }
 
   openUpdateProblemDialog(problem: GrpcProblem.AsObject) {

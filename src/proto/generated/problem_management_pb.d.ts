@@ -263,6 +263,11 @@ export namespace ChangeStateRequest {
 }
 
 export class ChangeStateResponse extends jspb.Message {
+  getGrpcProblem(): GrpcProblem | undefined;
+  setGrpcProblem(value?: GrpcProblem): ChangeStateResponse;
+  hasGrpcProblem(): boolean;
+  clearGrpcProblem(): ChangeStateResponse;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ChangeStateResponse.AsObject;
   static toObject(includeInstance: boolean, msg: ChangeStateResponse): ChangeStateResponse.AsObject;
@@ -273,6 +278,7 @@ export class ChangeStateResponse extends jspb.Message {
 
 export namespace ChangeStateResponse {
   export type AsObject = {
+    grpcProblem?: GrpcProblem.AsObject,
   }
 }
 

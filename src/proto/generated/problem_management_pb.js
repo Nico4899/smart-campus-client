@@ -2315,7 +2315,7 @@ proto.edu.kit.tm.cm.proto.ChangeStateResponse.prototype.toObject = function(opt_
  */
 proto.edu.kit.tm.cm.proto.ChangeStateResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    grpcProblem: (f = msg.getGrpcProblem()) && proto.edu.kit.tm.cm.proto.GrpcProblem.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2352,6 +2352,11 @@ proto.edu.kit.tm.cm.proto.ChangeStateResponse.deserializeBinaryFromReader = func
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = new proto.edu.kit.tm.cm.proto.GrpcProblem;
+      reader.readMessage(value,proto.edu.kit.tm.cm.proto.GrpcProblem.deserializeBinaryFromReader);
+      msg.setGrpcProblem(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2381,6 +2386,51 @@ proto.edu.kit.tm.cm.proto.ChangeStateResponse.prototype.serializeBinary = functi
  */
 proto.edu.kit.tm.cm.proto.ChangeStateResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getGrpcProblem();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.edu.kit.tm.cm.proto.GrpcProblem.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional GrpcProblem grpc_problem = 1;
+ * @return {?proto.edu.kit.tm.cm.proto.GrpcProblem}
+ */
+proto.edu.kit.tm.cm.proto.ChangeStateResponse.prototype.getGrpcProblem = function() {
+  return /** @type{?proto.edu.kit.tm.cm.proto.GrpcProblem} */ (
+    jspb.Message.getWrapperField(this, proto.edu.kit.tm.cm.proto.GrpcProblem, 1));
+};
+
+
+/**
+ * @param {?proto.edu.kit.tm.cm.proto.GrpcProblem|undefined} value
+ * @return {!proto.edu.kit.tm.cm.proto.ChangeStateResponse} returns this
+*/
+proto.edu.kit.tm.cm.proto.ChangeStateResponse.prototype.setGrpcProblem = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.edu.kit.tm.cm.proto.ChangeStateResponse} returns this
+ */
+proto.edu.kit.tm.cm.proto.ChangeStateResponse.prototype.clearGrpcProblem = function() {
+  return this.setGrpcProblem(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.edu.kit.tm.cm.proto.ChangeStateResponse.prototype.hasGrpcProblem = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
