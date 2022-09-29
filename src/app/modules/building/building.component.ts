@@ -63,7 +63,10 @@ export class BuildingComponent implements OnInit {
     },
     title: 'Title',
     options: {
-      icon: '../../assets/images/marker.png',
+      icon: {
+        url: '../../assets/images/marker.png',
+        scaledSize: new google.maps.Size(23, 33)
+      },
       draggable: false
     }
   }

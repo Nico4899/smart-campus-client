@@ -1,0 +1,41 @@
+
+.npmcache:
+  cache:
+    #untracked: true
+    key: ${CI_COMMIT_REF_NAME}
+    paths:
+      - .npm/
+variables:
+  FF_USE_FASTZIP: "true"
+  ARTIFACT_COMPRESSION_LEVEL: "fastest"
+  CACHE_COMPRESSION_LEVEL: "fastest"
+  TRANSFER_METER_FREQUENCY: "5s"
+
+
+npmbuild:
+  stage: build
+  image: node:latest
+  extends: .npmcache
+  script:
+    - npm ci --legacy-peer-deps -cache .npm --prefer-offline
+    - npm run-script build
+  artifacts:
+    when: on_success
+    paths:
+      - dist/
+
+#npmtest:
+#  stage: test
+#  tags:
+#    - iai
+#  image:
+#    name: "zenika/alpine-chrome:with-node"
+#  extends: .npmcache
+#  variables:
+#    CHROME_BIN: /usr/bin/chromium-browser
+#  script:
+    # node modules might not be available if cache failed, skipping post-install for this installation
+#    - if [[ ! -d "node_modules" ]]; then npm install  --ignore-scripts; fi
+    # Angular tests need chromium web browser to run Karma
+    # - apk --no-cache add chromium
+#    - npm test

@@ -11,6 +11,4 @@ include:
   - project: cm-tm/cm-team/pipelineartifacts/pipeline
     ref: "1"
     file : deploy.yaml
-  - project: cm-tm/cm-team/pipelineartifacts/pipeline
-    ref: "1"
-    file : website.yaml
+  - website.yml

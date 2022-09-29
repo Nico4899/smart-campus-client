@@ -20,6 +20,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let dark = sessionStorage.getItem('toggleDark') as string;
+    if (dark) {
+      this.isDark = dark != '1';
+    }
   }
 
   toggleSideBar() {
