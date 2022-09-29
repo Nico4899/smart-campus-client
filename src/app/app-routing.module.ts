@@ -13,7 +13,8 @@ import {environment} from "../environments/environment";
 
 const routes: Routes = [{
     path: '',
-    redirectTo: 'dashboard'
+    redirectTo: 'dashboard',
+    pathMatch: "full"
   }, {
     path: '',
     component: DefaultComponent,
