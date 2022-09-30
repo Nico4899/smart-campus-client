@@ -74,6 +74,7 @@ export class RoomComponent implements OnInit {
     let request = new CreateFavoriteRequest();
     request.setOwner(this.authService.eMail as string);
     request.setReferenceIdentificationNumber(this.rin);
+    this.isFavorite = true;
     this.buildingManagementConnector.createFavorite(request, RoomComponent.interpretCreateFavoriteResponse, this);
     this.translateService.get('added_favorite').subscribe((res: string) => {
       this.snackbar.open(res, "", {duration: 3500});
@@ -95,7 +96,7 @@ export class RoomComponent implements OnInit {
     let request = new RemoveFavoriteRequest();
     request.setIdentificationNumber(this.rin);
     request.setOwner(this.authService.eMail as string);
-    this.isFavorite = true;
+    this.isFavorite = false;
     this.buildingManagementConnector.removeFavorite(request, RoomComponent.interpretRemoveFavoriteResponse, this);
     this.translateService.get('remove_favorite').subscribe((res: string) => {
       this.snackbar.open(res, "", {duration: 3500});
