@@ -1,0 +1,24 @@
+.fav-rooms-table {
+  width: 100%;
+  margin: auto;
+}
+
+.mat-column-roomNumber {
+  width: 15%;
+  padding-left: 16px;
+}
+
+.mat-column-roomName {
+  padding-left: 16px;
+  width: 50%;
+}
+
+.mat-column-floor {
+  width: 10%;
+  padding-left: 16px;
+}
+
+.mat-column-roomType {
+  width: 25%;
+  padding-left: 16px;
+}

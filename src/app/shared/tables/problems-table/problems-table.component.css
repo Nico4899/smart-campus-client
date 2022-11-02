@@ -1,0 +1,73 @@
+table {
+  width: 100%;
+}
+
+.mat-column-problemTitle {
+  width: 30%;
+  padding-left: 16px;
+}
+
+.mat-column-problemState {
+  width: 10%;
+  padding-left: 16px;
+}
+
+.mat-column-problemReporter {
+  width: 15%;
+  padding-left: 16px;
+}
+
+.mat-column-actions {
+  width: 15%;
+  padding-left: 16px;
+}
+
+.mat-column-creationTime {
+  width: 15%;
+  padding-left: 16px;
+}
+
+.mat-column-lastModified {
+  width: 15%;
+  padding-left: 16px;
+}
+
+.mat-column-edit_problem , .mat-column-delete_problem{
+  width: 0;
+}
+
+td, th {
+  width: 25%;
+}
+
+tr.detail-row {
+  height: 0;
+}
+
+.problem-row td {
+  border-bottom-width: 0;
+}
+
+.problem-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.problem-description {
+  width: 80vw;
+}
+
+.problem-reference {
+  opacity: 0.5;
+}
+
+ul li {
+  list-style: none;
+  margin: 3px;
+}
+
+ul {
+  display: flex;
+  justify-content: left;
+  padding-left: 0;
+}

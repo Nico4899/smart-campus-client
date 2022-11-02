@@ -1,0 +1,381 @@
+{
+  "general" : {
+    "buildings" : "Gebäude",
+    "rooms" : "Räume",
+    "components" : "Komponenten",
+    "notifications" : "Benachrichtigungen",
+    "problems" : "Probleme",
+    "details" : "Details",
+    "search" : "Suche",
+    "filter" : "Filter"
+  },
+  "dashboard": {
+    "title": "Wilkommen zu SmartCampus",
+    "hello": "Hallo ",
+    "guest": "Gast!",
+    "introduction": "Smartcampus bietet Zugriff auf Daten zu Gebäuden am Campus des Karlsruher Instituts für Technologie.\n  Diese Daten umfassen unter anderem Barrierefreiheitsdaten, Einzelheiten zu Räumen von Interesse sowie Probleme bezüglich einzelner Elemente\n  in einem Gebäude oder auch bezüglich des gesamten Gebäudes. Probleme können von jedem angemeldeten Benutzer gemeldet werden. Ein solches Problem könnte \nbeispielsweise ein nicht funktionierender Aufzug sein.\n  Diese gemeldeten Probleme werden dann auf Richtigkeit und Dringlichkeit überprüft und dementsrpechend behoben. Den Fortschritt eines gemeldeten Problems\n  kann man dabei als angemeldeter Benutzer hier auf der Website überprüfen. Zu den bereitgestellten Services gehören:",
+    "view": "Betrachten",
+    "add_remove": ", Hinzufügen, Entfernen ",
+    "and": "und ",
+    "edit": "Bearbeiten ",
+    "of": "von ",
+    "of_buildings": "Gebäuden",
+    "of_rooms": "Räumen",
+    "of_components": "Komponenten",
+    "viewing_adding_removing_editing_admin_description": "Als Admin können Objekte in der Datenbank\n            im User Interface hinzugefügt, bearbeitet und gelöscht werden.",
+    "viewing_adding_removing_editing_description": "Alle zu Gebäuden zugehörige Daten können über das System gesucht (zum Beispiel über den Namen eines\n          Gebäudes) und eingesehen werden.",
+    "favor": "Favorisieren ",
+    "of_buildings, rooms or components": "von Gebäuden, Räumen oder Komponenten ",
+    "favor_description": "Gebäude/Räume/Komponenten können in ihrer jeweiligen Ansicht über den Herz-Knopf zur\n          Favoritenliste des Benutzers hinzugefügt werden.",
+    "favorites": "Favoriten ",
+    "viewing_editing_favorites_description": "Als Benutzer kann man seine bereits favorisierten Gebäude/Räume/Komponenten einsehen und anpassen.",
+    "report": "Melden ",
+    "of_problems_regarding_buildings_rooms_components": "von Problem bezüglich Gebäuden, Räumen oder Komponenten ",
+    "report_problem_description": "Probleme können von jedem angemeldeten Benutzer gemeldet werden.\n          Diese werden dann auf Richtigkeit und Dringlichkeit überprüft und dementsrpechend behoben.",
+    "your_own": "eigenen ",
+    "all": "allen ",
+    "already_reported": "bereits gemeldeten ",
+    "of_problems": "Problemen ",
+    "viewing_editing_problems_admin_description": "Als Admin können alle von Benutzern gemeldeten Probleme eingesehen und bearbeitet\n            werden. Dabei können sowohl Titel und Beschreibung des Problems, als auch sein Status verändert werden. ",
+    "viewing_editing_problems_user_description": "Als Benutzer kann man seine gemeldeten Probleme einsehen.",
+    "viewing_editing_problems_description": "Ein Problem kann den Status \"OPEN\", \"ACCEPTED\", \"IN_PROGRESS\", \"DECLINED\" oder \"CLOSED\" haben. ",
+    "for_more_services_log_in": "für weitere Services melde dich an... ",
+    "login": "Anmelden",
+    "logout": "Abmelden"
+  },
+  "sidebar": {
+    "dashboard": "Übersicht",
+    "buildings": "Gebäude",
+    "problems": "Probleme",
+    "favorites": "Favoriten"
+  },
+  "buildings_table": {
+    "name" : "Name",
+    "number": "Nummer",
+    "address": "Adresse",
+    "campus_location": "Campus"
+  },
+  "rooms_table": {
+    "name" : "Name",
+    "category" : "Kategorie",
+    "level": "Stockwerk",
+    "type": "Typ",
+    "campus_location": "Campus",
+    "number": "Nummer"
+  },
+  "components_table": {
+    "type" : "Typ",
+    "campus_location": "Campus",
+    "created_time": "Erstellt",
+    "modified_time": "Zuletzt bearbeitet"
+  },
+  "problems_table": {
+    "title": "Titel",
+    "state": "Status",
+    "reporter": "Reporter",
+    "created_time": "Erstellt",
+    "modified_time": "Zuletzt bearbeitet",
+    "actions": "Aktionen"
+  },
+  "notifications_table" : {
+    "created_time": "Erstellt",
+    "modified_time": "Zuletzt bearbeitet",
+    "title": "Titel"
+  },
+  "favorites": {
+    "favorite_buildings": "Gebäude",
+    "favorite_rooms": "Räume",
+    "favorite_components": "Komponenten"
+  },
+  "campus_location_pipe": {
+    "east_campus": "Ost Campus",
+    "north_campus": "Nord Campus",
+    "west_campus": "West Campus",
+    "south_campus": "Süd Campus"
+  },
+  "component_type_pipe": {
+    "elevator" : "Aufzug",
+    "stairs" : "Treppen",
+    "door": "Tür",
+    "ramp": "Rampe",
+    "chair": "Stuhl",
+    "lamp": "Lampe",
+    "window": "Fenster",
+    "canvas": "Leinwand",
+    "whiteboard": "Whiteboard",
+    "beamer": "Beamer",
+    "power_outlet": "Steckdose",
+    "sink": "Waschbecken",
+    "heater": "Heizung"
+  },
+  "problem_state_pipe": {
+    "accepted" : "Akzeptiert",
+    "closed" : "Geschlossen",
+    "declined" : "Abgelehnt",
+    "in_progress" : "In Bearbeitung",
+    "open" : "Offen"
+  },
+  "problem_state_operation_pipe" : {
+    "accept" : "Akzeptieren",
+    "approach" : "Angehen",
+    "close" : "Schließen",
+    "decline" : "Ablehnen",
+    "hold" : "Aussetzen"
+  },
+  "room_type_pipe" : {
+    "cafeteria" : "Cafeteria",
+    "lecture_room" : "Hörsaal",
+    "library" : "Bibliothek",
+    "office" : "Büro",
+    "restroom" : "Toilette",
+    "restroom_handicapped" : "Behinderten Toilette",
+    "seminar_room" : "Seminarraum",
+    "sports" : "Sportraum",
+    "laboratory" : "Labor"
+  },
+  "building_details": {
+    "name": "Name",
+    "number": "Nummer",
+    "address": "Adresse",
+    "campus": "Campus",
+    "coordinates": "Koordinaten",
+    "floors": "Stockwerke",
+    "to": "bis",
+    "rooms" : "Räume",
+    "components" : "Komponenten",
+    "problems" : "Probleme",
+    "map" : "Karte",
+    "details" : "Details"
+  },
+  "room_details": {
+    "name": "Name",
+    "number": "Nummer",
+    "type": "Typ",
+    "coordinates": "Koordinaten",
+    "floor": "Stockwerk"
+  },
+  "component_details": {
+    "type": "Typ",
+    "description": "Beschreibung",
+    "coordinates": "Koordinaten"
+  },
+  "tooltips": {
+    "select_language": "wähle sprache",
+    "toggle_dark_mode": "wechsel zum dunkel modus",
+    "toggle_light_mode": "wechsel zum hell modus",
+    "add_favorite": "füge zu Favoriten hinzu",
+    "report_problem": "melde ein Problem",
+    "filter": "Filter",
+    "add_building": "füge Gebäude hinzu",
+    "delete_building": "entferne Gebäude",
+    "edit_building": "bearbeite Gebäude",
+    "add_component": "füge Komponente hinzu",
+    "edit_component": "bearbeite Komponente",
+    "delete_component": "entferne Komponente",
+    "edit_problem": "bearbeite Problem",
+    "delete_problem": "entferne Problem",
+    "add_room": "füge Raum hinzu",
+    "edit_room": "bearbeite Raum",
+    "delete_room": "entferne Raum",
+    "delete_favorite": "entferne aus Favoriten"
+  },
+  "errors": {
+    "building_connector": {
+      "list_buildings": "Gebäude konnten nicht geladen werden, lade die Seite neu und versuche es erneut.",
+      "list_rooms": "Räume konnten nicht geladen werden, lade die Seite neu und versuche es erneut.",
+      "list_components": "Komponenten konnten nicht geladen werden, lade die Seite neu und versuche es erneut.",
+      "list_notifications": "Benachrichtigungen konnten nicht geladen werden, lade die Seite neu und versuche es erneut.",
+      "get_building": "Gebäude konnte nicht geladen werden, lade die Seite neu und versuche es erneut.",
+      "get_component": "Komponente konnte nicht geladen werden, lade die Seite neu und versuche es erneut.",
+      "get_room": "Raum konnte nicht geladen werden, lade die Seite neu und versuche es erneut.",
+      "list_favorite_buildings": "Deine favorisierten Gebäude konnten nicht geladen werden, prüfe ob du eingeloggt bist, lade die Seite neu und versuche es erneut.",
+      "list_favorite_rooms": "Deine favorisierten Räume konnten nicht geladen werden, prüfe ob du eingeloggt bist, lade die Seite neu und versuche es erneut.",
+      "list_favorite_components": "Deine favorisierten Komponenten konnten nicht geladen werden, prüfe ob du eingeloggt bist, lade die Seite neu und versuche es erneut.",
+      "create_building": "Gewünschtes Gebäude konnte nicht erstellt werden, prüfe ob du eingeloggt bist, die eingabe Werte korrekt waren und versuche es erneut.",
+      "create_room": "Gewünschter Raum konnte nicht erstellt werden, prüfe ob du eingeloggt bist, die eingabe Werte korrekt waren und versuche es erneut.",
+      "create_component": "Gewünschte komponente konnte nicht erstellt werden, prüfe ob du eingeloggt bist, die eingabe Werte korrekt waren und versuche es erneut.",
+      "create_favorite": "Gewünschter Favorit konnte nicht erstellt werden, prüfe ob du eingeloggt bist und versuche es erneut.",
+      "update_building": "Ausgewähltes Gebäude konnte nicht aktualisiert werden, prüfe ob du eingeloggt bist, die eingabe Werte korrekt waren und versuche es erneut.",
+      "update_room": "Ausgewählte Raum konnte nicht aktualisiert werden, prüfe ob du eingeloggt bist, die eingabe Werte korrekt waren und versuche es erneut.",
+      "update_component": "Ausgewählte komponente konnte nicht aktualisiert werden, prüfe ob du eingeloggt bist, die eingabe Werte korrekt waren und versuche es erneut.",
+      "remove_building": "Ausgewähltes Gebäude konnte nicht entfernt werden, prüfe ob du eingeloggt bist und versuche es erneut.",
+      "remove_room": "Ausgewählter Raum konnte nicht entfernt werden, prüfe ob du eingeloggt bist und versuche es erneut.",
+      "remove_component": "Ausgewählte komponente konnte nicht entfernt werden, prüfe ob du eingeloggt bist und versuche es erneut.",
+      "remove_favorite": "Ausgewählter Favorit konnte nicht entfernt werden, prüfe ob du eingeloggt bist und versuche es erneut.",
+      "is_favorite": "Es konnte nicht entschieden werden ob das ausgewählte Element zu deinen Favoriten gehört, versuche es bitte erneut."
+    },
+    "problem_connector": {
+      "list_problems": "Probleme konnten nicht geladen werden, prüfe ob du eingeloggt bist neu und versuche es erneut.",
+      "list_problems_for_user": "Deine Probleme konnten nicht geladen werden, prüfe ob du eingeloggt bist neu und versuche es erneut.",
+      "get_problem": "Problem konnte nicht geladen werden, prüfe ob du eingeloggt bist neu und versuche es erneut.",
+      "create_problem": "Gewünschtes Problem konnte nicht erstellt werden, prüfe ob du eingeloggt bist neu und versuche es erneut.",
+      "update_problem": "Ausgewähltes Problem konnte nicht aktualisiert werden, prüfe ob du eingeloggt bist neu und versuche es erneut.",
+      "remove_problem": "Ausgewähltes Problem konnte nicht entfernt werden, prüfe ob du eingeloggt bist neu und versuche es erneut.",
+      "change_problem_state": "Der zustand des ausgewählten Gebäudes konnte nicht gewechselt werden, prüfe ob du eingeloggt bist und versuche es erneut."
+    }
+  },
+  "building": {
+    "rooms_label": "Räume",
+    "components_label": "Komponenten",
+    "notifications_label": "Benachrichtigungen",
+    "details_label": "Details",
+    "map_label": "Karte"
+  },
+  "component": {
+    "notifications_label": "Benachrichtigungen",
+    "details_label": "Details"
+  },
+  "rooms": {
+    "components_label": "Komponenten",
+    "notifications_label": "Benachrichtigungen",
+    "details_label": "Details"
+  },
+  "dialogs": {
+    "add_building": {
+      "title": "Gebäude hinzufügen",
+      "usage": "Trage die gewünschten Werte in die folgenden Felder ein und bestätige mit 'Ok' oder breche mit 'Abbrechen' ab. Falls kein oder ein invalider Wert eingegeben wurde, wird entweder nicht akzeptiert oder ein fehler angezeigt. In diesem fall müssen sie den Vorgang wiederholen.",
+      "name_label": "Name",
+      "name_placeholder": "z.B. Audimax",
+      "number_label": "Nummer",
+      "number_placeholder": "z.B. 30.30",
+      "address_label": "Adresse",
+      "address_placeholder": "z.B. Kastanienstraße 3",
+      "campus_location_label": "Campus",
+      "latitude_label": "Breitengrad",
+      "latitude_placeholder": "z.B. 32.2",
+      "longitude_label": "Längengrad",
+      "longitude_placeholder": "z.B. 7.1",
+      "highest_floor_label": "Oberste Etage",
+      "highest_floor_placeholder": "z.B. 3",
+      "lowest_floor_label": "Unterste Etage",
+      "lowest_floor_placeholder": "z.B. -2"
+    },
+    "add_component": {
+      "title": "Komponente hinzufügen",
+      "usage": "Trage die gewünschten Werte in die folgenden Felder ein und bestätige mit 'Ok' oder breche mit 'Abbrechen' ab. Falls kein oder ein invalider Wert eingegeben wurde, wird entweder nicht akzeptiert oder ein fehler angezeigt. In diesem fall müssen sie den Vorgang wiederholen.",
+      "description_label": "Beschreibung",
+      "description_placeholder": "z.B. Aufzug in der alten Bibliothek",
+      "component_type_label": "Komponenten Typ",
+      "latitude_label": "Breitengrad",
+      "latitude_placeholder": "z.B. 32.2",
+      "longitude_label": "Längengrad",
+      "longitude_placeholder": "z.B. 7.1"
+    },
+    "add_problem": {
+      "title": "Problem melden",
+      "usage": "Wähle einen passenden Titel und beschreibe das problem so genau wie möglich, bestätige mit 'Ok' oder breche mit 'Abbrechen' ab. Nach dem bestätigen kannst du das Problem nicht mehr selbst ändern, aber das einsehen aller deiner Probleme sowie deren Zustände ist dennoch möglich.",
+      "problem_title_label": "Problem Titel",
+      "problem_title_placeholder": "z.B. Tür der Bibliothek öffnet nicht richtig.",
+      "problem_description_label": "Problem Beschreibung",
+      "problem_description_placeholder": "z.B. die Tür öffnet nicht richtig, ich vermute es liegt daran das etwas unter der Tür klemmt."
+    },
+    "add_room": {
+      "title": "Raum hinzufügen",
+      "usage": "Trage die gewünschten Werte in die folgenden Felder ein und bestätige mit 'Ok' oder breche mit 'Abbrechen' ab. Falls kein oder ein invalider Wert eingegeben wurde, wird entweder nicht akzeptiert oder ein fehler angezeigt. In diesem fall müssen sie den Vorgang wiederholen.",
+      "name_label": "Name",
+      "name_placeholder": "z.B. Seminar room 25",
+      "number_label": "Nummer",
+      "number_placeholder": "z.B. -1.025",
+      "floor_label": "Stockwerk",
+      "floor_placeholder": "z.B. -1",
+      "room_type_label": "Raum Typ",
+      "latitude_label": "Breitengrad",
+      "latitude_placeholder": "z.B. 32.2",
+      "longitude_label": "Längengrad",
+      "longitude_placeholder": "z.B. 7.1"
+    },
+    "edit_building": {
+      "title": "Gebäude bearbeiten",
+      "usage": "Trage die gewünschten Werte in die folgenden Felder ein und bestätige mit 'Ok' oder breche mit 'Abbrechen' ab. Falls kein oder ein invalider Wert eingegeben wurde, wird entweder nicht akzeptiert oder ein fehler angezeigt. In diesem fall müssen sie den Vorgang wiederholen.",
+      "name_label": "Name",
+      "name_placeholder": "z.B. Audimax",
+      "number_label": "Nummer",
+      "number_placeholder": "z.B. 30.30",
+      "address_label": "Adresse",
+      "address_placeholder": "z.B. Kastanienstraße 3",
+      "campus_location_label": "Campus",
+      "latitude_label": "Breitengrad",
+      "latitude_placeholder": "z.B. 32.2",
+      "longitude_label": "Längengrad",
+      "longitude_placeholder": "z.B. 7.1",
+      "highest_floor_label": "Oberste Etage",
+      "highest_floor_placeholder": "z.B. 3",
+      "lowest_floor_label": "Unterste Etage",
+      "lowest_floor_placeholder": "z.B. -2"
+    },
+    "edit_component": {
+      "title": "Komponente bearbeiten",
+      "usage": "Trage die gewünschten Werte in die folgenden Felder ein und bestätige mit 'Ok' oder breche mit 'Abbrechen' ab. Falls kein oder ein invalider Wert eingegeben wurde, wird entweder nicht akzeptiert oder ein fehler angezeigt. In diesem fall müssen sie den Vorgang wiederholen.",
+      "description_label": "Beschreibung",
+      "description_placeholder": "z.B. Aufzug in der alten Bibliothek",
+      "component_type_label": "Komponenten Typ",
+      "latitude_label": "Breitengrad",
+      "latitude_placeholder": "z.B. 32.2",
+      "longitude_label": "Längengrad",
+      "longitude_placeholder": "z.B. 7.1"
+    },
+    "edit_problem": {
+      "title": "Problem bearbeiten",
+      "usage": "Wähle einen besser passenden Titel und beschreibe das Problem genauer, bestätige dann mit 'Ok' oder breche den Vorgang mit 'Abbrechen' ab.",
+      "problem_title_label": "Problem Titel",
+      "problem_title_placeholder": "z.B. Tür der Bibliothek öffnet nicht richtig.",
+      "problem_description_label": "Problem Beschreibung",
+      "problem_description_placeholder": "z.B. die Tür öffnet nicht richtig, ich vermute es liegt daran das etwas unter der Tür klemmt."
+    },
+    "edit_room": {
+      "title": "Raum bearbeiten",
+      "usage": "Trage die gewünschten Werte in die folgenden Felder ein und bestätige mit 'Ok' oder breche mit 'Abbrechen' ab. Falls kein oder ein invalider Wert eingegeben wurde, wird entweder nicht akzeptiert oder ein fehler angezeigt. In diesem fall müssen sie den Vorgang wiederholen.",
+      "name_label": "Name",
+      "name_placeholder": "z.B. Seminar room 25",
+      "number_label": "Nummer",
+      "number_placeholder": "z.B. -1.025",
+      "floor_label": "Stockwerk",
+      "floor_placeholder": "z.B. -1",
+      "room_type_label": "Raum Typ",
+      "latitude_label": "Breitengrad",
+      "latitude_placeholder": "z.B. 32.2",
+      "longitude_label": "Längengrad",
+      "longitude_placeholder": "z.B. 7.1"
+    },
+    "delete": {
+      "title": "Bist du sicher das du dieses Element löschen willst?",
+      "warning": "Das Löschen kann nicht Rückgängig gemacht werden und ist final."
+    },
+    "delete_favorite": {
+      "title": "Bist du sicher das du dieses Element aus deinen Favoriten löschen willst?",
+      "warning": "Das Löschen kann nicht Rückgängig gemacht werden und ist final. Es kann allerdings jederzeit erneut hinzugefügt werden."
+    },
+    "filter_buildings": {
+      "title": "Gebäude filtern",
+      "usage": "Wähle die gewünschten filter werte und bestätige mit 'Ok' oder breche den Vorgang mit 'Abbrechen' ab.",
+      "campus_locations_label": "Campus",
+      "room_types_label": "Raum Typen",
+      "component_types_label": "Komponenten Typen"
+    },
+    "filter_problems": {
+      "title": "Probleme filtern",
+      "usage": "Wähle die gewünschten filter werte und bestätige mit 'Ok' oder breche den Vorgang mit 'Abbrechen' ab.",
+      "problem_states_label": "Problem Zustände"
+    },
+    "filter_rooms": {
+      "title": "Räume filtern",
+      "usage": "Wähle die gewünschten filter werte und bestätige mit 'Ok' oder breche den Vorgang mit 'Abbrechen' ab.",
+      "room_types_label": "Raum Typen",
+      "component_types_label": "Komponenten Typen"
+    },
+    "ok": "Ok",
+    "cancel": "Abbrechen"
+  },
+  "footer": {
+    "data_protection": "Datenschutz",
+    "impressum": "Impressum",
+    "copyrights": "Copyright"
+  },
+  "header": {
+    "login": "Anmelden",
+    "logout": "Abmelden"
+  },
+  "added_favorite": "Zu Favoriten hinzugefügt",
+  "reported_problem": "Problem erfolgreich gemeldet",
+  "remove_favorite": "Aus Favoriten Entfernt"
+}

@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.hide {
+  display: none;
+}
+
+mat-footer-row mat-footer-cell {
+  justify-content: center;
+  font-style: italic;
+  border-bottom-style: none;
+}
+
+.search {
+  margin-left: 10px;
+}
+
+.mat-row:hover {
+  background-color: rgba(221, 221, 221, 0.6);
+}
+
+.list-item-active {
+  background-color: rgba(221, 221, 221, 0.6) !important;
+}

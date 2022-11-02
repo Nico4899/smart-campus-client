@@ -1,0 +1,44 @@
+table {
+  width: 100%;
+}
+
+.mat-column-notificationTitle {
+  width: 40%;
+  padding-left: 16px;
+}
+
+.mat-column-creationTime {
+  width: 30%;
+  padding-left: 16px;
+}
+
+.mat-column-lastModified {
+  width: 30%;
+  padding-left: 16px;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+tr.detail-row {
+  height: 0;
+}
+
+.notification-row td {
+  border-bottom-width: 0;
+}
+
+.notification-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.notification-description {
+  width: 80vw;
+}

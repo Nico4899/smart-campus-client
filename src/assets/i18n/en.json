@@ -1,0 +1,381 @@
+{
+  "general" : {
+    "buildings" : "Buildings",
+    "rooms" : "Rooms",
+    "components" : "Components",
+    "notifications" : "Notifications",
+    "problems" : "Problems",
+    "details" : "Details",
+    "search" : "Search",
+    "filter" : "Filter"
+  },
+  "dashboard": {
+    "title": "Welcome to SmartCampus",
+    "hello": "Hello ",
+    "guest": "guest!",
+    "introduction": "SmartCampus provides access to data regarding buildings at the campus of Karlsruhe Institut of Technology. This data consists of accessibility data, details\non rooms of interest and also problems concerning single elements inside a building or even the whole building. Every registered user may report one or \nseveral problems, such a problem could be for instance an elevator not working. Every reported problem is then validated and fixed in regard to its urgency.\nIf you are logged in the progress of a reported problem can be checked on this website. Here is a list of our provided services:",
+    "view": "View",
+    "add_remove": ", Add, Remove ",
+    "and": "and ",
+    "edit": "Edit ",
+    "of": " ",
+    "of_buildings": "buildings",
+    "of_rooms": "rooms",
+    "of_components": "components",
+    "viewing_adding_removing_editing_admin_description": "As admin you can add, edit and delete objects in the database using the User Interface of SmartCampus. ",
+    "viewing_adding_removing_editing_description": "All data belonging to a building can be searched for (for instance using the name of a building) and viewed. ",
+    "favor": "Favor ",
+    "of_buildings, rooms or components": "buildings, rooms or components",
+    "favor_description": "Buildings/rooms/components can be added to a users favorite list using the button with a heart.",
+    "favorites": "favorites ",
+    "viewing_editing_favorites_description": "As user you can view and edit your favored buildings / rooms / components. ",
+    "report": "Report ",
+    "of_problems_regarding_buildings_rooms_components": "a problem concerning a building/room/component ",
+    "report_problem_description": "Every logged in user may report one or \nseveral problems, such a problem could be for instance an elevator not working. Every reported problem is then validated and fixed in regard to its urgency.",
+    "your_own": "your own ",
+    "all": "all ",
+    "already_reported": "reported ",
+    "of_problems": "problems ",
+    "viewing_editing_problems_admin_description": "As admin you can view and edit all problems reported by users, including yourself. You can change the description, title and status of a problem. ",
+    "viewing_editing_problems_user_description": "As logged in user you can view your reported problems. ",
+    "viewing_editing_problems_description": "A problem can have the status \"OPEN\", \"ACCEPTED\", \"IN_PROGRESS\", \"DECLINED\" or \"CLOSED\". ",
+    "for_more_services_log_in": "for more services log in... ",
+    "login": "Sign in",
+    "logout": "Sign out"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "buildings": "Buildings",
+    "problems": "Problems",
+    "favorites": "Favorites"
+  },
+  "buildings_table": {
+    "name" : "Name",
+    "number": "Number",
+    "address": "Address",
+    "campus_location": "Campus Location"
+  },
+  "rooms_table": {
+    "name" : "Name",
+    "category" : "Category",
+    "number": "Number",
+    "level": "Level",
+    "type": "Type",
+    "campus_location": "Campus Location"
+  },
+  "components_table": {
+    "type": "Type",
+    "campus_location": "Campus Location",
+    "created_time": "Created",
+    "modified_time": "Modified"
+  },
+  "problems_table": {
+    "title": "Title",
+    "state": "State",
+    "reporter": "Reporter",
+    "created_time": "Created",
+    "modified_time": "Modified",
+    "actions": "Actions"
+  },
+  "notifications_table" : {
+    "created_time": "Created",
+    "modified_time": "Modified",
+    "title": "Title"
+  },
+  "favorites": {
+    "favorite_buildings": "Buildings",
+    "favorite_rooms": "Rooms",
+    "favorite_components": "Components"
+  },
+  "campus_location_pipe": {
+    "east_campus": "East Campus",
+    "north_campus": "North Campus",
+    "west_campus": "West Campus",
+    "south_campus": "South Campus"
+  },
+  "component_type_pipe": {
+    "elevator": "Elevator",
+    "stairs": "Stairs",
+    "door": "Door",
+    "ramp": "Ramp",
+    "chair": "Chair",
+    "lamp": "Lamp",
+    "window": "Window",
+    "canvas": "Canvas",
+    "whiteboard": "Whiteboard",
+    "beamer": "Beamer",
+    "power_outlet": "Power Outlet",
+    "sink": "Sink",
+    "heater": "Heater"
+  },
+  "problem_state_pipe": {
+    "accepted": "Accepted",
+    "closed": "Closed",
+    "declined": "Declined",
+    "in_progress": "In Progress",
+    "open": "Open"
+  },
+  "problem_state_operation_pipe": {
+    "accept": "Accept",
+    "approach": "Approach",
+    "close": "Close",
+    "decline": "Decline",
+    "hold": "Hold"
+  },
+  "room_type_pipe": {
+    "cafeteria": "Cafeteria",
+    "lecture_room": "Lecture Room",
+    "library": "Library",
+    "office": "Office",
+    "restroom": "Restroom",
+    "restroom_handicapped": "Restroom Handicapped",
+    "seminar_room": "Seminar Room",
+    "sports": "Sports Room",
+    "laboratory" : "Laboratory"
+  },
+  "building_details": {
+    "name": "Name",
+    "number": "Number",
+    "address": "Address",
+    "campus": "Campus",
+    "coordinates": "Coordinates",
+    "floors": "Floors",
+    "to": "to",
+    "rooms" : "Rooms",
+    "components" : "Components",
+    "problems" : "Problems",
+    "map" : "Map",
+    "details" : "Details"
+  },
+  "room_details": {
+    "name": "Name",
+    "number": "Number",
+    "type": "Type",
+    "coordinates": "Coordinates",
+    "floor": "Floor"
+  },
+  "component_details": {
+    "type": "Type",
+    "description": "Description",
+    "coordinates": "Coordinates"
+  },
+  "tooltips": {
+    "select_language": "select language",
+    "toggle_dark_mode": "change to dark mode",
+    "toggle_light_mode": "change to light mode",
+    "add_favorite": "add to favorites",
+    "report_problem": "report a problem",
+    "filter": "filter",
+    "add_building": "add building",
+    "delete_building": "delete building",
+    "edit_building": "edit building",
+    "add_component": "add component",
+    "edit_component": "edit component",
+    "delete_component": "delete component",
+    "edit_problem": "edit problem",
+    "delete_problem": "delete problem",
+    "add_room": "add room",
+    "edit_room": "edit room",
+    "delete_room": "delete room",
+    "delete_favorite": "remove from favorites"
+  },
+  "errors": {
+    "building_connector": {
+      "list_buildings": "Could not load buildings from server, please reload the page and try again.",
+      "list_rooms": "Could not load rooms from server, please reload the page and try again.",
+      "list_components": "Could not load components from server, please reload the page and try again.",
+      "list_notifications": "Could not load notifications from server, please reload the page and try again.",
+      "get_building": "Could not load the building from server, please reload the page and try again.",
+      "get_component": "Could not load the component from server, please reload the page and try again.",
+      "get_room": "Could not load the room from server, please reload the page and try again.",
+      "list_favorite_buildings": "Could not load your favored buildings from server, please check if you are logged in or reload the page and try again.",
+      "list_favorite_rooms": "Could not load your favored rooms from server, please check if you are logged in or reload the page and try again.",
+      "list_favorite_components": "Could not load your favored components from server, please check if you are logged in or reload the page and try again.",
+      "create_building": "Could not create the desired building, please check if you are logged in, or any input values aren't valid and try again.",
+      "create_room": "Could not create the desired room, please check if you are logged in, or any input values aren't valid and try again.",
+      "create_component": "Could not create the desired component, please check if you are logged in, or any input values aren't valid and try again.",
+      "create_favorite": "Could not create the desired favorite, please check if you are logged in, or any input values aren't valid and try again.",
+      "update_building": "Could not update the selected building, please check if you are logged in, or any input values aren't valid and try again.",
+      "update_room": "Could not update the selected room, please check if you are logged in, or any input values aren't valid and try again.",
+      "update_component": "Could not update the selected component, please check if you are logged in, or any input values aren't valid and try again.",
+      "remove_building": "Could not remove the selected building, please check if you are logged in and try again.",
+      "remove_room": "Could not remove the selected room, please check if you are logged in and try again.",
+      "remove_component": "Could not remove the selected component, please check if you are logged in and try again.",
+      "remove_favorite": "Could not remove the selected favorite, please check if you are logged in and try again.",
+      "is_favorite": "Could not decide if element is favorite or not, please try again."
+    },
+    "problem_connector": {
+      "list_problems": "Could not load problems from server, please check if you are logged in or reload the page and try again.",
+      "list_problems_for_user": "Could not load your problems from server, please check if you are logged in or reload the page and try again.",
+      "get_problem": "Could not load the building from server, please check if you are logged in or reload the page and try again.",
+      "create_problem": "Could not create the desired building from server, please check if you are logged in or reload the page and try again.",
+      "update_problem": "Could not update the selected building from server, please check if you are logged in or reload the page and try again.",
+      "remove_problem": "Could not remove the selected building from server, please check if you are logged in or reload the page and try again.",
+      "change_problem_state": "Could change the state of the selected problem, please check if you are logged in or reload the page and try again."
+    }
+  },
+  "building": {
+    "rooms_label": "Rooms",
+    "components_label": "Components",
+    "notifications_label": "Notifications",
+    "details_label": "Details",
+    "map_label": "Map"
+  },
+  "component": {
+    "notifications_label": "Notifications",
+    "details_label": "Details"
+  },
+  "room": {
+    "components_label": "Components",
+    "notifications_label": "Notifications",
+    "details_label": "Details"
+  },
+  "dialogs": {
+    "add_building": {
+      "title": "Add building",
+      "usage": "Fill in the following input- & text-fields and submit with 'Ok' or abort the process with 'Cancel'. In case a value was not provided it wont be submittable, if a value has invalid format an error will be thrown on submitting.",
+      "name_label": "Name",
+      "name_placeholder": "e.g., Audimax",
+      "number_label": "Number",
+      "number_placeholder": "e.g., 30.30",
+      "address_label": "Address",
+      "address_placeholder": "e.g., Kastanienstraße 3",
+      "campus_location_label": "Campus Location",
+      "latitude_label": "Latitude",
+      "latitude_placeholder": "e.g., 32.2",
+      "longitude_label": "Longitude",
+      "longitude_placeholder": "e.g., 7.1",
+      "highest_floor_label": "Highest Floor",
+      "highest_floor_placeholder": "e.g., 3",
+      "lowest_floor_label": "Lowest Floor",
+      "lowest_floor_placeholder": "e.g., -2"
+    },
+    "add_component": {
+      "title": "Add component",
+      "usage": "Fill in the following input- & text-fields and submit with 'Ok' or abort the process with 'Cancel'. In case a value was not provided it wont be submittable, if a value has invalid format an error will be thrown on submitting.",
+      "description_label": "Description",
+      "description_placeholder": "e.g., elevator in the old library",
+      "component_type_label": "Component Type",
+      "latitude_label": "Latitude",
+      "latitude_placeholder": "e.g., 32.2",
+      "longitude_label": "Longitude",
+      "longitude_placeholder": "e.g., 7.1"
+    },
+    "add_problem": {
+      "title": "Report problem",
+      "usage": "Choose a fitting title and describe the problem precisely, then submit with 'Ok' or abort the process with 'Cancel'. After submitting the problem you cannot change it yourself, but you can view the state and all your submitted problems in your problems list.",
+      "problem_title_label": "Problem Title",
+      "problem_title_placeholder": "e.g., door to library doesn't open up properly",
+      "problem_description_label": "Problem Description",
+      "problem_description_placeholder": "e.g., the door doesn't open up properly. I think something is stuck under the door, so it cannot be opened."
+    },
+    "add_room": {
+      "title": "Add room",
+      "usage": "Fill in the following input- & text-fields and submit with 'Ok' or abort the process with 'Cancel'. In case a value was not provided it wont be submittable, if a value has invalid format an error will be thrown on submitting.",
+      "name_label": "Name",
+      "name_placeholder": "e.g., Seminar room 25",
+      "number_label": "Number",
+      "number_placeholder": "e.g., -1.025",
+      "floor_label": "Floor",
+      "floor_placeholder": "e.g., -1",
+      "room_type_label": "room_type",
+      "latitude_label": "Latitude",
+      "latitude_placeholder": "e.g., 32.2",
+      "longitude_label": "Longitude",
+      "longitude_placeholder": "e.g., 7.1"
+    },
+    "edit_building": {
+      "title": "Edit building",
+      "usage": "Change the following input- & text-fields you want to change and submit with 'Ok' or abort the process with 'Cancel'. In case a value was not provided it wont be submittable, if a value has invalid format an error will be thrown on submitting.",
+      "name_label": "Name",
+      "name_placeholder": "e.g., Audimax",
+      "number_label": "Number",
+      "number_placeholder": "e.g., 30.30",
+      "address_label": "Address",
+      "address_placeholder": "e.g., Kastanienstraße 3",
+      "campus_location_label": "Campus Location",
+      "latitude_label": "Latitude",
+      "latitude_placeholder": "e.g., 32.2",
+      "longitude_label": "Longitude",
+      "longitude_placeholder": "e.g., 7.1",
+      "highest_floor_label": "Highest Floor",
+      "highest_floor_placeholder": "e.g., 3",
+      "lowest_floor_label": "Lowest Floor",
+      "lowest_floor_placeholder": "e.g., -2"
+    },
+    "edit_component": {
+      "title": "Edit component",
+      "usage": "Change in the following input- & text-fields you want to change and submit with 'Ok' or abort the process with 'Cancel'. In case a value was not provided it wont be submittable, if a value has invalid format an error will be thrown on submitting.",
+      "description_label": "Description",
+      "description_placeholder": "e.g., elevator in the old library",
+      "component_type_label": "Component Type",
+      "latitude_label": "Latitude",
+      "latitude_placeholder": "e.g., 32.2",
+      "longitude_label": "Longitude",
+      "longitude_placeholder": "e.g., 7.1"
+    },
+    "edit_problem": {
+      "title": "Edit problem",
+      "usage": "Choose a more fitting title and describe the problem more precisely, then submit with 'Ok' or abort the process with 'Cancel'. After submitting the problem you cannot change it yourself, but you can view the state and all your submitted problems in your problems list.",
+      "problem_title_label": "Problem Title",
+      "problem_title_placeholder": "e.g., door to library doesn't open up properly",
+      "problem_description_label": "Problem Description",
+      "problem_description_placeholder": "e.g., the door doesn't open up properly. I think something is stuck under the door, so it cannot be opened."
+    },
+    "edit_room": {
+      "title": "Edit room",
+      "usage": "Change the following input- & text-fields that you want and submit with 'Ok' or abort the process with 'Cancel'. In case a value was not provided it wont be submittable, if a value has invalid format an error will be thrown on submitting.",
+      "name_label": "Name",
+      "name_placeholder": "e.g., Seminar room 25",
+      "number_label": "Number",
+      "number_placeholder": "e.g., -1.025",
+      "floor_label": "Floor",
+      "floor_placeholder": "e.g., -1",
+      "room_type_label": "Room Type",
+      "latitude_label": "Latitude",
+      "latitude_placeholder": "e.g., 32.2",
+      "longitude_label": "Longitude",
+      "longitude_placeholder": "e.g., 7.1"
+    },
+    "delete": {
+      "title": "Are you sure you want to delete this element?",
+      "warning": "Deleting this element cannot be undone, deleting is will be final."
+    },
+    "delete_favorite": {
+      "title": "Are you sure you want to delete this element from your favorites?",
+      "warning": "Deleting this element as favorite cannot be undone, deleting is will be final. In case u want to find it again, you wil have have to add it again."
+    },
+    "filter_buildings": {
+      "title": "Filter buildings",
+      "usage": "Select the filter values you want, and submit with 'Ok' or abort the process with 'Cancel'.",
+      "campus_locations_label": "Campus Locations",
+      "room_types_label": "Room Types",
+      "component_types_label": "Component Types"
+    },
+    "filter_problems": {
+      "title": "Filter problems",
+      "usage": "Select the filter values you want, and submit with 'Ok' or abort the process with 'Cancel'.",
+      "problem_states_label": "Problem States"
+    },
+    "filter_rooms": {
+      "title": "Filter problems",
+      "usage": "Select the filter values you want, and submit with 'Ok' or abort the process with 'Cancel'.",
+      "room_types_label": "Room Types",
+      "component_types_label": "Component Types"
+    },
+    "ok": "Ok",
+    "cancel": "Cancel"
+  },
+  "footer": {
+    "data_protection": "Privacy",
+    "impressum": "Impressum",
+    "copyrights": "Copyright"
+  },
+  "header": {
+    "login": "Sign in",
+    "logout": "Sign out"
+  },
+  "added_favorite": "added to favorites",
+  "reported_problem": "successfully reported problem",
+  "remove_favorite": "removed from favorites"
+}

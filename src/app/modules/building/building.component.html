@@ -1,0 +1,56 @@
+<div class="buildingTitle">
+  <h1>{{building.buildingNumber}}</h1>
+  <h3>{{building.buildingName}}</h3>
+  <div class="controls">
+    <button *ngIf="!isFavorite" mat-icon-button (click)="addFavorite()" matTooltip="{{ 'tooltips.add_favorite' | translate }}">
+      <mat-icon color="accent">favorite</mat-icon>
+    </button>
+
+    <button *ngIf="isFavorite" mat-icon-button (click)="removeFavorite()" matTooltip="{{ 'tooltips.delete_favorite' | translate }}">
+      <mat-icon color="primary">favorite</mat-icon>
+    </button>
+
+    <button  mat-icon-button (click)="openCreateProblemDialog()" matTooltip="{{ 'tooltips.report_problem' | translate }}">
+      <mat-icon>priority_high</mat-icon>
+    </button>
+  </div>
+</div>
+
+<mat-tab-group>
+  <mat-tab label="{{ 'building.rooms_label' | translate }}">
+    <app-rooms-table></app-rooms-table>
+  </mat-tab>
+  <mat-tab label="{{ 'building.components_label' | translate }}">
+    <app-components-table></app-components-table>
+  </mat-tab>
+  <mat-tab label="{{ 'building.notifications_label' | translate }}">
+    <app-notifications-table></app-notifications-table>
+  </mat-tab>
+  <mat-tab label="{{ 'building.map_label' | translate }}">
+    <div id="map" class="map"></div>
+    <google-map
+      height="500px"
+      width="100%"
+      [zoom]="zoom"
+      [center]="center"
+      [options]="options">
+      <map-marker [position]="marker.position" [label]="marker.label" [title]="marker.title" [options]="marker.options">
+
+      </map-marker>
+    </google-map>
+  </mat-tab>
+  <mat-tab label="{{ 'building.details_label' | translate }}">
+    <mat-list>
+      <mat-list-item>{{ 'building_details.name' | translate }}: {{building.buildingName}}</mat-list-item>
+      <mat-list-item>{{ 'building_details.number' | translate }}: {{building.buildingNumber}}</mat-list-item>
+      <mat-list-item>{{ 'building_details.address' | translate }}: {{building.buildingAddress}}</mat-list-item>
+      <mat-list-item>{{ 'building_details.campus' | translate }}
+        : {{building.campusLocation | campusLocation}}</mat-list-item>
+      <mat-list-item>{{ 'building_details.coordinates' | translate }}: {{building.grpcGeographicalLocation!.latitude}}
+        , {{building.grpcGeographicalLocation!.longitude}}</mat-list-item>
+      <mat-list-item>{{ 'building_details.floors' | translate }}
+        : {{building.grpcFloors!.lowestFloor}} {{ 'building_details.to' | translate }} {{building.grpcFloors!.highestFloor}}</mat-list-item>
+    </mat-list>
+  </mat-tab>
+</mat-tab-group>
+

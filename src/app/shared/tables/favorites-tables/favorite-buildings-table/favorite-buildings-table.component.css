@@ -1,0 +1,24 @@
+.fav-buildings-table {
+  width: 100%;
+  margin: auto;
+}
+
+.mat-column-buildingNumber {
+  width: 20%;
+  padding-left: 16px;
+}
+
+.mat-column-buildingName {
+  padding-left: 16px;
+  width: 30%;
+}
+
+.mat-column-address {
+  width: 30%;
+  padding-left: 16px;
+}
+
+.mat-column-campusLocation {
+  width: 20%;
+  padding-left: 16px;
+}

@@ -1,0 +1,53 @@
+<h1 mat-dialog-title>{{'dialogs.add_building.title' | translate}}</h1>
+<span>{{'dialogs.add_building.usage' | translate}}</span>
+
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>{{'dialogs.add_building.name_label' | translate}}</mat-label>
+    <input placeholder="{{'dialogs.add_building.name_placeholder' | translate}}" matInput [(ngModel)]="buildingName" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>{{'dialogs.add_building.number_label' | translate}}</mat-label>
+    <input matInput placeholder="{{'dialogs.add_building.number_placeholder' | translate}}" [(ngModel)]="buildingNumber" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>{{'dialogs.add_building.address_label' | translate}}</mat-label>
+    <input matInput placeholder="{{'dialogs.add_building.address_placeholder' | translate}}" [(ngModel)]="address" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>{{'dialogs.add_building.campus_location_label' | translate}}</mat-label>
+    <mat-select [(ngModel)]="campusLocation" required>
+      <mat-option *ngFor="let campusLocation of campusLocations" [value]="campusLocation">
+        {{campusLocation | campusLocation}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>{{'dialogs.add_building.latitude_label' | translate}}</mat-label>
+    <input placeholder="{{'dialogs.add_building.latitude_placeholder' | translate}}" matInput [(ngModel)]="latitude" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>{{'dialogs.add_building.longitude_label' | translate}}</mat-label>
+    <input placeholder="{{'dialogs.add_building.longitude_placeholder' | translate}}" matInput [(ngModel)]="longitude" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>{{'dialogs.add_building.highest_floor_label' | translate}}</mat-label>
+    <input placeholder="{{'dialogs.add_building.highest_floor_placeholder' | translate}}" matInput [(ngModel)]="highestFloor" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>{{'dialogs.add_building.lowest_floor_label' | translate}}</mat-label>
+    <input placeholder="{{'dialogs.add_building.lowest_floor_placeholder' | translate}}" matInput [(ngModel)]="lowestFloor" required>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="ok()">{{'dialogs.ok' | translate}}</button>
+  <button mat-button (click)="cancel()" color="warn">{{'dialogs.cancel' | translate}}</button>
+</div>

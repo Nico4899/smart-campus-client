@@ -1,0 +1,144 @@
+<div>
+  <h1>
+    {{ 'dashboard.title' | translate }}
+  </h1>
+
+  <h2>
+    <div fxLayout = "row">
+      <div fxFlexAlign="center">
+        {{ 'dashboard.hello' | translate }}
+        <span [hidden]="isLoggedIn()">
+          {{ 'dashboard.guest' | translate }}
+        </span>
+        <span [hidden]="!isLoggedIn()">
+          {{getName()}}!
+        </span>
+      </div>
+      <div fxFlexAlign="center" fxFlexOffset="20px">
+        <button *ngIf="!isLoggedIn()" mat-menu-item (click)="login()">
+          <mat-icon>
+            login
+          </mat-icon>
+          {{'dashboard.login' | translate}}
+        </button>
+        <button *ngIf="isLoggedIn()" mat-menu-item (click)="logout()">
+          <mat-icon>
+            logout
+          </mat-icon>
+          {{'dashboard.logout' | translate}}
+        </button>
+      </div>
+    </div>
+  </h2>
+
+  {{ 'dashboard.introduction' | translate }}
+  <ul>
+    <li>
+      <h3>
+        <strong>{{ 'dashboard.view' | translate }}</strong>
+        <span [hidden]="!isAdmin()">
+          <strong>{{ 'dashboard.add_remove' | translate }}</strong>
+          {{ 'dashboard.and' | translate }}
+          <strong>
+            {{ 'dashboard.edit' | translate }}
+          </strong>
+        </span>
+        {{ 'dashboard.of' | translate }}
+        <a routerLinkActive="active" class="router"
+           routerLink='/buildings'>{{'dashboard.of_buildings'|translate}}</a>/{{'dashboard.of_rooms'|translate}}/{{'dashboard.of_components'|translate}}
+        <br>
+        <small>
+          <span [hidden]="!isAdmin()">
+            {{ 'dashboard.viewing_adding_removing_editing_admin_description' | translate }}
+          </span>
+          {{ 'dashboard.viewing_adding_removing_editing_description' | translate }}
+        </small>
+      </h3>
+    </li>
+    <li [hidden]="!isUser()">
+      <h3>
+        <strong>
+          {{ 'dashboard.favor' | translate }}
+        </strong>
+        {{ 'dashboard.of_buildings, rooms or components' | translate }}
+        <br>
+        <small>
+          {{ 'dashboard.favor_description' | translate }}
+        </small>
+      </h3>
+    </li>
+    <li [hidden]="!isUser()">
+      <h3>
+        <strong>
+          {{ 'dashboard.view' | translate }}
+        </strong>
+        {{ 'dashboard.and' | translate }}
+        <strong>
+          {{ 'dashboard.edit' | translate }}
+        </strong>
+        {{ 'dashboard.of' | translate }}
+        <a routerLinkActive="active" class="router" routerLink="/favorites">
+          {{ 'dashboard.favorites' | translate }}
+        </a>
+        <br>
+        <small>
+          {{ 'dashboard.viewing_editing_favorites_description' | translate }}
+        </small>
+      </h3>
+    </li>
+    <li [hidden]="!isUser()">
+      <h3>
+        <strong>
+          {{ 'dashboard.report' | translate }}
+        </strong>
+        {{ 'dashboard.of_problems_regarding_buildings_rooms_components' | translate }}
+        <br>
+        <small>
+          {{ 'dashboard.report_problem_description' | translate }}
+        </small>
+      </h3>
+    </li>
+    <li [hidden]="!isUser()">
+      <h3>
+        <strong>
+          {{ 'dashboard.view' | translate }}
+        </strong>
+        <span [hidden]="!isAdmin()">
+          {{ 'dashboard.and' | translate }}
+          <strong>
+            {{ 'dashboard.edit' | translate }}
+          </strong>
+          {{ 'dashboard.of' | translate }}
+        </span>
+        <span [hidden]="isAdmin()">
+          {{ 'dashboard.your_own' | translate }}
+        </span>
+        <span [hidden]="!isAdmin()">
+          {{ 'dashboard.all' | translate }}
+        </span>
+        {{ 'dashboard.already_reported' | translate }}
+        <a routerLinkActive="active" class="router" routerLink="/problems">
+          {{ 'dashboard.of_problems' | translate }}
+        </a>
+        <br>
+        <small>
+          <span [hidden]="!isAdmin()">
+            {{ 'dashboard.viewing_editing_problems_admin_description' | translate }}
+          </span>
+          <span [hidden]="isAdmin()">
+            {{ 'dashboard.viewing_editing_problems_user_description' | translate }}
+          </span>
+          {{ 'dashboard.viewing_editing_problems_description' | translate }}
+        </small>
+      </h3>
+    </li>
+    <li [hidden]="isLoggedIn()">
+      {{ 'dashboard.for_more_services_log_in' | translate }}
+    </li>
+  </ul>
+
+  <h2>NEWS:</h2>
+  Z.B. Release oder neue Version 1.2.3 usw
+
+
+</div>

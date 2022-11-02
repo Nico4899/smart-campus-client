@@ -1,0 +1,29 @@
+table {
+  width: 100%;
+}
+
+.mat-column-componentType {
+  width: 100%;
+  padding-left: 16px;
+}
+
+td, th {
+  width: 25%;
+}
+
+tr.detail-row {
+  height: 0;
+}
+
+.component-row td {
+  border-bottom-width: 0;
+}
+
+.component-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.component-description {
+  padding: 16px;
+}

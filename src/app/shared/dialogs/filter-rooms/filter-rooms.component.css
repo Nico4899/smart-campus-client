@@ -1,0 +1,17 @@
+ul {
+  list-style-type: none;
+}
+
+.filter-selections {
+  display: flex;
+}
+
+.room-type-selection {
+  flex: 1;
+  padding: 1em;
+}
+
+.component-type-selection {
+  flex: 1;
+  padding: 1em;
+}

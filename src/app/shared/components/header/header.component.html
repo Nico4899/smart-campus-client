@@ -1,0 +1,54 @@
+<mat-toolbar color="primary">
+
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="toggleSideBar()">
+      <mat-icon svgIcon="kit-header"></mat-icon>
+    </button>
+
+    <div fxFlex fxLayout="row" fxLayoutAlign="flex-start">
+      <button mat-button routerLink="">
+        <h1 class="title">SmartCampus</h1>
+      </button>
+    </div>
+
+    <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+      <ul fxLayout="row" fxLayoutGap="20px">
+        <li>
+          <button *ngIf="!isDark" mat-icon-button (click)="toggleDarkMode()" matTooltip="{{ 'tooltips.toggle_dark_mode' | translate }}">
+            <mat-icon>flashlight_on</mat-icon>
+          </button>
+          <button *ngIf="isDark" mat-icon-button (click)="toggleDarkMode()" matTooltip="{{ 'tooltips.toggle_light_mode' | translate }}">
+            <mat-icon>flashlight_off</mat-icon>
+          </button>
+        </li>
+        <li>
+          <button mat-icon-button [matMenuTriggerFor]="language" matTooltip="{{ 'tooltips.select_language' | translate }}">
+            <mat-icon>menu_book</mat-icon>
+          </button>
+          <mat-menu #language="matMenu">
+            <button (click)="useLanguage('de')" mat-menu-item>
+              de
+            </button>
+            <button (click)="useLanguage('en')" mat-menu-item>
+              en
+            </button>
+          </mat-menu>
+        </li>
+        <li class="login-button">
+          <button *ngIf="!isLoggedIn()" mat-icon-button (click)="login()">
+            {{'header.login' | translate}}
+          </button>
+          <button *ngIf="isLoggedIn()" mat-icon-button [matMenuTriggerFor]="menu">
+            {{getName()}}
+          </button>
+          <mat-menu #menu="matMenu">
+            <button *ngIf="isLoggedIn()" mat-menu-item (click)="logout()">
+              <mat-icon>logout</mat-icon>
+              {{'header.logout' | translate}}
+            </button>
+          </mat-menu>
+        </li>
+      </ul>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
