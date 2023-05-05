@@ -65,5 +65,8 @@ $ docker compose up
 
 ## Related
 
+Smart Campus is based on the official <a href="https://www.kit.edu/campusplan/index_en.php">KIT Campusplan</a>.
 
 ## License
+
+MIT
