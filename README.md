@@ -28,7 +28,7 @@
       <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&labelColor=ffffff&logoColor=6DB33F&logo=springboot">
   </a>
   
-  <a href="https://spring.io/">
+  <a href="https://auth0.com/">
       <img src="https://img.shields.io/badge/Auth0-EB5424?style=for-the-badge&labelColor=000000&logoColor=EB5424&logo=auth0">
   </a>
 </p>
@@ -41,13 +41,13 @@
   <a href="#license">License</a>
 </p>
 
-![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif)
-
 ## Key Features
 
-* Search and view buildings on <a href="https://www.google.de/maps">Google Maps</a> 
-* Restric 
-* and send problems like a missing ramp for wheelchair users to an admin. The admin should be able to manage the issues via a ticket system and update, delete, read, and add buildings as needed.
+* Search and view buildings on <a href="https://www.google.de/maps">Google Maps</a>.
+* Add buildings and rooms to a favorites list to find them quickly even after some time.
+* Send problems like a missing ramp for wheelchair users to an admin. 
+* Manage issues via a ticket system and update, delete, read, and add buildings as needed.
+* Embedded authentication, which differs between normal user, student and admin, each with its own rights and functionalities.
 
 ## How To Use
 
