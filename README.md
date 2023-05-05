@@ -6,20 +6,26 @@
   <br>
 </h1>
 
-<h4 align="center">An application to search, view and edit lecture halls and more on campus.</h4>
+<h4 align="center">An application to search, view and edit buildings and more on campus.</h4>
 
 <p align="center">
-  <a href="https://badge.fury.io/js/electron-markdownify">
-    <img src="https://badge.fury.io/js/electron-markdownify.svg"
-         alt="Gitter">
-  </a>
-  <a href="https://gitter.im/amitmerchant1990/electron-markdownify"><img src="https://badges.gitter.im/amitmerchant1990/electron-markdownify.svg"></a>
-  <a href="https://saythanks.io/to/bullredeyes@gmail.com">
-      <img src="https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg">
-  </a>
-  <a href="https://www.paypal.me/AmitMerchant">
-    <img src="https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat">
-  </a>
+  [![Angular]](https://angular.io "Angular") 
+  [Angular]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&labelColor=ffffff&logoColor=DD0031&logo=angular
+  
+  [![Docker]](https://www.docker.com "Docker") 
+  [Docker]: https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&labelColor=369cee&logoColor=ffffff&logo=docker
+  
+  [![Java]](https://www.java.com/en "Java")  
+  [Java]: https://img.shields.io/badge/Java-007396?style=for-the-badge&labelColor=f5971f&logoColor=007396&logo=java
+
+  [![JavaScript]](https://en.wikipedia.org/wiki/JavaScript "JavaScript")  
+  [JavaScript]: https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&labelColor=ffffff&logoColor=F7DF1E&logo=javascript
+  
+  [![PostgreSQL]](https://www.postgresql.org "PostgreSQL")  
+  [PostgreSQL]: https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&labelColor=ffffff&logoColor=4169E1&logo=postgresql
+  
+  [![SpringBoot]](https://spring.io/ "Spring")  
+  [SpringBoot]: https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&labelColor=ffffff&logoColor=6DB33F&logo=springboot
 </p>
 
 <p align="center">
