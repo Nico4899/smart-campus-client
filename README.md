@@ -62,6 +62,11 @@ $ docker compose up
 
 ## Credits
 
+This software uses the following open source packages:
+
+- [Angular Material](https://material.angular.io/)
+- [Node.js](https://nodejs.org/)
+- [Angular-OAuth2-OIDC](https://github.com/manfredsteyer/angular-oauth2-oidc)
 
 ## Related
 
