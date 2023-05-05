@@ -15,19 +15,9 @@
   <a href="https://www.docker.com">
       <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&labelColor=369cee&logoColor=ffffff&logo=docker">
   </a> 
-  <a href="https://www.java.com/en">
-      <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&labelColor=f5971f&logoColor=007396&logo=java">
-  </a>  
   <a href="https://en.wikipedia.org/wiki/JavaScript">
       <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&labelColor=ffffff&logoColor=F7DF1E&logo=javascript">
   </a>
-  <a href="https://www.postgresql.org">
-      <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&labelColor=ffffff&logoColor=4169E1&logo=postgresql">
-  </a>
-  <a href="https://spring.io/">
-      <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&labelColor=ffffff&logoColor=6DB33F&logo=springboot">
-  </a>
-  
   <a href="https://auth0.com/">
       <img src="https://img.shields.io/badge/Auth0-EB5424?style=for-the-badge&labelColor=000000&logoColor=EB5424&logo=auth0">
   </a>
