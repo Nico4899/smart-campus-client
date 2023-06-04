@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="https://raw.githubusercontent.com/Nico4899/smart-campus-client/master/src/assets/images/KIT_LOGO_PREFIX.png" alt="KIT-Logo" width="200">
+  <img src="https://raw.githubusercontent.com/Nico4899/smart-campus-client/master/src/assets/images/KIT_LOGO_PREFIX.png" alt="KIT-Logo" width="200" color="black" >
   <br>
   Smart Campus
   <br>
